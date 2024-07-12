@@ -1,0 +1,17 @@
+.table-container {
+    position: relative;
+    width: 95%;
+    margin: auto;
+  }
+  
+  tbody {
+    display: block;
+    overflow-y: auto;
+  }
+  
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: -2;
+  }
+  
