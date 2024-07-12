@@ -1,0 +1,16 @@
+.case-studies-main-div 
+.case-studies-child-div{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color:white;
+    height: 230px;
+    background-color: #050505;
+    opacity: 0.8;
+    padding: 20px;
+  
+    z-index: 1;
+    font-size: 15px;
+}
+

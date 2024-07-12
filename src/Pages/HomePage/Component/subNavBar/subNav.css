@@ -1,0 +1,24 @@
+.active1 {
+  position: relative;
+}
+
+.active1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* Adjust this value as needed */
+  width: 0; /* Start with 0 width */
+  height: 2px; /* Adjust this value as needed */
+  background-color: blue;
+  animation: underlineAnimation 0.3s forwards; /* Apply animation */
+  animation-delay: 0.5s; /* Delay the animation */
+}
+
+@keyframes underlineAnimation {
+  0% {
+    width: 0; /* Start with 0 width */
+  }
+  100% {
+    width: 100%; /* Gradually increase width to 100% */
+  }
+}

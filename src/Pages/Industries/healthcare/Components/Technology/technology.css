@@ -1,0 +1,30 @@
+/* ReliableTools.css */
+
+/* Style for WebKit browsers (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #141414;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #303030;
+    border-radius: 4px;
+}
+
+/* Style for Firefox */
+/* You may need to add other vendor prefixes for cross-browser compatibility */
+.scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #303030 #141414;
+}
+
+.scrollbar-thumb {
+    background-color: #303030;
+}
+
+.scrollbar-track {
+    background: #141414;
+}

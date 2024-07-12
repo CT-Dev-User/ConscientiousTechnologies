@@ -1,0 +1,52 @@
+/* Custom styling for Slick slider dots */
+.slick-custom-dots {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.slick-custom-dots li {
+    list-style: none;
+    margin: 0 5px; /* Adjust spacing between dots */
+}
+
+.slick-custom-dots li button {
+    width: 10px; /* Adjust dot size */
+    height: 10px; /* Adjust dot size */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5); /* Adjust dot color */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-indent: -9999px; /* Hide the dot number */
+    overflow: hidden; /* Hide the dot number */
+}
+
+.slick-custom-dots li.slick-active button {
+    background-color: #fff; /* Adjust active dot color */
+}
+
+.slick-dots li button:before {
+    color: #ffff;
+    font-size: 15px;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px; 
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    background-color: #e2d51c !important;
+}
+
+.slick-dots li.slick-active button:before {
+    font-size: 20px;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+}

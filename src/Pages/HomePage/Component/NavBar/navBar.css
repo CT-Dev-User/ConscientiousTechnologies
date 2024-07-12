@@ -1,0 +1,39 @@
+.active2 {
+  color: #FFA843;
+}
+
+.dropdown {
+  background-color: #1E1E1E; /* Dark background color */
+}
+
+.dark-bg {
+  background-color: #1E1E1E; /* Dark background color */
+}
+
+/* Styling for dropdown items */
+.dropdown > li {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown > li > ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px; /* Adjust max-height as needed */
+  overflow-y: auto;
+  border-top: 1px solid #FFA843; /* Border color */
+  padding: 10px 0;
+  background-color: #1E1E1E; /* Dark background color */
+  z-index: 1;
+}
+
+.dropdown > li > ul > li {
+  padding: 8px 20px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dropdown > li > ul > li:hover {
+  background-color: #2C2C2C; /* Hover background color */
+}
