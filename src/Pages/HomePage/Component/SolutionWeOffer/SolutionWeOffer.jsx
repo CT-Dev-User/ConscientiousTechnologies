@@ -41,7 +41,7 @@ const SolutionWeOffer = () => {
                                 </div>
                                 <button
                                     className="relative overflow-hidden group border border-[white] px-[15px] py-[5px] w-[fit-content] text-[12px] md:ms-0"
-                                    style={{ position: 'relative' }} onClick={() => { navigate(`/solution/${items.title}`) }}>
+                                    style={{ position: 'relative' }} onClick={() => { navigate(`/Solutions/${items.title}`) }}>
                                     <span className="absolute inset-0 bg-[#33B7D4] transition-all duration-300 ease-in-out transform -translate-x-full group-hover:translate-x-0"></span>
                                     <span className="relative z-10 transition-colors duration-300 ease-in-out group-hover:text-white">Learn More <span className="font-bold">&rarr;</span></span>
                                 </button>
@@ -61,7 +61,7 @@ const SolutionWeOffer = () => {
                                         <h3 className='text-[14px] font-medium'> {items.title} </h3>
                                         <p className="text-[13px] me-[5px] mt-2" dangerouslySetInnerHTML={{ __html: items.desc }} />
                                     </div>
-                                    <button className='border-[none] px-[15px] py-[5px] w-[fit-content] text-[14px] text-[skyblue]'>Learn More &rarr;</button>
+                                    <button className='border-[none] px-[15px] py-[5px] w-[fit-content] text-[14px] text-[skyblue]' onClick={()=>{navigate(`Solutions/${items.title}`)}}>Learn More &rarr;</button>
                                 </div>
                             </div>
                         </div>

@@ -65,7 +65,7 @@ const ServiceWeOffer = () => {
                                 </div>
                             </div>
                             <button className='border border-[white] px-[20px] w-[150px] h-[45px] absolute bottom-[-10px] left-[-5px] text-center bg-cyan-500 cursor-pointer' style={{ opacity: hoveredIndex === index ? 1 : 0, transition: 'opacity .4s ease-in-out' }} onClick={() => { navigate(`/service/${item.title}`) }}>Explore More &rarr;</button>
-                            <button className='border border-[white] px-[20px] absolute bottom-[-10px] left-[-5px] bg-[#474747] w-[200px] h-[45px] text-center' style={{ opacity: hoveredIndex === index ? 0 : 1, transition: 'opacity .4s ease-in-out' }} onClick={() => { navigate(`/service/${item.title}`) }}>{item.title}</button>
+                            <button className='border border-[white] px-[20px] absolute bottom-[-10px] left-[-5px] bg-[#474747] w-[200px] h-[45px] text-center' style={{ opacity: hoveredIndex === index ? 0 : 1, transition: 'opacity .4s ease-in-out' }} onClick={() => { navigate(`/Services/${item.title}`) }}>{item.title}</button>
                         </div>
                     </div>
                 ))}
@@ -88,7 +88,7 @@ const ServiceWeOffer = () => {
                                 <div className='w-[100%] h-[100%] absolute top-0'>
                                     <div dangerouslySetInnerHTML={{ __html: item.points }} className='py-1 px-2' />
                                 </div>
-                                <button className='border border-[white] px-[20px] absolute bottom-0 bg-[#474747] w-[200px] h-[45px] text-center' onClick={() => { Navigate(`/service/${item.title}`) }}>{item.title}</button>
+                                <button className='border border-[white] px-[20px] absolute bottom-0 bg-[#474747] w-[200px] h-[45px] text-center' onClick={() => { navigate(`/Services/${item.title}`) }}>{item.title}</button>
                             </div>
                         </div>
                     ))}
