@@ -1,6 +1,6 @@
 import upload from "../multer.js";
+import MultiImageupload from "../middleware/multiImageMulter.js";
 import express from "express";
-import { MultiImageupload } from "../middleware/multiImageMulter.js";
 export const dataroute = express.Router();
 
 // import { Admin, authlogin } from "../middlwares/userauth.js";
@@ -28,172 +28,172 @@ import { addSocialMediaData, deleteSocialMediadata, editSocialMediadata, getSoci
 import { addAddress, deleteAddress, editAddress, getAddress } from "../controllers/About/Address.js";
 import { addAreaOfExpertiesData, deleteAreaOfExpertiesdata, editAreaOfExpertiessdata, getAreaOfExpertiesByCategory, getAreaOfExpertiesByCategorySubCategory, getAreaOfExpertiesSubCategory, getAreaOfExpertiesdata } from "../controllers/AreaOfExperies/AreaOfExperiesController.js";
 import { addBlogData, deleteBlogsData, getBlogDataByCategory, getBlogDataByCategorySubCategory, getBlogDataBySubCategory, getBlogsData, updateBlogsDataById } from "../controllers/BlogController/BlogController.js";
+import { authlogin, Super_Admin } from "../middleware/userauth.js";
 
 //heroslider routes
-dataroute.post('/add-heroslider-data', upload.single('herosliderImage'), addSliderData)
+dataroute.post('/add-heroslider-data',authlogin, Super_Admin, upload.single('herosliderImage'), addSliderData)
 dataroute.get('/get-heroslider-data', getherosliderdata)
-dataroute.put('/edit-heroslider-data/:id', upload.single('herosliderImage'), editherosliderdata)
+dataroute.put('/edit-heroslider-data/:id',authlogin, Super_Admin, upload.single('herosliderImage'), editherosliderdata)
 dataroute.delete('/delete-heroslider-data/:id', deleteheroslliderdata)
 
 //our partener route
-dataroute.post('/add-partener-data', upload.single('logo'), addPartener)
+dataroute.post('/add-partener-data',authlogin, Super_Admin, upload.single('logo'), addPartener)
 dataroute.get('/get-partener-data', getPartenarData)
-dataroute.put('/edit-partener-data/:id', upload.single('logo'), editPartenerData)
-dataroute.delete('/delete-partener-data/:id', deletePartenerData)
+dataroute.put('/edit-partener-data/:id',authlogin, Super_Admin, upload.single('logo'), editPartenerData)
+dataroute.delete('/delete-partener-data/:id',authlogin, Super_Admin, deletePartenerData)
 
 //service data routes 
 dataroute.get("/get-service-data", getServiceData);
-dataroute.post("/add-service-data", MultiImageupload.array("images", 2), addServiceData);
-dataroute.put("/edit-service-data/:id", MultiImageupload.array("images", 2), editServiceData);
-dataroute.delete("/delete-service-data/:id", deleteServiceData);
+dataroute.post("/add-service-data",authlogin, Super_Admin, MultiImageupload.array("images", 2), addServiceData);
+dataroute.put("/edit-service-data/:id",authlogin, Super_Admin, MultiImageupload.array("images", 2), editServiceData);
+dataroute.delete("/delete-service-data/:id",authlogin, Super_Admin, deleteServiceData);
 
 //solution we offer routes
 
-dataroute.post('/add-solution-we-offer-data', MultiImageupload.array('images', 1), addSolutionData)
+dataroute.post('/add-solution-we-offer-data',authlogin, Super_Admin, MultiImageupload.array('images', 1), addSolutionData)
 dataroute.get('/get-solution-we-offer-data', getSolutionData)
-dataroute.put('/edit-solution-we-offer-data/:id', MultiImageupload.array('images', 2), editSolutionWeOffer)
-dataroute.delete('/delete-solution-we-offer-data/:id', deleteSolutionData)
+dataroute.put('/edit-solution-we-offer-data/:id',authlogin, Super_Admin, MultiImageupload.array('images', 2), editSolutionWeOffer)
+dataroute.delete('/delete-solution-we-offer-data/:id',authlogin, Super_Admin, deleteSolutionData)
 
 //industries we offer routes
-dataroute.post('/add-industries-data', MultiImageupload.array('images', 1), addIndustriesData)
+dataroute.post('/add-industries-data',authlogin, Super_Admin, MultiImageupload.array('images', 1), addIndustriesData)
 dataroute.get('/get-industries-data', getIndustriesData)
-dataroute.put('/edit-industries-data/:id', MultiImageupload.array('images', 1), editIndustriesData)
-dataroute.delete('/delete-industries-data/:id', deleteIndustriesData)
+dataroute.put('/edit-industries-data/:id',authlogin, Super_Admin, MultiImageupload.array('images', 1), editIndustriesData)
+dataroute.delete('/delete-industries-data/:id',authlogin, Super_Admin, deleteIndustriesData)
 
 //case Studies Routes
-dataroute.post("/add-case-studies-data", MultiImageupload.array('images', 1), addCaseStudiesData)
+dataroute.post("/add-case-studies-data",authlogin, Super_Admin, MultiImageupload.array('images', 1), addCaseStudiesData)
 dataroute.get("/get-case-studies-data", getCaseStudiesData)
-dataroute.put("/edit-case-studies-data/:id", MultiImageupload.array('images', 1), editCaseStudiesData)
-dataroute.delete("/delete-case-studies-data/:id", deleteCaseStudiesData)
+dataroute.put("/edit-case-studies-data/:id",authlogin, Super_Admin, MultiImageupload.array('images', 1), editCaseStudiesData)
+dataroute.delete("/delete-case-studies-data/:id",authlogin, Super_Admin, deleteCaseStudiesData)
 
 //blog data Routes
-dataroute.post("/add-blog-data", MultiImageupload.array('images', 1), addBlogsData)
+dataroute.post("/add-blog-data",authlogin, Super_Admin, MultiImageupload.array('images', 1), addBlogsData)
 dataroute.get("/get-blog-data", getBlogData)
-dataroute.put("/edit-blog-data/:id", MultiImageupload.array('images', 1), editBlogData)
-dataroute.delete("/delete-blog-data/:id", deleteBlogData)
+dataroute.put("/edit-blog-data/:id",authlogin, Super_Admin, MultiImageupload.array('images', 1), editBlogData)
+dataroute.delete("/delete-blog-data/:id",authlogin, Super_Admin, deleteBlogData)
 
 //meet our client data routes
-dataroute.post("/add-client-review-data", MultiImageupload.array('images', 1), addClientReviewData)
+dataroute.post("/add-client-review-data",authlogin, Super_Admin, MultiImageupload.array('images', 1), addClientReviewData)
 dataroute.get("/get-client-review-data", getClientReviewData)
-dataroute.put("/edit-client-review-data/:id", MultiImageupload.array('images', 1), editClientReviewData)
-dataroute.delete("/delete-client-review-data/:id", deleteClientReviewData)
+dataroute.put("/edit-client-review-data/:id",authlogin, Super_Admin, MultiImageupload.array('images', 1), editClientReviewData)
+dataroute.delete("/delete-client-review-data/:id",authlogin, Super_Admin, deleteClientReviewData)
 
 //home faq routes
-dataroute.post("/add-home-faq", MultiImageupload.array('images', 1), addHomeFaq)
+dataroute.post("/add-home-faq",authlogin, Super_Admin, MultiImageupload.array('images', 1), addHomeFaq)
 dataroute.get("/get-home-faq", getHomeFaq)
-dataroute.put("/edit-home-faq/:id", MultiImageupload.array('images', 1), updateHomeFaqById)
-dataroute.delete("/delete-home-faq/:id", deleteHomeFaq)
+dataroute.put("/edit-home-faq/:id",authlogin, Super_Admin, MultiImageupload.array('images', 1), updateHomeFaqById)
+dataroute.delete("/delete-home-faq/:id",authlogin, Super_Admin, deleteHomeFaq)
 
 //book free consultation routes
-dataroute.post("/add-book-free-con-data", addbookFreeConData)
+dataroute.post("/add-book-free-con-data",authlogin, Super_Admin, addbookFreeConData)
 dataroute.get("/get-book-free-con-data", getbookFreeConData)
-dataroute.put("/edit-book-free-con-data/:id", editbookFreeConData)
-dataroute.delete("/delete-book-free-con-data/:id", deletebookFreeConData)
+dataroute.put("/edit-book-free-con-data/:id",authlogin, Super_Admin, editbookFreeConData)
+dataroute.delete("/delete-book-free-con-data/:id",authlogin, Super_Admin, deletebookFreeConData)
 
 // Faq Data routes 
-dataroute.post('/add-faq', MultiImageupload.array('images', 1), addFaq)
+dataroute.post('/add-faq',authlogin, Super_Admin, MultiImageupload.array('images', 1), addFaq)
 dataroute.get('/get-faq', getFaq)
-dataroute.delete('/delete-faq/:id', deleteFaq)
-dataroute.put('/update-faq/:id', MultiImageupload.array('images', 1), updateFaqById)
+dataroute.delete('/delete-faq/:id',authlogin, Super_Admin, deleteFaq)
+dataroute.put('/update-faq/:id',authlogin, Super_Admin, MultiImageupload.array('images', 1), updateFaqById)
 dataroute.get('/get-faq-bycategory/:category', getFaqByCategory)
 dataroute.get('/get-faq-bysubcategory/:Subcategory', getFaqBySubCategory)
 dataroute.get('/get-faq-bycategorysubcategory/:category/:Subcategory', getFaqByCategorySubCategory)
 
 // category for FAQ's
-dataroute.post('/add-category', addCategory)
+dataroute.post('/add-category',authlogin, Super_Admin, addCategory)
 dataroute.get('/get-category', getCategory)
-dataroute.delete('/delete-category/:id', deleteCategory)
+dataroute.delete('/delete-category/:id',authlogin, Super_Admin, deleteCategory)
 
 // header for all pages 
-dataroute.post('/add-header', upload.single('image'), addHeadersData)
+dataroute.post('/add-header',authlogin, Super_Admin, upload.single('image'), addHeadersData)
 dataroute.get('/get-header', getHeadersdata)
 dataroute.get('/get-header-by-headerCategory/:headerCategory', getHeaderByCategory)
 dataroute.get('/get-header-by-headerSubCategory/:headerSubCategory', getHeaderBySubCategory)
 dataroute.get('/get-header-by-headerCategoryandSubCategory/:headerCategory/:headerSubCategory', getHeaderByCategorySubCategory)
-dataroute.put('/edit-header-by-id/:id', upload.single('image'), editHeadersdata)
-dataroute.delete('/delete-header-by-id/:id', deleteHeadersdata)
+dataroute.put('/edit-header-by-id/:id',authlogin, Super_Admin, upload.single('image'), editHeadersdata)
+dataroute.delete('/delete-header-by-id/:id',authlogin, Super_Admin, deleteHeadersdata)
 
 //navigations and dropdown
-dataroute.post('/add-navigation', addNavbarData)
+dataroute.post('/add-navigation',authlogin, Super_Admin, addNavbarData)
 dataroute.get('/get-navigation', getNavbardata)
 dataroute.get('/get-navigation-by-navCategory/:navCategory', getNavbarByCategory)
-dataroute.put('/edit-navigation-by-id/:id', editNavbardata)
-dataroute.delete('/delete-navigation-by-id/:id', deleteNavbardata)
+dataroute.put('/edit-navigation-by-id/:id',authlogin, Super_Admin, editNavbardata)
+dataroute.delete('/delete-navigation-by-id/:id',authlogin, Super_Admin, deleteNavbardata)
 
 // why choose ct routes
-dataroute.post('/add-choose-ct-slider-data', MultiImageupload.array('images'), addChooseCtSliderData)
+dataroute.post('/add-choose-ct-slider-data',authlogin, Super_Admin, MultiImageupload.array('images'), addChooseCtSliderData)
 dataroute.get('/get-choose-ct-slider-data', getChooseCtSliderdata)
 
 dataroute.get('/get-choose-ct-slider-data/:category', getChooseCtSliderByCategory)
 dataroute.get('/get-choose-ct-slider-data/:subcategory', getChooseCtSliderBySubCategory)
 dataroute.get('/get-choose-ct-slider-data-byCategorySubCategory/:category/:subcategory', getChooseCtSliderByCategorySubCategory)
-// dataroute.put('/edit-choose-ct-slider-data/:id', editChooseCtSliderdata)
 
 dataroute.get('/get-choose-ct-slider-data/:category', getChooseCtSliderByCategory)
 dataroute.get('/get-choose-ct-slider-by-sub-data/:Subcategory', getChooseCtSliderBySubCategory)
-dataroute.put('/edit-choose-ct-slider-data/:id', MultiImageupload.array('images'), editChooseCtSliderData)
+dataroute.put('/edit-choose-ct-slider-data/:id',authlogin, Super_Admin, MultiImageupload.array('images'), editChooseCtSliderData)
 
-dataroute.delete('/delete-choose-ct-slider-data/:id', deleteChooseCtSliderdata)
+dataroute.delete('/delete-choose-ct-slider-data/:id',authlogin, Super_Admin, deleteChooseCtSliderdata)
 
-dataroute.post('/add-partner-up-data', MultiImageupload.fields([{ name: 'images1' }, { name: 'images2' }]), addPartnerUpData);
+dataroute.post('/add-partner-up-data',authlogin, Super_Admin, MultiImageupload.fields([{ name: 'images1' }, { name: 'images2' }]), addPartnerUpData);
 dataroute.get('/get-partner-up-data', getPartnerupdata);
-dataroute.put('/edit-partner-up-data/:id', MultiImageupload.fields([{ name: 'images1' }, { name: 'images2' }]), editPartnerUpdata);
-dataroute.delete('/delete-partner-up-data/:id', deletePartnerUpdata);
+dataroute.put('/edit-partner-up-data/:id',authlogin, Super_Admin, MultiImageupload.fields([{ name: 'images1' }, { name: 'images2' }]), editPartnerUpdata);
+dataroute.delete('/delete-partner-up-data/:id',authlogin, Super_Admin, deletePartnerUpdata);
 
 // case studies routes
-dataroute.post('/add-case-study', MultiImageupload.array('images', 1), addCaseStudy)
+dataroute.post('/add-case-study',authlogin, Super_Admin, MultiImageupload.array('images', 1), addCaseStudy)
 dataroute.get('/get-case-studies', getCaseStudies)
-dataroute.delete('/delete-case-study/:id', deleteCaseStudy)
-dataroute.put('/update-case-study/:id', updateCaseStudyById)
+dataroute.delete('/delete-case-study/:id',authlogin, Super_Admin, deleteCaseStudy)
+dataroute.put('/update-case-study/:id',authlogin, Super_Admin, updateCaseStudyById)
 dataroute.get('/get-case-study-bycategory/:category', getCaseStudiesByCategory)
 dataroute.get('/get-case-study-bycategory/:Subcategory', getCaseStudyBySubCategory)
 dataroute.get('/get-case-study-bycategorysubcategory/:category/:Subcategory', getCSByCategorySubCategory)
 
-dataroute.post('/add-reliable-tools-data', MultiImageupload.array('techLogos'), addReliableToolsData);
+dataroute.post('/add-reliable-tools-data',authlogin, Super_Admin, MultiImageupload.array('techLogos'), addReliableToolsData);
 dataroute.get('/get-reliable-tools-data', getReliableToolsData);
 dataroute.get('/get-reliable-tools-data/:category', getReliableToolsByCategory)
 dataroute.get('/get-reliable-tools-data/:category/:Subcategory', getReliableToolsBySubCategory)
-dataroute.put('/update-reliable-tools-data/:id', MultiImageupload.array('techLogos'), editReliableToolsData)
-dataroute.delete('/delete-reliable-tools-data/:id', deleteReliableToolsData)
+dataroute.put('/update-reliable-tools-data/:id',authlogin, Super_Admin, MultiImageupload.array('techLogos'), editReliableToolsData)
+dataroute.delete('/delete-reliable-tools-data/:id',authlogin, Super_Admin, deleteReliableToolsData)
 
 //  key feature routes
-dataroute.post('/add-key-feature-data', upload.single('keyFeatureImag'), addKeyFeatureData);
+dataroute.post('/add-key-feature-data',authlogin, Super_Admin, upload.single('keyFeatureImag'), addKeyFeatureData);
 dataroute.get('/get-key-feature-data', getKeyFeaturedata);
-dataroute.put('/update-key-feature-data/:id', upload.single('keyFeatureImag'), editKeyFeatureData)
-dataroute.delete('/delete-key-feature-data/:id', deleteKeyFeatureData)
+dataroute.put('/update-key-feature-data/:id',authlogin, Super_Admin, upload.single('keyFeatureImag'), editKeyFeatureData)
+dataroute.delete('/delete-key-feature-data/:id',authlogin, Super_Admin, deleteKeyFeatureData)
 
 // contact us controller
-dataroute.post("/add-contact-us-data", upload.single('sourceImage'), addContactUsData)
+dataroute.post("/add-contact-us-data",authlogin, Super_Admin, upload.single('sourceImage'), addContactUsData)
 dataroute.get("/get-contact-us-data", getContactUsData)
-dataroute.put("/edit-contact-us-data/:id", upload.single('sourceImage'), editContactUsData)
-dataroute.delete("/delete-contact-us-data/:id", deleteContactUsData)
+dataroute.put("/edit-contact-us-data/:id",authlogin, Super_Admin, upload.single('sourceImage'), editContactUsData)
+dataroute.delete("/delete-contact-us-data/:id",authlogin, Super_Admin, deleteContactUsData)
 
 // social media routes
-dataroute.post('/add-social-media-data', upload.single('social_icon'), addSocialMediaData);
+dataroute.post('/add-social-media-data',authlogin, Super_Admin, upload.single('social_icon'), addSocialMediaData);
 dataroute.get('/get-social-media-data', getSocialMediadata);
-dataroute.put('/update-social-media-data/:id', upload.single('social_icon'), editSocialMediadata)
-dataroute.delete('/delete-social-media-data/:id', deleteSocialMediadata)
+dataroute.put('/update-social-media-data/:id',authlogin, Super_Admin, upload.single('social_icon'), editSocialMediadata)
+dataroute.delete('/delete-social-media-data/:id',authlogin, Super_Admin, deleteSocialMediadata)
 
 // social media routes
-dataroute.post('/add-address', addAddress);
+dataroute.post('/add-address',authlogin, Super_Admin, addAddress);
 dataroute.get('/get-address', getAddress);
-dataroute.put('/update-address/:id', editAddress)
-dataroute.delete('/delete-address/:id', deleteAddress)
+dataroute.put('/update-address/:id',authlogin, Super_Admin, editAddress)
+dataroute.delete('/delete-address/:id',authlogin, Super_Admin, deleteAddress)
 
 // experties data for all pages 
-dataroute.post('/add-experies-data', upload.single('image'), addAreaOfExpertiesData)
+dataroute.post('/add-experies-data',authlogin, Super_Admin, upload.single('image'), addAreaOfExpertiesData)
 dataroute.get('/get-experies-data', getAreaOfExpertiesdata)
 dataroute.get('/get-experies-by-category/:Category', getAreaOfExpertiesByCategory)
 dataroute.get('/get-experies-by-SubCategory/:SubCategory', getAreaOfExpertiesSubCategory)
 dataroute.get('/get-experties-by-CategoryandSubCategory/:Category/:SubCategory', getAreaOfExpertiesByCategorySubCategory)
-dataroute.put('/edit-experties-by-id/:id', upload.single('image'), editAreaOfExpertiessdata)
-dataroute.delete('/delete-experties-by-id/:id', deleteAreaOfExpertiesdata)
+dataroute.put('/edit-experties-by-id/:id',authlogin, Super_Admin, upload.single('image'), editAreaOfExpertiessdata)
+dataroute.delete('/delete-experties-by-id/:id',authlogin, Super_Admin, deleteAreaOfExpertiesdata)
 
 // blogData for all pages 
-dataroute.post('/add-blogs-data', MultiImageupload.array('images', 2), addBlogData)
+dataroute.post('/add-blogs-data',authlogin, Super_Admin, MultiImageupload.array('images', 2), addBlogData)
 dataroute.get('/get-blogs-data', getBlogsData)
-dataroute.put('/edit-blogs-data-by-id/:id', MultiImageupload.array('images', 2), updateBlogsDataById)
-dataroute.delete('/delete-blogs-data-by-id/:id', deleteBlogsData)
+dataroute.put('/edit-blogs-data-by-id/:id',authlogin, Super_Admin, MultiImageupload.array('images', 2), updateBlogsDataById)
+dataroute.delete('/delete-blogs-data-by-id/:id',authlogin, Super_Admin, deleteBlogsData)
 dataroute.get('/get-blogs-data-by-id/:id', getBlogDataByCategory)
 dataroute.get('/get-blogs-data-by-SubCategory/:SubCategory', getBlogDataBySubCategory)
 dataroute.get('/get-blogs-data-by-CategoryandSubCategory/:Category/:SubCategory', getBlogDataByCategorySubCategory)
