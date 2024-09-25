@@ -16,20 +16,20 @@ const ProcessWeFollow = () => {
         <h1 className='text-3xl font-bold md:text-[16px] md:text-[blue]'>Process We Follow</h1>
         <p className='w-[70%] text-[14px] mt-2 md:w-[100%] md:text-[12px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
       </div>
-      <div className='flex text-[white] w-[90%] gap-[0px] flex-wrap mx-auto justify-center flex-wrap mt-[30px] md:hidden'>
+      <div className='flex text-[white] w-[90%] gap-[0px] mx-auto justify-center flex-wrap mt-[30px] md:hidden'>
 
         {processWeFollowData.map((data, i) => (
-          <div key={i} className={`w-[350px] h-[220px] text-[black] border-[#737373] flex flex-col justify-around py-3 px-[30px]  ${i === 0 || i === 1 || i === 3 || i === 4 ? 'border-r' : ''} ${i === 0 || i == 1 || i == 2 ? 'border-b' : ''}`} >
-            <h1 className='font-bold text-[40px] self-end mr-5' style={{ color: data.srColor }}>{data.srNo}</h1>
+          <div key={i} className={`w-[30%] h-[300px] text-[black] border-[#737373] flex flex-col justify-around py-3 px-[30px]  ${i === 0 || i === 1 || i === 3 || i === 4 ? 'border-r' : ''} ${i === 0 || i == 1 || i == 2 ? 'border-b' : ''}`} >
+            <h1 className='font-bold text-[40px] self-end mr-5  2xl:text-6xl' style={{ color: data.srColor }}>{data.srNo}</h1>
             <div>
-              <h3 className='font-semibold text-[18px]'>{data.title}</h3>
-              <p className='text-[14px] mt-2'>{data.desc}</p>
+              <h3 className='font-semibold text-[18px] 2xl:text-2xl'>{data.title}</h3>
+              <p className='text-[14px] mt-2 2xl:text-lg'>{data.desc}</p>
             </div>
           </div>
         ))}
 
       </div>
-      <div className='hidden md:flex text-[white] w-[90%] flex-wrap mx-auto justify-center flex-wrap mt-[30px]'>
+      <div className='hidden md:flex text-[white] w-[90%] mx-auto justify-center flex-wrap mt-[30px]'>
         {processWeFollowData.map((data, i) => (
           <div key={i} className={`w-[49%] h-[180px] text-[black] border-[#737373] border-dashed flex flex-col justify-around px-[5px] ${i === 0 || i === 2 || i === 4 ? 'border-r' : ''} ${i === 0 || i == 1 || i == 2 || i == 3 ? 'border-b' : ''}`} >
             <h1 className='font-bold self-end mr-2 text-[18px]' style={{ color: data.srColor }}>{data.srNo}</h1>

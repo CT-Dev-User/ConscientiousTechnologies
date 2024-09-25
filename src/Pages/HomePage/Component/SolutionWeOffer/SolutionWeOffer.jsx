@@ -30,7 +30,7 @@ const SolutionWeOffer = () => {
             <div className="flex text-[white] w-[85%] gap-[20px] flex-wrap mx-auto mt-7 md:hidden pb-[30px]">
                 {firstTwelveData.map((items, i) => {
                     return (
-                        <div className='flex w-[370px] bg-[#333333] h-[160px] justify-center gap-x-[20px]' key={i}>
+                        <div className='flex w-[31%] bg-[#333333] h-[200px] justify-center gap-x-[20px]' key={i}>
                             <div className='w-[45%] h-[100%]'>
                                 <img src={items.SolutionhomePageImage} alt={items.title} className='w-[100%] h-[100%]' />
                             </div>

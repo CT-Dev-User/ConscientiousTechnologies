@@ -55,13 +55,13 @@ const KeyFeature = () => {
                   <div className='w-[40%] h-[100%] md:hidden' style={{ backgroundImage: `url(${item.keyFeatureImag})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
                   </div>
                   <div className='w-[60%] h-[100%] md:w-[100vw] md:h-[70%]'>
-                    <div className='w-[90%] md:w-[100%] mx-auto h-[15%] flex md:mt-2 box-border pt-[10px] box-border'>
+                    <div className='w-[90%] md:w-[100%] mx-auto h-[15%] flex md:mt-2 box-border pt-[10px] '>
                       <div>
-                        <h2 className='font-bold text-3xl md:text-xl md:ms-4 text-[#3970F0]'>Our Key Features</h2>
-                        <p className='text-[16px] w-[90%] mt-1 md:text-[14px] md:mx-auto'>Services That We Deliver Makes Us Dignified As One of The Top Software Development Companies.</p>
+                        <h2 className='font-bold text-3xl md:text-xl md:ms-4 text-[#3970F0] 2xl:text-[2.5rem]'>Our Key Features</h2>
+                        <p className='text-[16px] w-[100%] mt-1 md:text-[14px] md:mx-auto py-4'>Services That We Deliver Makes Us Dignified As One of The Top Software Development Companies.</p>
                       </div>
                     </div>
-                    <h2 className='font-semibold text-2xl ms-[50px] mt-[20px] md:ms-[20px] md:text-[18px] md:mt-[10px]'> {item.title} </h2>
+                    <h2 className='font-semibold text-2xl ms-[50px] mt-[20px] md:ms-[20px] md:text-[18px] md:mt-[10px] py-6'> {item.keyFeatureTitle} </h2>
                     <div className='hidden md:block w-[92%] h-[46%] mx-auto' style={{ backgroundImage: `url(${item.keyFeatureImag})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
                     </div>
                     <div className='w-[90%] h-auto grid grid-cols-3 mx-auto md:flex flex-col gap-[30px] md:gap-[20px] md:ms-5 mt-[20px]'>

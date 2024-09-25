@@ -24,10 +24,10 @@ const CaseStudies = () => {
         <h1 className='text-3xl font-bold md:text-[24px]'>Case Studies</h1>
         <p className='w-[70%] text-[14px] mt-2 md:w-[100%] md:text-[12px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
       </div>
-      <div className='flex text-white w-[85%] gap-[35px] flex-wrap mx-auto justify-center mt-[30px] md:h-[60vh] md:overflow-y-auto'>
+      <div className='flex text-white w-[85%] gap-[35px] flex-wrap mx-auto justify-center mt-[30px] md:h-[60vh] md:overflow-y-auto '>
         {CaseStudiesData.map((items, i) => {
           return (
-            <div style={{ backgroundImage: `url(${items.caseStudyImage})`, backgroundSize: 'cover', backgroundPosition: 'cover' }} className='w-[360px] h-[380px] bg-[black] relative case-studies-main-div md:w-[100%] md:h-[45%]' key={i}>
+            <div style={{ backgroundImage: `url(${items.caseStudyImage})`, backgroundSize: 'cover', backgroundPosition: 'cover' }} className='w-[31%] h-[380px] bg-[black] relative case-studies-main-div md:w-[100%] md:h-[45%]' key={i}>
               <div className='case-studies-child-div flex flex-col justify-between'>
                 <div className='flex flex-col justify-around gap-[20px]'>
                   <h1 className='font-semibold text-xl md:text-[16px]'>{items.title}</h1>

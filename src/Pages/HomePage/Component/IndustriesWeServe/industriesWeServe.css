@@ -20,7 +20,7 @@
 
 .main-div:hover .title-div {
   border-top: none;
-  transform: translateY(calc(-465% - 20px)); /* Adjust based on container height */
+  transform: translateY(calc(-550% - 20px)); /* Adjust based on container height */
 }
 
 .desc-div {

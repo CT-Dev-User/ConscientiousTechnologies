@@ -51,14 +51,15 @@ const ServiceWeOffer = () => {
 
             <div className='w-[100%] flex gap-[30px] flex-wrap mt-[50px] md:hidden'>
                 {homeServiceData.map((item, index) => (
-                    <div key={index} className='service-item' onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)} onClick={() => handleServiceItemClick(index)}>
-                        <div className='text-[white] w-[270px] h-[380px] bg-[white] relative text-[12px]' style={{ backgroundImage: `url(${item.ServiceHomePageimage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    <div key={index} className='service-item w-[20%]' onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)} onClick={() => handleServiceItemClick(index)}>
+                       
+                        <div className='text-[white]  bg-red-500  w-[100%] h-[450px] relative text-[12px]' style={{ backgroundImage: `url(${item.ServiceHomePageimage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                             <div className='overlay'></div>
                             <div className={hoveredIndex === index ? 'w-[100%] h-[100%] absolute top-0 overlay show' : 'hidden'}>
-                                <div className='py-1 px-2'>
+                                <div className=' p-4'>
                                     {item.points.map((point, index) => (
                                         <li key={index} className="mb-2 list-none">
-                                            <h3 className="text-[14px] font-semibold underline">{point.title}</h3>
+                                            <h3 className="text-[14px] font-semibold underline ">{point.title}</h3>
                                             <p className='font-normal text-[12px]' dangerouslySetInnerHTML={{ __html: point.description }} /> {/* Display description */}
                                         </li>
                                     ))}
