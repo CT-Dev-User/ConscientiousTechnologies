@@ -1,23 +1,31 @@
 // SubNav Component
-import React, { useState, useEffect } from 'react';
-import './subNav.css';
+import React, { useState, useEffect } from "react";
+import "./subNav.css";
 
-const SubNav = ({ setHideNavbar, setActiveSubNav}) => {
+const SubNav = ({ setHideNavbar, setActiveSubNav }) => {
   const [subNavTop, setSubNavTop] = useState(0);
-  const [activeAnchor, setActiveAnchor] = useState('');
+  const [activeAnchor, setActiveAnchor] = useState("");
   const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
+      const navbarHeight = document.querySelector(".navbar")?.offsetHeight || 0;
       setSubNavTop(navbarHeight);
 
-      const sections = ['overview', 'service', 'solution', 'how-we-work', 'industries', 'testimonials', 'book-free-consultation'];
+      const sections = [
+        "overview",
+        "service",
+        "solution",
+        "how-we-work",
+        "industries",
+        "testimonials",
+        "book-free-consultation",
+      ];
 
-      let activeSection = '';
+      let activeSection = "";
       let minDistance = Number.MAX_VALUE;
 
-      sections.forEach(id => {
+      sections.forEach((id) => {
         const section = document.getElementById(id);
         if (section) {
           const rect = section.getBoundingClientRect();
@@ -47,14 +55,12 @@ const SubNav = ({ setHideNavbar, setActiveSubNav}) => {
       }
     };
 
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [setHideNavbar]);
-
 
   const handleClick = (id) => {
     setActiveAnchor(id);
@@ -73,10 +79,14 @@ const SubNav = ({ setHideNavbar, setActiveSubNav}) => {
 
       // Smooth scrolling animation
       const startTime = performance.now();
-      const easeInOutQuad = (t) => t < 0.3 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      const easeInOutQuad = (t) => (t < 0.3 ? 2 * t * t : -1 + (4 - 2 * t) * t);
       const scroll = (currentTime) => {
         const elapsed = currentTime - startTime;
-        window.scrollTo(0, easeInOutQuad(elapsed / duration) * (targetOffsetTop - offset) + offset);
+        window.scrollTo(
+          0,
+          easeInOutQuad(elapsed / duration) * (targetOffsetTop - offset) +
+            offset
+        );
         if (elapsed < duration) {
           requestAnimationFrame(scroll);
         }
@@ -85,37 +95,83 @@ const SubNav = ({ setHideNavbar, setActiveSubNav}) => {
     }
   };
 
-
-
   return (
     <div
-      className={`h-[50px] w-[100vw] bg-black sticky ${isAtTop ? 'top-[calc(90px + 1rem)]' : 'top-0'} z-50 md:hidden flex`}
+      className={`hidden lg:flex h-14 w-screen bg-black sticky ${
+        isAtTop ? "top-[calc(90px + 1rem)]" : "top-0"
+      } z-50`}
       style={{
         top: subNavTop,
-        transition: 'transform 0.3s ease-in-out',
+        transition: "transform 0.3s ease-in-out",
       }}
     >
-      <ul className='flex text-white justify-evenly w-[100%] items-center text-[12px]'>
+      <ul className="flex text-white justify-evenly w-full items-center text-xs">
         <li>
-          <a href="#overview" onClick={(e) => { handleClick('overview') }} className={activeAnchor === 'overview' ? 'active1' : ''}>Overview</a>
+          <a
+            href="#overview"
+            onClick={(e) => {
+              handleClick("overview");
+            }}
+            className={activeAnchor === "overview" ? "active1" : ""}
+          >
+            Overview
+          </a>
         </li>
         <li>
-          <a href="#service" onClick={(e) => handleClick('service')} className={activeAnchor === 'service' ? 'active1' : ''}>Services</a>
+          <a
+            href="#service"
+            onClick={(e) => handleClick("service")}
+            className={activeAnchor === "service" ? "active1" : ""}
+          >
+            Services
+          </a>
         </li>
         <li>
-          <a href="#solution" onClick={(e) => handleClick('solution')} className={activeAnchor === 'solution' ? 'active1' : ''}>Solutions</a>
+          <a
+            href="#solution"
+            onClick={(e) => handleClick("solution")}
+            className={activeAnchor === "solution" ? "active1" : ""}
+          >
+            Solutions
+          </a>
         </li>
         <li>
-          <a href="#how-we-work" onClick={(e) => handleClick('how-we-work')} className={activeAnchor === 'how-we-work' ? 'active1' : ''}>How we work</a>
+          <a
+            href="#how-we-work"
+            onClick={(e) => handleClick("how-we-work")}
+            className={activeAnchor === "how-we-work" ? "active1" : ""}
+          >
+            How we work
+          </a>
         </li>
         <li>
-          <a href="#industries" onClick={(e) => handleClick('industries')} className={activeAnchor === 'industries' ? 'active1' : ''}>Industries</a>
+          <a
+            href="#industries"
+            onClick={(e) => handleClick("industries")}
+            className={activeAnchor === "industries" ? "active1" : ""}
+          >
+            Industries
+          </a>
         </li>
         <li>
-          <a href="#testimonials" onClick={(e) => handleClick('testimonials')} className={activeAnchor === 'testimonials' ? 'active1' : ''}>Testimonials</a>
+          <a
+            href="#testimonials"
+            onClick={(e) => handleClick("testimonials")}
+            className={activeAnchor === "testimonials" ? "active1" : ""}
+          >
+            Testimonials
+          </a>
         </li>
         <li>
-          <a href="#book-free-consultation" onClick={(e) => handleClick('book-free-consultation')} className={activeAnchor === 'book-free-consultation' ? 'active1' : ''}>Book free consultation</a>
+          <a
+            href="#book-free-consultation"
+            onClick={(e) => handleClick("book-free-consultation")}
+            className={
+              activeAnchor === "book-free-consultation" ? "active1" : ""
+            }
+          >
+            Book free consultation
+          </a>
         </li>
       </ul>
     </div>

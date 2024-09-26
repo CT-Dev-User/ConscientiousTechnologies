@@ -47,18 +47,18 @@ const ServiceWeOffer = () => {
   return (
     <div
       id="service"
-      className="w-screen bg-[black] h-auto pt-24 md:pt-10 pb-16 md:pb-0 text-[white] box-border"
+      className="w-screen bg-[black] h-auto md:pt-24 pt-10 md:pb-16 pb-0 text-[white] box-border"
     >
-      <div className="w-[85%] md:w-[90%] mx-auto">
-        <h1 className="text-3xl font-bold md:text-lg 3xl:text-[2.5rem] 2xl:text-4xl">Service We Offers</h1>
-        <p className="w-full text-base md:text-[10px] mt-3 font-normal">
+      <div className="w-[90%] lg:w-[85%] mx-auto">
+        <h1 className="font-bold text-lg lg:text-3xl 2xl:text-[2.5rem]">Service We Offers</h1>
+        <p className="w-full text-xs lg:text-base mt-3 font-normal">
           At CT, we are ready to offer end-to-end development that covers
           everything from business analysis to software delivery and support,
           help modernize your legacy software, or provide expert advisory at any
           stage of SDLC..{" "}
         </p>
       </div>
-      <div className="w-[85%] md:w-[90%] mx-auto flex gap-x-6 gap-y-10 flex-wrap mt-10 md:hidden">
+      <div className="hidden w-[90%] lg:w-[85%] mx-auto lg:flex gap-x-6 gap-y-10 flex-wrap mt-10">
         {homeServiceData.map((item, index) => (
           <div
             key={index}
@@ -127,7 +127,7 @@ const ServiceWeOffer = () => {
         ))}
       </div>
 
-      <div className="hidden md:flex w-[90%] flex-wrap mt-10 gap-4 mx-auto">
+      <div className="lg:hidden flex w-[90%] flex-wrap mt-10 gap-4 mx-auto">
         {homeServiceData.map((item, index) => (
           <div
             className="w-fit-content border border-gray-300 rounded-6 p-1"
@@ -139,12 +139,12 @@ const ServiceWeOffer = () => {
         ))}
       </div>
 
-      <div className="hidden md:block w-[90%] h-[auto] mx-auto mt-10">
+      <div className="lg:hidden w-[90%] h-[auto] mx-auto mt-10">
         <Slider {...settings} className="w-[100%]" ref={sliderRef}>
           {homeServiceData.map((item, index) => (
             <div key={index} className="service-item">
               <div
-                className="text-[white] w-[95%] h-[450px] bg-[white] relative text-[12px] gap-[10px]"
+                className="text-[white] w-[95%] h-[450px] bg-[white] relative text-xs gap-2"
                 style={{
                   backgroundImage: `url(${item.ServiceHomePageimage})`,
                   backgroundSize: "cover",
@@ -159,7 +159,7 @@ const ServiceWeOffer = () => {
                   />
                 </div>
                 <button
-                  className="border border-[white] px-[20px] absolute bottom-0 bg-[#474747] w-[200px] h-[45px] text-center"
+                  className="border border-[white] px-[20px] absolute bottom-0 bg-[#474747] w-52 h-11 text-center"
                   onClick={() => {
                     navigate(`/Services/${item.title}`);
                   }}

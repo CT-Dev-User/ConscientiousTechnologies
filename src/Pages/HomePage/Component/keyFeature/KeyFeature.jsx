@@ -45,45 +45,45 @@ const KeyFeature = () => {
   };
 
   return (
-    <div className='w-[100vw] h-auto pt-[60px] md:pt-[30px] md:pb-[50px] relative box-border'>
-      <div className='h-[90vh] md:h-auto'>
+    <div className='w-screen h-auto lg:pt-14 pt-6 pb-16 lg:pb-0 relative box-border'>
+      <div className='lg:h-[38rem] h-auto'>
         <Slider {...settings} ref={sliderRef}>
           {KeyFeatureData && KeyFeatureData.map((item, i) => {
             return (
               <div key={i}>
-                <div className='flex w-[100vw] h-[90vh] md:flex-col md:h-[80vh]'>
-                  <div className='w-[40%] h-[100%] md:hidden' style={{ backgroundImage: `url(${item.keyFeatureImag})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
+                <div className='flex w-screen lg:h-auto flex-col lg:flex-row h-4/5'>
+                  <div className='w-2/5 lg:h-[38rem] lg:block hidden' style={{ backgroundImage: `url(${item.keyFeatureImag})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
                   </div>
-                  <div className='w-[60%] h-[100%] md:w-[100vw] md:h-[70%]'>
-                    <div className='w-[90%] md:w-[100%] mx-auto h-[15%] flex md:mt-2 box-border pt-[10px] '>
-                      <div>
-                        <h2 className='font-bold text-3xl md:text-xl md:ms-4 text-[#3970F0] 2xl:text-[2.5rem]'>Our Key Features</h2>
-                        <p className='text-[16px] w-[100%] mt-1 md:text-[14px] md:mx-auto py-4'>Services That We Deliver Makes Us Dignified As One of The Top Software Development Companies.</p>
+                  <div className='lg:w-3/5 lg:h-full w-full h-[70%]'>
+                    <div className='lg:w-[90%] w-full mx-auto h-[15%] flex mt-2 lg:mt-0 box-border pt-2'>
+                      <div className='lg:w-full w-[90%] mx-auto'>
+                        <h2 className='font-bold lg:text-3xl text-xl text-[#3970F0] 2xl:text-[2.5rem]'>Our Key Features</h2>
+                        <p className='lg:text-base w-full mt-1 text-sm mx-auto py-4 lg:mx-0'>Services That We Deliver Makes Us Dignified As One of The Top Software Development Companies.</p>
                       </div>
                     </div>
-                    <h2 className='font-semibold text-2xl ms-[50px] mt-[20px] md:ms-[20px] md:text-[18px] md:mt-[10px] py-6'> {item.keyFeatureTitle} </h2>
-                    <div className='hidden md:block w-[92%] h-[46%] mx-auto' style={{ backgroundImage: `url(${item.keyFeatureImag})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
+                    <h2 className='font-semibold lg:text-2xl lg:ms-12 ms-5 text-lg mt-2 py-3'> {item.keyFeatureTitle} </h2>
+                    <div className='lg:hidden w-11/12 h-[46%] mx-auto' style={{ backgroundImage: `url(${item.keyFeatureImag})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
                     </div>
-                    <div className='w-[90%] h-auto grid grid-cols-3 mx-auto md:flex flex-col gap-[30px] md:gap-[20px] md:ms-5 mt-[20px]'>
-                      <div className='col-start-1 col-span-2 flex md:flex-1 md:w-[100%] h-fit'>
-                        <h1 className='text-[#FF7E20] text-3xl md:text-[16px] font-semibold'> 01 </h1>
+                    <div className='w-[90%] h-auto lg:grid grid-cols-3 mx-auto flex flex-col lg:gap-8 gap-5 lg:ms-10 ms-5 mt-5'>
+                      <div className='col-start-1 col-span-2 flex flex-1 w-full h-fit'>
+                        <h1 className='text-[#FF7E20] lg:text-3xl text-base font-semibold'> 01 </h1>
                         <div>
-                          <h3 className='font-semibold text-xl ml-4 md:text-[16px]'>{item.point_one_Title}</h3>
-                          <p className='w-3/4 ml-4 md:w-[96%] md:text-[12px] text-[14px]'>{item.point_one_Desc}</p>
+                          <h3 className='font-semibold lg:text-xl ml-4 text-base'>{item.point_one_Title}</h3>
+                          <p className='lg:w-3/4 ml-4 w-[96%] text-xs lg:text-sm'>{item.point_one_Desc}</p>
                         </div>
                       </div>
-                      <div className='col-start-2 col-span-2 flex md:flex-1 md:w-[100%] h-fit'>
-                        <h1 className='text-[#FF7E20] text-3xl font-semibold md:text-[16px]'> 02 </h1>
+                      <div className='col-start-2 col-span-2 flex flex-1 w-full h-fit'>
+                        <h1 className='text-[#FF7E20] lg:text-3xl font-semibold text-base'> 02 </h1>
                         <div>
-                          <h3 className='font-semibold text-xl ml-4 md:text-[16px]'>{item.point_two_Title}</h3>
-                          <p className='w-3/4 ml-4 md:w-[96%] md:text-[12px] text-[14px]'>{item.point_two_Desc}</p>
+                          <h3 className='font-semibold lg:text-xl ml-4 text-base'>{item.point_two_Title}</h3>
+                          <p className='lg:w-3/4 ml-4 w-[96%] text-xs lg:text-sm'>{item.point_two_Desc}</p>
                         </div>
                       </div>
-                      <div className='col-start-1 col-span-2 flex md:flex-1 md:w-[100%] h-fit'>
-                        <h1 className='text-[#FF7E20] text-3xl font-semibold md:text-[16px]'> 03 </h1>
+                      <div className='col-start-1 col-span-2 flex flex-1 w-full h-fit'>
+                        <h1 className='text-[#FF7E20] lg:text-3xl font-semibold text-base'> 03 </h1>
                         <div>
-                          <h3 className='font-semibold text-xl ml-4 md:text-[16px]'>{item.point_three_Title}</h3>
-                          <p className='w-3/4 ml-4 md:w-[96%] md:text-[12px] text-[14px]'>{item.point_three_Desc}</p>
+                          <h3 className='font-semibold lg:text-xl ml-4 text-base'>{item.point_three_Title}</h3>
+                          <p className='w-3/4 ml-4 md:w-[96%] text-xs lg:text-sm'>{item.point_three_Desc}</p>
                         </div>
                       </div>
                     </div>
@@ -93,7 +93,7 @@ const KeyFeature = () => {
             )
           })}
         </Slider>
-        <div className='flex gap-[20px] md:hidden block absolute top-[80px] right-[30px]'>
+        <div className='lg:flex gap-5 absolute top-20 right-[30px] hidden'>
           <img
             src={rightArr}
             alt=""
@@ -107,9 +107,9 @@ const KeyFeature = () => {
             onClick={goToNextSlide}
           />
         </div>
-        <div className='hidden w-[100%] md:flex gap-[20px] text-black bg-white justify-end pe-[20px] box-border'>
-          <button className="w-[80px] h-[45px] shadow-sm shadow-[grey] p-1" onClick={goToPrevSlide}>&#9666; {" "}<span>PREV</span></button>
-          <button className="w-[80px] h-[45px] shadow-sm shadow-[grey] p-1" onClick={goToNextSlide}><span>NEXT</span>{" "}&#9656;</button>
+        <div className='lg:hidden w-full flex gap-5 text-black bg-white justify-end pe-5 box-border'>
+          <button className="w-20 h-[45px] shadow-sm shadow-[grey] p-1" onClick={goToPrevSlide}>&#9666; {" "}<span>PREV</span></button>
+          <button className="w-20 h-[45px] shadow-sm shadow-[grey] p-1" onClick={goToNextSlide}><span>NEXT</span>{" "}&#9656;</button>
         </div>
       </div>
     </div>

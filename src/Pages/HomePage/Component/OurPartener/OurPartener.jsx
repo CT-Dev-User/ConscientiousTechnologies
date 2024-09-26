@@ -78,18 +78,18 @@ const OurPartener = () => {
 
 
   return (
-    <div className='w-[100vw] h-[120px] md:h-[100px] flex p-0 box-border'>
-      <div className='bg-[white] w-[40%] md:w-[50%] flex justify-center items-center'> 
-        <p className='text-end w-[90%] font-semibold md:text-[12px] text-[19px] md:ms-[0px] ms-[110px] md:text-right mr-[20px]'>
+    <div className='w-screen lg:h-32 h-28 flex p-0 box-border'>
+      <div className='bg-[white] lg:w-2/5 w-1/2 flex justify-center items-center'> 
+        <p className='lg:text-end lg:w-[90%] font-semibold text-xs lg:text-xl lg:ms-[110px] text-right mr-5'>
           Trusted By Startup & Fortune 500 Companies
         </p> 
       </div>
-      <div className='w-[60%] bg-[#474747] text-[white] sm:w-[50%] h-[100%]'>
+      <div className='lg:w-3/5 bg-[#474747] text-[white] w-1/2 h-full'>
         <Slider {...settings}>
           {OurPartenerData.map((items, i) => {
             return (
-              <div className='w-[25px] h-[80px] flex justify-center items-center md:h-[70px]' key={i}>
-                <div className='bg-[black] w-[90%] h-[100%] md:h-[80%] flex justify-center items-center mt-[20px]'>
+              <div className='w-7 lg:h-20 flex justify-center items-center h-[70px]' key={i}>
+                <div className='bg-[black] w-[90%] lg:h-full h-4/5 flex justify-center items-center mt-5'>
                   <img src={items.logo} alt={items.title} />
                 </div>
               </div>
