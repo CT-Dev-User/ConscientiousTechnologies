@@ -23,8 +23,8 @@ const SolutionWeOffer = () => {
     return (
         <div id='solution' className='w-screen h-auto bg-[white] py-8 box-border lg:pt-24 pt-12' >
             <div className='w-[85%] mx-auto'>
-                <h1 className='lg:text-3xl font-bold text-base'>Solution We Offers</h1>
-                <p className='lg:text-sm text-xs lg:mt-5 mt-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
+                <h1 className='lg:text-3xl font-bold text-2xl'>Solution We Offers</h1>
+                <p className='text-sm lg:mt-5 mt-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
             </div>
 
             <div className="lg:flex text-[white] w-[85%] gap-5 flex-wrap mx-auto mt-7 hidden pb-8">
@@ -37,7 +37,7 @@ const SolutionWeOffer = () => {
                             <div className='w-[55%] flex justify-around flex-col'>
                                 <div >
                                     <h3 className='text-sm font-medium'> {items.title} </h3>
-                                    <p className='text-xs me-1 mt-2' dangerouslySetInnerHTML={{ __html: items.desc }} />
+                                    <p className='text-xs me-1 mt-2 font-normal' dangerouslySetInnerHTML={{ __html: items.desc }} />
                                 </div>
                                 <button
                                     className="relative overflow-hidden group border border-[white] px-4 py-1 w-[fit-content] text-xs ms-0"
@@ -51,15 +51,15 @@ const SolutionWeOffer = () => {
                 })
                 }
             </div>
-            <div className="lg:hidden flex gap-5 flex-wrap mx-auto mt-7 text-white w-[90%] h-96 overflow-y-auto">
+            <div className="lg:hidden flex gap-5 flex-wrap mx-auto mt-7 text-white w-[90%] h-[30rem] overflow-y-auto">
                 {firstTwelveData.map((items, i) => {
                     return (
-                        <div className='bg-[#333333] w-full h-36 relative' key={i}>
+                        <div className='bg-[#333333] w-full h-40 relative' key={i}>
                             <div className='w-full absolute h-full' style={{ backgroundImage: `url(${items.image})`, backgroundSize: '', backgroundPosition: 'center' }}>
                                 <div className='bg-black w-full h-full opacity-[0.8] flex flex-col justify-center items-end'>
                                     <div className='w-[95%]'>
-                                        <h3 className='text-sm font-medium'> {items.title} </h3>
-                                        <p className="text-xs me-1 mt-2" dangerouslySetInnerHTML={{ __html: items.desc }} />
+                                        <h3 className='text-lg font-normal'> {items.title} </h3>
+                                        <p className="text-base me-1 mt-2 font-normal" dangerouslySetInnerHTML={{ __html: items.desc }} />
                                     </div>
                                     <button className='border-[none] px-4 py-1 w-[fit-content] text-sm text-[skyblue]' onClick={()=>{navigate(`Solutions/${items.title}`)}}>Learn More &rarr;</button>
                                 </div>
