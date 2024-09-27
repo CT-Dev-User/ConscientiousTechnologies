@@ -12,6 +12,7 @@ import BookFreeConsultation from '../HomePage/Component/BookFreeConsultation/Boo
 import Footer from '../HomePage/Component/Footer/Footer'
 import OurPeople from './Component/OurPeople/OurPeople'
 import PartnerEcoSystem from './Component/PartnerEcosystem/PartnerEcoSystem'
+import ServiceWeProvide from './Component/serviceWeProvide/ServiceWeProvide'
 const AboutUs = ({ setHideNavbar, setActiveSubNav }) => {
     return (
         <div>
@@ -21,10 +22,11 @@ const AboutUs = ({ setHideNavbar, setActiveSubNav }) => {
             <AboutUsDesc />
             <OurStory />
             <OurPeople />
-            <PartnerEcoSystem />
-            <OurMission />
             <OurCoreValues />
             <ProudExistence />
+            <PartnerEcoSystem />
+            <ServiceWeProvide/>
+            {/* <OurMission /> */}
             <MeetOurClient />
             <BookFreeConsultation />
             <Footer />

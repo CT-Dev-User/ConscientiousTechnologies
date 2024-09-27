@@ -23,15 +23,17 @@ const AllHeader = ({ category, subCategory }) => {
                     return (
                         <div className='w-full h-[100vh]' key={i}>
                             <div className='w-[100vw] h-full relative' style={{ backgroundImage: `url(${header.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
-                                <div className='w-[100%] h-[100%] absolute top-0 left-0 bg-black opacity-[0.6] flex flex-col justify-center items-start box-border px-3 gap-[50px] md:justify-evenly md:items:center'>
-                                    <div className='flex flex-col gap-[20px] w-[100%]'>
-                                        <h2 className='text-3xl font-semibold text-white w-[50%] ms-[110px] md:ms-0 md:w-[90%] md:text-xl' style={{ fontFamily: 'Montserrat' }}>{header.title}</h2>
-                                        <p className='text-xl md:text-[16px] text-white text-left ms-[110px] md:ms-0 w-[60%] md:w-[90%] md:mx-auto' style={{ fontFamily: 'Poppins' }} dangerouslySetInnerHTML={{ __html: header.subTitle }} />
+                                <div className='w-[100%] h-[100%] absolute top-0 left-0 bg-black opacity-[0.6] flex flex-col lg:justify-center lg:items-start box-border px-3 gap-[50px] justify-evenly items:center '>
+                                    <div className='h-fit  flex flex-col gap-[40px]  justify-center w-[100%]'>
+                                        <h2 className='lg:text-3xl font-semibold text-white w-[90%] text-xl  xl:text-3xl 2xl:text-6xl lg:ms-[110px] ms-[0px]' style={{ fontFamily: 'Montserrat' }}>{header.title}</h2>
+                                        <p className='lg:text-xl 2xl:text-2xl  text-[16px] text-white text-left lg:ms-[110px] ms-0 lg:w-[60%] w-[90%] mx-auto lg:mx-0' style={{ fontFamily: 'Poppins' }} dangerouslySetInnerHTML={{ __html: header.subTitle }} />
                                     </div>
-                                    <button className="relative overflow-hidden text-white border border-current w-[fit-content] px-3 py-1 ms-[110px] group border-b-2 text-[20px] md:px-4 md:ms-0 md:text-[16px] mt-5">
+                                    {category == "About Us" ?"":  
+                                    <button className="relative overflow-hidden text-white border border-current w-[fit-content] lg:px-3 py-1 lg:ms-[110px] group border-b-2 lg:text-xl px-4 ms-0 text-base ">
                                         <span className="absolute inset-0 bg-gradient-to-r from-[#7CE0FF] via-[#A598FF] to-[#C462FF] transition-width duration-300 ease-in-out transform -translate-x-full group-hover:translate-x-0"></span>
                                         <span className="relative z-10">Connect With Our Experts<span className="font-bold">&rarr;</span></span>
                                     </button>
+                                     }
                                 </div>
                             </div>
                         </div>

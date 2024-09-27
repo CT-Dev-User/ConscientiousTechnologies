@@ -17,11 +17,10 @@ const AboutUsDesc = () => {
     }, [])
 
     return (
-        <div className='w-[85vw] flex justify-between mx-auto py-[60px] mt-3' id="about_us">
-            <div className='w-[50%] '>
-                <h1 className='text-[#3960C3] font-bold text-[24px]'>About Us</h1>
-                <p className='w-[90%]'>Since our inception in 2004, ValueCoders has been delivering IT outsourcing services worldwide. We combine business domain knowledge, proven methodologies, and the technology expertise of 450+ skilled software professionals to yield high-quality solutions that add value to businesses.Since our inception in 2004, ValueCoders has been delivering IT outsourcing services worldwide. We combine business domain knowledge, proven methodologies, and the technology expertise of 450+ skilled software professionals to yield high-quality solutions that add value to businesses.</p>
-
+        <div className='w-[85vw] flex justify-between mx-auto py-4 lg:py-8 mt-6' id="about_us">
+            <div className='w-[50%] flex flex-col gap-4'>
+                <h1 className= ' text-[#3960C3] lg:font-bold lg:text-3xl text-xl font-black 2xl:text-4xl'>About Us</h1>
+                <p className='w-[90%] lg:text-base font-semibold text-sm py-4 2xl:text-lg'>Since our inception in 2004, ValueCoders has been delivering IT outsourcing services worldwide. We combine business domain knowledge, proven methodologies, and the technology expertise of 450+ skilled software professionals to yield high-quality solutions that add value to businesses.Since our inception in 2004, ValueCoders has been delivering IT outsourcing services worldwide. We combine business domain knowledge, proven methodologies, and the technology expertise of 450+ skilled software professionals to yield high-quality solutions that add value to businesses.</p>
               
                     <ul className='flex mt-5 gap-x-[30px]'>
                         {socialIcon.map((data, i) => (

@@ -6,10 +6,10 @@ const About = () => {
   const navigate = useNavigate()
   const aboutMiddleContent = [{ num: "11+ Years", desc: " Mobile App Design and Development" }, { num: "4500+", desc: "Mobile Apps Developed" }, { num: "110+", desc: "Websites Developed" }, { num: "1000+", desc: "Million App Downloads on App Stores (iOS + Android)" }, { num: "4.9", desc: "Ratings onClutch.co" }, { num: "100+", desc: "Mobile Apps Developed" }]
   return (
-    <div id='overview' className='w-screen bg-[white] flex gap-6 flex-col lg:flex-row h-auto pt-16 pb-5'>
+    <div id='overview' className='w-screen bg-[white] flex gap-6 flex-col lg:flex-row h-auto  py-4 lg:py-8'>
       <div className='lg:h-full lg:w-[35%] w-[90%] h-[20vh] mx-auto lg:mx-0'>
         <div className='flex flex-col justify-around w-[100%] h-[100%] mx-auto'>
-          <div className='flex flex-col gap-2 lg:ms-[110px]'>
+          <div className='flex flex-col gap-2  lg:ms-[110px]'>
             <h2 className='lg:font-bold lg:text-3xl text-xl font-black 2xl:text-[2.5rem]'>About Company</h2>
             <p className='lg:text-base font-semibold text-s py-4 w-[95%]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
           </div>

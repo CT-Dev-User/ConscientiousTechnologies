@@ -33,13 +33,13 @@ const ProudExistence = () => {
     },
   };
   return (
-    <div className='w-[100vw] h-[auto] bg-[white] box-border pt-[100px] md:pt-[50px] pb-[30px]' id=''>
-      <div className='w-[85%] mx-auto md:w-[90%]'>
-        <h1 className='text-[#3960C3] font-bold text-[24px] md:text-[blue]'>5+ years of Proud Existence</h1>
-        <p className='text-[16px] mt-2 md:w-[100%] md:text-[12px]'>Conscientious Technology set its first stone down in 2020 and has been thriving ever since. The company takes great pride in announcing that they've managed to provide top-notch IT service to their clients for 5 years.</p>
+    <div className='w-screen h-[auto] bg-[white] box-border py-10' id=''>
+      <div className='lg:w-[85%] mx-auto w-[90%]'>
+        <h1 className='text-[#3960C3] font-bold lg:text-3xl text-xl 2xl:text-[2.3rem] tracking-wide '>5+ years of Proud Existence</h1>
+        <p className='font-normal mt-2 md:w-[100%]  lg:text-base text-sm py-4 2xl:text-[1.2rem] tracking-normal'>Conscientious Technology set its first stone down in 2020 and has been thriving ever since. The company takes great pride in announcing that they've managed to provide top-notch IT service to their clients for 5 years.</p>
       </div>
-      <div className='w-[85%] h-[400px] flex items-center justify-center mx-auto'>
-        <Line data={data} options={options}/>
+      <div className='w-[85%] h-[400px] flex items-center justify-center mx-auto  mt-3'>
+        <Line data={data} options={options} className='w-full'/>
       </div>
     </div>
   )

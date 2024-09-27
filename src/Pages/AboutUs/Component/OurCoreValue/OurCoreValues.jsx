@@ -4,23 +4,23 @@ import respect from '../../../../assets/AboutUs/respectCoreValue.png'
 const OurCoreValues = () => {
     const coreValuesArr = [{ title: "Respect", icon: respect, subTitle: "Set trends for your peers and the industry in general to follow." }, { title: "Exceptional value", icon: respect, subTitle: "Understand and exceed customer's expectations all the time." }, { title: "Authenticity", icon: respect, subTitle: "Be sincere, honest, and open in dealings to ensure trustworthiness." }, { title: "Leadership", icon: respect, subTitle: "Set trends for your peers and the industry in general to follow." }]
     return (
-        <div className='w-[100vw] h-[auto] bg-[white] box-border pt-[60px] md:pt-[50px] pb-[30px]' id='our_core_values'>
-            <div className='w-[85%] mx-auto md:w-[90%]'>
-                <h1 className='text-[#3960C3] font-bold text-[24px] md:text-[blue]'>Our Core Values</h1>
-                <p className='text-[16px] mt-2 md:w-[100%] md:text-[12px]'>At ValueCoders, we embrace a well-established set of cultural and professional values which represent our highestaspirations for how we engage as colleagues, fellows, alumni, partners, and board members </p>
+        <div className='w-screen h-[auto] box-border pb-8 ' id='our_core_values'>
+            <div className='lg:w-[85%] mx-auto w-[90%]'>
+                <h1 className='text-[#3960C3] font-bold lg:text-3xl text-xl  2xl:text-4xl '>Our Core Values</h1>
+                <p className=' mt-2 md:w-[100%] font-normal w-[90%] lg:text-base text-sm py-4 2xl:text-[1.2rem] tracking-normal'>At ValueCoders, we embrace a well-established set of cultural and professional values which represent our highestaspirations for how we engage as colleagues, fellows, alumni, partners, and board members </p>
             </div>
-            <div className='flex w-[85%] mx-auto mt-[30px] h-[300px]'>
+            <div className='flex w-[85%] mx-auto mt-[30px] '>
                 <div className='flex w-[60%] flex-wrap  gap-y-[40px] gap-x-[30px]'>
                     {coreValuesArr.map((items, i) => (
-                        <div className='w-[300px] border-b border-[#D9D9D9] pb-[30px]'>
-                            <img src={items.icon} alt={items.title} className='w-[60px] h-[60px]'/>
-                            <h4 className='text-[18px] font-bold'>{items.title}</h4>
-                            <p className='text-[14px]'>{items.subTitle}</p>
+                        <div className='w-[300px] border-b border-[#D9D9D9] pb-[30px] flex flex-col gap-3'>
+                            <img src={items.icon} alt={items.title} className='w-[80px] h-[80px]'/>
+                            <h4 className='lg:text-2xl text-xl 2xl:text-[1.7rem] font-semibold'>{items.title}</h4>
+                            <p className='lg:text-[1rem] text-sm 2xl:text-[1rem]'>{items.subTitle}</p>
                         </div>
                     ))}
                 </div>
                 <div className='w-[40%]'>
-                    <img src={aboutus} alt="conscientious technology Core Values"  className=' h-[350px]'/>
+                    <img src={aboutus} alt="conscientious technology Core Values"  className=' h-[450px]'/>
                 </div>
             </div>
         </div>
