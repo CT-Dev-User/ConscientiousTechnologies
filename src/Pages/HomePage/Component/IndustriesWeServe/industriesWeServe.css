@@ -1,7 +1,5 @@
 .main-div {
   position: relative;
-  width: 270px;
-  height: 350px;
 }
 
 .title-div {
@@ -20,7 +18,7 @@
 
 .main-div:hover .title-div {
   border-top: none;
-  transform: translateY(calc(-550% - 20px)); /* Adjust based on container height */
+  transform: translateY(calc(-550% - 49px)); /* Adjust based on container height */
 }
 
 .desc-div {

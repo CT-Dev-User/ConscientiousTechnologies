@@ -13,8 +13,8 @@ const ProcessWeFollow = () => {
   return (
     <div id='how-we-work' className='w-screen h-[auto] bg-[white] box-border pt-12 pb-8'>
       <div className='lg:w-[85%] mx-auto w-[90%]'>
-        <h1 className='lg:text-3xl font-bold text-base text-[blue] lg:text-black'>Process We Follow</h1>
-        <p className='lg:w-[80%] lg:text-sm mt-2 w-full text-xs'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
+        <h1 className='lg:text-3xl font-bold text-2xl text-[blue] lg:text-black'>Process We Follow</h1>
+        <p className='lg:w-[80%] mt-2 w-full text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
       </div>
       <div className='hidden lg:flex text-[white] w-[90%] gap-0 mx-auto justify-center flex-wrap mt-7'>
 
@@ -31,11 +31,11 @@ const ProcessWeFollow = () => {
       </div>
       <div className='lg:hidden flex text-[white] w-[90%] mx-auto justify-center flex-wrap mt-7'>
         {processWeFollowData.map((data, i) => (
-          <div key={i} className={`w-[49%] h-44 text-[black] border-[#737373] border-dashed flex flex-col justify-around px-2 ${i === 0 || i === 2 || i === 4 ? 'border-r' : ''} ${i === 0 || i == 1 || i == 2 || i == 3 ? 'border-b' : ''}`} >
-            <h1 className='font-bold self-end mr-2 text-lg' style={{ color: data.srColor }}>{data.srNo}</h1>
+          <div key={i} className={`w-[49%] h-56 text-[black] border-[#737373] border-dashed flex flex-col justify-around px-2 ${i === 0 || i === 2 || i === 4 ? 'border-r' : ''} ${i === 0 || i == 1 || i == 2 || i == 3 ? 'border-b' : ''}`} >
+            <h1 className='font-bold self-end mr-2 text-xl' style={{ color: data.srColor }}>{data.srNo}</h1>
             <div>
-              <h3 className='text-sm font-bold'>{data.title}</h3>
-              <p className='text-xs'>{data.desc}</p>
+              <h3 className='text-base font-bold'>{data.title}</h3>
+              <p className='text-sm'>{data.desc}</p>
             </div>
           </div>
         ))}
