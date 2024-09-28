@@ -43,7 +43,7 @@ const AllFaq = ({ category, subCategory }) => {
         <h1 className="font-bold lg:text-3xl text-xl 2xl:text-[2.3rem]">
           FAQs
         </h1>
-        <p className="w-[70%] my-3 md:w-[100%] lg:text-lg text-sm 2xl:text-[1rem]">
+        <p className="lg:w-[85%] my-3 w-full lg:text-lg text-base">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas
           ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut
           nullam ipsum at enim. Ut imperdiet eu sodales eros. Nibh elementum
