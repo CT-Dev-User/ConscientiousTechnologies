@@ -77,21 +77,21 @@ const SoftDevSteps = () => {
     }
     ]
     return (
-        <div className='w-screen h-[auto]'>
-            <div className='w-[100vw] h-[auto] bg-[black] box-border  py-16 text-[white] hidden lg:block'>
+        <div className='w-screen h-auto'>
+            <div className='w-full h-auto bg-black box-border py-16 text-white hidden lg:block'>
                 <div className='lg:w-[85%] mx-auto'>
                     <h1 className='lg:text-3xl text-xl 2xl:text-[2rem] font-bold text-[blue] lg:text-white'>Check Out Our Software Development Steps </h1>
-                    <p className='w-[70%] lg:text-[14px] mt-2 md:w-[100%] text-[12px]'>Discover Our Software Development Steps: Gain insights into our comprehensive approach, from ideation to deployment, ensuring transparency and delivering high-quality, custom solutions for your unique business requirements.</p>
+                    <p className='w-[85%] text-base mt-2'>Discover Our Software Development Steps: Gain insights into our comprehensive approach, from ideation to deployment, ensuring transparency and delivering high-quality, custom solutions for your unique business requirements.</p>
                 </div>
-                <div className="w-[85%] flex justify-between">
-                    <div className="w-[47%] flex flex-col justify-start items-start gap-[230px] mt-[50px] ">
+                <div className="w-[85%] flex justify-between mx-auto">
+                    <div className="w-[47%] flex flex-col justify-start items-start gap-[230px] mt-12 ">
                         {processArr.map((step, index) => {
                             if (index % 2 == 0) {
                                 return (
-                                    <div key={index} className="w-[100%] h-auto bg-[#3C3C3C] p-3 py-5 flex flex-col gap-2">
-                                        <h4 className="lg:text-[1rem] text-xl 2xl:text-[1.2rem]">{step.step}</h4>
-                                        <h5 className="lg:text-[1rem] text-xl 2xl:text-[1.2rem]">{step.title}</h5>
-                                        <div className="text-[13.5px] font-normal w-[95%]">{step.desc}</div>
+                                    <div key={index} className="w-full h-auto bg-[#3C3C3C] px-3 py-5 flex flex-col gap-2">
+                                        <h4 className="text-base 2xl:text-xl">{step.step}</h4>
+                                        <h5 className="text-base 2xl:text-xl">{step.title}</h5>
+                                        <div className="text-sm font-normal w-[95%]">{step.desc}</div>
                                     </div>
                                 );
                             } else {
@@ -99,22 +99,22 @@ const SoftDevSteps = () => {
                             }
                         })}
                     </div>
-                    <ul className="w-[2px] h-auto bg-[#FFC635] flex flex-col items-center gap-[180px] py-[10px]">
+                    <ul className="w-[2px] h-auto bg-[#FFC635] flex flex-col items-center gap-[180px] py-2">
                         {processArr.map((items, i) => { 
                             return (
-                                <li key={i} className={`${i % 2 !== 0 && i !==0 ? "mt-[80px]" : "mt-0"} w-[25px] h-[25px] bg-[#FFC635]`}></li>
+                                <li key={i} className={`${i % 2 !== 0 && i !==0 ? "mt-20" : "mt-0"} w-6 h-6 bg-[#FFC635]`}></li>
                             )
                         })}
                     </ul>
 
-                    <div className="w-[47%] flex flex-col justify-start mt-[320px] gap-[300px]">
+                    <div className="w-[47%] flex flex-col justify-start mt-80 gap-[300px]">
                         {processArr.map((step, index) => {
                             if (index % 2 !== 0) {
                                 return (
-                                    <div key={index} className="w-[100%] h-[180px] bg-[#3C3C3C] p-3 py-5 flex flex-col gap-2">
-                                        <h4 className="lg:text-[1rem] text-xl 2xl:text-[1.2rem]">{step.step}</h4>
-                                        <h5 className="lg:text-[1rem] text-xl 2xl:text-[1.2rem]">{step.title}</h5>
-                                        <div className="lg:text-sm text-[13.5px] font-normal w-[95%]">{step.desc}</div>
+                                    <div key={index} className="w-full h-[180px] bg-[#3C3C3C] p-3 py-5 flex flex-col gap-2">
+                                        <h4 className="text-base 2xl:text-xl">{step.step}</h4>
+                                        <h5 className="text-base 2xl:text-xl">{step.title}</h5>
+                                        <div className="text-sm font-normal w-[95%]">{step.desc}</div>
                                     </div>
                                 );
                             } else {
@@ -126,24 +126,21 @@ const SoftDevSteps = () => {
 
             </div>
 
-            <div className=" w-full py-[40px] md:py-[30px] lg:hidden block">
+            <div className=" w-full py-10 lg:hidden block">
                 <div className='mx-auto w-[95%]'>
-                    <h1 className=' font-bold lg:text-3xl text-xl 2xl:text-[2rem] text-blue'>Software for Advanced Business Tasks </h1>
-                    <p className='w-11/12 text-sm mt-2 md:w-full'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
+                    <h1 className='font-bold text-base text-blue'>Software for Advanced Business Tasks </h1>
+                    <p className='text-sm mt-2 w-full'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
                 </div>
                 <div className='w-[95%] flex mx-auto flex-wrap gap-3 mt-8 items-center justify-center '>
                     {processArr.map((item, index) => (
                         <div key={index} className='p-3 w-full h-auto border'>
-                            <h1 className='text-[0.95rem]'>{item.title}</h1>
+                            <h1 className='text-base'>{item.title}</h1>
                             <div className='text-xs mt-2 font-medium'>{item.desc}</div>
                         </div>
                     ))}
                 </div>
             </div>
         </div>
-
-
-
     )
 }
 

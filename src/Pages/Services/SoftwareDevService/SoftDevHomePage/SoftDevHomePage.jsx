@@ -14,6 +14,7 @@ import PartnerUpWithCity from '../../../RepeatedComponents/partnerUpWithCity/Par
 import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
 import AreaOfExperties from '../../../RepeatedComponents/AreaOfExperties/AreaOfExperties'
 import ExploreSoftDevHeading from './Component/ExploreSoftDevHeading'
+import StepsSoftDev from './Component/StepsSoftDev'
 const SoftDevHomePage = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -29,6 +30,7 @@ const SoftDevHomePage = () => {
             <CollabSenario />
             <SoftAdvance />
             <SoftDevSteps />
+            <StepsSoftDev/>
             <ReliableToolsHeading />
             <ReliableTools category="Services" subCategory="Software Development Services" />
             <CaseStudies category="Services" subCategory="Software Development Services" />
