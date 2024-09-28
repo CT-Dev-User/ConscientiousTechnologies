@@ -18,51 +18,106 @@ const EndtoEndAIConsulting = () => {
 
 
     return (
-        <div className='w-[100vw] h-[auto] bg-[black] box-border pt-[100px] md:pt-[50px] pb-[30px] text-[white] pb-[60px]'>
-            <div className='w-[85%] mx-auto md:w-[90%]'>
-                <h1 className='text-3xl font-bold md:text-[16px] md:text-[blue]'>Software Development Process for Startups: Key Steps and Best Practices</h1>
-                <p className='w-[70%] text-[14px] mt-2 md:w-[100%] md:text-[12px]'>CT's Roadmap to Success: Navigating startups through a streamlined software development process. From ideation to launch, we empower with key steps and best practices for sustainable growth and innovation.</p>
-            </div>
-            <div className="w-[85%] h-[200vh] flex justify-between mx-auto mt-6">
-                <div className="w-[47%] h-[100%] flex flex-col justify-start items-start gap-[200px]">
-                    {processArr.map((step, index) => {
-                        if (index % 2 == 0) {
-                            return (
-                                <div key={index} className="w-[100%] h-[200px] bg-[#3C3C3C] p-3 box-border mt-[3%]">
-                                <h4 className="text-[19px]">{step.step}</h4>
-                                <h5 className="text-[17px]">{step.title}</h5>
-                                <p className="text-[13.5px] font-normal w-[95%]">{step.desc}</p>
-                            </div>
-                            );
-                        } else {
-                            return null;
-                        }
-                    })}
+        // <div className='w-screen h-auto bg-black box-border py-16 text-[white]'>
+        //     <div className='lg:w-[85%] mx-auto w-[95%]'>
+        //         <h1 className='lg:text-3xl text-xl 2xl:text-[2rem] lg:text-white text-[blue]'>Software Development Process for Startups: Key Steps and Best Practices</h1>
+        //         <p className='w-[95%] mt-2 md:w-[100%] font-normal text-sm lg:text-base'>CT's Roadmap to Success: Navigating startups through a streamlined software development process. From ideation to launch, we empower with key steps and best practices for sustainable growth and innovation.</p>
+        //     </div>
+        //     <div className="w-[85%] h-[200vh] flex justify-between mx-auto mt-6">
+        //         <div className="w-[47%] h-[100%] flex flex-col justify-start items-start gap-[200px]">
+        //             {processArr.map((step, index) => {
+        //                 if (index % 2 == 0) {
+        //                     return (
+        //                         <div key={index} className="w-[100%] h-[200px] bg-[#3C3C3C] p-3 box-border mt-[3%]">
+        //                         <h4 className="text-[19px]">{step.step}</h4>
+        //                         <h5 className="text-[17px]">{step.title}</h5>
+        //                         <p className="text-[13.5px] font-normal w-[95%]">{step.desc}</p>
+        //                     </div>
+        //                     );
+        //                 } else {
+        //                     return null;
+        //                 }
+        //             })}
+        //         </div>
+        //         <ul className="w-1 h-[207vh] bg-[#FFC635] flex flex-col justify-start items-center gap-[180px]">
+        //             {processArr.map((items, i) => {
+        //                 return (
+        //                     <li className="w-[25px] h-[25px] bg-[#FFC635] overflow-auto"></li>
+        //                 )
+        //             })}
+        //         </ul>
+        //         <div className="w-[47%] h-full flex flex-col justify-end items-end gap-[200px] mt-7">
+        //             {processArr.map((step, index) => {
+        //                 if (index % 2 !== 0) {
+        //                     return (
+        //                         <div key={index} className="w-[100%] h-[200px] bg-[#3C3C3C] p-3 box-border">
+        //                             <h4 className="text-[19px]">{step.step}</h4>
+        //                             <h5 className="text-[17px]">{step.title}</h5>
+        //                             <p className="text-[13.5px] font-normal w-[95%]">{step.desc}</p>
+        //                         </div>
+        //                     );
+        //                 } else {
+        //                     return null;
+        //                 }
+        //             })}
+        //         </div>
+        //     </div>
+
+        // </div>
+
+        <div className="w-screen h-auto">
+            <div className="w-full h-auto bg-black box-border py-16 text-white hidden lg:block">
+                <div className="lg:w-[85%] mx-auto">
+                    <h1 className="lg:text-3xl text-xl 2xl:text-[2rem] font-bold text-[blue] lg:text-white">
+                        Software Development Process for Startups: Key Steps and Best Practices
+                    </h1>
+                    <p className="w-[85%] text-base mt-2">
+                        CT's Roadmap to Success: Navigating startups through a streamlined software development process. From ideation to launch, we empower with key steps and best practices for sustainable growth and innovation.
+                    </p>
                 </div>
-                <ul className="w-1 h-[207vh] bg-[#FFC635] flex flex-col justify-start items-center gap-[180px]">
-                    {processArr.map((items, i) => {
-                        return (
-                            <li className="w-[25px] h-[25px] bg-[#FFC635] overflow-auto"></li>
-                        )
-                    })}
-                </ul>
-                <div className="w-[47%] h-full flex flex-col justify-end items-end gap-[200px] mt-7">
+                <div className="w-[85%] mx-auto mt-10">
                     {processArr.map((step, index) => {
-                        if (index % 2 !== 0) {
-                            return (
-                                <div key={index} className="w-[100%] h-[200px] bg-[#3C3C3C] p-3 box-border">
-                                    <h4 className="text-[19px]">{step.step}</h4>
-                                    <h5 className="text-[17px]">{step.title}</h5>
-                                    <p className="text-[13.5px] font-normal w-[95%]">{step.desc}</p>
+                        return (
+                            <div
+                                key={index}
+                                className={`${index % 2 === 0 ? "flex-row border-r-2 border-r-[#FFC635] " : "border-l-2 border-l-[#FFC635] 2xl:ml-[49.9%] flex-row-reverse"
+                                    } w-1/2 h-auto py-5 flex justify-between flex-wrap`}
+                            >
+                                <div className="w-[95%] flex flex-col h-full bg-[#3C3C3C] p-4">
+                                    <h4 className="text-base 2xl:text-xl">{step.step}</h4>
+                                    <h5 className="text-base 2xl:text-xl">{step.title}</h5>
+                                    <div className="text-sm font-normal w-[95%]">{step.desc}</div>
                                 </div>
-                            );
-                        } else {
-                            return null;
-                        }
+                                <div className="w-[2px] h-auto relative">
+                                    <div className="w-6 h-6 bg-[#FFC635] absolute top-0 -left-1/2 -translate-x-1/2 -translate-y-1/2">
+
+                                    </div>
+                                </div>
+                            </div>
+                        );
                     })}
                 </div>
             </div>
 
+            <div className="w-full py-10 lg:hidden block">
+                <div className="mx-auto w-[95%]">
+                    <h1 className="font-bold text-base text-blue">
+                        Software for Advanced Business Tasks
+                    </h1>
+                    <p className="text-sm mt-2 w-full">
+                        We work with all the mainstream technologies to expand the scope of
+                        functions the software can perform.
+                    </p>
+                </div>
+                <div className="w-[95%] flex mx-auto flex-wrap gap-3 mt-8 items-center justify-center ">
+                    {processArr.map((item, index) => (
+                        <div key={index} className="p-3 w-full h-auto border">
+                            <h1 className="text-base">{item.title}</h1>
+                            <div className="text-xs mt-2 font-medium">{item.desc}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 

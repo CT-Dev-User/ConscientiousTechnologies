@@ -18,8 +18,8 @@ const AreaOfExperties = ({ category, subCategory, navSubCategory }) => {
     }, [])
 
     return (
-        <div className='w-screen h-auto text-[white] box-border py-8 lg:py-16  bg-black'>
-            <div className='w-[95%] mx-auto lg:w-[80%] flex flex-wrap gap-[30px] mt-[20px] items-center justify-start'>
+        <div className='w-screen h-auto text-[white] box-border pt-3 pb-16 bg-black'>
+            <div className='w-[95%] mx-auto lg:w-[80%] flex flex-wrap gap-[30px]  items-center justify-start'>
                 {expertiesData.map((items, i) => {
                     return (
                         <div style={{ backgroundImage: `url(${items.image})`, backgroundSize: "cover", backgroundPosition: "center" }} className='w-[21%] h-[250px] relative border' key={i}>

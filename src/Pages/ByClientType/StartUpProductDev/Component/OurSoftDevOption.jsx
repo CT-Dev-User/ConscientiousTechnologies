@@ -60,14 +60,14 @@ const OurSoftDevOption = () => {
     ];
 
     return (
-        <div className="w-full mt-20 mb-[60px]">
-            <div className='w-[85%] mx-auto md:w-5/6'>
-                <h1 className='text-3xl font-bold md:text-base text-blue'>Our Software Development Options for Startups</h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-xs'>Catalyzing Startup Success: Discover comprehensive software development options tailored for startups with CT. From MVPs to scalable solutions, we fuel growth and innovation for budding entrepreneurs.</p>
+        <div className="w-screen lg:py-16 py-8">
+            <div className='w-[95%] lg:w-[85%] mx-auto'>
+                <h1 className='lg:text-3xl text-xl 2xl:text-[2rem] font-bold text-blue'>Our Software Development Options for Startups</h1>
+                <p className='w-11/12 text-sm mt-2 md:w-full lg:text-base'>Catalyzing Startup Success: Discover comprehensive software development options tailored for startups with CT. From MVPs to scalable solutions, we fuel growth and innovation for budding entrepreneurs.</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[60px] gap-y-[30px] mt-8'>
+            <div className='w-[85%] flex mx-auto flex-wrap gap-5 mt-8'>
                 {ourSoftDevOption.map((item, index) => (
-                    <div key={index} className='w-[300px] h-[220px] border border-gray-300 p-3'>
+                    <div key={index} className='w-full md:w-[45%] lg:w-[31%]  h-[220px] border border-gray-300 p-3'>
                         <h1 className='text-[18px]'>{item.title}</h1>
                         <p className='text-[13.5px] mt-2 font-medium'>{item.desc}</p>
                     </div>

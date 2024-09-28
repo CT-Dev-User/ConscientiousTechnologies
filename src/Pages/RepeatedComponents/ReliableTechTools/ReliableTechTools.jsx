@@ -45,7 +45,7 @@ const ReliableTools = ({ category, subCategory }) => {
   const handleClose = () => setShowPopup(false);
 
   return (
-    <div className="w-screen h-96 bg-black text-[white] box-border overflow-y-auto pb-10">
+    <div className="w-screen h-96  bg-black text-[white] box-border overflow-y-auto pb-5">
       <div className="w-full lg:w-[85%] bg-[#141414] mx-auto text-white flex flex-wrap justify-between flex-col lg:flex-row overflow-x-hidden">
         {reliableToolData.map((items, i) => (
           <div
