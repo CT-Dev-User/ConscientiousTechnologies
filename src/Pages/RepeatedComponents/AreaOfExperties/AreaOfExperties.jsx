@@ -18,20 +18,18 @@ const AreaOfExperties = ({ category, subCategory, navSubCategory }) => {
     }, [])
 
     return (
-        <div className='w-screen h-auto text-[white] box-border pt-3 pb-16 bg-black'>
-            <div className='w-[95%] mx-auto lg:w-[80%] flex flex-wrap gap-[30px]  items-center justify-start'>
+        <div className='w-screen h-auto text-white box-border pt-3 pb-16 bg-black'>
+            <div className='w-[95%] mx-auto lg:w-4/5 flex flex-wrap gap-7  items-center justify-start'>
                 {expertiesData.map((items, i) => {
                     return (
-                        <div style={{ backgroundImage: `url(${items.image})`, backgroundSize: "cover", backgroundPosition: "center" }} className='w-[21%] h-[250px] relative border' key={i}>
-                            <div className='absolute top-0 left-0 w-[100%] h-[100%]'>
-                                <button className='text-white border border-[white] px-3 absolute bottom-[-10px] left-[-10px] bg-[#272727] h-auto text-left text-sm lg:text-base py-2' onClick={() => { navigate(`/${navSubCategory}/${items.title}`); }}>{items.title}</button>
+                        <div style={{ backgroundImage: `url(${items.image})`, backgroundSize: "cover", backgroundPosition: "center" }} className='lg:w-[22%] h-60 relative border w-full' key={i}>
+                            <div className='absolute top-0 left-0 w-full h-full'>
+                                <button className='text-white border border-[white] px-3 absolute bottom-[-10px] left-[-10px] bg-[#272727] h-auto text-left text-sm 2xl:text-base py-2' onClick={() => { navigate(`/${navSubCategory}/${items.title}`); }}>{items.title}</button>
                             </div>
                         </div>
                     )
                 })}
             </div>
-
-
         </div>
     )
 }
