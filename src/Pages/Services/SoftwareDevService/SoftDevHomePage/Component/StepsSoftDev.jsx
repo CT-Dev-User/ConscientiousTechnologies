@@ -165,7 +165,7 @@ const StepsSoftDev = () => {
               <div
                 key={index}
                 className={`${
-                  index % 2 === 0 ? "flex-row border-r-2 border-r-[#FFC635]" : "border-l-2 border-l-[#FFC635] ml-[50%] flex-row-reverse"
+                  index % 2 === 0 ? "flex-row border-r-2 border-r-[#FFC635]" : "border-l-2 border-l-[#FFC635] ml-[49.8%] flex-row-reverse"
                 } w-1/2 h-auto py-5 flex justify-between flex-wrap`}
               >
                 <div className="w-[95%] flex flex-col h-full bg-[#3C3C3C] p-4">
@@ -174,7 +174,7 @@ const StepsSoftDev = () => {
                   <div className="text-sm font-normal w-[95%]">{step.desc}</div>
                 </div>
                 <div className="w-[2px] h-auto relative">
-                  <div className="w-6 h-6 bg-[#FFC635] absolute top-1 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <div className="w-6 h-6 bg-[#FFC635] absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
 
                   </div>
                 </div>
@@ -184,7 +184,7 @@ const StepsSoftDev = () => {
         </div>
       </div>
 
-      <div className=" w-full py-10 lg:hidden block">
+      <div className="w-full py-10 lg:hidden block">
         <div className="mx-auto w-[95%]">
           <h1 className="font-bold text-base text-blue">
             Software for Advanced Business Tasks 
