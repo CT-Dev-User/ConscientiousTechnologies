@@ -214,14 +214,14 @@ const PartnerUpWithCity = () => {
                     partnerUpData.map((partner, index) => {
                         return (
                             <div key={`partner-${index}`}>
-                                <div className='w-[100vw] py-4' >
+                                <div className='w-full py-4 ' >
                                     <h1 className=" font-bold mb-[50px] lg:text-3xl text-xl 2xl:text-[2rem]">
                                         {partner.heading1}
                                     </h1>
                                     <div className="flex items-center justify-between">
 
-                                        <div className=" text-[white] w-[95%] mx-auto">
-                                            <Slider ref={sliderRef} {...settings} className='w-full lg:w-[85%]'>
+                                        <div className=" text-[white] w-full lg:w-[95%] mx-auto ">
+                                            <Slider ref={sliderRef} {...settings} className='w-[98%] lg:w-[85%]'>
                                                 {partner.partnersLogo1.map((items, i) => (
                                                     <div key={`logo1-${index}-${i}`}>
                                                         <div
@@ -239,14 +239,14 @@ const PartnerUpWithCity = () => {
                                      
                                     </div>
                                 </div>
-                                <div className='w-[100vw] py-8'>
+                                <div className='w-full py-8'>
                                     <h1 className=" font-bold lg:text-3xl text-xl 2xl:text-[2rem] mb-[50px]">
                                         {partner.heading2}
                                     </h1>
                                     <div className="flex items-center justify-between ">
                                        
                                         <div className=" text-[white] w-full lg:w-[95%] mx-auto">
-                                            <Slider ref={sliderRefleaders} {...settingsleaders} className='w-full lg:w-[85%] '>
+                                            <Slider ref={sliderRefleaders} {...settingsleaders} className='w-[98%] lg:w-[85%] '>
                                                 {partner.partnersLogo2.map((items, i) => (
                                                     <div key={`logo2-${index}-${i}`}>
                                                         <div
