@@ -13,17 +13,23 @@ import MeetOurClient from "../../HomePage/Component/MeetOurClient/MeetOurClient"
 import AllFaq from "../../RepeatedComponents/AllFaq/AllFaq";
 import BookFreeConsultation from "../../HomePage/Component/BookFreeConsultation/BookFreeConsultation";
 import Footer from "../../HomePage/Component/Footer/Footer";
+import BenefitsFromCt from "../DataAnalyst/Components/BenefitsFromCt";
+import FlexibleServiceApp from "../DataAnalyst/Components/FlexibleServiceApp";
+import Architecture from "../KioskSoftware/Components/Architecture";
 
 const Solution = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <SolutionHeader />
       <OurPartener />
-      <WhyChooseCTSlider category="Solutions" subCategory="ERP" />
+      <WhyChooseCTSlider  />
       <FunctionalERPModule />
       <ERPDevService />
       <ERPDevSteps/>
       <PerkOfERP />
+      <BenefitsFromCt />
+      <FlexibleServiceApp />
+      <Architecture />
       <TechnologyHeading />
       <ReliableTools category="HomePage" />
       <CaseStudies />
