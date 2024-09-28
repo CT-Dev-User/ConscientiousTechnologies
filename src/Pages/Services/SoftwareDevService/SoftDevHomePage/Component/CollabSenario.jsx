@@ -15,7 +15,7 @@ const CollabSenario = () => {
             </div>
             <div className=' lg:w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-12 w-[95%]'>
                 {CollabSenario.map((item, index) => (
-                    <div key={index} className='w-[95%] lg:w-[31%] lg:h-[200px] p-3 text-[white] pt-6 ' style={{backgroundColor:`#${item.bgColor}`}}>
+                    <div key={index} className='w-[95%] lg:w-[31%] h-auto p-3 text-[white] pt-6 ' style={{backgroundColor:`#${item.bgColor}`}}>
                         <h1 className='lg:text-[1rem] text-xl 2xl:text-[1.2rem] w-[90%] font-semibold'>{item.title}</h1>
                         <p className='text-[13.5px] mt-5 font-normal mx-auto w-[95%] md:text-[14px]'>{item.desc}</p>
                     </div>

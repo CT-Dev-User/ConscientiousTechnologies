@@ -79,7 +79,7 @@ const SoftDevSteps = () => {
     return (
         <div className='w-screen h-[auto]'>
             <div className='w-[100vw] h-[auto] bg-[black] box-border pt-[60px] md:pt-[50px]  text-[white] pb-[60px] hidden lg:block'>
-                <div className='lg:w-[85%] w-[95%]'>
+                <div className='lg:w-[85%] mx-auto'>
                     <h1 className='lg:text-3xl text-xl 2xl:text-[2rem] font-bold text-[blue] lg:text-white'>Check Out Our Software Development Steps </h1>
                     <p className='w-[70%] lg:text-[14px] mt-2 md:w-[100%] text-[12px]'>Discover Our Software Development Steps: Gain insights into our comprehensive approach, from ideation to deployment, ensuring transparency and delivering high-quality, custom solutions for your unique business requirements.</p>
                 </div>
@@ -99,15 +99,15 @@ const SoftDevSteps = () => {
                             }
                         })}
                     </div>
-                    <ul className="w-[2px] h-[210vh] bg-[#FFC635] flex flex-col items-center gap-[180px] py-[10px]">
+                    <ul className="w-[2px] h-[230vh] bg-[#FFC635] flex flex-col items-center gap-[180px] py-[10px]">
                         {processArr.map((items, i) => { 
                             return (
-                                <li key={i} className={`${i % 2 !== 0 && i !==0 ? "mt-[45px]" : "mt-0"} w-[25px] h-[25px] bg-[#FFC635]`}></li>
+                                <li key={i} className={`${i % 2 !== 0 && i !==0 ? "mt-[80px]" : "mt-0"} w-[25px] h-[25px] bg-[#FFC635]`}></li>
                             )
                         })}
                     </ul>
 
-                    <div className="w-[47%] flex flex-col justify-start mt-[280px] gap-[280px]">
+                    <div className="w-[47%] flex flex-col justify-start mt-[320px] gap-[300px]">
                         {processArr.map((step, index) => {
                             if (index % 2 !== 0) {
                                 return (

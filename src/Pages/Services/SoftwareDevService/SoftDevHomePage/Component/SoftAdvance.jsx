@@ -49,7 +49,7 @@ const SoftAdvance = () => {
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-4 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (
-                    <div key={index} className='lg:w-[31%] lg:h-[220px] border border-gray-300 p-3 md:w-[45%] w-[95%] h-[180px]'>
+                    <div key={index} className='lg:w-[31%] lg:h-auto border border-gray-300 p-3 md:w-[45%] w-[95%] h-[180px]'>
                         <h1 className='lg:text-[1rem] text-xl 2xl:text-[1.2rem] font-semibold'>{item.title}</h1>
                         <p className='text-[13.5px] md:text-[14px] w-[90%] mt-2 font-medium'>{item.desc}</p>
                     </div>
