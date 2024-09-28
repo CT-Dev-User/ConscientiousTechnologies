@@ -99,7 +99,7 @@ const SoftDevSteps = () => {
                             }
                         })}
                     </div>
-                    <ul className="w-[2px] h-[230vh] bg-[#FFC635] flex flex-col items-center gap-[180px] py-[10px]">
+                    <ul className="w-[2px] h-auto bg-[#FFC635] flex flex-col items-center gap-[180px] py-[10px]">
                         {processArr.map((items, i) => { 
                             return (
                                 <li key={i} className={`${i % 2 !== 0 && i !==0 ? "mt-[80px]" : "mt-0"} w-[25px] h-[25px] bg-[#FFC635]`}></li>
