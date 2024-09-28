@@ -15,6 +15,7 @@ import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/Reliabl
 import AreaOfExperties from '../../../RepeatedComponents/AreaOfExperties/AreaOfExperties'
 import ExploreSoftDevHeading from './Component/ExploreSoftDevHeading'
 import StepsSoftDev from './Component/StepsSoftDev'
+import StatsOfServices from './Component/statsOfServices'
 const SoftDevHomePage = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -24,8 +25,10 @@ const SoftDevHomePage = () => {
         <div>
             <AllHeader category="Services" subCategory="Software Development Services" />
             <OurPartener />
+           
             <ExploreSoftDevHeading />
             <AreaOfExperties category="Services" subCategory="Software Development Services" navSubCategory="Software Development Services" navCategory="Services" />
+            <StatsOfServices/>
             <PartnerUpWithCity />
             <CollabSenario />
             <SoftAdvance />

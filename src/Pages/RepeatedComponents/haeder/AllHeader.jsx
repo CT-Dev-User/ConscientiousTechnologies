@@ -21,8 +21,8 @@ const AllHeader = ({ category, subCategory }) => {
             {
                 headerData.map((header, i) => {
                     return (
-                        <div className='w-full h-[100vh]' key={i}>
-                            <div className='w-[100vw] h-full relative' style={{ backgroundImage: `url(${header.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
+                        <div className='w-screen h-[100vh]' key={i}>
+                            <div className='w-full h-full relative' style={{ backgroundImage: `url(${header.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
                                 <div className='w-[100%] h-[100%] absolute top-0 left-0 bg-black opacity-[0.6] flex flex-col lg:justify-center lg:items-start box-border px-3 gap-[50px] justify-evenly items:center '>
                                     <div className='h-fit  flex flex-col gap-[40px]  justify-center w-[100%]'>
                                         <h2 className='lg:text-3xl font-semibold text-white w-[90%] text-xl  xl:text-3xl 2xl:text-6xl lg:ms-[110px] ms-[0px]' style={{ fontFamily: 'Montserrat' }}>{header.title}</h2>
