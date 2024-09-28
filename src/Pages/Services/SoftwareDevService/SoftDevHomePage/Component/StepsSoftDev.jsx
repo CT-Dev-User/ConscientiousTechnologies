@@ -159,22 +159,22 @@ const StepsSoftDev = () => {
             unique business requirements.
           </p>
         </div>
-        <div className="w-[85%] mx-auto mt-10">
+        <div className="w-[85%] mx-auto mt-10 hidden lg:block">
           {processArr.map((step, index) => {
             return (
               <div
                 key={index}
                 className={`${
-                  index % 2 === 0 ? "flex-row border-r-2 border-r-[#FFC635]" : "border-l-2 border-l-[#FFC635] ml-[49.8%] flex-row-reverse"
+                  index % 2 === 0 ? "flex-row border-r-2 border-r-[#FFC635]" : "border-l-2 border-l-[#FFC635] ml-[50%] flex-row-reverse"
                 } w-1/2 h-auto py-5 flex justify-between flex-wrap`}
               >
-                <div className="w-[95%] flex flex-col h-full bg-[#3C3C3C] p-4">
+                <div className="w-[95%] flex flex-col h-auto bg-[#3C3C3C] p-4 box-border">
                   <h4 className="text-base 2xl:text-xl">{step.step}</h4>
                   <h5 className="text-base 2xl:text-xl">{step.title}</h5>
                   <div className="text-sm font-normal w-[95%]">{step.desc}</div>
                 </div>
                 <div className="w-[2px] h-auto relative">
-                  <div className="w-6 h-6 bg-[#FFC635] absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <div className={`w-[25px] h-[25px] bg-[#FFC635] absolute top-[-20px] ${index % 2 === 0 ? "left-1/2" : "left-0"} -translate-x-1/2 -translate-y-1/2`}>
 
                   </div>
                 </div>
