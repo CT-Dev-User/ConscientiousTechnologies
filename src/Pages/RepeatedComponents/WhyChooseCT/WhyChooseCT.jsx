@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import axios from "axios";
@@ -92,13 +91,13 @@ const WhyChooseCTSlider = ({ category, subCategory }) => {
         ],
     };
 
-    const handlePrevSlide = () => {
-        sliderRef.current.slickPrev();
-    };
+  const handlePrevSlide = () => {
+    sliderRef.current.slickPrev();
+  };
 
-    const handleNextSlide = () => {
-        sliderRef.current.slickNext();
-    };
+  const handleNextSlide = () => {
+    sliderRef.current.slickNext();
+  };
 
     const fetchSliderData = async () => {
         try {
@@ -113,9 +112,9 @@ const WhyChooseCTSlider = ({ category, subCategory }) => {
 
     }, {}, {}, {}]
 
-    useEffect(() => {
-        fetchSliderData()
-    }, [])
+  useEffect(() => {
+    fetchSliderData();
+  }, []);
 
     return (
         <div className="w-100 h-auto py-8">
@@ -177,4 +176,3 @@ const WhyChooseCTSlider = ({ category, subCategory }) => {
 };
 
 export default WhyChooseCTSlider;
-

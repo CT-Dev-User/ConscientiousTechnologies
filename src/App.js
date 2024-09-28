@@ -108,6 +108,7 @@ import BigData from './Pages/Technologies/bigdata/BigData';
 import MainPage from './Pages/contactUs/MainPage';
 import Blogs from './Pages/blogs/Blogs';
 import AboutUs from './Pages/AboutUs/AboutUs';
+import Solution from './Pages/Solution/solutionPage/Solution';
 
 function App() {
   const [hideNavbar, setHideNavbar] = useState(false);
@@ -150,7 +151,8 @@ function App() {
         <Route path='/Dedicated Software Team/Help desk' element={<HelpDesk />} />
 
         {/* Solution Routes */}
-        <Route path='Solutions/ERP' element={<ERP />} />
+        <Route path='/Solutions/:subCategory' element={<Solution />} />
+        {/* <Route path='Solutions/ERP' element={<ERP />} />
         <Route path='Solutions/Operations Management' element={<OperationMang />} />
         <Route path='Solutions/Financial Management' element={<FinancialManagement />} />
         <Route path='Solutions/Payment Management' element={<PaymentManageMent />} />
@@ -167,7 +169,7 @@ function App() {
         <Route path='Solutions/Marketing & advertising' element={<MarketingAdvertising />} />
         <Route path='Solutions/Content Management' element={<ContentManagement />} />
         <Route path='Solutions/Kiosk Software' element={<KioskSoftware />} />
-        <Route path='Solutions/Web Portal' element={<WebPortal />} />
+        <Route path='Solutions/Web Portal' element={<WebPortal />} /> */}
         {/* industries */}
         <Route path='/Industries/Oil and Gas' element={<OilandGasInustry />} />
         <Route path='/Industries/Telecommunications' element={<Telicommunication />} />

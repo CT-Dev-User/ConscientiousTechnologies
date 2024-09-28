@@ -18,16 +18,16 @@ const ERPDevService = () => {
     ];
 
     return (
-        <div className="w-full py-[60px] md:py-[30px]">
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] text-[blue]'>ScienceSoft’s ERP Development Service Scope </h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>Our custom ERP development services are closely bound to our clients' needs and can be related to:</p>
+        <div className="w-full lg:py-14 py-5">
+            <div className='lg:w-[85%] mx-auto w-[90%]'>
+                <h1 className='lg:text-3xl font-bold text-2xl text-[blue]'>ScienceSoft’s ERP Development Service Scope </h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>Our custom ERP development services are closely bound to our clients' needs and can be related to:</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-[95%]'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[180px] border border-gray-300 p-3 md:h-auto md:border-none'>
-                        <h1 className='text-[18px] text-bold'>{item.title}</h1>
-                        <p className='text-[13.5px] mt-3 font-medium'>{item.desc}</p>
+                    <div key={index} className='w-[350px] lg:border border-gray-300 p-3 h-auto'>
+                        <h1 className='text-lg text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>
