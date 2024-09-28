@@ -2,10 +2,34 @@ import React, { useEffect, useRef, useState } from 'react'
 import Slider from "react-slick";
 import partner from "./partnerwithcity.png"
 import axios from 'axios';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 const PartnerUpWithCity = () => {
     const sliderRef = useRef(null);
     const sliderRefleaders = useRef(null);
     const [partnerUpData, setPartnerUpData] = useState([]);
+  
+  const NextArrow = ({ onClick }) => {
+    return (
+      <div
+        className="absolute top-1/2 right-[-60px] transform -translate-y-1/2 cursor-pointer z-0 hidden lg:block"
+        onClick={onClick}>
+        <div className="p-1 box-border w-fit  rounded-[50%] flex justify-center items-center">
+          <FaAngleRight className="text-black text-[2rem] hover:text-[#0466C1] " />
+        </div>
+      </div>
+    );
+  };
+  const PrevArrow = ({ onClick }) => {
+    return (
+      <div
+        className="absolute top-1/2 left-[-60px] transform -translate-y-1/2 cursor-pointer z-0 hidden lg:block"
+        onClick={onClick}>
+        <div className="p-1 box-border w-fit rounded-[50%] flex justify-center items-center">
+          <FaAngleLeft className="text-black text-[2rem] hover:text-[#0466C1] "  />
+        </div>
+      </div>
+    );
+  };
 
     const fetchPartnerUpData = async () => {
         try {
@@ -30,7 +54,9 @@ const PartnerUpWithCity = () => {
         autoplay: false,
         speed: 2500,
         autoplaySpeed: 0,
-        arrows: false,
+        arrows: true,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
         cssEase: "linear",
         responsive: [
             {
@@ -78,13 +104,6 @@ const PartnerUpWithCity = () => {
         ],
     };
 
-    const handlePrevSlide = () => {
-        sliderRef.current.slickPrev();
-    };
-
-    const handleNextSlide = () => {
-        sliderRef.current.slickNext();
-    };
 
     const settingsleaders = {
         dots: false,
@@ -92,9 +111,11 @@ const PartnerUpWithCity = () => {
         slidesToShow: 5,
         slidesToScroll: 1,
         autoplay: false,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
         speed: 2500,
         autoplaySpeed: 0,
-        arrows: false,
+        arrows: true,
         cssEase: "linear",
         responsive: [
             {
@@ -141,128 +162,113 @@ const PartnerUpWithCity = () => {
             },
         ],
     };
-
-    const handlePrevSlideleaders = () => {
-        sliderRefleaders.current.slickPrev();
-    };
-
-    const handleNextSlideleaders = () => {
-        sliderRefleaders.current.slickNext();
-    };
-
     return (
-        <div className='py-[60px]'>
-            <h1 className='ms-[110px] font-bold text-3xl mb-[40px] md:ms-[20px]'>Why Partner Up with CT ?</h1>
-            <div className='w-[85vw] mx-auto h-[70vh] flex gap-[20px] md:w-[90vw] md:mx-[20px] md:h-[30vh]'>
-                <div className='w-[48%] h-[100%] flex flex-col gap-[20px] md:w-[100%] text-white]'>
-                    <div className='w-[100%] h-[48%] flex gap-[20px]'>
-                        <div className='w-[48%] h-[100%] bg-[#FF6161] flex flex-col justify-center items-center'><h1>750+</h1><p>IT Pros</p></div>
-                        <div className='w-[48%] h-[100%] bg-[#1E8DCB] flex flex-col justify-center items-center'><h1>550+</h1><p>Developers</p></div>
-                    </div>
-                    <div className='w-[100%] h-[48%] flex gap-[20px]'>
-                        <div className='w-[48%] h-[100%] bg-[#23B14B] flex flex-col justify-center items-center'><h1>60+</h1><p>Project Managers</p></div>
-                        <div className='w-[48%] h-[100%] bg-[#D14CFF] flex flex-col justify-center items-center'><h1>Certified</h1><p>Platforms Experts</p></div>
-                    </div>
-                </div>
-                <div className='w-[50%] h-[100%] bg-[green] md:hidden'>
-                    <img src={partner} alt="partner up with city" className='w-[100%] h-[100%]' />
-                </div>
-            </div>
-            <div className='w-[85vw] mt-[60px] mx-auto md:w-[90vw] md:mx-[20px]'>
-                <h1 className='font-bold text-3xl md:text-[24px]'>Guaranteed service quality</h1>
-                <div className="paretndiv w-[100%] mt-[60px]">
-                    <div className="w-[100%] flex gap-[10px]">
-                        <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
-                        <p className="w-[90%] text-[14px] md:text-[16px] font-semibold">Quality-first approach based on a mature ISO 9001-certified quality management system.</p>
-                    </div>
-
-                    <div className="mt-[10px] flex gap-[10px]">
-                        <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
-                        <p className="w-[90%] text-[14px] md:text-[16px] font-semibold">
-                            ISO 27001-certified security management that relies on comprehensive policies and processes, advanced security technology, and skilled professionals.
-                        </p>
-                    </div>
-
-                    <div className="mt-[10px] flex gap-[10px]">
-                        <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
-                        <p className="w-[90%] text-[14px] md:text-[16px] font-semibold">
-                            A full-scale PMO able to carry out even the most complex projects.
-                        </p>
-                    </div>
-                    <div className="mt-[10px] flex gap-[10px]">
-                        <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
-                        <p className="w-[90%] text-[14px] md:text-[16px] font-semibold">
-                            A leading outsourcing provider featured on the Global Outsourcing 100 list by IAOP.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            {
-                partnerUpData.map((partner, index) => {
-                    return (
-                        <div key={`partner-${index}`}>
-                            <div className='w-[100vw] py-[60px]' >
-                                <h1 className="text-3xl font-bold mb-[50px] mx-[100px] md:mx-[20px] md:text-[24px]">
-                                    {partner.heading1}
-                                </h1>
-                                <div className="flex items-center justify-between mx-[110px] md:mx-[20px]">
-                                    <button onClick={handlePrevSlide} className="btn-prev text-[50px] font-normal md:hidden">
-                                        ‹
-                                    </button>
-                                    <div className="w-[75vw] text-[white] md:w-[85vw]">
-                                        <Slider ref={sliderRef} {...settings}>
-                                            {partner.partnersLogo1.map((items, i) => (
-                                                <div key={`logo1-${index}-${i}`}>
-                                                    <div
-                                                        className="w-[200px] h-[100px] flex items-center md:w-[170px] md:h-[70px] md:ml-[10px]"
-                                                       
-                                                    >
-                                                        <div className="bg-[#D9D9D9] w-[90%] h-[100%] md:h-[80%] flex justify-center items-center text-[black]">
-                                                            <img src={items.logo1} alt={items.logo1} className='w-[100%] h-[100%]'/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </Slider>
-                                    </div>
-                                    <button onClick={handleNextSlide} className="btn-next text-[50px] font-normal md:hidden">
-                                        ›
-                                    </button>
-                                </div>
-                            </div>
-                            <div className='w-[100vw] pb-[60px]'>
-                                <h1 className="text-3xl font-bold mb-[50px] mx-[100px] md:mx-[20px] md:text-[24px]">
-                                    {partner.heading2}
-                                </h1>
-                                <div className="flex items-center justify-between mx-[110px] md:mx-[20px]">
-                                    <button onClick={handlePrevSlideleaders} className="btn-prev text-[50px] font-normal md:hidden">
-                                        ‹
-                                    </button>
-                                    <div className="w-[75vw] text-[white] md:w-[85vw]">
-                                        <Slider ref={sliderRefleaders} {...settingsleaders}>
-                                            {partner.partnersLogo2.map((items, i) => (
-                                                <div key={`logo2-${index}-${i}`}>
-                                                    <div
-                                                        className="w-[200px] h-[100px] flex items-center md:w-[170px] md:h-[70px] md:ml-[10px]"
-                                                 
-                                                    >
-                                                        <div className="bg-[#D9D9D9] w-[90%] h-[100%] md:h-[80%] flex justify-center items-center text-[black]">
-                                                        <img src={items.logo2} alt={items.logo2} className='w-[100%] h-[100%]'/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </Slider>
-                                    </div>
-                                    <button onClick={handleNextSlideleaders} className="btn-next text-[50px] font-normal md:hidden">
-                                        ›
-                                    </button>
-                                </div>
-                            </div>
+        <div className='py-16 w-screen'>
+            <div className='lg:w-[85%] w-[95%] mx-auto '>
+                <h1 className=' font-bold lg:text-3xl text-xl 2xl:text-[2.2rem] mb-[40px]'>Why Partner Up with CT ?</h1>
+                <div className='w-[95%] lg:mx-auto lg:h-[70vh] flex gap-[20px] h-[30vh]'>
+                    <div className='lg:w-[48%] h-[100%] flex flex-col gap-[20px] w-[100%] text-white]'>
+                        <div className='w-[100%] h-[48%] flex gap-[20px]'>
+                            <div className='w-[48%] h-[100%] bg-[#FF6161] flex flex-col justify-center items-center '><h1 className='lg:text-lg text-sm 2xl:text-[2rem]'>750+</h1><p className='mt-6 lg:text-lg text-sm 2xl:text-[1.5rem]'>IT Pros</p></div>
+                            <div className='w-[48%] h-[100%] bg-[#1E8DCB] flex flex-col justify-center items-center '><h1 className='lg:text-lg text-sm 2xl:text-[2rem]'> 550+</h1><p className='lg:text-lg text-sm 2xl:text-[1.5rem] mt-5'>Developers</p></div>
                         </div>
-                    )
-                })
-            }
+                        <div className='w-[100%] h-[48%] flex gap-[20px]'>
+                            <div className='w-[48%] h-[100%] bg-[#23B14B] flex flex-col justify-center items-center'><h1 className='lg:text-lg text-sm 2xl:text-[2rem]'>60+</h1><p className='lg:text-lg text-sm 2xl:text-[1.5rem] mt-5'>Project Managers</p></div>
+                            <div className='w-[48%] h-[100%] bg-[#D14CFF] flex flex-col justify-center items-center'><h1 className='lg:text-lg text-sm 2xl:text-[2rem]'>Certified</h1><p className='lg:text-lg text-sm 2xl:text-[1.5rem] mt-5'>Platforms Experts</p></div>
+                        </div>
+                    </div>
+                    <div className='w-[50%] h-[100%] bg-[green] lg:block hidden'>
+                        <img src={partner} alt="partner up with city" className='w-[100%] h-[100%]' />
+                    </div>
+                </div>
+                <div className='w-[100%] my-10 lg:my-14'>
+                    <h1 className='font-bold lg:text-3xl text-xl 2xl:text-[2rem]'>Guaranteed service quality</h1>
+                    <div className="paretndiv w-[100%] mt-7">
+                        <div className="w-[100%] flex gap-[10px]">
+                            <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
+                            <p className="w-[90%] lg:text-lg text-sm 2xl:text-[1rem] font-semibold">Quality-first approach based on a mature ISO 9001-certified quality management system.</p>
+                        </div>
+
+                        <div className="mt-[10px] flex gap-[10px]">
+                            <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
+                            <p className="w-[90%] lg:text-lg text-sm 2xl:text-[1rem] font-semibold">
+                                ISO 27001-certified security management that relies on comprehensive policies and processes, advanced security technology, and skilled professionals.
+                            </p>
+                        </div>
+
+                        <div className="mt-[10px] flex gap-[10px]">
+                            <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
+                            <p className="w-[90%] lg:text-lg text-sm 2xl:text-[1rem] font-semibold">
+                                A full-scale PMO able to carry out even the most complex projects.
+                            </p>
+                        </div>
+                        <div className="mt-[10px] flex gap-[10px]">
+                            <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
+                            <p className="w-[90%] lg:text-lg text-sm 2xl:text-[1rem] font-semibold">
+                                A leading outsourcing provider featured on the Global Outsourcing 100 list by IAOP.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {
+                    partnerUpData.map((partner, index) => {
+                        return (
+                            <div key={`partner-${index}`}>
+                                <div className='w-[100vw] py-4' >
+                                    <h1 className=" font-bold mb-[50px] lg:text-3xl text-xl 2xl:text-[2rem]">
+                                        {partner.heading1}
+                                    </h1>
+                                    <div className="flex items-center justify-between">
+
+                                        <div className=" text-[white] w-[95%] mx-auto">
+                                            <Slider ref={sliderRef} {...settings} className='w-full lg:w-[85%]'>
+                                                {partner.partnersLogo1.map((items, i) => (
+                                                    <div key={`logo1-${index}-${i}`}>
+                                                        <div
+                                                            className="lg:w-[200px] lg:h-[100px] flex items-center w-[170px] h-[70px] "
+
+                                                        >
+                                                            <div className="bg-[#D9D9D9] w-[90%] h-[100%] md:h-[80%] flex justify-center items-center text-[black]">
+                                                                <img src={items.logo1} alt={items.logo1} className='w-[100%] h-[100%]' />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </Slider>
+                                        </div>
+                                     
+                                    </div>
+                                </div>
+                                <div className='w-[100vw] py-8'>
+                                    <h1 className=" font-bold lg:text-3xl text-xl 2xl:text-[2rem] mb-[50px]">
+                                        {partner.heading2}
+                                    </h1>
+                                    <div className="flex items-center justify-between ">
+                                       
+                                        <div className=" text-[white] w-full lg:w-[95%] mx-auto">
+                                            <Slider ref={sliderRefleaders} {...settingsleaders} className='w-full lg:w-[85%] '>
+                                                {partner.partnersLogo2.map((items, i) => (
+                                                    <div key={`logo2-${index}-${i}`}>
+                                                        <div
+                                                            className="lg:w-[200px] lg:h-[100px] flex items-center w-[170px] h-[70px]">
+                                                            <div className="bg-[#D9D9D9] w-[90%] h-[100%] md:h-[80%] flex justify-center items-center text-[black]">
+                                                                <img src={items.logo2} alt={items.logo2} className='w-[100%] h-[100%]' />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </Slider>
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+
+
 
 
         </div>

@@ -12,9 +12,9 @@ const ServiceWeProvide = () => {
   
     return (
       <div className="w-screen  box-border py-8">
-        <div className="lg:w-[85%] container mx-auto">
+        <div className="w-[95%] lg:w-[85%] container mx-auto">
           <div className="my-6">
-            <h1 className="lg:mb-3 text-xl md:text-2xl lg:text-[1.7rem] 2xl:text-4xl text-[#3970F0] font-bold">
+            <h1 className="lg:mb-3 text-2xl md:text-2xl lg:text-[1.7rem] 2xl:text-4xl text-[#3970F0] font-bold">
               Service we provide
             </h1>
             <p className="text-start my-2 lg:my-5 md:font-normal text-sm  md:text-base lg:text-base 2xl:text-[1.2rem] tracking-normal lg:leading-7">

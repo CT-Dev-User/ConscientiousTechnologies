@@ -70,12 +70,13 @@ const NavBar = ({ hideNavbar, setHideNavbar, activeSubNav }) => {
       console.log(error);
     }
   }
-
+  console.log("active", activeItem)
+  console.log("dropdown", dropdownsData)
 
 
   return (
     <nav className={`navbar ${visible && !hideNavbar ? 'active' : 'hidden'} w-screen lg:p-1 z-50 box-border fixed top-0 p-2 ${visible && prevScrollPos > 10 ? 'bg-black opacity-[0.8]' : 'transparent opacity-[1]'}bg-black opacity-100`}>
-      <div className={`w-4/5 overflow-y-auto absolute top-12 left-[12%] duration-1000 transition-height ease-in-out ${dropdownsData.length > 0 ? 'p-2 h-auto opacity-100 dropdown' : 'p-[0px] h-0 opacity-0 pointer-events-none'} hidden`} onMouseLeave={() => { setActiveItem(""); setDropdownsData([]) }}>
+      <div className={`w-4/5 overflow-y-auto absolute top-12 left-[12%] duration-1000 transition-height ease-in-out ${dropdownsData.length > 0 ? 'p-2 h-auto opacity-100 dropdown' : 'p-[0px] h-0 opacity-0 pointer-events-none'} hidden`} onMouseLeave={() => { setActiveItem(""); setDropdownsData([]) }} >
         <div className="w-[95%] flex flex-wrap gap-[15px] mx-auto">
           {
             dropdownsData.map((item, index) => (
@@ -126,9 +127,11 @@ const NavBar = ({ hideNavbar, setHideNavbar, activeSubNav }) => {
         <ul className='hidden lg:flex gap-10 text-white text-sm'>
           {navigations.map((nav, i) => {
             return (
-              <li key={i} className={`cursor-pointer ${activeItem === `${nav.faqCategory}` ? 'active2' : ''} hover:text-[#FFA843]`} onClick={() => { setActiveItem(`${nav.faqCategory}`); dropdownToggle(`${nav.faqCategory}`);if(activeItem === "Career"){
-                navigate('/Career')
-              } }}>{nav.faqCategory}</li>
+              <li key={i} className={`cursor-pointer ${activeItem === `${nav.faqCategory}` ? 'active2' : ''} hover:text-[#FFA843]`} onClick={() => {
+                setActiveItem(`${nav.faqCategory}`); dropdownToggle(`${nav.faqCategory}`); if (activeItem === "Career") {
+                  navigate('/Career')
+                }
+              }}>{nav.faqCategory}</li>
             )
           })}
         </ul>

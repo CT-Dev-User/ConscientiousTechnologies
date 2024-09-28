@@ -89,7 +89,7 @@ const SubNavBar = ({ setHideNavbar, setActiveSubNav}) => {
 
   return (
     <div
-      className={`mt-6 h-[50px] w-[100vw] border-b border-[#D9D9D9] sticky ${isAtTop ? 'top-[calc(90px + 1rem)]' : 'top-0 bg-white'} z-50 md:hidden flex`}
+      className={`mt-6 h-[50px] w-[100vw] border-b border-[#D9D9D9] sticky ${isAtTop ? 'top-[calc(90px + 1rem)]' : 'top-0 bg-white'} z-50 hidden lg:flex`}
       style={{
         top: subNavTop,
         transition: 'transform 0.3s ease-in-out',

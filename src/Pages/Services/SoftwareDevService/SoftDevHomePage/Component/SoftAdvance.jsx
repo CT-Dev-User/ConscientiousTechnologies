@@ -42,16 +42,16 @@ const SoftAdvance = () => {
     ];
 
     return (
-        <div className="w-full py-[40px] md:py-[30px]">
-            <div className='w-[85%] mx-auto md:w-[95%]'>
-                <h1 className='text-3xl font-bold md:text-[24px] text-[#3970F0]'>Software for Advanced Business Tasks </h1>
+        <div className="w-screen lg:py-16 py-8">
+            <div className='container lg:w-[85%] mx-auto w-[95%]'>
+                <h1 className='lg:text-3xl text-xl 2xl:text-[2rem] font-bold  text-[#3970F0]'>Software for Advanced Business Tasks </h1>
                 <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[60px] gap-y-[30px] mt-8 md:w-[95%]'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-4 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (
-                    <div key={index} className='w-[320px] h-[220px] border border-gray-300 p-3 md:w-[95%] md:h-[180px]'>
-                        <h1 className='text-[18px]'>{item.title}</h1>
-                        <p className='text-[13.5px] mt-2 font-medium'>{item.desc}</p>
+                    <div key={index} className='lg:w-[31%] lg:h-[220px] border border-gray-300 p-3 md:w-[45%] w-[95%] h-[180px]'>
+                        <h1 className='lg:text-[1rem] text-xl 2xl:text-[1.2rem] font-semibold'>{item.title}</h1>
+                        <p className='text-[13.5px] md:text-[14px] w-[90%] mt-2 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>

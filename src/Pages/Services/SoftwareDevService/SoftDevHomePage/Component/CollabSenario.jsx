@@ -8,16 +8,16 @@ const CollabSenario = () => {
     }, 
     { title: "Team augmentation", desc: "We ramp up your team with our best talents (from 0.5 to 150+ FTEs): back-end, front-end, and mobile developers, architects, testing engineers, DevOps engineers, data scientists, and more. You get quick and budget-friendly access to the needed skills.", bgColor:"E751FF" }]
     return (
-        <div className='w-[100vw] h-[auto] box-border py-[60px] md:py-[30px]'>
-            <div className='w-[85%] mx-auto md:w-[90%]'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[blue] '>Different Collaboration Scenarios for Your Software Development</h1>
-                <p className='w-[95%] text-[14px] mt-2 md:w-[100%] md:text-[16px]'>Collaboration Scenarios: Explore various engagement models, from in-house teams to outsourced partnerships, to tailor software development collaboration to your needs.Collaboration Scenarios: Explore various engagement models, from in-house teams to outsourced partnerships, to tailor software development collaboration to your needs.</p>
+        <div className='w-[100vw] h-[auto] box-border py-8 lg:py-16  bg-black text-white'>
+            <div className='lg:w-[85%] mx-auto w-[95%]'>
+                <h1 className='lg:text-3xl text-xl 2xl:text-[2rem] font-bold  text-[blue] lg:text-white'>Different Collaboration Scenarios for Your Software Development</h1>
+                <p className='w-[95%] my-4 md:w-[100%]  text-sm lg:text-base'>Collaboration Scenarios: Explore various engagement models, from in-house teams to outsourced partnerships, to tailor software development collaboration to your needs.Collaboration Scenarios: Explore various engagement models, from in-house teams to outsourced partnerships, to tailor software development collaboration to your needs.</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-[90%]'>
+            <div className=' lg:w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-12 w-[95%]'>
                 {CollabSenario.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[200px] border border-gray-300 p-3 text-[white] pt-6 md:h-[250px]' style={{backgroundColor:`#${item.bgColor}`}}>
-                        <h1 className='text-[18px] w-[90%] md:text-[20px]'>{item.title}</h1>
-                        <p className='text-[13.5px] mt-2 font-normal mx-auto w-[95%] md:text-[14px]'>{item.desc}</p>
+                    <div key={index} className='w-[95%] lg:w-[31%] lg:h-[200px] p-3 text-[white] pt-6 ' style={{backgroundColor:`#${item.bgColor}`}}>
+                        <h1 className='lg:text-[1rem] text-xl 2xl:text-[1.2rem] w-[90%] font-semibold'>{item.title}</h1>
+                        <p className='text-[13.5px] mt-5 font-normal mx-auto w-[95%] md:text-[14px]'>{item.desc}</p>
                     </div>
                 ))}
             </div>
