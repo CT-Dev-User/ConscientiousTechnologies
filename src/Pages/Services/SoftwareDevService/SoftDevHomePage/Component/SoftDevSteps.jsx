@@ -50,8 +50,8 @@ const SoftDevSteps = () => {
                 <li className="ms-5 list-disc">Approving the release scope.</li>
                 <li className="ms-5 list-disc">Delivering and reviewing mockups.</li>
                 <li className="ms-5 list-disc">Developing and testing the approved software part, migrating the developed software part to the staging and production environment.</li>
-                <li className="ms-5 list-disc">Getting feedback from a project sponsor and users on the results of the release.</li>
-                <li className="ms-5 list-disc">Reviewing the results of the completed release and approving the scope of the next release.</li>
+                {/* <li className="ms-5 list-disc">Getting feedback from a project sponsor and users on the results of the release.</li>
+                <li className="ms-5 list-disc">Reviewing the results of the completed release and approving the scope of the next release.</li> */}
 
             </ul>
         )
@@ -77,20 +77,20 @@ const SoftDevSteps = () => {
     }
     ]
     return (
-        <div className='md:w-[100vw] h-[auto]'>
-            <div className='w-[100vw] h-[auto] bg-[black] box-border pt-[60px] md:pt-[50px] pb-[30px] text-[white] pb-[60px] md:hidden'>
-                <div className='w-[85%] mx-[110px] md:w-[90%]'>
-                    <h1 className='text-3xl font-bold md:text-[16px] md:text-[blue]'>Check Out Our Software Development Steps </h1>
-                    <p className='w-[70%] text-[14px] mt-2 md:w-[100%] md:text-[12px]'>Discover Our Software Development Steps: Gain insights into our comprehensive approach, from ideation to deployment, ensuring transparency and delivering high-quality, custom solutions for your unique business requirements.</p>
+        <div className='w-screen h-[auto]'>
+            <div className='w-[100vw] h-[auto] bg-[black] box-border pt-[60px] md:pt-[50px]  text-[white] pb-[60px] hidden lg:block'>
+                <div className='lg:w-[85%] w-[95%]'>
+                    <h1 className='lg:text-3xl text-xl 2xl:text-[2rem] font-bold text-[blue] lg:text-white'>Check Out Our Software Development Steps </h1>
+                    <p className='w-[70%] lg:text-[14px] mt-2 md:w-[100%] text-[12px]'>Discover Our Software Development Steps: Gain insights into our comprehensive approach, from ideation to deployment, ensuring transparency and delivering high-quality, custom solutions for your unique business requirements.</p>
                 </div>
                 <div className="w-[85%] flex justify-between mx-[110px] mt-[60px]">
-                    <div className="w-[47%] flex flex-col justify-start items-start gap-[190px] mt-[30px] ">
+                    <div className="w-[47%] flex flex-col justify-start items-start gap-[230px] mt-[50px] ">
                         {processArr.map((step, index) => {
                             if (index % 2 == 0) {
                                 return (
-                                    <div key={index} className="w-[100%] h-auto bg-[#3C3C3C] p-3">
-                                        <h4 className="text-[19px]">{step.step}</h4>
-                                        <h5 className="text-[17px]">{step.title}</h5>
+                                    <div key={index} className="w-[100%] h-auto bg-[#3C3C3C] p-3 py-5 flex flex-col gap-2">
+                                        <h4 className="lg:text-[1rem] text-xl 2xl:text-[1.2rem]">{step.step}</h4>
+                                        <h5 className="lg:text-[1rem] text-xl 2xl:text-[1.2rem]">{step.title}</h5>
                                         <div className="text-[13.5px] font-normal w-[95%]">{step.desc}</div>
                                     </div>
                                 );
@@ -99,21 +99,22 @@ const SoftDevSteps = () => {
                             }
                         })}
                     </div>
-                    <ul className="w-[2px] h-[250vh] bg-[#FFC635] flex flex-col items-center  gap-[160px] py-[10px]">
-                        {processArr.map((items, i) => {
+                    <ul className="w-[2px] h-[210vh] bg-[#FFC635] flex flex-col items-center gap-[180px] py-[10px]">
+                        {processArr.map((items, i) => { 
                             return (
-                                <li key={i} className="w-[25px] h-[25px] bg-[#FFC635]"></li>
+                                <li key={i} className={`${i % 2 !== 0 && i !==0 ? "mt-[45px]" : "mt-0"} w-[25px] h-[25px] bg-[#FFC635]`}></li>
                             )
                         })}
                     </ul>
-                    <div className="w-[47%] flex flex-col justify-end gap-[190px]">
+
+                    <div className="w-[47%] flex flex-col justify-start mt-[280px] gap-[280px]">
                         {processArr.map((step, index) => {
                             if (index % 2 !== 0) {
                                 return (
-                                    <div key={index} className="w-[100%] h-[180px] bg-[#3C3C3C] p-3 ">
-                                        <h4 className="text-[19px]">{step.step}</h4>
-                                        <h5 className="text-[17px]">{step.title}</h5>
-                                        <div className="text-[13.5px] font-normal w-[95%]">{step.desc}</div>
+                                    <div key={index} className="w-[100%] h-[180px] bg-[#3C3C3C] p-3 py-5 flex flex-col gap-2">
+                                        <h4 className="lg:text-[1rem] text-xl 2xl:text-[1.2rem]">{step.step}</h4>
+                                        <h5 className="lg:text-[1rem] text-xl 2xl:text-[1.2rem]">{step.title}</h5>
+                                        <div className="lg:text-sm text-[13.5px] font-normal w-[95%]">{step.desc}</div>
                                     </div>
                                 );
                             } else {
@@ -125,16 +126,16 @@ const SoftDevSteps = () => {
 
             </div>
 
-            <div className="w-full py-[40px] md:py-[30px] hidden md:block">
-                <div className='w-[85%] mx-auto md:w-[95%]'>
-                    <h1 className='text-3xl font-bold md:text-[24px] text-blue'>Software for Advanced Business Tasks </h1>
-                    <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
+            <div className=" w-full py-[40px] md:py-[30px] lg:hidden block">
+                <div className='mx-auto w-[95%]'>
+                    <h1 className=' font-bold lg:text-3xl text-xl 2xl:text-[2rem] text-blue'>Software for Advanced Business Tasks </h1>
+                    <p className='w-11/12 text-sm mt-2 md:w-full'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
                 </div>
-                <div className='w-[85%] flex mx-auto flex-wrap gap-x-[60px] gap-y-[30px] mt-8 items-center justify-center md:w-[95%]'>
+                <div className='w-[95%] flex mx-auto flex-wrap gap-3 mt-8 items-center justify-center '>
                     {processArr.map((item, index) => (
-                        <div key={index} className='w-[300px] p-3 md:w-[95%] h-auto'>
-                            <h1 className='text-[18px]'>{item.title}</h1>
-                            <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+                        <div key={index} className=' p-3 w-full h-auto border'>
+                            <h1 className='text-[0.95rem]'>{item.title}</h1>
+                            <div className='text-xs mt-2 font-medium'>{item.desc}</div>
                         </div>
                     ))}
                 </div>

@@ -1,65 +1,95 @@
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import axios from "axios";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 const WhyChooseCTSlider = ({ category, subCategory }) => {
-  const sliderRef = useRef(null);
-  const [sliderData, setSliderData] = useState([]);
-  const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: false, // Disable autoplay
-    speed: 2500,
-    autoplaySpeed: 0,
-    arrows: false,
-    cssEase: "linear",
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 3,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 1023,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          infinite: true,
-          autoplay: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-          autoplay: true,
-        },
-      },
-      {
-        breakpoint: 500,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          autoplay: true,
-        },
-      },
-    ],
-  };
+    const sliderRef = useRef(null);
+    const [sliderData, setSliderData] = useState([])
+
+
+    const NextArrow = ({ onClick }) => {
+        return (
+          <div
+            className="absolute top-1/2 right-[-60px] transform -translate-y-1/2 cursor-pointer z-0 hidden md:block"
+            onClick={onClick}
+          >
+            <div className="p-1 box-border w-fit rounded-[50%] flex justify-center items-center">
+              <FaAngleRight className="text-black text-[2rem]  hover:text-[#0466C1] " />
+            </div>
+          </div>
+        );
+      };
+      const PrevArrow = ({ onClick }) => {
+        return (
+          <div
+            className="absolute top-1/2 left-[-60px] transform -translate-y-1/2 cursor-pointer z-0 hidden md:block"
+            onClick={onClick}
+          >
+            <div className="p-1 box-border w-fit rounded-[50%] flex justify-center items-center">
+              <FaAngleLeft className="text-black text-[2rem]  hover:text-[#0466C1] "  />
+            </div>
+          </div>
+        );
+      };
+
+    const settings = {
+        dots: false,
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: false, // Disable autoplay
+        speed: 2500,
+        autoplaySpeed: 0,
+        arrows: true,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+        cssEase: "linear",
+        responsive: [
+            {
+                breakpoint: 1440,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 3,
+                    infinite: true,
+                },
+            },
+            {
+                breakpoint: 1023,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                },
+            },
+            {
+                breakpoint: 900,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 2,
+                    infinite: true,
+                    autoplay: true,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2,
+                    autoplay: true,
+                },
+            },
+            {
+                breakpoint: 500,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    autoplay: true,
+                },
+            },
+        ],
+    };
 
   const handlePrevSlide = () => {
     sliderRef.current.slickPrev();
@@ -69,88 +99,80 @@ const WhyChooseCTSlider = ({ category, subCategory }) => {
     sliderRef.current.slickNext();
   };
 
-  const fetchSliderData = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/get-choose-ct-slider-data-byCategorySubCategory/${category}/${subCategory}`
-      );
-      setSliderData(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const fetchSliderData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/get-choose-ct-slider-data-byCategorySubCategory/${category}/${subCategory}`);
+            setSliderData(response.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const data = [{
+
+    }, {}, {}, {}]
 
   useEffect(() => {
     fetchSliderData();
   }, []);
 
-  return (
-    <div className="w-screen h-auto">
-      {sliderData.map((slider, i) => {
-        return (
-          <div key={i} className="w-screen h-auto lg:mt-24 mb-14 mt-7">
-            <div className="lg:w-[85%] mx-auto w-full p-2 lg:p-0">
-              <h1 className="lg:text-3xl font-bold mt-10 mb-5 text-2xl">
-                {slider.heading}
-              </h1>
-              <p>{slider.subtitle}</p>
-            </div>
+    return (
+        <div className="w-100 h-auto py-8">
+            {
+                sliderData.map((slider, i) => {
+                    return (
+                        <div key={i} className="w-screen h-[auto] py-4 lg:py-8">
+                            <div className="lg:w-[85%] mx-auto h-auto w-[95%]">
+                                <div className="mx-auto w-[100%] lg:p-0 p-2">
+                                    <h1 className="font-bold mt-[40px] mb-[20px] lg:text-3xl text-xl 2xl:text-[2.2rem]">
+                                        {slider.heading}</h1>
+                                    <p className="lg:text-lg text-sm 2xl:text-[1rem]">{slider.subtitle}</p>
+                                </div>
 
-            <div className="lg:w-[85%] mx-auto w-[90%]">
-              <h1 className="lg:text-3xl font-bold mt-10 mb-5 text-2xl">
-                {slider.logoHeading}
-              </h1>
-            </div>
+                                <div className="w-[100%] ">
+                                    <h1 className=" font-bold mt-[40px] mb-[20px] lg:text-3xl text-xl 2xl:text-[2rem]">{slider.logoHeading}</h1>
 
-            <div className="flex items-center justify-between lg:mx-[110px] mx-5">
-              <button
-                onClick={handlePrevSlide}
-                className="btn-prev text-5xl font-normal hidden lg:block"
-              >
-                ‹
-              </button>
+                                </div>
 
-              <div className="lg:w-3/4 text-[white] w-[85%]">
-                <Slider ref={sliderRef} {...settings}>
-                  {slider.logos.map((items, i) => (
-                    <div key={i}>
-                      <div className="lg:w-[200px] lg:h-[100px] flex items-center w-[170px] h-[70px] ml-2">
-                        <div className="bg-[#D9D9D9] w-[70%] lg:h-full h-4/5 flex justify-center items-center text-black">
-                          <img
-                            src={items.logo}
-                            alt="fghjk"
-                            className="w-full h-full"
-                          />
+                                <div className="w-[100%] flex items-center justify-between  md:mx-[20px]">
+                                    <div className="w-[95%] mt-10 text-[white] mx-auto ">
+                                        <Slider ref={sliderRef} {...settings} className="w-[85%]">
+                                            {slider.logos.map((items, i) => (
+                                                <div key={i}>
+                                                    <div
+                                                        className="lg:w-[320px] lg:h-[130px] flex items-center w-[170px] h-[70px] "
+
+                                                    >
+                                                        <div className="bg-[#D9D9D9] w-[70%] h-[100%] md:h-[80%] flex justify-center items-center text-[black]">
+                                                            <img src={items.logo} alt="fghjk" className="w-[100%] h-[100%]" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </Slider>
+                                    </div>
+                                </div>
+ 
+                                <div className="paretndiv  mx-auto mt-[60px] ">
+                                    {
+                                        slider.points.map((point, i) => {
+                                            return (
+                                                <div className="flex gap-[10px]" key={i}>
+                                                    <div className="lg:w-[17px] lg:h-[17px] h-[13px] w-[25px]  mt-2  bg-violet-300"></div>
+                                                    <p className="lg:text-lg text-sm 2xl:text-[1rem]">{point.title}</p>
+                                                </div>
+                                            )
+                                        })
+                                    }
+
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-
-              <button
-                onClick={handleNextSlide}
-                className="btn-next text-5xl font-normal hidden lg:block"
-              >
-                ›
-              </button>
-            </div>
-
-            <div className="paretndiv lg:w-[85%] mx-auto mt-14 w-[90%]">
-              {slider.points.map((point, i) => {
-                return (
-                  <div className="flex gap-2 flex-wrap" key={i}>
-                    <div className="w-[18px] h-[18px] bg-violet-300"></div>
-                    <p className="text-base">{point.title}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
+                    )
+                })
+            }
+        </div>
+    );
 };
 
 export default WhyChooseCTSlider;
