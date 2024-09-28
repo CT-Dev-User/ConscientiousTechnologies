@@ -25,10 +25,10 @@ const Solution = () => {
       <ERPDevSteps/>
       <PerkOfERP />
       <TechnologyHeading />
-      <ReliableTools category="Solutions" subCategory="ERP" />
-      <CaseStudies category="Solutions" subCategory="ERP" />
+      <ReliableTools category="HomePage" />
+      <CaseStudies />
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="ERP" />
+      <AllFaq category="All" subCategory="" />
       <BookFreeConsultation />
       <Footer />
     </div>

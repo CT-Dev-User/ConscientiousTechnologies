@@ -43,13 +43,13 @@ const FunctionalERPModule = () => {
 
     return (
         <div className="w-full mt-10 mb-14">
-            <div className='lg:w-[85%] mx-auto w-full px-3'>
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
                 <h1 className='lg:text-3xl font-bold text-2xl text-[blue]'>Functional ERP Modules ScienceSoft Develops</h1>
                 <p className='lg:w-11/12 mt-2 w-full text-base'>Depending on your business needs and budget, we can cover the development of the following ERP modules to automate and raise the efficiency of your workflows:</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (
-                    <div key={index} className='lg:w-[350px] lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                    <div key={index} className='lg:w-[30%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
                         <h1 className='text-lg text-bold'>{item.title}</h1>
                         <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>

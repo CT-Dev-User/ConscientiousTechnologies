@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./reliableTools.css";
 import axios from "axios";
 import TechLogosPopup from "./TechLogosPopup";
+import aboutUs from "../../../assets/AboutUs/aboutUs.png";
 
 const ReliableTools = ({ category, subCategory }) => {
   const [reliableToolData, setReliableToolsData] = useState([]);
@@ -44,8 +45,8 @@ const ReliableTools = ({ category, subCategory }) => {
   const handleClose = () => setShowPopup(false);
 
   return (
-    <div className="w-screen h-96 bg-[black] text-[white] box-border overflow-y-auto pb-10">
-      <div className="w-full lg:w-[85%] bg-[#141414] mx-auto text-[white] flex flex-wrap justify-between flex-col lg:flex-row overflow-x-hidden">
+    <div className="w-screen h-96 bg-black text-[white] box-border overflow-y-auto pb-10">
+      <div className="w-full lg:w-[85%] bg-[#141414] mx-auto text-white flex flex-wrap justify-between flex-col lg:flex-row overflow-x-hidden">
         {reliableToolData.map((items, i) => (
           <div
             key={i}
@@ -71,12 +72,13 @@ const ReliableTools = ({ category, subCategory }) => {
                   <div className="flex lg:gap-5 mt-2 gap-2 flex-wrap">
                     {item.techLogos.slice(0, 5).map((logo, i) => (
                       <div key={i} className="lg:w-14 w-12">
-                        <img src={logo.logo} alt={item.title} />
+                        {/* <img src={logo.logo} alt={item.title} /> */}
+                        <img src={aboutUs} className="w-12" alt="" />
                       </div>
                     ))}
                     {item.techLogos.length > 5 && (
                       <div
-                        className="lg:w-14 w-12 bg-[#000000] lg:h-14 h-12 border border-[white] flex items-center justify-center text-[10px] cursor-pointer"
+                        className="lg:w-14 w-12 bg-[#000000] lg:h-14 h-12 border border-white flex items-center justify-center text-[10px] cursor-pointer"
                         onClick={(event) =>
                           handleSeeAllClick(item.techLogos, event)
                         }

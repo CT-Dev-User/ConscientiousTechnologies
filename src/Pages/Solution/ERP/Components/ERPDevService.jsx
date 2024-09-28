@@ -25,7 +25,7 @@ const ERPDevService = () => {
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (
-                    <div key={index} className='w-[350px] lg:border border-gray-300 p-3 h-auto'>
+                    <div key={index} className='lg:w-[30%] lg:border border-gray-300 p-3 h-auto w-full'>
                         <h1 className='text-lg text-bold'>{item.title}</h1>
                         <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>

@@ -2,10 +2,10 @@ import React from 'react'
 
 const TechnologyHeading = () => {
     return (
-        <div className='w-[100vw] h-auto bg-[black] text-[white] pt-[60px] pb-[30px] md:pt-[80px] box-border'>
-            <div className='w-[80%] md:w-[100%]'>
-                <h1 className='px-3 text-3xl font-bold ms-[110px] md:text-[24px] md:ms-[10px] md:text-[#3970F0]'>Technology & Platform We Provide</h1>
-                <p className='px-3 text-[14px] ms-[110px] md:ms-[10px] md:text-[16px] md:mt-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
+        <div className='w-screen h-auto bg-black text-white lg:pt-14 pb-7 pt-20 box-border'>
+            <div className='lg:w-[85%] w-[90%] mx-auto px-3 lg:px-0'>
+                <h1 className='lg:text-3xl font-bold text-2xl md:text-[#3970F0]'>Technology & Platform We Provide</h1>
+                <p className='text-base lg:mt-5 mt-2 font-normal'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
             </div>
         </div>
     )
