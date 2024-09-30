@@ -16,13 +16,15 @@ import Footer from "../../HomePage/Component/Footer/Footer";
 import BenefitsFromCt from "../DataAnalyst/Components/BenefitsFromCt";
 import FlexibleServiceApp from "../DataAnalyst/Components/FlexibleServiceApp";
 import Architecture from "../KioskSoftware/Components/Architecture";
+import { useParams } from "react-router-dom";
 
 const Solution = () => {
+  const {subCategory} = useParams()
   return (
     <div className="overflow-x-hidden">
       <SolutionHeader />
       <OurPartener />
-      <WhyChooseCTSlider  />
+      {subCategory === "ERP" && <WhyChooseCTSlider />}
       <FunctionalERPModule />
       <ERPDevService />
       <ERPDevSteps/>
@@ -31,6 +33,7 @@ const Solution = () => {
       <FlexibleServiceApp />
       <Architecture />
       <TechnologyHeading />
+      {subCategory !== "ERP" && <WhyChooseCTSlider />}
       <ReliableTools category="HomePage" />
       <CaseStudies />
       <MeetOurClient />
