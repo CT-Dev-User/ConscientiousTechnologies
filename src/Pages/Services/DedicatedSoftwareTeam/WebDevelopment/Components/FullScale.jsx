@@ -9,13 +9,13 @@ const FullScale = () => {
         },
         {
             title: "UX and UI design",
-            desc:"We start designing a web app with the analysis of target audience and planning convenient, quick and frictionless user journeys. Along the way, our UI designers join in to wrap the interface into a stylish cover."
+            desc: "We start designing a web app with the analysis of target audience and planning convenient, quick and frictionless user journeys. Along the way, our UI designers join in to wrap the interface into a stylish cover."
         },
         {
             title: "Architecture",
             desc: "Our solution architects will plan all functional components and select optimal techs for them to ensure that the business logic to be implemented is feasible and full. They will also map all API connections within the web solution and with outside systems."
         },
-      
+
         {
             title: "Front-end Development",
             desc: "Our front-end developers can implement any design idea and ensure all interface elements work properly. We work with all most-used JavaScript frameworks, such as Angular, React, Meteor, Vue, Next, Ember."
@@ -43,20 +43,21 @@ const FullScale = () => {
     ];
 
     return (
-        <div className="w-full py-[60px] md:py-[20px]">
-            <div className='w-[85%] mx-auto md:w-5/6 md:w-full md:px-2'>
-                <h1 className='text-3xl font-bold md:text-[blue] md:text-[24px]'>Full-Scale Web Development by Conscientious Technology</h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>Throughout all web development services, ScienceSoft adheres to a quality-first approach based on ISO 9001-certified quality management system. Our comprehensive security management program with robust security controls, policies and technologies is compliant with ISO 27001 regulations. </p>
+        <div className="w-screen lg:py-10 py-8">
+            <div className='container lg:w-[85%] mx-auto w-[95%]'>
+                <h1 className='lg:text-3xl text-xl font-bold lg:text-black text-[#3970F0]'>Full-Scale Web Development by Conscientious Technology</h1>
+                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>Throughout all web development services, ScienceSoft adheres to a quality-first approach based on ISO 9001-certified quality management system. Our comprehensive security management program with robust security controls, policies and technologies is compliant with ISO 27001 regulations.</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-full md:items-center md:justify-center'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-4 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[220px] border border-gray-300 p-3 shadow-md md:shadow-none'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <p className='text-[13.5px] mt-2 font-medium'>{item.desc}</p>
+                    <div key={index} className='lg:w-[31%] lg:h-auto border border-gray-300 p-3 md:w-[45%] w-[95%] h-[180px]'>
+                        <h1 className='lg:text-base text-xl 2xl:text-[1.2rem] font-semibold'>{item.title}</h1>
+                        <p className='text-[13.5px] md:text-[14px] w-[90%] mt-2 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>
         </div>
+
     );
 };
 

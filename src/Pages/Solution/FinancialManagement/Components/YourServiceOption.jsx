@@ -23,26 +23,26 @@ const YourServiceOption = () => {
             </ul>
         )
     }
-   
-   
+
+
     ]
     return (
-        <div className='w-[100vw] h-[auto] box-border pt-[50px] md:py-[30px] pb-[30px] md:pb-[45px]'>
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>Choose Your Service Option </h1>
-                <p className='w-[95%] text-[14px] mt-2 md:w-[100%] md:text-[16px]'>Challenges Fleet Management Software by ScienceSoft Solves</p>
 
+        <div className='w-full py-10 pb-16'>
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
+                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-primary'>Choose Your Service Option</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>Challenges Fleet Management Software by ScienceSoft Solves </p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-[95%]'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {serviceOptionArr.map((item, index) => (
-                    <div key={index} className='w-[45%] md:w-[90%] h-[200px] border border-gray-300 p-3 md:h-auto md:border-none'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+                    <div key={index} className='md:w-[45%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>
-
         </div>
+
     )
 }
 

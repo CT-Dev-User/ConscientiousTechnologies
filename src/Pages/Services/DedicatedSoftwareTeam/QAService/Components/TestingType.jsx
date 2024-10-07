@@ -33,16 +33,16 @@ const TestingType = () => {
     ];
 
     return (
-        <div className="w-full py-[60px] md:py-[30px]">
-            <div className='w-[85%] mx-auto md:w-5/6'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[blue]'>We Can Perform Any Testing Type You Need</h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>Comprehensive Testing Solutions: With CT, access a versatile array of testing types tailored to your needs. From functional to performance testing, ensure top-notch quality and reliability for your software projects.</p>
+        <div className='w-full lg:mt-16 mt-10 mb-8'>
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 lg:mt-16'>
+                <h1 className='lg:text-3xl font-bold text-xl lg:text-black text-primary'>We Can Perform Any Testing Type You Need</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>Comprehensive Testing Solutions: With CT, access a versatile array of testing types tailored to your needs. From functional to performance testing, ensure top-notch quality and reliability for your software projects.</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {testingType.map((item, index) => (
-                    <div key={index} className='w-[45%] h-[220px] border border-gray-300 p-3 shadow-md md:w-[100%] h-[auto] md:shadow-none md:border-0'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+                    <div key={index} className='md:w-[45%] w-full lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg 2xl:text-xl text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>

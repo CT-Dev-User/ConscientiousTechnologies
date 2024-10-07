@@ -9,6 +9,7 @@ import Footer from '../../HomePage/Component/Footer/Footer'
 import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
+import Solution from './Components/Solution'
 const FleetManagement = () => {
       
   useEffect(() => {
@@ -20,6 +21,7 @@ const FleetManagement = () => {
             <AllHeader category="Solutions" subCategory="Fleet Management"/>
             <OurPartener />
             <ChallengesFleet />
+            <Solution/>
             <WhyChooseCTSlider category="Solutions" subCategory="Fleet Management"/>
             <ServiceOptions />
             <CaseStudies category="Solutions" subCategory="Fleet Management"/>

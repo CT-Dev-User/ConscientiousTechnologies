@@ -59,64 +59,74 @@ const HowToDevSupplySoft = () => {
             </ul>
         )
     }
-
-
-
     ]
     return (
-        <div className='w-[100vw] h-[auto] box-border py-[60px] md:py-[50px]'>
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>ERP Development Steps </h1>
-                <p className='mt-2 w-[98%] mx-auto md:text-[16px]'>At our ERP software company, ERP development process typically covers the following major steps:</p>
-            </div>
-            <div className="w-[85%] flex justify-between mx-[110px] mt-[60px] md:hidden text-[white]">
-                <div className="w-[47%] flex flex-col gap-[210px] mt-4">
-                    {processArr.map((step, index) => {
-                        if (index % 2 == 0) {
-                            return (
-                                <div key={index} className="w-[100%] bg-[#3C3C3C] p-3 h-[200px]">
-                                    <h4 className="text-[19px]">{step.step}</h4>
-                                    <h5 className="text-[17px]">{step.title}</h5>
-                                    <div className="text-[13.5px] font-normal w-[95%]">{step.desc}</div>
-                                </div>
-                            );
-                        } else {
-                            return null;
-                        }
-                    })}
+
+        <div className='w-screen h-auto'>
+            <div className='w-full h-auto bg-black box-border py-16 text-white hidden lg:block'>
+                <div className='lg:w-[85%] mx-auto'>
+                    <h1 className='lg:text-3xl text-xl 2xl:text-[2rem] font-bold text-[blue] lg:text-white'>ERP Development Steps</h1>
+                    <p className='w-[85%] text-base mt-2'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
                 </div>
-                <ul className="w-[2px] h-[210vh] bg-[#FFC635] flex flex-col items-center  gap-[180px] py-[10px]">
-                    {processArr.map((items, i) => {
-                        return (
-                            <li key={i} className="w-[25px] h-[25px] bg-[#FFC635]"></li>
-                        )
-                    })}
-                </ul>
-                <div className="w-[47%] flex flex-col">
-                    {processArr.map((step, index) => {
-                        if (index % 2 !== 0) {
-                            return (
-                                <div key={index} className="w-[100%] h-[180px] bg-[#3C3C3C] p-3 mt-[215px] h-[200px] ">
-                                    <h4 className="text-[19px]">{step.step}</h4>
-                                    <h5 className="text-[17px]">{step.title}</h5>
-                                    <div className="text-[13.5px] font-normal w-[95%]">{step.desc}</div>
-                                </div>
-                            );
-                        } else {
-                            return null;
-                        }
-                    })}
-                </div>
-            </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-[20px] md:w-[95%] hidden md:block'>
-                {processArr.map((item, index) => (
-                    <div key={index} className='w-[350px] md:w-[90%] h-[200px] border border-gray-300 p-3 md:w-full md:border-none md:h-auto'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+                <div className="w-[85%] flex justify-between mx-auto">
+                    <div className="w-[47%] flex flex-col justify-start items-start gap-[230px] mt-12 ">
+                        {processArr.map((step, index) => {
+                            if (index % 2 == 0) {
+                                return (
+                                    <div key={index} className="w-full h-auto bg-[#3C3C3C] px-3 py-5 flex flex-col gap-2">
+                                        <h4 className="text-base 2xl:text-xl">{step.step}</h4>
+                                        <h5 className="text-base 2xl:text-xl">{step.title}</h5>
+                                        <div className="text-sm font-normal w-[95%]">{step.desc}</div>
+                                    </div>
+                                );
+                            } else {
+                                return null;
+                            }
+                        })}
                     </div>
-                ))}
+                    <ul className="w-[2px] h-auto bg-[#FFC635] flex flex-col items-center gap-[180px] py-2">
+                        {processArr.map((items, i) => { 
+                            return (
+                                <li key={i} className={`${i % 2 !== 0 && i !==0 ? "mt-20" : "mt-0"} w-6 h-6 bg-[#FFC635]`}></li>
+                            )
+                        })}
+                    </ul>
+
+                    <div className="w-[47%] flex flex-col justify-start mt-80 gap-[300px]">
+                        {processArr.map((step, index) => {
+                            if (index % 2 !== 0) {
+                                return (
+                                    <div key={index} className="w-full h-[180px] bg-[#3C3C3C] p-3 py-5 flex flex-col gap-2">
+                                        <h4 className="text-base 2xl:text-xl">{step.step}</h4>
+                                        <h5 className="text-base 2xl:text-xl">{step.title}</h5>
+                                        <div className="text-sm font-normal w-[95%]">{step.desc}</div>
+                                    </div>
+                                );
+                            } else {
+                                return null;
+                            }
+                        })}
+                    </div>
+                </div>
+
+            </div>
+
+            <div className=" w-full py-10 lg:hidden block">
+                <div className='mx-auto w-[95%]'>
+                    <h1 className='font-bold text-base text-blue'>Software for Advanced Business Tasks </h1>
+                    <p className='text-sm mt-2 w-full'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
+                </div>
+                <div className='w-[95%] flex mx-auto flex-wrap gap-3 mt-8 items-center justify-center '>
+                    {processArr.map((item, index) => (
+                        <div key={index} className='p-3 w-full h-auto border'>
+                            <h1 className='text-base'>{item.title}</h1>
+                            <div className='text-xs mt-2 font-medium'>{item.desc}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
+        
     )
 }
 

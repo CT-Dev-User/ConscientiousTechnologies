@@ -64,20 +64,25 @@ const HRSoftService = () => {
     ];
 
     return (
-        <div className="w-[100vw] h-[auto] box-border py-[60px] md:py-[30px]">
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>HR Software Development Services We Offer</h1>
-                <p className='mt-2 w-[98%] mx-auto md:text-[16px]'>HR administrative tasks</p>
+        <div className='w-full mt-16 mb-8'>
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 mt-20'>
+                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-primary'>HR Software Development Services We Offer</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>HR administrative tasks</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-[20px] md:w-[95%]'>
+            <div className='lg:w-[85%] mx-auto  w-[95%]'>
+                <div className='lg:w-[%] flex flex-wrap gap-7 mt-12 w-[95%]'>
+
                 {FunctionalModuleArr.map((item, index) => (
-                    <div key={index} className='w-[45%] h-[180px] border border-gray-300 p-3 md:w-full md:border-none md:h-auto'>
-                        <h1 className='text-[18px] text-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-3 font-medium'>{item.desc}</div>
+                    <div key={index} className='md:w-[48%] lg:border lg:border-gray-300 p-3 h-auto py-5'>
+                        <h1 className='text-lg text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
+                </div>
+
             </div>
         </div>
+
     );
 };
 

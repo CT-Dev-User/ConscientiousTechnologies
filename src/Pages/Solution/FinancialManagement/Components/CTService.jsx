@@ -50,22 +50,24 @@ const CTService = () => {
     }
     ]
     return (
-        <div className='w-[100vw] h-[auto] box-border pt-[100px] md:pt-[50px] pb-[30px] pb-[60px]'>
-            <div className='w-[85%] mx-auto md:w-[90%]'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>CT Service Scope </h1>
-                <p className='mt-2 w-[98%] mx-auto md:text-[16px]'>Our financial software consulting services are customized to our clients’ needs and may cover:</p>
-
+        <div className='w-full mt-10 '>
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 mt-16'>
+                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-primary'>CT Service Scope </h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>Our financial software consulting services are customized to our clients’ needs and may cover:</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-[20px] md:w-[95%] md:gap-y-[50px]'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {CTServiceArr.map((item, index) => (
-                    <div key={index} className='w-[350px] md:w-[full] h-[200px] border border-gray-300 p-3 md:border-none md:h-auto'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+                    <div key={index} className='lg:w-[30%] md:w-[45%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>
 
         </div>
+
+
+
     )
 }
 

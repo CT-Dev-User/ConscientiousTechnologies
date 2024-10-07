@@ -68,10 +68,10 @@ const BuildingDataAnalytics = () => {
         {
             title: "Real estate analytics",
             desc:
-            <ul>
-                <li>Providing insights into market trends and analyzing property values to support informed investment decisions.</li>
-                <li>Comprehensive portfolio management with expenses tracking and cash-flow forecasts.</li>
-            </ul>
+                <ul>
+                    <li>Providing insights into market trends and analyzing property values to support informed investment decisions.</li>
+                    <li>Comprehensive portfolio management with expenses tracking and cash-flow forecasts.</li>
+                </ul>
         },
         {
             title: "Education analytics",
@@ -80,26 +80,25 @@ const BuildingDataAnalytics = () => {
                 <li>Students' performance analytics with alerts on potential intervention.</li>
             </ul>
         },
-        {
-            title: "Support",
-            desc: <ul>
-                <li>We advance your web-based software to keep it efficient, competitive on the market, and compliant with all your evolving business needs.</li>
-            </ul>
-        }
+        // {
+        //     title: "Support",
+        //     desc: <ul>
+        //         <li>We advance your web-based software to keep it efficient, competitive on the market, and compliant with all your evolving business needs.</li>
+        //     </ul>
+        // }
     ];
 
     return (
-        <div className="w-full py-[60px] md:py-[60px]">
-            <div className='w-[85%] mx-auto md:w-full md:px-4'>
-                <h1 className='text-3xl font-bold md:text-[blue] md:text-[24px]'>Building Data Analytics Solutions for Different Domains</h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>A data analytics company, ScienceSoft helps businesses from 30+ industries integrate, aggregate, and analyze various data types from multiple data sources to address their most ambitious needs at department and enterprise levels.</p>
+        <div className='w-full mt-16 mb-8'>
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 mt-16'>
+                <h1 className='lg:text-3xl font-bold text-xl lg:text-black text-primary'>Building Data Analytics Solutions for Different Domains</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>A data analytics company, ScienceSoft helps businesses from 30+ industries integrate, aggregate, and analyze various data types from multiple data sources to address their most ambitious needs at department and enterprise levels.</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-y-[30px] mt-8 md:w-[97%] md:mx-auto justify-evenly'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {buildingDataAnalyticsData.map((item, index) => (
-                    <div key={index} className={`${index === 9 ? 'hidden md:block' : ''}  w-[320px] h-[220px] border border-gray-300 p-3 shadow-md md:shadow-none md:w-[300px] md:h-auto md:py-[15px]`}>
-
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium md:text-[13px]'>{item.desc}</div>
+                    <div key={index} className='lg:w-[30%] md:w-[45%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg 2xl:text-xl text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>

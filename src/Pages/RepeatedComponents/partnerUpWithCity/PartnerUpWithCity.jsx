@@ -163,7 +163,7 @@ const PartnerUpWithCity = () => {
         ],
     };
     return (
-        <div className='py-16 w-screen'>
+        <div className='pt-10 box-border w-screen'>
             <div className='lg:w-[85%] w-[95%] mx-auto '>
                 <h1 className=' font-bold lg:text-3xl text-xl 2xl:text-[2.2rem] mb-[40px]'>Why Partner Up with CT ?</h1>
                 <div className='w-[95%] lg:mx-auto lg:h-[70vh] flex gap-[20px] h-[30vh]'>

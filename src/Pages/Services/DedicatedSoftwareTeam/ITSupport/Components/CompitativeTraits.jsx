@@ -1,28 +1,37 @@
 import React from 'react'
 
 const CompitativeTraits = () => {
-    const CollabSenario = [{ title: "Feasibility analysis of IT support ", desc: "Before we take up your app or infrastructure support, we analyze TCO and ROI of supported assets and assess how far these financial estimates will be improved after we commence the support.", bgColor:"FF6868" },
+    const CollabSenario = [{ title: "Feasibility analysis of IT support ", desc: "Before we take up your app or infrastructure support, we analyze TCO and ROI of supported assets and assess how far these financial estimates will be improved after we commence the support.", bgColor: "FF6868" },
     {
         title: "Result-oriented service ", desc: "Our IT support activities and service quality are reflected in regular reports with clear metrics for strict compliance with service level objectives.",
-        bgColor:"1777BC"
-    }, 
-    { title: "Focus on long-term", desc: "We believe that long-term IT support is mutually beneficial for a customer and a service provider, as a longer service term means fewer transition periods and integration phases for the customer and well-tailored working routines for the support team.", bgColor:"E751FF" }]
+        bgColor: "1777BC"
+    },
+    { title: "Focus on long-term", desc: "We believe that long-term IT support is mutually beneficial for a customer and a service provider, as a longer service term means fewer transition periods and integration phases for the customer and well-tailored working routines for the support team.", bgColor: "E751FF" }]
     return (
-        <div className='w-[100vw] h-[auto] box-border pt-[50px] md:pt-[50px] pb-[30px]'>
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[blue]'>Competitive Traits of ScienceSoft’s IT Support Services</h1>
-                <p className='w-[95%] text-[14px] mt-2 md:w-[100%] md:text-[16px]'>Collaboration Scenarios: Explore various engagement models, from in-house teams to outsourced partnerships, to tailor software development collaboration to your needs.Collaboration Scenarios: Explore various engagement models, from in-house teams to outsourced partnerships, to tailor software development collaboration to your needs.</p>
+
+        <div className="w-screen h-auto box-border lg:py-10 py-7 bg-black text-white lg:text-black lg:bg-white">
+            <div className="lg:w-[85%] mx-auto w-full px-3 lg:px-0">
+                <h1 className="lg:text-3xl font-bold text-xl lg:text-black text-white">
+                    Competitive Traits of ScienceSoft’s IT Support Services
+                </h1>
+                <p className="lg:w-[95%] mt-4 w-full text-base">
+                    Collaboration Scenarios: Explore various engagement models, from in-house teams to outsourced partnerships, to tailor software development collaboration to your needs.Collaboration Scenarios: Explore various engagement models, from in-house teams to outsourced partnerships, to tailor software development collaboration to your needs.
+                </p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-[95%] md:gap-[10px]'>
+            <div className="lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]">
                 {CollabSenario.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[200px] border border-gray-300 p-3 text-[white] pt-6 md:h-auto' style={{backgroundColor:`#${item.bgColor}`}}>
-                        <h1 className='text-[18px] w-[90%] md:text-[20px]'>{item.title}</h1>
-                        <p className='text-[13.5px] mt-2 font-normal mx-auto w-[95%] md:text-[15px]'>{item.desc}</p>
+                    <div
+                        key={index}
+                        className="lg:w-[30%] md:w-[45%]  h-auto border border-gray-300 p-4 text-white w-full"
+                        style={{ backgroundColor: `#${item.bgColor}` }}
+                    >
+                        <h1 className="text-lg 2xl:text-xl w-[90%]">{item.title}</h1>
+                        <p className="text-sm mt-2 font-normal w-[95%]">
+                            {item.desc}
+                        </p>
                     </div>
                 ))}
             </div>
-
-
         </div>
     )
 }

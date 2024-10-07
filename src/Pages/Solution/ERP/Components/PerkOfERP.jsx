@@ -33,7 +33,7 @@ const PerkOfERP = () => {
         {CollabSenario.map((item, index) => (
           <div
             key={index}
-            className="lg:w-[30%] h-auto border border-gray-300 p-4 text-white w-full"
+            className="lg:w-[30%] md:w-[45%] h-auto border border-gray-300 p-4 text-white w-full"
             style={{ backgroundColor: `#${item.bgColor}` }}
           >
             <h1 className="text-lg w-[90%]">{item.title}</h1>

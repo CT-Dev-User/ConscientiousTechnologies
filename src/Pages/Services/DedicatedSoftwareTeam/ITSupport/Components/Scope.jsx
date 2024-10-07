@@ -78,13 +78,13 @@ const Scope = () => {
     };
 
     return (
-        <div className="w-[100vw] h-[auto] mt-[100px] mb-[60px]">
-            <div className="w-[85%] mx-auto py-[20px]">
-                <h1 className="text-3xl font-bold md:text-[24px] md:text-[blue]">
-                    Scope of IT Components We Tackle</h1>
-                <p>ScienceSoft can take care of all your IT infrastructure components – from daily monitoring and management to long-term continuous optimization and evolution.</p>
+        <div className='w-screen bg-[black] text-[white] pt-10 pb-8'>
+            <div className='w-[95%] lg:w-[85%] mx-auto px-0 lg:px-3 '>
+                <h1 className='lg:text-3xl font-bold text-xl'>Scope of IT Components We Tackle</h1>
+                <p className='text-sm lg:mt-5 mt-2 font-normal'>ScienceSoft can take care of all your IT infrastructure components – from daily monitoring and management to long-term continuous optimization and evolution.</p>
             </div>
         </div>
+
     );
 };
 

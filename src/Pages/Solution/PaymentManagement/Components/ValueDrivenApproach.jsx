@@ -8,22 +8,31 @@ const ValueDrivenApproach = () => {
     }, 
     { title: "Fast development", desc: "We revamp your legacy ERP software's architecture, codebase, and tech stack and upgrade it with the required features. Our service can comprise cloud migration and data migration to the new modules. You get a modern solution promptly and with minimal disruption to your business operations.", bgColor:"E751FF" }]
     return (
-        <div className='w-[100vw] h-[auto] box-border py-[60px] md:py-[30px]'>
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>Our Value-Driven Approach to Payment Software Development </h1>
-                <p className='mt-2 w-[98%] mx-auto md:text-[16px]'>Our custom ERP development services are closely bound to our clients' needs and can be related to:</p>
-            </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-[20px] md:w-[95%]'>
-                {valueDrivenApproachArr.map((item, index) => (
-                    <div key={index} className='w-[350px] md:w-[90%] h-[200px] border border-gray-300 p-3 md:w-full md:border-none md:h-auto text-[white]' style={{backgroundColor:`#${item.bgColor}`}}>
-                        <h1 className='text-[18px] w-[90%]'>{item.title}</h1>
-                        <p className='text-[13.5px] mt-2 font-normal'>{item.desc}</p>
-                    </div>
-                ))}
-            </div>
 
-
-        </div>
+        <div className="w-screen h-auto box-border lg:pt-16 lg:pb-10 py-7 lg:bg-black lg:text-white text-black bg-white">
+      <div className="lg:w-[85%] mx-auto w-full px-3 lg:px-0">
+        <h1 className="lg:text-3xl font-bold text-2xl  text-black lg:text-white">
+        Our Value-Driven Approach to Payment Software Development 
+        </h1>
+        <p className="lg:w-[95%] mt-2 w-full text-base">
+        Our custom ERP development services are closely bound to our clients' needs and can be related to:
+        </p>
+      </div>
+      <div className="lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-10 w-[95%]">
+        {valueDrivenApproachArr.map((item, index) => (
+          <div
+            key={index}
+            className="lg:w-[30%] md:w-[45%] h-auto border border-gray-300 p-4 text-white w-full"
+            style={{ backgroundColor: `#${item.bgColor}` }}
+          >
+            <h1 className="text-lg w-[90%]">{item.title}</h1>
+            <p className="text-sm mt-2 font-normal w-[95%]">
+              {item.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
     )
 }
 

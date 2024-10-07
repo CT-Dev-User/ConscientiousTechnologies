@@ -151,8 +151,8 @@ function App() {
         <Route path='/Dedicated Software Team/Help desk' element={<HelpDesk />} />
 
         {/* Solution Routes */}
-        <Route path='/Solutions/:subCategory' element={<Solution />} />
-        {/* <Route path='Solutions/ERP' element={<ERP />} />
+        {/* <Route path='/Solutions/:subCategory' element={<Solution />} /> */}
+        <Route path='Solutions/ERP' element={<ERP />} />
         <Route path='Solutions/Operations Management' element={<OperationMang />} />
         <Route path='Solutions/Financial Management' element={<FinancialManagement />} />
         <Route path='Solutions/Payment Management' element={<PaymentManageMent />} />
@@ -169,7 +169,7 @@ function App() {
         <Route path='Solutions/Marketing & advertising' element={<MarketingAdvertising />} />
         <Route path='Solutions/Content Management' element={<ContentManagement />} />
         <Route path='Solutions/Kiosk Software' element={<KioskSoftware />} />
-        <Route path='Solutions/Web Portal' element={<WebPortal />} /> */}
+        <Route path='Solutions/Web Portal' element={<WebPortal />} />
         {/* industries */}
         <Route path='/Industries/Oil and Gas' element={<OilandGasInustry />} />
         <Route path='/Industries/Telecommunications' element={<Telicommunication />} />
@@ -212,7 +212,7 @@ function App() {
         <Route path='/Technologies/SaaS Development Services' element={<Sass />} />
         <Route path='/Technologies/Internet of Things' element={<Internet />} />
         <Route path='/Technologies/Big Data' element={<BigData />} />
-        <Route path='/Technologies/Data Science' element={<DataScience/>}/>
+        <Route path='/Technologies/Data Science' element={<DataScience />} />
         <Route path='/Technologies/Machine Learning' element={<MachineLearning />} />
         <Route path='/Technologies/Artificial Intelligence' element={<ArtififcialIntelligence />} />
         <Route path='/Technologies/Blockchain' element={<BlockChain />} />
@@ -232,7 +232,7 @@ function App() {
         <Route path='/get-connect-with-us' element={<MainPage />} />
         <Route path='/Career' element={<CareerPage />} />
         <Route path='/blog/:id' element={<Blogs />} />
-        <Route path='/about us' element={<AboutUs setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav}/>}/>
+        <Route path='/about us' element={<AboutUs setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav} />} />
       </Routes>
     </div>
   );

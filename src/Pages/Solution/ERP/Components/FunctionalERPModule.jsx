@@ -49,7 +49,7 @@ const FunctionalERPModule = () => {
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (
-                    <div key={index} className='lg:w-[30%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                    <div key={index} className='lg:w-[30%] md:w-[45%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
                         <h1 className='text-lg text-bold'>{item.title}</h1>
                         <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>

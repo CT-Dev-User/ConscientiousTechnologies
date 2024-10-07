@@ -24,8 +24,7 @@ const SoftDevHomePage = () => {
     return (
         <div>
             <AllHeader category="Services" subCategory="Software Development Services" />
-            <OurPartener />
-           
+            <OurPartener /> 
             <ExploreSoftDevHeading />
             <AreaOfExperties category="Services" subCategory="Software Development Services" navSubCategory="Software Development Services" navCategory="Services" />
             <StatsOfServices/>

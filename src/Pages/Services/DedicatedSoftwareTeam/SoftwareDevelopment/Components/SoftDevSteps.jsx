@@ -80,53 +80,65 @@ const SoftDevSteps = () => {
     }
     ]
     return (
-        <div className='w-[100vw] h-[auto] bg-[black] box-border pt-[60px] md:pt-[50px] pb-[30px] text-[white] pb-[60px] md:hidden'>
-            <div className='w-[85%] mx-[110px] md:w-[90%]'>
-                <h1 className='text-3xl font-bold md:text-[16px] md:text-[blue]'>Check Out Our Software Development Steps </h1>
-                <p className='w-[70%] text-[14px] mt-2 md:w-[100%] md:text-[12px]'>Discover Our Software Development Steps: Gain insights into our comprehensive approach, from ideation to deployment, ensuring transparency and delivering high-quality, custom solutions for your unique business requirements.</p>
-            </div>
-            <div className="w-[85%] flex justify-between mx-[110px] mt-[60px]">
-                <div className="w-[47%] flex flex-col justify-start items-start gap-[210px] mt-[40px]">
-                    {processArr.map((step, index) => {
-                        if (index % 2 == 0) {
-                            return (
-                                <div key={index} className="w-[100%] h-auto bg-[#3C3C3C] p-3 h-[350px]">
-                                    <h4 className="text-[19px]">{step.step}</h4>
-                                    <h5 className="text-[17px]">{step.title}</h5>
-                                    <div className="text-[13.5px] font-normal w-[95%]">{step.desc}</div>
-                                </div>
-                            );
-                        } else {
-                            return null;
-                        }
-                    })}
-                </div>
-                <ul className="w-[2px] h-[270vh] bg-[#FFC635] flex flex-col items-center  gap-[210px] py-[10px]">
-                    {processArr.map((items, i) => {
-                        return (
 
-                            <li className="w-[25px] h-[25px] bg-[#FFC635]" key={i}></li>
-                        )
-                    })}
-                </ul>
-                <div className="w-[47%] flex flex-col">
-                    {processArr.map((step, index) => {
-                        if (index % 2 !== 0) {
-                            return (
-                                <div key={index} className="w-[100%] h-[180px] bg-[#3C3C3C] p-3 h-[200px] mt-[270px]">
-                                    <h4 className="text-[19px]">{step.step}</h4>
-                                    <h5 className="text-[17px]">{step.title}</h5>
-                                    <div className="text-[13.5px] font-normal w-[95%]">{step.desc}</div>
-                                </div>
-                            );
-                        } else {
-                            return null;
-                        }
-                    })}
+        <div className="w-screen h-auto">
+        <div className="w-full h-auto bg-black box-border py-16 text-white hidden lg:block">
+          <div className="lg:w-[85%] mx-auto">
+            <h1 className="lg:text-3xl text-xl 2xl:text-[2rem] font-bold text-[blue] lg:text-white">
+            Check Out Our Software Development Steps             </h1>
+            <p className="w-[85%] text-base mt-2">
+              Discover Our Software Development Steps: Gain insights into our
+              comprehensive approach, from ideation to deployment, ensuring
+              transparency and delivering high-quality, custom solutions for your
+              unique business requirements.
+            </p>
+          </div>
+          <div className="w-[85%] mx-auto mt-10 hidden lg:block">
+            {processArr.map((step, index) => {
+              return (
+                <div
+                  key={index}
+                  className={`${
+                    index % 2 === 0 ? "flex-row border-r-2 border-r-[#FFC635]" : "border-l-2 border-l-[#FFC635] ml-[50%] flex-row-reverse"
+                  } w-1/2 h-auto py-5 flex justify-between flex-wrap`}
+                >
+                  <div className="w-[95%] flex flex-col h-auto bg-[#3C3C3C] p-4 box-border">
+                    <h4 className="text-base 2xl:text-xl">{step.step}</h4>
+                    <h5 className="text-base 2xl:text-xl">{step.title}</h5>
+                    <div className="text-sm font-normal w-[95%]">{step.desc}</div>
+                  </div>
+                  <div className="w-[2px] h-auto relative">
+                    <div className={`w-[25px] h-[25px] bg-[#FFC635] absolute top-[-20px] ${index % 2 === 0 ? "left-1/2" : "left-0"} -translate-x-1/2 -translate-y-1/2`}>
+  
+                    </div>
+                  </div>
                 </div>
-            </div>
-
+              );
+            })}
+          </div>
         </div>
+  
+        <div className="w-full py-10 lg:hidden block">
+          <div className="mx-auto w-[95%]">
+            <h1 className="font-bold text-base md:text-2xl text-blue">
+              Software for Advanced Business Tasks 
+            </h1>
+            <p className="text-sm mt-2 w-full">
+              We work with all the mainstream technologies to expand the scope of
+              functions the software can perform.
+            </p>
+          </div>
+          <div className="w-[95%] flex mx-auto flex-wrap gap-3 mt-8 items-center justify-center ">
+            {processArr.map((item, index) => (
+              <div key={index} className="p-3 w-full h-auto border">
+                <h1 className="text-base">{item.title}</h1>
+                <div className="text-xs mt-2 font-medium">{item.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+     
     )
 }
 

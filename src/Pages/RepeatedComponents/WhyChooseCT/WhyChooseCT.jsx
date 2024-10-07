@@ -117,7 +117,7 @@ const WhyChooseCTSlider = ({ category, subCategory }) => {
   }, []);
 
     return (
-        <div className="w-100 h-auto py-8">
+        <div className="w-100 h-auto mt-10">
             {
                 sliderData.map((slider, i) => {
                     return (

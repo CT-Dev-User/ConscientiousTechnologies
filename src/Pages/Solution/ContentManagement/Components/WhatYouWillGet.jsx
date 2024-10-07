@@ -8,22 +8,30 @@ const WhatYouWillGet = () => {
     },
     { title: "Fast CMS delivery", desc: "The first working version of a CMS solution is ready within 2–3 months due to the established Agile and DevOps practices of our CMS developers.", bgColor: "E751FF" }]
     return (
-        <div className='w-[100vw] h-[auto] box-border py-[60px] md:py-[20px] bg-[black] text-white'>
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>What You Will Get from ScienceSoft </h1>
-                <p className='mt-2 w-[98%] mx-auto md:text-[16px]'>Our custom ERP development services are closely bound to our clients' needs and can be related to:</p>
+        <div className="w-screen h-auto box-border  my-16 bg-black text-white lg:text-black lg:bg-white">
+            <div className="lg:w-[85%] mx-auto w-full px-3 lg:px-0">
+                <h1 className="lg:text-3xl font-bold text-2xl lg:text-black text-[blue]">
+                    What You Will Get from ScienceSoft          </h1>
+                <p className="lg:w-[95%] mt-2 w-full text-base">
+                    Our custom ERP development services are closely bound to our clients' needs and can be related to:
+                </p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-[20px] md:w-[95%]'>
+            <div className="lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]">
                 {whatYouWillGet.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[200px] border border-gray-300 p-3 text-[white] pt-6 md:w-full md:border-none md:h-auto md:py-3' style={{ backgroundColor: `#${item.bgColor}` }}>
-                        <h1 className='text-[18px] w-[90%]'>{item.title}</h1>
-                        <p className='text-[13.5px] mt-2 font-normal mx-auto w-[95%]'>{item.desc}</p>
+                    <div
+                        key={index}
+                        className="lg:w-[30%] md:w-[45%] h-auto border border-gray-300 p-4 text-white w-full"
+                        style={{ backgroundColor: `#${item.bgColor}` }}
+                    >
+                        <h1 className="text-lg 2xl:text-xl w-[90%]">{item.title}</h1>
+                        <p className="text-sm mt-2 font-normal w-[95%]">
+                            {item.desc}
+                        </p>
                     </div>
                 ))}
             </div>
-
-
         </div>
+
     )
 }
 

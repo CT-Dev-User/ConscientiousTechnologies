@@ -92,22 +92,23 @@ const CTSolution = () => {
     }
     ]
     return (
-        <div className='w-[100vw] h-[auto] box-border py-[60px] md:py-[40px]'>
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>CT’s Solutions – from Automation to Advanced Data Analytic</h1>
-                <p className='mt-2 mx-auto md:text-[16px]'>Apart from technical expertise, many other factors influence project success and software quality. ScienceSoft’s teams approach all of them seriously. Here are our project management and software development practices to deliver on goal, quality, schedule, and budget:.</p>
 
+        <div className='w-full mt-16 mb-14'>
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
+                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-primary'>CT’s Solutions – from Automation to Advanced Data Analytic</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>Apart from technical expertise, many other factors influence project success and software quality. ScienceSoft’s teams approach all of them seriously. Here are our project management and software development practices to deliver on goal, quality, schedule, and budget:</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-[20px] md:w-[95%] md:py-[50px]'>
+
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {ctSolutionArr.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[200px] border border-gray-300 p-3 md:w-full md:border-none md:h-auto'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+                    <div key={index} className='lg:w-[31%] md:w-[45%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>
-
         </div>
+
     )
 }
 

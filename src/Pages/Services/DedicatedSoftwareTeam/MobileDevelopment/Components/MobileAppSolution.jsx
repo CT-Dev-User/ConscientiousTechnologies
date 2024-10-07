@@ -9,13 +9,13 @@ const MobileAppSolution = () => {
         },
         {
             title: "Mobile app consulting",
-            desc:"We assist with app concept finalization, advise on platform/device compatibility, plan project activities, and optimize development costs."
+            desc: "We assist with app concept finalization, advise on platform/device compatibility, plan project activities, and optimize development costs."
         },
         {
             title: "Mobile app design",
             desc: "Our designers create sleek and intuitive UX and visually appealing UI to ensure conversion, engagement, and easy adoption."
         },
-      
+
         {
             title: "Mobile app Development",
             desc: "Our front-end developers can implement any design idea and ensure all interface elements work properly. We work with all most-used JavaScript frameworks, such as Angular, React, Meteor, Vue, Next, Ember."
@@ -43,16 +43,16 @@ const MobileAppSolution = () => {
     ];
 
     return (
-        <div className="w-full mt-[100px] mb-[60px]">
-            <div className='w-[85%] mx-auto md:w-full px-4'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[blue]'>Our Mobile Application Development Services</h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>ScienceSoft assists in specific development stages as well as provides full-cycle mobile app implementation. Our mobile app development services include:</p>
+        <div className='w-full mt-16 mb-8'>
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 mt-16'>
+                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-primary'>Our Mobile Application Development Services</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>ScienceSoft assists in specific development stages as well as provides full-cycle mobile app implementation. Our mobile app development services include:</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {ourmobileAppDevOption.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[220px] border border-gray-300 p-3 shadow-md'>
-                        <h1 className='text-[18px] font-bold md:text-[20px]'>{item.title}</h1>
-                        <p className='text-[13.5px] mt-2 font-medium md:text-[14px]'>{item.desc}</p>
+                    <div key={index} className='lg:w-[30%] md:w-[45%]  lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg 2xl:text-xl text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>

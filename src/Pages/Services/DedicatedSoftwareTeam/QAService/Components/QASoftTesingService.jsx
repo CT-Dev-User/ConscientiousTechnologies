@@ -92,16 +92,16 @@ const QASoftTesingService = () => {
     ];
 
     return (
-        <div className="w-full py-[60px] md:py-[30px]">
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[blue]'>Our QA and Software Testing Services</h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>Note: QA and testing services differ in the scope of activities involved. Software quality assurance (QA) is a process that may cover all stages of SDLC, from requirements gathering to maintenance, and ensures the software meets the established quality standards.Being a part of QA, testing is aimed to check software's functional, performance, security, and other aspects. For more details, you can check the article by ScienceSoft’s Senior QA Consultant.</p>
+        <div className='w-full lg:my-16 my-10 '>
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 lg:mt-16'>
+                <h1 className='lg:text-3xl font-bold text-xl lg:text-black text-primary'>Our QA and Software Testing Services</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>Note: QA and testing services differ in the scope of activities involved. Software quality assurance (QA) is a process that may cover all stages of SDLC, from requirements gathering to maintenance, and ensures the software meets the established quality standards.Being a part of QA, testing is aimed to check software's functional, performance, security, and other aspects. For more details, you can check the article by ScienceSoft’s Senior QA Consultant.</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-[95%]'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {testingType.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[360px] border border-gray-300 p-3 shadow-md md:shadow-none'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+                    <div key={index} className='md:w-[45%] w-full lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg 2xl:text-xl text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>

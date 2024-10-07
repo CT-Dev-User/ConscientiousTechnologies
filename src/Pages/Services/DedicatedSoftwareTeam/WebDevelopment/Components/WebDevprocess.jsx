@@ -79,20 +79,22 @@ const WebDevprocess = () => {
     ];
 
     return (
-        <div className="w-full pt-[40px] mb-[60px]">
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[blue] md:text-[24px]'>How We Ensure Success in Web Development Projects</h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>Apart from technical expertise, many other factors influence project success and software quality. ScienceSoft’s teams approach all of them seriously. Here are our project management and software development practices to deliver on goal, quality, schedule, and budget:</p>
-            </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8'>
-                {ScopeEnterprise.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[220px] border border-gray-300 p-3 shadow-md md:shadow-none border-none md:h-auto md:py-3'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
-                    </div> 
-                ))}
-            </div>
+
+        <div className="w-screen lg:py-10 py-8">
+        <div className='container lg:w-[85%] mx-auto w-[95%]'>
+            <h1 className='lg:text-3xl text-xl font-bold lg:text-black text-[#3970F0]'>How We Ensure Success in Web Development Projects</h1>
+            <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>Apart from technical expertise, many other factors influence project success and software quality. ScienceSoft’s teams approach all of them seriously. Here are our project management and software development practices to deliver on goal, quality, schedule, and budget:</p>
         </div>
+        <div className='lg:w-[85%] flex mx-auto flex-wrap gap-4 mt-8 w-[95%]'>
+            {ScopeEnterprise.map((item, index) => (
+                <div key={index} className='lg:w-[31%] lg:h-auto border border-gray-300 p-3 md:w-[45%] w-[95%] h-[180px]'>
+                    <h1 className='lg:text-base text-xl 2xl:text-[1.2rem] font-semibold'>{item.title}</h1>
+                    <p className='text-[13.5px] md:text-[14px] w-[90%] mt-2 font-medium'>{item.desc}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+
     );
 };
 
