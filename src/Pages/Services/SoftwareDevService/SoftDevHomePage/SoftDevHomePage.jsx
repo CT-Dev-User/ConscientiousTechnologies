@@ -31,7 +31,7 @@ const SoftDevHomePage = () => {
             <PartnerUpWithCity />
             <CollabSenario />
             <SoftAdvance />
-            <SoftDevSteps />
+            {/* <SoftDevSteps /> */}
             <StepsSoftDev/>
             <ReliableToolsHeading />
             <ReliableTools category="Services" subCategory="Software Development Services" />

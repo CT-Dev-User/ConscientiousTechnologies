@@ -119,20 +119,22 @@ const ScopeEnterprise = () => {
     ];
 
     return (
-        <div className="w-full py-[60px]">
-            <div className='w-[85%] mx-auto md:w-full md:px-4'>
-                <h1 className='text-3xl font-bold md:text-[24px]'>The Scope of Our Enterprise Application Development Services</h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>ScienceSoft company provides services that cover all aspects of enterprise application implementation. You can either choose one or several components from our offer to get a unique service pack fully covering your enterprise needs.</p>
-            </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-[95%]'>
-                {ScopeEnterprise.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[420px] border border-gray-300 p-3 shadow-md md:shadow-none md:border-none md:h-auto md:py-[20px]'>
-                        <h1 className='text-[18px]'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
-                    </div>
-                ))}
-            </div>
+
+        <div className="w-full py-16">
+        <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
+            <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>The Scope of Our Enterprise Application Development Services</h1>
+            <p className='lg:w-11/12 mt-2 w-full text-base'>ScienceSoft company provides services that cover all aspects of enterprise application implementation. You can either choose one or several components from our offer to get a unique service pack fully covering your enterprise needs.</p>
         </div>
+        <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
+            {ScopeEnterprise.map((item, index) => (
+                <div key={index} className='lg:w-[30%] md:w-[45%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                    <h1 className='text-lg text-bold'>{item.title}</h1>
+                    <p className='text-sm mt-3 font-medium'>{item.desc}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+
     );
 };
 

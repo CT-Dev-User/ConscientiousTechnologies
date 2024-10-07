@@ -9,13 +9,13 @@ const FullScale = () => {
         },
         {
             title: "Product development",
-            desc:"Identifying flaws in a software architecture affecting performance and security, limiting software scalability. Redesigning the architecture with a focus on resilience, quick changes and optimized maintenance costs."
+            desc: "Identifying flaws in a software architecture affecting performance and security, limiting software scalability. Redesigning the architecture with a focus on resilience, quick changes and optimized maintenance costs."
         },
         {
             title: "Product design",
             desc: "Planning gradual transition of your software to modern programming techs without disrupting critical business operations. Increasing the value of your software investment through legacy transformation."
         },
-      
+
         {
             title: "Architecture design",
             desc: "Our front-end developers can implement any design idea and ensure all interface elements work properly. We work with all most-used JavaScript frameworks, such as Angular, React, Meteor, Vue, Next, Ember."
@@ -43,16 +43,17 @@ const FullScale = () => {
     ];
 
     return (
-        <div className="w-full py-[50px] md:py-[30px]">
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px]'>Full-Cycle Software Product Development Services We Provide</h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>Software product development is the process of ideating and creating commercial software, either unique on the market or having a solid competitive advantage. ScienceSoft is a leading software product development company that helps product startups and mature companies stay confident about the quality and ROI of a new solution they bring to the market.</p>
+
+        <div className="w-full py-16">
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
+                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Full-Cycle Software Product Development Services We Provide</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>Software product development is the process of ideating and creating commercial software, either unique on the market or having a solid competitive advantage. ScienceSoft is a leading software product development company that helps product startups and mature companies stay confident about the quality and ROI of a new solution they bring to the market.</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-[95%]'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[220px] border border-gray-300 p-3 shadow-md md:border-none md:shadow-none'>
-                        <h1 className='text-[18px]'>{item.title}</h1>
-                        <p className='text-[13.5px] mt-2 font-medium'>{item.desc}</p>
+                    <div key={index} className='lg:w-[30%] md:w-[45%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>

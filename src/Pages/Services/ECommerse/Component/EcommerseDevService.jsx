@@ -32,6 +32,8 @@ const EcommerseDevService = () => {
     ) }]
 
     return (
+
+        
         <div className='w-[100vw] h-[auto] box-border py-[60px] md:py-[30px]'>
             <div className='w-[85%] mx-auto md:w-full md:px-3'>
                 <h1 className='text-3xl font-bold md:text-[24px] md:text-[blue]'>Ecommerce Development Services</h1>

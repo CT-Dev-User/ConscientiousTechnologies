@@ -221,7 +221,7 @@ const PartnerUpWithCity = () => {
                                     <div className="flex items-center justify-between">
 
                                         <div className=" text-[white] w-full lg:w-[95%] mx-auto ">
-                                            <Slider ref={sliderRef} {...settings} className='w-[98%] lg:w-[85%]'>
+                                            <Slider ref={sliderRef} {...settings} className='w-[98%] lg:w-[85%] mx-auto'>
                                                 {partner.partnersLogo1.map((items, i) => (
                                                     <div key={`logo1-${index}-${i}`}>
                                                         <div
@@ -246,7 +246,7 @@ const PartnerUpWithCity = () => {
                                     <div className="flex items-center justify-between ">
                                        
                                         <div className=" text-[white] w-full lg:w-[95%] mx-auto">
-                                            <Slider ref={sliderRefleaders} {...settingsleaders} className='w-[98%] lg:w-[85%] '>
+                                            <Slider ref={sliderRefleaders} {...settingsleaders} className='w-[98%] lg:w-[85%] mx-auto'>
                                                 {partner.partnersLogo2.map((items, i) => (
                                                     <div key={`logo2-${index}-${i}`}>
                                                         <div

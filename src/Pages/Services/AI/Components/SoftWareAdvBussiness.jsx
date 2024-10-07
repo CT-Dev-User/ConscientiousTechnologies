@@ -66,21 +66,22 @@ const SoftWareAdvBussiness = () => {
         )
     }]
     return (
-        <div className='w-[100vw] h-[auto] box-border py-[30px]'>
-            <div className='w-[85%] mx-auto md:w-full md:px-2'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[blue]'>Software for Advanced Business Tasks </h1>
-                <p className='w-[95%] text-[14px] mt-2 md:w-[100%] md:text-[16px]'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
-            </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 justify-center items-center md:w-[95%]'>
-                {softWareBussinessArr.map((item, index) => (
-                    <div key={index} className='w-[330px] h-[200px] border border-gray-300 p-3 md:border-none md:h-auto md:py-3'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
-                    </div>
-                ))}
-            </div>
 
+        <div className="w-full py-16">
+        <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
+            <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Software for Advanced Business Tasks</h1>
+            <p className='lg:w-11/12 mt-2 w-full text-base'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
         </div>
+        <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
+            {softWareBussinessArr.map((item, index) => (
+                <div key={index} className='lg:w-[30%] md:w-[45%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                    <h1 className='text-lg text-bold'>{item.title}</h1>
+                    <p className='text-sm mt-3 font-medium'>{item.desc}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+
     )
 }
 

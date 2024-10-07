@@ -42,20 +42,21 @@ const ApplicationMaintainace = () => {
 
     return (
 
-        <div className="w-full py-[50px] md:py-[30px] md:pb-[40px] hidden md:block">
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px]'>Application maintenance services</h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>We can provide any single service or a mix of services from the list.</p>
+        <div className="w-full py-16">
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
+                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Application maintenance services</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>We can provide any single service or a mix of services from the list</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-[95%]'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {appMainatainace.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[220px] border border-gray-300 p-3 shadow-md md:shadow-none md:border-none md:h-auto md:py-3'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+                    <div key={index} className='lg:w-[30%] md:w-[45%] lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>
         </div>
+
     );
 };
 

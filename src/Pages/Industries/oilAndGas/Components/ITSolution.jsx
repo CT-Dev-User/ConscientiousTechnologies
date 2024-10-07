@@ -66,6 +66,9 @@ const ITSolution = () => {
     }
     ]
     return (
+
+        
+
         <div className='w-[100vw] h-[auto] box-border py-[60px] md:pt-[20px]'>
             <div className='w-[85%] mx-auto md:w-full md:px-2'>
                 <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>IT Solutions for Oil and Gas ScienceSoft Offers</h1>

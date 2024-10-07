@@ -2,12 +2,12 @@ import React from 'react'
 
 const OurTechHeader = () => {
     return (
-        <div className='w-[100vw] h-auto bg-[black] text-[white] pt-[60px] pb-[30px] md:pt-[80px] box-border'>
-            <div className='w-[80%] md:w-[100%]'>
-                <h1 className='px-3 text-3xl font-bold ms-[110px] md:text-[18px] md:ms-[10px]'>Reliable Techs & Tools We Are Proficient In</h1>
-                <p className='px-3 text-[14px] ms-[110px] md:ms-[10px] md:text-[12px] md:mt-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
-            </div>
+        <div className='w-screen bg-black text-white lg:pt-16 pb-8 pt-20'>
+        <div className='w-[90%] lg:w-[85%] mx-auto '>
+            <h1 className='lg:text-3xl font-bold text-2xl'>Reliable Techs & Tools We Are Proficient In</h1>
+            <p className='text-sm lg:mt-5 mt-2 font-normal'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
         </div>
+    </div>
     )
 }
 

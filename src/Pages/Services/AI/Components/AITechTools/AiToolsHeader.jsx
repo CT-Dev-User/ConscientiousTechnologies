@@ -2,10 +2,10 @@ import React from 'react'
 
 const AiToolsHeader = () => {
     return (
-        <div className='w-[100vw] h-auto bg-[black] text-[white] pt-[60px] pb-[30px] md:pt-[80px] box-border'>
-            <div className='w-[80%] md:w-[100%]'>
-                <h1 className='px-3 text-3xl font-bold ms-[110px] md:text-[24px] md:ms-[10px]'>Reliable Techs & Tools We Are Proficient In</h1>
-                <p className='px-3 text-[14px] ms-[110px] md:ms-[10px] md:text-[12px] md:mt-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
+        <div className='w-screen bg-black text-white py-16'>
+            <div className='lg:w-[85%]  md:w-[90%] w-full mx-auto px-0 '>
+                <h1 className='text-3xl font-bold md:text-[24px]'>Reliable Techs & Tools We Are Proficient In</h1>
+                <p className='text-[14px] mt-[20px] md:text-[16px] md:mt-2 font-normal'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
             </div>
         </div>
     )

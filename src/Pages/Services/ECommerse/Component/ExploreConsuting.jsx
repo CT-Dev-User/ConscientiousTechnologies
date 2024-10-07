@@ -29,21 +29,22 @@ const ExploreConsuting = () => {
     }
     ]
     return (
-        <div className='w-[100vw] h-[auto] box-border pt-[60px] pb-[20px] md:py-[30px]'>
-            <div className='w-[85%] md:w-full md:px-3 mx-auto'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[blue]'>Explore Our Consulting Services</h1>
-                <p className='w-[95%] text-[14px] mt-2 md:w-[100%] md:text-[16px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
+        <div className="w-full py-16">
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
+                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Explore Our Consulting Service</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit.</p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-[95%]'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {softWareBussinessArr.map((item, index) => (
-                    <div key={index} className='w-[47%] h-[250px] border border-gray-300 p-3 md:w-[100%] md:h-auto md:border-none'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+                    <div key={index} className='lg:w-[30%] md:w-[45%] w-full lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg text-bold'>{item.title}</h1>
+                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>
-
         </div>
+
+
     )
 }
 
