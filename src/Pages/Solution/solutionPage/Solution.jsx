@@ -13,18 +13,27 @@ import MeetOurClient from "../../HomePage/Component/MeetOurClient/MeetOurClient"
 import AllFaq from "../../RepeatedComponents/AllFaq/AllFaq";
 import BookFreeConsultation from "../../HomePage/Component/BookFreeConsultation/BookFreeConsultation";
 import Footer from "../../HomePage/Component/Footer/Footer";
+import BenefitsFromCt from "../DataAnalyst/Components/BenefitsFromCt";
+import FlexibleServiceApp from "../DataAnalyst/Components/FlexibleServiceApp";
+import Architecture from "../KioskSoftware/Components/Architecture";
+import { useParams } from "react-router-dom";
 
 const Solution = () => {
+  const {subCategory} = useParams()
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <SolutionHeader />
       <OurPartener />
-      <WhyChooseCTSlider category="Solutions" subCategory="ERP" />
+      {subCategory === "ERP" && <WhyChooseCTSlider />}
       <FunctionalERPModule />
       <ERPDevService />
       <ERPDevSteps/>
       <PerkOfERP />
+      <BenefitsFromCt />
+      <FlexibleServiceApp />
+      <Architecture />
       <TechnologyHeading />
+      {subCategory !== "ERP" && <WhyChooseCTSlider />}
       <ReliableTools category="HomePage" />
       <CaseStudies />
       <MeetOurClient />

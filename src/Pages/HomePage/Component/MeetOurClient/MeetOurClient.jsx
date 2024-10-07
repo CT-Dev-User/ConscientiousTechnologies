@@ -50,7 +50,7 @@ const MeetOurClient = () => {
     return (
 
         <div id='testimonials' className='w-screen h-auto bg-[#191919] pb-14 box-border text-white lg:pt-24 pt-7'>
-            <div className='w-[85%] mx-auto'>
+            <div className='lg:w-[85%] mx-auto w-[90%]'>
                 <h1 className='text-3xl font-bold'>Meet Our Client</h1>
                 <p className='lg:w-[85%] text-base mt-2 w-full font-normal'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
             </div>
@@ -87,11 +87,11 @@ const MeetOurClient = () => {
                 <Slider {...settingsMobile}>
                     {clientReviewsData.map((items, i) => {
                         return (
-                            <div className='w-full h-[34rem] mx-2 flex gap-2' key={i}>
-                                <div className='w-[94%] h-full bg-white'>
+                            <div className='w-full h-[34rem]' key={i}>
+                                <div className='w-[96%] h-full bg-white box-border px-2'>
                                     <div className='w-full h-2/5 mx-auto' style={{ backgroundImage: `url(${items.profileImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                                     </div>
-                                    <div className='w-full text-black ms-2 flex flex-col justify-start gap-6'>
+                                    <div className='w-full text-black flex flex-col justify-start gap-6'>
                                         <div>
                                             <h1 className='text-base mt-2 font-bold'>Review Heading {i + 1}</h1>
                                             <p className='text-sm font-normol w-[90%] mt-2'>{items.review}</p>
