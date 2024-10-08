@@ -2,6 +2,7 @@ import cloudinary from '../../cloudinary.js';
 import OurPartener from '../../Models/HomePage/ourPartenerModel.js';
 
 export const addPartener = async (req, res) => {
+    console.log("req.file add", req.file)
     try {
         const uploadResult = await cloudinary.v2.uploader.upload(req.file.path)
         const { title } = req.body;
@@ -10,6 +11,7 @@ export const addPartener = async (req, res) => {
         const newData = new OurPartener({
             title, logo
         })
+        console.log(newData)
         const saveData = await newData.save()
         res.status(200).send({
             status: "Success",
@@ -35,6 +37,7 @@ export const getPartenarData = async (req, res) => {
 }
 
 export const editPartenerData = async (req, res) => {
+    console.log("req.file", req.file,"editcontroller")
     try {
         const { id } = req.params;
         let logo = null;
