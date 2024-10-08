@@ -1,34 +1,43 @@
+"use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-const Authcontext = createContext();
 
-const Usercontext = ({ children }) => {
-  const [userauth, setuserauth] = useState({
-    user: null,
-    token: "",
-  });
- 
-  useEffect(() => {
-    const userdata = localStorage.getItem("auth");
-    if (userdata) {
-      const parsedata = JSON.parse(userdata);
-      setuserauth({
-        ...userauth,
-        
-        user: parsedata.user,
-        token: parsedata.token,
-      });
+const AuthContext = createContext();
+
+const UserContext = ({ children }) => {
+  // Initialize state with localStorage values, if they exist
+  const [userauth, setuserauth] = useState(() => {
+    if (typeof window !== "undefined") {
+      const userdata = localStorage.getItem("auth");
+      return userdata ? JSON.parse(userdata) : { user: null, token: "" };
     }
-  }, []);
-  
+    return { user: null, token: "" };
+  });
+
+  // Save auth data to localStorage whenever it changes
   useEffect(() => {
-    axios.defaults.headers.common["Authorization"] = userauth?.token || "";
+    if (userauth.token) {
+      localStorage.setItem("auth", JSON.stringify(userauth));
+    } else {
+      localStorage.removeItem("auth");
+    }
+  }, [userauth]);
+
+  // Set axios default headers
+  useEffect(() => {
+    axios.defaults.headers.common["Authorization"] = userauth?.token
+      ? `Bearer ${userauth.token}`
+      : "";
   }, [userauth.token]);
+
   return (
-    <Authcontext.Provider value={[userauth, setuserauth]}>
+    <AuthContext.Provider value={[userauth, setuserauth]}>
       {children}
-    </Authcontext.Provider>
+    </AuthContext.Provider>
   );
 };
-const useAuth = () => useContext(Authcontext);
-export { useAuth, Usercontext };
+
+const useAuth = () => useContext(AuthContext);
+
+export { useAuth, UserContext };
+

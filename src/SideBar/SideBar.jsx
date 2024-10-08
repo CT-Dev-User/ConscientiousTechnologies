@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './sidebar.css';
+import React, { useEffect, useState } from "react";
+import "./sidebar.css";
 import {
   FaAddressBook,
   FaAngleDown,
@@ -12,280 +12,486 @@ import {
   FaFileAlt,
   FaGlobe,
   FaHandshake,
-  FaHome,
-  FaImage,
   FaIndustry,
   FaLaptop,
   FaQuestionCircle,
-  FaRegEdit,
-  FaTh,
+  FaSignOutAlt,
   FaTools,
   FaUser,
   FaUserClock,
 } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
-import NavBar from '../NavBar/NavBar';
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
+import NavBar from "../NavBar/NavBar";
+import { useAuth } from "../contextAPI/UserContext";
+import { getUserRole } from "../utilityFunction/utilityFunction";
 
 const SideBar = ({ children }) => {
+  const navigate = useNavigate();
+  const [userauth, setuserauth] = useAuth();
+  const userRole = getUserRole(userauth);
   const [isOpen, setIsOpen] = useState(true);
-  const [homeDrop, setHomeDrop] = useState(false);
-  const [repeatedComponentDrop, setrepeatedComponentDrop] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
-  const toggleHomeDrop = () => setHomeDrop(!homeDrop);
-  const toggleRepeatedDrop = () => setrepeatedComponentDrop(!repeatedComponentDrop)
+  const toggle = () => setIsOpen(!isOpen); 
+ 
+
+  const [activeItem, setActiveItem] = useState("");
+  const [openMenu, setOpenMenu] = useState(null);
+
+  // Read from localStorage on initial load
+  useEffect(() => {
+    const savedActiveItem = localStorage.getItem("activeItem");
+    const savedOpenMenu = localStorage.getItem("openMenu");
+
+    if (savedActiveItem) {
+      setActiveItem(savedActiveItem);
+    }
+
+    if (savedOpenMenu) {
+      setOpenMenu(savedOpenMenu);
+    }
+  }, []);
+
+  // Save to localStorage whenever activeItem or openMenu changes
+  useEffect(() => {
+    localStorage.setItem("activeItem", activeItem);
+  }, [activeItem]);
+
+  useEffect(() => {
+    localStorage.setItem("openMenu", openMenu);
+  }, [openMenu]);
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You are about to log out.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Log out!",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Make a request to the backend to log out
+        axios.post("http://localhost:8080/logout") // Adjust the URL as per your backend route
+          .then((response) => {
+            // Clear user authentication state and token from local storage
+            setuserauth({ user: null, token: "" });
+            localStorage.removeItem("auth");
+
+            // Show success message
+            Swal.fire({
+              title: "Logged out successfully!",
+              icon: "success",
+            }).then(() => {
+              navigate("/"); // Redirect to home or login page
+            });
+          })
+          .catch((error) => {
+            Swal.fire({
+              title: "Logout failed",
+              text: error.response?.data?.message || "An error occurred",
+              icon: "error",
+            });
+          });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire({
+          title: "Logout canceled",
+          icon: "info",
+        });
+      }
+    });
+  };
+
 
   const roleBasedMenuItems = {
     1: [
       {
-        path: '/conscientious-users-registration',
-        name: 'Add Users',
-        icon: <FaUser />,
+        title: "Home",
+        list: [
+          {
+            path: "/conscientious-users-registration",
+            name: "Add Users",
+            icon: <FaUser />,
+          },
+          {
+            path: "/conscientious-home-partners",
+            name: "Our Partners",
+            icon: <FaHandshake />,
+          },
+          {
+            path: "/conscientious-home-reliable-tools",
+            name: "Reliable Tools",
+            icon: <FaTools />,
+          },
+          {
+            path: "/conscientious-home-casestudies",
+            name: "Case Studies",
+            icon: <FaFileAlt />,
+          },
+          {
+            path: "/conscientious-home-blogs",
+            name: "Blogs",
+            icon: <FaBlogger />,
+          },
+          {
+            path: "/conscientious-home-clients",
+            name: "Clients reviews",
+            icon: <FaDesktop />,
+          },
+          {
+            path: "/conscientious-home-faq",
+            name: "FAQ",
+            icon: <FaQuestionCircle />,
+          },
+          {
+            path: "/conscientious-home-book-free-consultation",
+            name: "Book Free Consultation",
+            icon: <FaUserClock />,
+          },
+        ],
       },
       {
-        path: '/conscientious-contact-us',
-        name: 'Contact Us',
-        icon: <FaAddressBook />,
+        title: "Services",
+        list: [
+          {
+            path: "/conscientious-home-services",
+            name: "Services",
+            icon: <FaLaptop />,
+          },
+          {
+            path: "/conscientious-home-SubServices",
+            name: "Sub Services",
+            icon: <FaLaptop />,
+          },
+          {
+            path: "/conscientious-reliable-tools",
+            name: "Reliable Tools",
+            icon: <FaTools />,
+          },
+          {
+            path: "/conscientious-home-casestudies",
+            name: "Case Studies",
+            icon: <FaFileAlt />,
+          },
+          {
+            path: "/conscientious-blogs",
+            name: "blogs",
+            icon: <FaBloggerB />,
+          },
+          {
+            path: "/conscientious-faq-category",
+            name: "FAQ",
+            icon: <FaBloggerB />,
+          },
+        ],
       },
       {
-        path: '/conscientious-social-media',
-        name: 'Social Media',
-        icon: <FaGlobe />,
+        title: "Solutions",
+        list: [
+          {
+            path: "/conscientious-home-solutions",
+            name: "Solutions",
+            icon: <FaCogs />,
+          },
+          {
+            path: "/conscientious-reliable-tools",
+            name: "Reliable Tools",
+            icon: <FaTools />,
+          },
+          {
+            path: "/conscientious-home-casestudies",
+            name: "Case Studies",
+            icon: <FaFileAlt />,
+          },
+          {
+            path: "/conscientious-blogs",
+            name: "blogs",
+            icon: <FaBloggerB />,
+          },
+          {
+            path: "/conscientious-faq-category",
+            name: "FAQ",
+            icon: <FaBloggerB />,
+          },
+        ],
       },
       {
-        path: '/conscientious-navbar',
-        name: 'Navbar',
-        icon: <FaBloggerB />,
+        title: "Industries",
+        list: [
+          {
+            path: "/conscientious-home-industries",
+            name: "Industries",
+            icon: <FaIndustry />,
+          },
+          {
+            path: "/conscientious-home-casestudies",
+            name: "Case Studies",
+            icon: <FaFileAlt />,
+          },
+          {
+            path: "/conscientious-blogs",
+            name: "blogs",
+            icon: <FaBloggerB />,
+          },
+          {
+            path: "/conscientious-faq-category",
+            name: "FAQ",
+            icon: <FaBloggerB />,
+          },
+          {
+            path: "/conscientious-contact-us",
+            name: "Contact Us",
+            icon: <FaAddressBook />,
+          },
+          {
+            path: "/conscientious-social-media",
+            name: "Social Media",
+            icon: <FaGlobe />,
+          },
+          {
+            path: "/conscientious-navbar",
+            name: "Navbar",
+            icon: <FaBloggerB />,
+          },
+        ],
+      },
+    ],
+    2: [
+      {
+        title: "Home",
+        list: [
+          {
+            path: "/conscientious-home-partners",
+            name: "Our Partners",
+            icon: <FaHandshake />,
+          },
+          {
+            path: "/conscientious-reliable-tools",
+            name: "Reliable Tools",
+            icon: <FaTools />,
+          },
+          {
+            path: "/conscientious-home-casestudies",
+            name: "Case Studies",
+            icon: <FaFileAlt />,
+          },
+          {
+            path: "/conscientious-home-blogs",
+            name: "Blogs",
+            icon: <FaBlogger />,
+          },
+          {
+            path: "/conscientious-home-clients",
+            name: "Clients reviews",
+            icon: <FaDesktop />,
+          },
+          {
+            path: "/conscientious-home-faq",
+            name: "FAQ",
+            icon: <FaQuestionCircle />,
+          },
+          {
+            path: "/conscientious-home-book-free-consultation",
+            name: "Book Free Consultation",
+            icon: <FaUserClock />,
+          },
+        ],
       },
       {
-        path: '/conscientious-blogs',
-        name: 'blogs',
-        icon: <FaBloggerB />,
+        title: "Services",
+        list: [
+          {
+            path: "/conscientious-home-services",
+            name: "Services",
+            icon: <FaLaptop />,
+          },
+          {
+            path: "/conscientious-home-services",
+            name: "Sub Services",
+            icon: <FaLaptop />,
+          },
+          {
+            path: "/conscientious-reliable-tools",
+            name: "Reliable Tools",
+            icon: <FaTools />,
+          },
+          {
+            path: "/conscientious-home-casestudies",
+            name: "Case Studies",
+            icon: <FaFileAlt />,
+          },
+          {
+            path: "/conscientious-blogs",
+            name: "blogs",
+            icon: <FaBloggerB />,
+          },
+          {
+            path: "/conscientious-faq-category",
+            name: "FAQ",
+            icon: <FaBloggerB />,
+          },
+        ],
+      },
+      {
+        title: "Solutions",
+        list: [
+          {
+            path: "/conscientious-home-solutions",
+            name: "Solutions",
+            icon: <FaCogs />,
+          },
+          {
+            path: "/conscientious-reliable-tools",
+            name: "Reliable Tools",
+            icon: <FaTools />,
+          },
+          {
+            path: "/conscientious-home-casestudies",
+            name: "Case Studies",
+            icon: <FaFileAlt />,
+          },
+          {
+            path: "/conscientious-blogs",
+            name: "blogs",
+            icon: <FaBloggerB />,
+          },
+          {
+            path: "/conscientious-faq-category",
+            name: "FAQ",
+            icon: <FaBloggerB />,
+          },
+        ],
+      },
+      {
+        title: "Industries",
+        list: [
+          {
+            path: "/conscientious-home-industries",
+            name: "Industries",
+            icon: <FaIndustry />,
+          },
+          {
+            path: "/conscientious-home-casestudies",
+            name: "Case Studies",
+            icon: <FaFileAlt />,
+          },
+          {
+            path: "/conscientious-blogs",
+            name: "blogs",
+            icon: <FaBloggerB />,
+          },
+          {
+            path: "/conscientious-faq-category",
+            name: "FAQ",
+            icon: <FaBloggerB />,
+          },
+          {
+            path: "/conscientious-contact-us",
+            name: "Contact Us",
+            icon: <FaAddressBook />,
+          },
+          {
+            path: "/conscientious-social-media",
+            name: "Social Media",
+            icon: <FaGlobe />,
+          },
+          {
+            path: "/conscientious-navbar",
+            name: "Navbar",
+            icon: <FaBloggerB />,
+          },
+        ],
       },
     ],
   };
 
-  const repeated_Fields = {
-    1: [
-      {
-        path: '/conscientious-header',
-        name: 'Header',
-        icon: <FaBloggerB />,
-      },
-
-      {
-        path: '/conscientious-choosect-slider',
-        name: 'Why CT Page',
-        icon: <FaQuestionCircle />,
-      },
-      {
-        path: '/conscientious-partner-up',
-        name: 'Partner Up With City',
-        icon: <FaHandshake />,
-      },
-
-      {
-        path: '/conscientious-case-studies-category',
-        name: 'Case Studies by category',
-        icon: <FaFileAlt />,
-      },
-      {
-        path: '/conscientious-reliable-tools',
-        name: 'Reliable Tools',
-        icon: <FaTools />,
-      },
-      {
-        path: '/conscientious-area-of-experties',
-        name: 'Area Of Experties',
-        icon: <FaGlobe />,
-      },
-      {
-        path: '/conscientious-faq-category',
-        name: 'FAQ',
-        icon: <FaBloggerB />,
-      },
-    ]
-  }
-
-  const homePageMenuItems = {
-    1: [
-      {
-        path: '/conscientious-home-heroslider',
-        name: 'Hero Section',
-        icon: <FaImage />,
-      },
-      {
-        path: '/conscientious-home-partners',
-        name: 'Our Partners',
-        icon: <FaHandshake />,
-      },
-      {
-        path: '/conscientious-home-services',
-        name: 'Services',
-        icon: <FaLaptop />,
-      },
-      {
-        path: '/conscientious-home-solutions',
-        name: 'Solutions',
-        icon: <FaCogs />,
-      },
-      {
-        path: '/conscientious-home-industries',
-        name: 'Industries',
-        icon: <FaIndustry />,
-      },
-      {
-        path: '/conscientious-home-casestudies',
-        name: 'Case Studies',
-        icon: <FaFileAlt />,
-      },
-      {
-        path: '/conscientious-home-blogs',
-        name: 'Blogs',
-        icon: <FaBlogger />,
-      },
-      {
-        path: '/conscientious-home-clients',
-        name: 'Clients reviews',
-        icon: <FaDesktop />,
-      },
-      {
-        path: '/conscientious-home-book-free-consultation',
-        name: 'Book Free Consultation',
-        icon: <FaUserClock />,
-      },
-      {
-        path: '/conscientious-home-faq',
-        name: 'FAQ',
-        icon: <FaQuestionCircle />,
-      },
-      {
-        path: '/conscientious-key-feature',
-        name: 'Key Feature',
-        icon: <FaQuestionCircle />,
-      },
-    ],
+  
+  const handleItemClick = (path) => {
+    setActiveItem(path);
   };
 
+  const handleMenuClick = (title) => {
+    setOpenMenu(openMenu === title ? null : title);
+  };
 
-
+ 
   return (
-    <div className='w-[100vw] h-[100vh] bg-[white] flex justify-between overflow-x-hidden'>
-      <div className={`bg-[black] text-white h-[100vh] ${isOpen ? 'w-[20%]' : 'w-[5%]'} transition-all delay-50 overflow-y-auto pb-[20px]`}>
-        <div className='flex items-center py-[20px] px-[15px] h-auto w-[100%] sticky top-0 justify-between bg-[#ccc]'>
-          <h1 className={isOpen ? 'block text-[25px]' : 'hidden'}>Logo</h1>
-          <div className='text-[25px] flex cursor-pointer'>
+    <div className="w-full h-screen bg-gray-100 text-sm flex justify-between overflow-x-hidden overflow-y-auto custom-scrollbar">
+      <div className={`bg-black text-white h-full ${isOpen ? "w-52" : "w-20"} transition-all delay-50 overflow-y-auto py-5 px-2 custom-scrollbar`}>
+        <div className={`flex items-center h-auto w-full sticky top-0 pb-5 ${isOpen ? "justify-between":"justify-center"}`}>
+        <h1 className={isOpen ? 'block text-2xl' : 'hidden'}>Logo</h1>
+          <div className='text-2xl flex cursor-pointer'>
             <FaBars onClick={toggle} />
           </div>
         </div>
-        <div>
-          <NavLink
-            to='/'
-            className={({ isActive }) =>
-              `flex text-[#fff] py-[10px] px-[15px] g-[15px] transition-all delay-50 ${isActive ? 'bg-[lightskyblue] text-[#000]' : 'hover:bg-[lightskyblue]'} text-[#000] cursor-pointer no-underline`
-            }
-            style={{ textDecoration: "none" }}
-          >
-            <div className='text-white text-[20px]'><FaTh /></div>
-            <div className='text-[white] ms-[20px]' style={{ display: isOpen ? 'block' : 'none' }}>
-              Dashboard
-            </div>
-          </NavLink>
-        </div>
-        <div>
-          <div
-            className='flex text-[#fff] py-[10px] px-[15px] g-[15px] transition-all delay-50 hover:bg-[lightskyblue] cursor-pointer'
-            onClick={toggleHomeDrop}
-          >
-            <div className='text-white text-[20px]'><FaHome /></div>
-            <div className={`w-[70%] text-[white] ms-[20px] ${isOpen ? 'flex justify-between' : 'hidden'}`}>
-              Home {homeDrop ? <FaAngleUp className='mt-1 transition-all delay-50' /> : <FaAngleDown className='mt-1 transition-all delay-50' />}
-            </div>
-          </div>
-          {homePageMenuItems[1]?.map((homeItems, i) => (
+      <ul className={`${isOpen ? "block":"hidden"}`}>
+        {roleBasedMenuItems[userRole]?.map((item) => (
+          <li key={item.title} className="mb-2">
             <div
-              key={i}
-              className='ml-[15px]'
-              style={{
-                maxHeight: homeDrop ? '1000px' : '0',
-                overflow: 'hidden',
-                transition: 'max-height .5s ease-in-out',
-              }}
+              className={`p-2 flex justify-between items-center text-md font-semibold cursor-pointer ${
+                openMenu === item.title ? "bg-gray-300" : ""
+              }`}
+              onClick={() => handleMenuClick(item.title)}
             >
-              <NavLink
-                to={homeItems.path}
-                className={({ isActive }) =>
-                  `flex text-[#fff] py-[10px] px-[5px] g-[15px] transition-all delay-50 ${isActive ? 'bg-[lightskyblue] text-[#000]' : 'hover:bg-[lightskyblue]'} text-[#000] cursor-pointer`
-                }
-                style={{ textDecoration: "none" }}
-              >
-                <div className='text-white text-[20px]'>{homeItems.icon}</div>
-                <div className={`w-[70%] text-[white] ms-[20px] ${isOpen ? 'flex justify-between' : 'hidden'}`}>
-                  <h6>{homeItems.name}</h6> <FaRegEdit className='mt-1' />
-                </div>
-              </NavLink>
+              <span >{item.title}</span>
+              {openMenu === item.title ? <FaAngleUp /> : <FaAngleDown/>}
             </div>
-          ))}
-        </div>
-
-
-        <div
-          className='flex text-[#fff] py-[10px] px-[15px] g-[15px] transition-all delay-50 hover:bg-[lightskyblue] cursor-pointer'
-          onClick={toggleRepeatedDrop}
-        >
-          <div className='text-white text-[20px]'><FaHome /></div>
-          <div className={`w-[70%] text-[white] ms-[20px] ${isOpen ? 'flex justify-between' : 'hidden'}`}>
-            Repeated Fields {repeatedComponentDrop ? <FaAngleUp className='mt-1 transition-all delay-50' /> : <FaAngleDown className='mt-1 transition-all delay-50' />}
-          </div>
-        </div>
-
-        {repeated_Fields[1]?.map((homeItems, i) => (
+            {openMenu === item.title && (
+              <ul className="mt-2">
+                {item.list.map((subItem) => (
+                  <MenuLink
+                    item={subItem}
+                    key={subItem.name}
+                    isActive={activeItem}
+                    onItemClick={handleItemClick}
+                  />
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+        <li>
           <div
-            key={i}
-            className='ml-[15px]'
-            style={{
-              maxHeight: repeatedComponentDrop ? '1000px' : '0',
-              overflow: 'hidden',
-              transition: 'max-height .5s ease-in-out',
-            }}
+            className="text-red-800 hover:text-green-600 flex gap-2 items-center text-md font-semibold cursor-pointer"
+            onClick={handleLogout}
           >
-            <NavLink
-              to={homeItems.path}
-              className={({ isActive }) =>
-                `flex text-[#fff] py-[10px] px-[5px] g-[15px] transition-all delay-50 ${isActive ? 'bg-[lightskyblue] text-[#000]' : 'hover:bg-[lightskyblue]'} text-[#000] cursor-pointer`
-              }
-              style={{ textDecoration: "none" }}
-            >
-              <div className='text-white text-[20px]'>{homeItems.icon}</div>
-              <div className={`w-[70%] text-[white] ms-[20px] ${isOpen ? 'flex justify-between' : 'hidden'}`}>
-                <h6>{homeItems.name}</h6> <FaRegEdit className='mt-1' />
-              </div>
-            </NavLink>
+            <FaSignOutAlt />
+            <span>LogOut</span>
           </div>
-        ))}
-
-
-        {roleBasedMenuItems[1]?.map((item, index) => (
-          <div key={index}>
-            <NavLink
-              to={item.path}
-              className={({ isActive }) =>
-                `flex text-[#fff] py-[10px] px-[15px] g-[15px] transition-all delay-50 ${isActive ? 'bg-[lightskyblue] text-[#000]' : 'hover:bg-[lightskyblue]'} text-[#000] cursor-pointer no-underline`
-              }
-              style={{ textDecoration: "none" }}
-            >
-              <div className='text-white text-[20px]'>{item.icon}</div>
-              <div className='text-[white] ms-[20px]' style={{ display: isOpen ? 'block' : 'none' }}>
-                {item.name}
-              </div>
-            </NavLink>
-          </div>
-        ))}
-      </div>
-      <div className={`${isOpen ? 'w-[80%]' : 'w-[95%]'} h-[100vh] overflow-y-auto`}>
-        <NavBar />
-        <main className='w-[100%] h-[90%]'>{children}</main>
+        </li>
+      </ul>
+      </div> 
+      <div className={`${isOpen ? "w-5/6":"w-11/12"}`}>
+      <NavBar />
+      <main className="w-11/12 h-4/5 mx-auto">{children}</main>
       </div>
     </div>
+  );
+};
+
+
+const MenuLink = ({ item, isActive, onItemClick }) => {
+  return (
+    <li
+      className={`p-2 hover:text-blue-500 ${
+        isActive === item.path ? "text-white" : ""
+      }`}
+    >
+      <NavLink
+        to={item.path}
+        className={({ isActive }) =>
+          `flex text-[#fff] py-2 px-3 gap-3 transition-all delay-50 ${isActive ? 'bg-[lightskyblue] text-[#000]' : 'hover:bg-[lightskyblue]'} text-[#000] cursor-pointer no-underline`
+        }
+        style={{ textDecoration: "none" }}
+        passHref
+        onClick={() => onItemClick(item.path)}
+      >
+        {item.icon}
+        <span className="ml-2">{item.name}</span>
+      </NavLink>
+    </li>
   );
 };
 
