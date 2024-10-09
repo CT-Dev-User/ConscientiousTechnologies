@@ -57,9 +57,9 @@ const SignIn = () => {
       >
         {/* Logo */}
         <div className="w-full bg-black py-2 mb-4 rounded-md flex justify-center box-border px-4">
-          <h1 className="text-2xl">
-            <span className="text-[#3EDBF0]">Conscientious</span>
-            <span className="text-[#FFFFFF]">Technologies</span>
+          <h1 className="text-2xl font-semibold">
+            <span className="text-yellow-500">Conscientious</span>
+            <span className="text-blue-500 ml-2">Technologies</span>
           </h1>
         </div>
 
@@ -106,7 +106,7 @@ const SignIn = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-teal-500 text-white py-2 px-4 rounded-md hover:bg-teal-600"
+          className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-teal-600 font-semibold"
           disabled={loading}
         >
           {loading ? "Logging In..." : "Log In"}

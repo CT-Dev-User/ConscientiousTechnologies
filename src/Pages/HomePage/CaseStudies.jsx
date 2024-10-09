@@ -142,6 +142,7 @@ const CaseStudies = () => {
   return (
     <div className='w-full bg-gray-300 h-full mx-auto p-4'>
       <div className="flex justify-end mb-5 mr-3">
+      <h1 className='text-2xl font-bold text-black'>Case Studies</h1>
         <Button onClick={() => setAddPopUpShow(true)} className='className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"'>Add Case Study</Button>
       </div>
 
@@ -175,8 +176,8 @@ const CaseStudies = () => {
             <fieldset className="mb-4">
               <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
               <div className="relative">
-                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
-                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md border border-gray-300 focus:border-blue-500 overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
+                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md">Upload File</label>
                 {addSelectedFile && (
                   <div className="ml-2 mt-4">
                     <button className="text-red-500 hover:text-red-700  mt-1 ms-[110px] " onClick={() => setAddSelectedFile(null)}>
@@ -226,8 +227,8 @@ const CaseStudies = () => {
             <fieldset className="mb-4">
               <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
               <div className="relative">
-                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md border border-gray-300 focus:border-blue-500 overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
+                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md">Upload File</label>
                 {EditSelectedFile && (
                   <div className="ml-2 mt-4">
                     <button className="text-red-500 hover:text-red-700  mt-1 ms-[110px] " onClick={() => setEditSelectedFile(null)}>

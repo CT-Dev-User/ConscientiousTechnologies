@@ -49,6 +49,7 @@ import OtherExpertise from "./Pages/AreaOfExperties/OtherExpertise.jsx";
 import SignIn from "./Pages/LogIn/SignIn.jsx";
 import SubServices from "./Pages/SubServices/SubServices.jsx";
 import HomeTechTools from "./Pages/HomePage/HomeTechTools.jsx";
+import HomeCaseStudies from "./Pages/HomePage/HomeCaseStudies.jsx";
 
 function App() {
   return (
@@ -114,7 +115,7 @@ function App() {
         path="/conscientious-home-casestudies"
         element={
           <SideBar>
-            <CaseStudies />
+            <HomeCaseStudies />
           </SideBar>
         }
       />
@@ -194,6 +195,14 @@ function App() {
         element={
           <SideBar>
             <CaseStudies />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-Home-casestudies"
+        element={
+          <SideBar>
+            <HomeCaseStudies />
           </SideBar>
         }
       />

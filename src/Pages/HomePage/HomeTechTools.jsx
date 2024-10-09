@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Table } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { Button, Modal } from "react-bootstrap";
+import { FaEye, FaTrash } from "react-icons/fa";
+// import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const HomeTechTools = () => {
   const [addPopupShow, setAddPopUpShow] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [reliableToolData, setReliableToolsData] = useState([]);
   const [subTechModalShow, setSubTechModalShow] = useState(false);
   const [logoModalShow, setLogoModalShow] = useState(false);
@@ -166,7 +167,7 @@ const HomeTechTools = () => {
   return (
     <div className="w-full bg-gray-300 h-full mx-auto p-4">
       <div className="flex justify-between mb-5 mr-3 gap-x-3">
-        <h1 className="text-xl font-bold">Reliable Tools</h1>
+        <h1 className="text-xl font-bold">Home Reliable Technology Tools</h1>
         <Button
           onClick={() => setAddPopUpShow(true)}
           className="bg-blue-500 hover:bg-blue-800 text-white px-2 py-0 rounded text-base font-bold"
@@ -177,7 +178,7 @@ const HomeTechTools = () => {
 
       <Modal show={subTechModalShow} onHide={handleSubTechModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Sub Tech</Modal.Title>
+          <Modal.Title>Stacks</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {selectedItem &&
@@ -191,7 +192,7 @@ const HomeTechTools = () => {
 
       <Modal show={logoModalShow} onHide={handleLogoModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Tech Logos</Modal.Title>
+          <Modal.Title>Tools</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {selectedItem &&
@@ -201,7 +202,7 @@ const HomeTechTools = () => {
                 <div className="flex flex-wrap gap-x-[30px] gap-y-[10px]">
                   {subTechItem.techLogos.map((logoItem, logoIndex) => (
                     <div key={logoIndex}>
-                      <img src={logoItem.logo} width="50" />
+                      <img src={logoItem.logo} width="50" alt="" />
                     </div>
                   ))}
                 </div>
@@ -210,53 +211,49 @@ const HomeTechTools = () => {
         </Modal.Body>
       </Modal>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Sr no</th>
-            <th>category</th>
-            <th>Subcategory</th>
-            <th>Technology</th>
-            <th>Sub Tech</th>
-            <th>Tech Logos</th>
+      <table className="table-auto w-full text-sm  border-collapse border bg-white">
+        <thead className="bg-gray-800 text-white">
+          <tr className="text-left font-semibold border">
+            <th className="px-4 py-2 border-l">Sr no</th>
+            <th className="px-4 py-2 border-l">Page</th>
+            <th className="px-4 py-2 border-l">Section</th>
+            <th className="px-4 py-2 border-l">Tools Domain</th>
+            <th className="px-4 py-2 border-l">Stack</th>
+            <th className="px-4 py-2 border-l">Tools</th>
+            <th className="px-4 py-2 border-l">Action</th>
           </tr>
         </thead>
         <tbody>
           {currentItems.map((item, index) => (
-            <tr key={index}>
-              <td>{index + indexOfFirstItem + 1}</td>
-              <td>{item.category}</td>
-              <td>{item.Subcategory}</td>
-              <td>{item.technology}</td>
-              <td>
-                <Button
-                  variant="primary"
+            <tr key={index} className="border">
+              <td className="px-4 py-2 border-l">
+                {index + indexOfFirstItem + 1}
+              </td>
+              <td className="px-4 py-2 border-l">{item.category}</td>
+              <td className="px-4 py-2 border-l">{item.Subcategory}</td>
+              <td className="px-4 py-2 border-l">{item.technology}</td>
+              <td className="px-4 py-2 border-l text-green-800 hover:text-teal-600 text-lg">
+                <FaEye
                   onClick={() => handleSubTechModalShow(item)}
-                >
-                  View Sub Tech
-                </Button>
+                  className="cursor-pointer"
+                />
               </td>
-              <td>
-                <Button
-                  variant="primary"
+              <td className="px-4 py-2 border-l text-green-800 hover:text-teal-600 text-lg">
+                <FaEye
                   onClick={() => handleLogoModalShow(item)}
-                >
-                  View Tech Logos
-                </Button>
+                  className="cursor-pointer"
+                />
               </td>
-              <td>
-                {/* <Button variant="warning" onClick={() => handleEditPopupShow(item)}>Edit</Button> */}
-                <Button
-                  variant="danger"
+              <td className="px-4 py-2 border-l text-red-500 hover:text-red-800 text-lg">
+                <FaTrash
                   onClick={() => deleteReliableDataFunc(item._id)}
-                >
-                  Delete
-                </Button>
+                  className="cursor-pointer"
+                />
               </td>
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
       {/* Pagination */}
       <ul className="flex justify-center gap-[20px] mt-[90px]">
         <li>
@@ -264,9 +261,9 @@ const HomeTechTools = () => {
             onClick={() =>
               setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
             }
-            className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white"
+            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
           >
-            Previous
+            Prev
           </button>
         </li>
         <li>
@@ -279,7 +276,7 @@ const HomeTechTools = () => {
                 )
               )
             }
-            className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white"
+            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
           >
             Next
           </button>
@@ -293,33 +290,7 @@ const HomeTechTools = () => {
         <Modal.Body>
           <form>
             <div className="mb-3">
-              <label htmlFor="category" className="form-label">
-                category
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="category"
-                name="category"
-                value={addReliableData.category}
-                onChange={(e) => handleInputChange(e)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="Subcategory" className="form-label">
-                Subcategory
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="Subcategory"
-                name="Subcategory"
-                value={addReliableData.Subcategory}
-                onChange={(e) => handleInputChange(e)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="technology" className="form-label">
+              <label htmlFor="technology" className="form-label font-semibold">
                 Tools Domain
               </label>
               <input
@@ -332,7 +303,7 @@ const HomeTechTools = () => {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">Tools Stack</label>
+              <label className="form-label font-semibold text-blue-600">Tools Stack</label>
               {addReliableData.subTech.map((subTechItem, index) => (
                 <div key={index}>
                   <input
@@ -343,6 +314,7 @@ const HomeTechTools = () => {
                     value={subTechItem.title}
                     onChange={(e) => handleInputChange(e, index)}
                   />
+                  <label htmlFor="Tools" className="text-teal-600 font-semibold">Tools</label>
                   {subTechItem.techLogos.map((logoItem, logoIndex) => (
                     <div key={logoIndex} className="mb-2">
                       <input
@@ -353,34 +325,41 @@ const HomeTechTools = () => {
                       />
                     </div>
                   ))}
-                  <Button
-                    variant="secondary"
-                    className="mb-2"
-                    onClick={() => addTechLogoField(index)}
-                  >
-                    Add Tool Logo
-                  </Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => removeSubTechField(index)}
-                  >
-                    Remove Tool Stack
-                  </Button>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      className="mb-2 p-2 bg-teal-600 text-white rounded font-semibold"
+                      onClick={() => addTechLogoField(index)}
+                    >
+                      Add Tools
+                    </button>
+                    <button
+                      type="button"
+                      className="mb-2 p-2 bg-red-600 text-white rounded font-semibold"
+                      onClick={() => removeSubTechField(index)}
+                    >
+                      Remove Stack
+                    </button>
+                  </div>
                 </div>
               ))}
-              <Button variant="secondary" onClick={addSubTechField}>
-                Add Tool Stack
-              </Button>
+              <button
+                type="button"
+                className="mb-2 p-2 bg-blue-600 text-white rounded font-semibold"
+                onClick={addSubTechField}
+              >
+                Add Stack
+              </button>
             </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setAddPopUpShow(false)}>
+          <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" type="button" onClick={() => setAddPopUpShow(false)}>
             Close
-          </Button>
-          <Button variant="primary" onClick={addReliableDataFunc}>
+          </button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" onClick={addReliableDataFunc}>
             Save Changes
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </div>
