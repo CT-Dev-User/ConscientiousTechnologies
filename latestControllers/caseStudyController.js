@@ -1,4 +1,4 @@
-import CaseStudyModel from '../models/caseStudyModel.js';
+import CaseStudyModel from '../latestModels/caseStudies/CaseStudies.js';
 import cloudinary from '../cloudinary.js';
 import fs from 'fs';
 

@@ -1,4 +1,4 @@
-import LatestIndustryModel from '../models/latestIndustryModel.js';
+import LatestIndustryModel from '../latestModels/industries/Industry.js';
 import cloudinary from '../cloudinary.js';
 import fs from 'fs';
 

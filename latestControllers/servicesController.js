@@ -1,4 +1,4 @@
-import LatestServiceModel from '../models/LatestServiceModel.js';
+import LatestServiceModel from '../latestModels/services/Service.js';
 import cloudinary from '../cloudinary.js';
 import fs from 'fs';
 
