@@ -1,129 +1,180 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import JoditEditor from 'jodit-react';
-import { useState, useEffect, useRef } from 'react';
-import { Button, Modal, ModalBody } from 'react-bootstrap';
-import { AiOutlineClose } from 'react-icons/ai';
+import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
-import { FaEye } from 'react-icons/fa'
-const ServiceWeOffer = () => {
-  const [homeServiceData, setHomeServiceData] = useState([]);
-  const [addHomeServiceData, setAddHomeServiceData] = useState({ title: "", images: "", points: [] });
-  const [addPopupShow, setAddPopUpShow] = useState(false);
-  const [addSelectedFile, setAddSelectedFile] = useState(null);
 
-  const [editHomeServiceData, setEditHomeServiceData] = useState({ title: "", images: "", points: [] });
-  const [editPopUpShow, setEditPopUpShow] = useState(false)
-  const [EditSelectedFile, setEditSelectedFile] = useState(null)
-  const [editId, setEditId] = useState(null)
-  const addEditor = useRef(null);
-  const editEditor = useRef(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(3);
+const ServicesCMS = () => {
+  // State for handling services data
+  const [services, setServices] = useState([]);
+  const [serviceId, setServiceId] = useState(null); // For editing
+  const [showModal, setShowModal] = useState(false); // Modal open state
+  const [showViewModal, setShowViewModal] = useState(false); // For viewing header data
+  const [showViewCardModal, setShowViewCardModal] = useState(false); // For viewing card data
 
-  const [HomeServiceDescData, setHomeServiceDescData] = useState(null)
+  // States for each form field
+  const [serviceName, setServiceName] = useState('');
+  const [headerTagLine, setHeaderTagLine] = useState('');
+  const [headerImage, setHeaderImage] = useState(null);
+  const [cardImage, setCardImage] = useState(null);
+  const [cardPoint1Heading, setCardPoint1Heading] = useState('');
+  const [cardPoint1Desc, setCardPoint1Desc] = useState('');
+  const [cardPoint2Heading, setCardPoint2Heading] = useState('');
+  const [cardPoint2Desc, setCardPoint2Desc] = useState('');
+  const [cardPoint3Heading, setCardPoint3Heading] = useState('');
+  const [cardPoint3Desc, setCardPoint3Desc] = useState('');
+  const [cardPoint4Heading, setCardPoint4Heading] = useState('');
+  const [cardPoint4Desc, setCardPoint4Desc] = useState('');
 
-  const handleAddPoint = () => {
-    setAddHomeServiceData({
-      ...addHomeServiceData,
-      points: [...addHomeServiceData.points, { title: "", description: "" }]
-    });
+  // States for viewing header data
+  const [viewHeaderTagLine, setViewHeaderTagLine] = useState('');
+  const [viewHeaderImage, setViewHeaderImage] = useState(null);
+  const [viewCardService, setviewCardService] = useState(null);
+
+  // States for viewing card data
+  const [viewCardImage, setViewCardImage] = useState(null);
+  const [viewCardPoint1Heading, setViewCardPoint1Heading] = useState('');
+  const [viewCardPoint1Desc, setViewCardPoint1Desc] = useState('');
+  const [viewCardPoint2Heading, setViewCardPoint2Heading] = useState('');
+  const [viewCardPoint2Desc, setViewCardPoint2Desc] = useState('');
+  const [viewCardPoint3Heading, setViewCardPoint3Heading] = useState('');
+  const [viewCardPoint3Desc, setViewCardPoint3Desc] = useState('');
+  const [viewCardPoint4Heading, setViewCardPoint4Heading] = useState('');
+  const [viewCardPoint4Desc, setViewCardPoint4Desc] = useState('');
+
+
+
+  // Fetch all services on mount
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  // New function to open view modal for header data
+  const openViewModal = (service) => {
+    console.log(service)
+    setViewHeaderTagLine(service.headerDataTagLine);
+    setviewCardService(service.serviceName);
+    setViewHeaderImage(service.headerImage);
+    setShowViewModal(true);
   };
 
 
-  // Function to update title or description of a point in addHomeServiceData
-  const handlePointChange = (index, field, value) => {
-    const updatedPoints = [...addHomeServiceData.points];
-    updatedPoints[index][field] = value;
-    setAddHomeServiceData({ ...addHomeServiceData, points: updatedPoints });
+  const closeViewModal = () => {
+    setShowViewModal(false);
   };
 
-  const handleAddfileChange = (e) => {
-    setAddHomeServiceData({ ...addHomeServiceData, images: e.target.files[0] });
-    setAddSelectedFile(e.target.files[0]);
-  };
-
-  const [descModal, setDescModal] = useState(false)
-
-
-  const addHomeServiceDatafunc = async () => {
+  const fetchServices = async () => {
     try {
-      const formData = new FormData();
-      formData.append('title', addHomeServiceData.title);
-      formData.append('images', addHomeServiceData.images);
-      formData.append('points', JSON.stringify(addHomeServiceData.points)); // Convert points array to string before sending
+      const response = await axios.get('http://localhost:8080/get-latest-service-data');
+      console.log(response.data);
+      setServices(response.data);
+    } catch (error) {
+      console.error('Error fetching services:', error);
+    }
+  };
 
-      const response = await axios.post("http://localhost:8080/add-service-data", formData);
-      if (response.status === 200) {
-        // Assuming you want to fetch updated data after adding
-        fetchHomeServiceData();
-        setAddPopUpShow(false);
-        setAddHomeServiceData({ title: "", ServiceHomePageimage: "", desc: "", points: [] });
+  // Open the modal for adding or editing
+
+  const openViewCardModal = (service) => {
+    setViewCardImage(service.cardImage);
+    setViewCardPoint1Heading(service.cardPoint1Heading);
+    setViewCardPoint1Desc(service.cardPoint1Desc);
+    setViewCardPoint2Heading(service.cardPoint2Heading);
+    setViewCardPoint2Desc(service.cardPoint2Desc);
+    setViewCardPoint3Heading(service.cardPoint3Heading);
+    setViewCardPoint3Desc(service.cardPoint3Desc);
+    setViewCardPoint4Heading(service.cardPoint4Heading);
+    setViewCardPoint4Desc(service.cardPoint4Desc);
+    setShowViewCardModal(true);
+  };
+
+  const closeViewCardModal = () => {
+    setShowViewCardModal(false);
+  };
+
+  const openModal = (service = null) => {
+    if (service) {
+      // Pre-fill form for editing
+      setServiceId(service._id);
+      setServiceName(service.serviceName);
+      setHeaderTagLine(service.headerDataTagLine);
+      setCardPoint1Heading(service.cardPoint1Heading);
+      setCardPoint1Desc(service.cardPoint1Desc);
+      setCardPoint2Heading(service.cardPoint2Heading);
+      setCardPoint2Desc(service.cardPoint2Desc);
+      setCardPoint3Heading(service.cardPoint3Heading);
+      setCardPoint3Desc(service.cardPoint3Desc);
+      setCardPoint4Heading(service.cardPoint4Heading);
+      setCardPoint4Desc(service.cardPoint4Desc);
+    } else {
+      // Clear form for adding
+      clearForm();
+    }
+    setShowModal(true);
+  };
+
+  // Close the modal
+  const closeModal = () => {
+    setShowModal(false);
+    clearForm();
+  };
+
+  // Clear form fields
+  const clearForm = () => {
+    setServiceId(null);
+    setServiceName('');
+    setHeaderTagLine('');
+    setHeaderImage(null);
+    setCardImage(null);
+    setCardPoint1Heading('');
+    setCardPoint1Desc('');
+    setCardPoint2Heading('');
+    setCardPoint2Desc('');
+    setCardPoint3Heading('');
+    setCardPoint3Desc('');
+    setCardPoint4Heading('');
+    setCardPoint4Desc('');
+  };
+
+  // Handle form submission for adding or updating
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('serviceName', serviceName);
+    formData.append('headerDataTagLine', headerTagLine);
+    formData.append('headerImage', headerImage);
+    formData.append('cardImage', cardImage);
+    formData.append('cardPoint1Heading', cardPoint1Heading);
+    formData.append('cardPoint1Desc', cardPoint1Desc);
+    formData.append('cardPoint2Heading', cardPoint2Heading);
+    formData.append('cardPoint2Desc', cardPoint2Desc);
+    formData.append('cardPoint3Heading', cardPoint3Heading);
+    formData.append('cardPoint3Desc', cardPoint3Desc);
+    formData.append('cardPoint4Heading', cardPoint4Heading);
+    formData.append('cardPoint4Desc', cardPoint4Desc);
+
+    try {
+      if (serviceId) {
+        // Update service
+        await axios.put(`http://localhost:8080/edit-existing-service-data/${serviceId}`, formData);
+      } else {
+        // Create new service
+        await axios.post('http://localhost:8080/create-new-service-data', formData);
       }
+      closeModal();
+      fetchServices();
     } catch (error) {
-      console.log(error);
+      console.error('Error saving service:', error);
     }
   };
 
-  const fetchHomeServiceData = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/get-service-data");
-      setHomeServiceData(response.data.getData);
-    } catch (error) {
-      console.log(error);
-    }
+  // Handle file input change
+  const handleFileChange = (e, setter) => {
+    setter(e.target.files[0]);
   };
 
-  const handleEditPointChange = (index, field, value) => {
-    const updatedPoints = [...editHomeServiceData.points];
-    updatedPoints[index][field] = value;
-    setEditHomeServiceData({ ...editHomeServiceData, points: updatedPoints });
-  };
+  // Handle service deletion
 
-  // Function to add a new point in editHomeServiceData
-  const handleEditAddPoint = () => {
-    setEditHomeServiceData({
-      ...editHomeServiceData,
-      points: [...editHomeServiceData.points, { title: "", description: "" }]
-    });
-  };
-
-  const handleEditFileChange = (e) => {
-    setEditHomeServiceData({ ...editHomeServiceData, images: e.target.files[0] });
-    setEditSelectedFile(e.target.files[0])
-  }
-
-  const editHomeServiceDataFunc = async () => {
-    try {
-      const formData = new FormData();
-      formData.append('title', editHomeServiceData.title);
-      formData.append('images', editHomeServiceData.images);
-      formData.append('desc', editHomeServiceData.desc);
-      formData.append('points', JSON.stringify(editHomeServiceData.points)); // Convert points array to string before sending
-
-      const response = await axios.put(`http://localhost:8080/edit-service-data/${editId}`, formData);
-      if (response.status === 200) {
-        setEditPopUpShow(false);
-        fetchHomeServiceData();
-        Swal.fire(
-          'Saved!',
-          'Your changes have been saved.',
-          'success'
-        );
-      }
-    } catch (error) {
-      console.log(error);
-      Swal.fire(
-        'Error!',
-        'Failed to save changes. Please try again later.',
-        'error'
-      );
-    }
-  }
-
-
-
-  const deleteHomeServiceData = async (id) => {
+  const handleDelete = async (id) => {
     Swal.fire({
       title: 'Are you sure?',
       text: 'You will not be able to recover this data!',
@@ -134,12 +185,11 @@ const ServiceWeOffer = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        // If user confirms deletion
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-service-data/${id}`);
+          const response = await axios.delete(`http://localhost:8080/delete-existing-service-data-by-id/${id}`);
           if (response.status === 200) {
-            setEditId(null);
-            fetchHomeServiceData();
+            // setEditId(null);
+            fetchServices();
             Swal.fire(
               'Deleted!',
               'Your data has been deleted.',
@@ -156,210 +206,245 @@ const ServiceWeOffer = () => {
         }
       }
     });
-  }
-
-  useEffect(() => {
-    fetchHomeServiceData();
-  }, []);
-
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = homeServiceData.slice(indexOfFirstItem, indexOfLastItem);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-
+  };
   return (
-    <div className="w-full bg-gray-300 h-full mx-auto p-4">
-      <div className="flex justify-end mb-5 mr-3">
-        <Button onClick={() => setAddPopUpShow(true)} className='className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"'>Add Services</Button>
+    <div className="p-4">
+      <div className='flex justify-between'>
+        <h1 className="text-xl font-bold mb-4">Services Management</h1>
+        <button onClick={() => openModal()} className="bg-blue-500 text-white px-4 py-2 rounded">
+          Add New Service
+        </button>
       </div>
 
-      {/* Add Modals popup*/}
-      <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Add Service Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">Title</label>
-              <input type="text" name="title" id="title" className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500" onChange={(e) => setAddHomeServiceData({ ...addHomeServiceData, title: e.target.value })} />
-            </fieldset>
 
-            <fieldset className="mb-4">
-              <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
-              <div className="relative">
-                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
-                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
-                {addSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button className="text-red-500 hover:text-red-700  mt-1 ms-[110px] " onClick={() => setAddSelectedFile(null)}>
-                      <AiOutlineClose />
-                    </button>
-                    <img src={URL.createObjectURL(addSelectedFile)} alt="Selected File" className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2" />
-                    <p className="text-gray-700">{addSelectedFile.name}</p>
-                  </div>
-                )}
-              </div>
-            </fieldset>
-
-            {/* Render input fields for points */}
-            {addHomeServiceData.points.map((point, index) => (
-              <div key={index}>
-                <fieldset className="mb-4">
-                  <label htmlFor={`point-title-${index}`} className="block text-gray-700 font-bold">Point Title</label>
-                  <input type="text" id={`point-title-${index}`} className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500" value={point.title} onChange={(e) => handlePointChange(index, 'title', e.target.value)} />
-                </fieldset>
-                <fieldset className="mb-4">
-                  <label htmlFor={`point-description-${index}`} className="block text-gray-700 font-bold">Point Description</label>
-                  <JoditEditor
-                    value={point.description}
-                    onChange={(value) => handlePointChange(index, 'description', value)}
-                  />
-                </fieldset>
-              </div>
-            ))}
-            <button type="button" onClick={handleAddPoint}>Add Point</button>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => setAddPopUpShow(false)} className="text-gray-700 hover:text-gray-900">Close</Button>
-          <Button variant="primary" onClick={() => { addHomeServiceDatafunc(); setAddPopUpShow(false) }} className="bg-blue-500 hover:bg-blue-600 text-white">Save Changes</Button>
-        </Modal.Footer>
-      </Modal>
-
-
-
-      {/* Edit Service Data */}
-      <Modal show={editPopUpShow} onHide={() => setEditPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit Service Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="edit-title" className="block text-gray-700 font-bold">Title</label>
-              <input type="text" id="edit-title" className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500" value={editHomeServiceData.title} onChange={(e) => setEditHomeServiceData({ ...editHomeServiceData, title: e.target.value })} />
-            </fieldset>
-
-            {/* Edit file input field */}
-            <fieldset className="mb-4">
-              <label htmlFor="edit-image" className="block font-bold">Image</label>
-              <div className="relative">
-                <input type="file" name="edit-image" id="edit-image" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="edit-file-upload-label" onChange={handleEditFileChange} />
-                <label htmlFor="edit-image" id="edit-file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
-                {EditSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button className="text-red-500 hover:text-red-700 mt-1 ms-[110px] " onClick={() => setEditSelectedFile(null)}>
-                      <AiOutlineClose />
-                    </button>
-                    <img src={URL.createObjectURL(EditSelectedFile)} alt="Selected File" className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2" />
-                    <p className="text-gray-700">{EditSelectedFile.name}</p>
-                  </div>
-                )}
-              </div>
-            </fieldset>
-
-            {/* Edit points input fields */}
-            <fieldset className="mb-4">
-              <label className="block font-bold">Points</label>
-              {editHomeServiceData.points.map((point, index) => (
-                <div key={index}>
-                  <fieldset className="mb-2">
-                    <label htmlFor={`edit-point-title-${index}`} className="block text-gray-700 font-bold">Point Title</label>
-                    <input type="text" id={`edit-point-title-${index}`} className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500" value={point.title} onChange={(e) => handleEditPointChange(index, 'title', e.target.value)} />
-                  </fieldset>
-                  <fieldset className="mb-2">
-                    <label htmlFor={`edit-point-description-${index}`} className="block text-gray-700 font-bold">Point Description</label>
-                    <JoditEditor
-                      value={point.description}
-                      onChange={(value) => handleEditPointChange(index, 'description', value)}
-                    />
-                  </fieldset>
-                </div>
-              ))}
-              <button type="button" onClick={handleEditAddPoint}>Add Point</button>
-            </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => setEditPopUpShow(false)} className="text-gray-700 hover:text-gray-900">
-            Close
-          </Button>
-          <Button variant="primary" onClick={() => { setEditPopUpShow(false); editHomeServiceDataFunc() }} className="bg-blue-500 hover:bg-blue-600 text-white">
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-
-      <Modal size="md" show={descModal} onHide={() => setDescModal(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Service Description</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          {HomeServiceDescData && HomeServiceDescData.map((point, index) => (
-            <li key={index} className="mb-4 list-none">
-              <h3 className="text-lg font-semibold underline">{point.title}</h3>
-              <p dangerouslySetInnerHTML={{ __html: point.description }} /> {/* Display description */}
-            </li>
-          ))}
-        </Modal.Body>
-
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => setDescModal(false)} className="text-gray-700 hover:text-gray-900">
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-
-      <table className="w-full border-collapse border">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border p-2">Sr. No</th>
-            <th className="border p-2">Service Title</th>
-            <th className="border p-2">Service Description</th>
-            <th className="border p-2">Service Image</th>
-            <th className="border p-2">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.map((homeServData, i) => (
-            <tr key={i}>
-              <td className="border p-2">{i + indexOfFirstItem + 1}</td>
-              <td className="border p-2">{homeServData.title}</td>
-              <td className="border p-2">
-                <FaEye onClick={() => { setHomeServiceDescData(homeServData.points); setDescModal(true) }} className='usersor-pointer' />
-              </td>
-              <td className="border p-2"><img src={homeServData.ServiceHomePageimage} alt={homeServData.title} className='h-[50px]' /></td>
-              <td className="border p-2 flex gap-x-[20px]">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setEditId(homeServData._id); setEditPopUpShow(true) }}>Edit</button>
-                <button className=' hover:bg-red-700 bg-[red] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={() => { deleteHomeServiceData(homeServData._id) }}>Delete</button>
-              </td>
+      <div className="mt-4">
+        <table className="w-full border-collapse ">
+          <thead className='bg-gray-500 text-white'>
+            <tr>
+              <th className="border p-2">Service Name</th>
+              <th className="border p-2">Header Data</th>
+              <th className="border p-2">Card Data</th>
+              <th className="border p-2">Actions</th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {services.map(service => (
+              <tr key={service._id}>
+                <td className="border p-2">{service.serviceName}</td>
+                <td className="border p-2">
+                  <button onClick={() => openViewModal(service)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
+                </td>
+                <td className="border p-2">
+                  <button onClick={() => openViewCardModal(service)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
+                </td>
+                <td className="border p-2">
+                  <button onClick={() => openModal(service)} className="bg-green-500 text-white px-2 py-1 rounded mr-2">Edit</button>
+                  <button onClick={() => handleDelete(service._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-        </tbody>
-      </table>
-      {/* Pagination */}
-      <ul className="flex justify-center mt-[90px]">
-        <li>
-          <button onClick={() => setCurrentPage(prevPage => Math.max(prevPage - 1, 1))} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">Previous</button>
-        </li>
-        {[...Array(Math.ceil(homeServiceData.length / itemsPerPage)).keys()].map(number => (
-          <li key={number} className="mx-1">
-            <button onClick={() => paginate(number + 1)} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">{number + 1}</button>
-          </li>
-        ))}
-        <li>
-          <button onClick={() => setCurrentPage(prevPage => Math.min(prevPage + 1, Math.ceil(homeServiceData.length / itemsPerPage)))} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">Next</button>
-        </li>
-      </ul>
+      {/* Modal for Adding/Editing Services */}
+
+      <Modal show={showModal} onHide={closeModal}>
+        <div className='w-[50vw] mx-auto bg-white'>
+          <Modal.Header closeButton className="bg-gray-100">
+            <Modal.Title>{serviceId ? 'Edit Service' : 'Add New Service'}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="w-full mx-auto">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block text-gray-700">Service Name</label>
+                <input
+                  type="text"
+                  value={serviceName}
+                  onChange={(e) => setServiceName(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Header Tagline</label>
+                <input
+                  type="text"
+                  value={headerTagLine}
+                  onChange={(e) => setHeaderTagLine(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Header Image</label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setHeaderImage)}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Image</label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setCardImage)}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              {/* Additional Card Points */}
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Point 1 Heading</label>
+                <input
+                  type="text"
+                  value={cardPoint1Heading}
+                  onChange={(e) => setCardPoint1Heading(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Point 1 Description</label>
+                <textarea
+                  value={cardPoint1Desc}
+                  onChange={(e) => setCardPoint1Desc(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Point 2 Heading</label>
+                <input
+                  type="text"
+                  value={cardPoint2Heading}
+                  onChange={(e) => setCardPoint2Heading(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Point 2 Description</label>
+                <textarea
+                  value={cardPoint2Desc}
+                  onChange={(e) => setCardPoint2Desc(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Point 3 Heading</label>
+                <input
+                  type="text"
+                  value={cardPoint3Heading}
+                  onChange={(e) => setCardPoint3Heading(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Point 3 Description</label>
+                <textarea
+                  value={cardPoint3Desc}
+                  onChange={(e) => setCardPoint3Desc(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Point 4 Heading</label>
+                <input
+                  type="text"
+                  value={cardPoint4Heading}
+                  onChange={(e) => setCardPoint4Heading(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Point 4 Description</label>
+                <textarea
+                  value={cardPoint4Desc}
+                  onChange={(e) => setCardPoint4Desc(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div className='flex justify-start gap-4'>
+                <button className='py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md' type="submit">
+                  {serviceId ? 'Update Service' : 'Add Service'}
+                </button>
+                <button className='py-2 px-4 border border-blue-500 text-blue-500  hover:bg-gray-500 hover:text-white  rounded-md' onClick={closeModal}>
+                  Cancel
+                </button>
+              </div>
+
+            </form>
+          </Modal.Body>
+        </div>
+
+      </Modal>
+
+
+      {/* Modal for Viewing Header Data */}
+      <Modal show={showViewModal} onHide={closeViewModal}>
+        <Modal.Header closeButton className='text-black'>
+          <Modal.Title>View Header Data</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h2 className="text-lg font-semibold className='text-black'"> <span className='font-bold'>Header Services :-</span> {viewCardService}</h2>
+          <h2 className="text-lg font-semibold className='text-black'"> <span className='font-bold'>Header TagLine :-</span> {viewHeaderTagLine}</h2>
+          {viewHeaderImage && (
+            <img src={viewHeaderImage} alt="Header" className="mt-2 w-[150px] h-[100px]" />
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeViewModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal for Viewing Card Data */}
+      <Modal show={showViewCardModal} onHide={closeViewCardModal} >
+        <Modal.Header closeButton className="bg-gray-100">
+          <Modal.Title className="text-lg font-semibold">View Card Data</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-6 bg-white">
+          <div className="mt-4">
+            <h5 className="text-xl font-bold text-gray-800 underline">{viewCardPoint1Heading}</h5>
+            <p className="text-gray-600 mb-4">{viewCardPoint1Desc}</p>
+
+            <h5 className="text-xl font-bold text-gray-800 underline">{viewCardPoint2Heading}</h5>
+            <p className="text-gray-600 mb-4">{viewCardPoint2Desc}</p>
+
+            <h5 className="text-xl font-bold text-gray-800 underline">{viewCardPoint3Heading}</h5>
+            <p className="text-gray-600 mb-4">{viewCardPoint3Desc}</p>
+
+            <h5 className="text-xl font-bold text-gray-800 underline">{viewCardPoint4Heading}</h5>
+            <p className="text-gray-600">{viewCardPoint4Desc}</p>
+          </div>
+          <div className=' mt-10'>
+            <h4 className='font-bold'>Card Image</h4>
+            {viewCardImage && (
+              <img src={viewCardImage} alt="Card" className="w-[150px] h-[150px] rounded-lg shadow-lg" />
+            )}
+          </div>
+        </Modal.Body>
+      </Modal>
 
     </div>
   );
 };
 
-export default ServiceWeOffer;
+export default ServicesCMS;

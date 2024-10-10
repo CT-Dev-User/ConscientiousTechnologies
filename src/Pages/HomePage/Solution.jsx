@@ -1,100 +1,49 @@
-import axios from 'axios'
-import JoditEditor from 'jodit-react';
-import React, { useEffect, useRef, useState } from 'react'
-import { Button, Modal } from 'react-bootstrap'
-import { AiOutlineClose } from 'react-icons/ai';
-import { FaEye } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
-const Solution = () => {
-  const [getSolutionData, setGetSolutionData] = useState([])
-  const [addSoltionHomePoup, setAddSolutionHomePopUp] = useState(false)
-  const [addSolutionHomeData, setAddSolutionHomeData] = useState({ title: "", desc: "", images: "" })
-  const [editSolutionHomeData, seteditSolutionHomeData] = useState({ title: "", desc: "", images: "" })
-  const [editPopUpShow, setEditPopUpShow] = useState(false)
-  const [addSelectedFile, setAddSelectedFile] = useState(null);
-  const [EditSelectedFile, setEditSelectedFile] = useState(null);
-  const [editId, setEditId] = useState(null);
-  const [HomeSolutionDescData, setHomeSolutionDescData] = useState(null);
-  const [DescModal, setDescModal] = useState(false);
-  const addEditor = useRef(null);
-  const editEditor = useRef(null)
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(3);
+const SolutionCMS = () => {
+  const [solutions, setSolutions] = useState([]); // Fixed the name from 'solution' to 'solutions'
+  const [solutionId, setSolutionId] = useState(null);
+  const [solutionName, setSolutionName] = useState('');
+  const [cardImage, setCardImage] = useState(null);
+  const [cardDescription, setCardDescription] = useState('');
+  const [headerTagLine, setHeaderTagLine] = useState('');
+  const [headerImage, setHeaderImage] = useState(null);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = getSolutionData.slice(indexOfFirstItem, indexOfLastItem);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-   
-  const handleAddfileChange = (e) => {
-    setAddSolutionHomeData({ ...addSolutionHomeData, images: e.target.files[0] });
-    setAddSelectedFile(e.target.files[0]);
+  const [showModal, setShowModal] = useState(false);
+  const [showHeaderModal, setShowHeaderModal] = useState(false);
+  const [showCardModal, setShowCardModal] = useState(false);
+
+
+  const openHeaderModal = (solution) => {
+    setHeaderTagLine(solution.headerTagLine);
+    setHeaderImage(solution.headerImage);
+    setShowHeaderModal(true);
   };
-  const handleEditFileChange = (e) => {
-    seteditSolutionHomeData({ ...editSolutionHomeData, images: e.target.files[0] });
-    setEditSelectedFile(e.target.files[0])
-  }
 
-  const AddHomeSolutionDataFunc = async () => {
+  const closeHeaderModal = () => {
+    setShowHeaderModal(false);
+  };
+
+
+  // Fetch all solution data on mount
+  useEffect(() => {
+    fetchSolutions();
+  }, []);
+
+  const fetchSolutions = async () => {
     try {
-      const formData = new FormData();
-      formData.append('title', addSolutionHomeData.title);
-      formData.append('desc', addSolutionHomeData.desc);
-      formData.append('images', addSolutionHomeData.images);
-
-      const response = await axios.post("http://localhost:8080/add-solution-we-offer-data", formData);
-      if (response.status === 200) {
-        setAddSolutionHomePopUp(false);
-        setEditSelectedFile(null)
-        setAddSolutionHomeData({ title: "", images: "", desc: "" });
-        getHomeSolutionDataFunc();
-      }
+      const response = await axios.get('http://localhost:8080/get-latest-solution-data');
+      console.log(response.data);
+      setSolutions(response.data);
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching Solution Data:', error);
     }
-  }
+  };
 
-  const getHomeSolutionDataFunc = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/get-solution-we-offer-data")
-      // console.log(response.data.getData)
-      setGetSolutionData(response.data.getData)
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const editHomeSolutionDataFunc = async () => {
-    try {
-      const formData = new FormData();
-      formData.append('title', editSolutionHomeData.title);
-      formData.append('desc', editSolutionHomeData.desc);
-      formData.append('images', editSolutionHomeData.images);
-      const response = await axios.put(`http://localhost:8080/edit-solution-we-offer-data/${editId}`, formData)
-      if (response.status === 200) {
-        setEditPopUpShow(false);
-        setEditSelectedFile(null)
-        getHomeSolutionDataFunc();
-        Swal.fire(
-          'Saved!',
-          'Your changes have been saved.',
-          'success'
-        );
-      }
-
-    } catch (error) {
-      console.log(error)
-      Swal.fire(
-        'Error!',
-        'Failed to save changes. Please try again later.',
-        'error'
-      );
-    }
-  }
-
-  const deleteHomeSolutionData = async (id) => {
+  const handleDelete = async (id) => {
     Swal.fire({
       title: 'Are you sure?',
       text: 'You will not be able to recover this data!',
@@ -105,207 +54,253 @@ const Solution = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        // If user confirms deletion
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-solution-we-offer-data/${id}`);
+          const response = await axios.delete(`http://localhost:8080/delete-existing-solution-data-by-id/${id}`);
           if (response.status === 200) {
-            setEditId(null);
-            getHomeSolutionDataFunc();
-            Swal.fire(
-              'Deleted!',
-              'Your data has been deleted.',
-              'success'
-            );
+            fetchSolutions(); // Refresh the solution list
+            Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
           }
         } catch (error) {
           console.log(error);
-          Swal.fire(
-            'Error!',
-            'Failed to delete data. Please try again later.',
-            'error'
-          );
+          Swal.fire('Error!', 'Failed to delete data. Please try again later.', 'error');
         }
       }
     });
-  }
+  };
 
+  const openModal = (solution = null) => {
+    if (solution) {
+      setSolutionId(solution._id);
+      setSolutionName(solution.solutionName);
+      setHeaderTagLine(solution.headerTagLine);
+      setCardDescription(solution.cardDescription);
+      setCardImage(null); // Reset cardImage for editing
+      setHeaderImage(null); // Reset headerImage for editing
+    } else {
+      setSolutionId(null); // Reset ID for adding a new solution
+      setSolutionName('');
+      setHeaderTagLine('');
+      setCardDescription('');
+    }
+    setShowModal(true);
+  };
 
+  const closeModal = () => {
+    setShowModal(false);
+    // Reset form fields
+    setSolutionId(null);
+    setSolutionName('');
+    setHeaderTagLine('');
+    setCardDescription('');
+    setCardImage(null);
+    setHeaderImage(null);
+  };
 
-  useEffect(() => {
-    getHomeSolutionDataFunc()
-  }, [])
+  const openCardDataModal = (solution) => {
+    setCardImage(solution.cardImage);
+    setCardDescription(solution.cardDescription);
+    setShowCardModal(true);
+  };
 
+  const closeCardDataModal = () => {
+    setShowCardModal(false);
+  };
 
+  const handleFileChange = (event, setImage) => {
+    setImage(event.target.files[0]); // Handle file input
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('solutionName', solutionName);
+    formData.append('headerTagLine', headerTagLine);
+    formData.append('cardDescription', cardDescription);
+    if (headerImage) formData.append('headerImage', headerImage);
+    if (cardImage) formData.append('cardImage', cardImage);
+
+    try {
+      if (solutionId) {
+        // Update existing solution
+        const response = await axios.put(`http://localhost:8080/edit-solution-data/${solutionId}`, formData);
+        if (response.status === 200) {
+          Swal.fire('Success!', 'Solution updated successfully.', 'success');
+        }
+      } else {
+        // Create new solution
+        const response = await axios.post('http://localhost:8080/create-new-solution-data', formData);
+        if (response.status === 200) {
+          Swal.fire('Success!', 'New solution added successfully.', 'success');
+        }
+      }
+      fetchSolutions(); // Refresh the solutions list
+      closeModal(); // Close the modal after submission
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      Swal.fire('Error!', 'Failed to save data. Please try again later.', 'error');
+    }
+  };
 
   return (
-    <div className="w-full bg-gray-300 h-full mx-auto p-4">
-      <div className="flex justify-between mb-5 mr-3">
-        <h5 className='underline'>Solution Data</h5>
-        <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setAddSolutionHomePopUp(true)}>+</Button>
+    <div className="p-4">
+      <div className='flex justify-between'>
+        <h1 className="text-xl font-bold mb-4">Solutions Management</h1>
+        <button onClick={() => openModal()} className="bg-blue-500 text-white px-4 py-2 rounded">
+          Add New Solution
+        </button>
       </div>
-      <table className="w-[95%] border-collapse border">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border p-2">Sr. No</th>
-            <th className="border p-2">Solution Title</th>
-            <th className="border p-2">Solution Description</th>
-            <th className="border p-2">Solution Image</th>
-            <th className="border p-2">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.map((homeSoluData, i) => (
-            <tr key={i}>
-              <td className="border p-2">{i + indexOfFirstItem + 1}</td>
-              <td className="border p-2">{homeSoluData.title}</td>
-              <td className="border p-2">
-                <FaEye onClick={() => { setHomeSolutionDescData(homeSoluData.desc); setDescModal(true) }} className='usersor-pointer' />
 
-              </td>
-              <td className="border p-2"><img src={homeSoluData.SolutionhomePageImage} alt={homeSoluData.title} className='h-[50px]' /></td>
-              <td className="border p-2 flex gap-x-[20px]">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(homeSoluData._id) }}>Edit</button>
-
-                <button className=' hover:bg-red-700 bg-[red] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={()=>deleteHomeSolutionData(homeSoluData._id)}>Delete</button>
-              </td>
+      <div className="mt-4">
+        <table className="w-full border-collapse ">
+          <thead className='bg-gray-500 text-white'>
+            <tr>
+              <th className="border p-2">Solution Name</th>
+              <th className="border p-2">Header Data</th>
+              <th className="border p-2">Card Data</th>
+              <th className="border p-2">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-       {/* Pagination */}
-       <ul className="flex justify-center mt-[90px]">
-        <li>
-          <button onClick={() => setCurrentPage(prevPage => Math.max(prevPage - 1, 1))} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">Previous</button>
-        </li>
-        {[...Array(Math.ceil(getSolutionData.length / itemsPerPage)).keys()].map(number => (
-          <li key={number} className="mx-1">
-            <button onClick={() => paginate(number + 1)} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">{number + 1}</button>
-          </li>
-        ))}
-        <li>
-          <button onClick={() => setCurrentPage(prevPage => Math.min(prevPage + 1, Math.ceil(getSolutionData.length / itemsPerPage)))} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">Next</button>
-        </li>
-      </ul>
+          </thead>
+          <tbody>
+            {solutions.map(solution => (
+              <tr key={solution._id}>
+                <td className="border p-2">{solution.solutionName}</td>
+                <td className="border p-2">
+                  <button onClick={() => openHeaderModal(solution)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
+                </td>
+                <td className="border p-2">
+                  <button onClick={() => openCardDataModal(solution)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
+                </td>
+                <td className="border p-2">
+                  <button onClick={() => openModal(solution)} className="bg-green-500 text-white px-2 py-1 rounded mr-2">Edit</button>
+                  <button onClick={() => handleDelete(solution._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-      {/* Add Home Solution Data Pop Up */}
-
-      <Modal show={addSoltionHomePoup} onHide={() => setAddSolutionHomePopUp(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Add Solution We Offer Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">Title</label>
-              <input type="text" name="title" id="title" className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500" onChange={(e) => setAddSolutionHomeData({ ...addSolutionHomeData, title: e.target.value })} />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="desc" className="block text-gray-700 font-bold">Description</label>
-
-              <JoditEditor
-                ref={addEditor}
-                value={addSolutionHomeData.desc}
-                onChange={(value) => setAddSolutionHomeData({ ...addSolutionHomeData, desc: value })}
-              />
-
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
-              <div className="relative">
-                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
-                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
-                {addSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    {/* Button to remove selected file */}
-                    <button className="text-red-500 hover:text-red-700  mt-1 ms-[110px] " onClick={() => setAddSelectedFile(null)}>
-                      < AiOutlineClose />
-                    </button>
-                    <img src={URL.createObjectURL(addSelectedFile)} alt="Selected File" className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2" />
-                    <p className="text-gray-700">{addSelectedFile.name}</p>
-
-                  </div>
-                )}
+      <Modal show={showModal} onHide={closeModal}>
+        <div className='w-[50vw] mx-auto bg-white'>
+          <Modal.Header closeButton className="bg-gray-100">
+            <Modal.Title>{solutionId ? 'Edit Solution' : 'Add New Solution'}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="w-full mx-auto">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block text-gray-700">Solution Name</label>
+                <input
+                  type="text"
+                  value={solutionName}
+                  onChange={(e) => setSolutionName(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
               </div>
-            </fieldset>
-          </form>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Header Tagline</label>
+                <input
+                  type="text"
+                  value={headerTagLine}
+                  onChange={(e) => setHeaderTagLine(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Header Image</label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setHeaderImage)}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Image</label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setCardImage)}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Description</label>
+                <textarea
+                  value={cardDescription}
+                  onChange={(e) => setCardDescription(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div className='flex justify-start gap-4'>
+                <button className='py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md' type="submit">
+                  {solutionId ? 'Update Solution' : 'Add Solution'}
+                </button>
+                <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeModal}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </Modal.Body>
+        </div>
+      </Modal>
+
+      <Modal show={showHeaderModal} onHide={closeHeaderModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Header Data</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold font-serif">Header Tagline</label>
+            <p>{headerTagLine}</p>
+          </div>
+
+          <div className="mb-4">
+            <label className="lock text-gray-700 font-bold font-serif">Header Image</label>
+            {headerImage && (
+              <img src={headerImage} alt="Header" className="w-full h-auto rounded" />
+            )}
+          </div>
         </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => setAddSolutionHomePopUp(false)} className="text-gray-700 hover:text-gray-900">Close</Button>
-          <Button variant="primary" onClick={() => { { AddHomeSolutionDataFunc(); setAddSolutionHomePopUp(false) } }} className="bg-blue-500 hover:bg-blue-600 text-white">Save Changes</Button>
+        <Modal.Footer>
+          <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeHeaderModal}>
+            Close
+          </button>
         </Modal.Footer>
       </Modal>
 
-      {/* Edit Modal pop up */}
-      <Modal show={editPopUpShow} onHide={() => setEditPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit Hero Section Data</Modal.Title>
+      {/* Card Data Modal */}
+      <Modal show={showCardModal} onHide={closeCardDataModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Card Data</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">Title</label>
-              <input type="text" name="hero_title" id="title" className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500" onChange={(e) => { seteditSolutionHomeData({ ...editSolutionHomeData, title: e.target.value }) }} />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="hero-home-desc" className="block text-gray-700 font-bold">Home Service Desc</label>
+        <Modal.Body>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold font-serif">Card Description</label>
+            <p>{cardDescription}</p>
+          </div>
 
-              <JoditEditor
-                ref={editEditor}
-                value={editSolutionHomeData.desc}
-                onChange={(value) => { seteditSolutionHomeData({ ...editSolutionHomeData, desc: value }) }}
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="hero-home-image" className="block font-bold">Home Service Image</label>
-              <div className="relative">
-                <div>
-                  <input type="file" name="hero_image" id="hero-home-image" className="form-input  block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                  <label htmlFor="hero-home-image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
-                </div>
-
-                {EditSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button className="text-red-500 hover:text-red-700  mt-1 ms-[110px] " onClick={() => setEditSelectedFile(null)}>
-                      < AiOutlineClose />
-                    </button>
-                    <img src={URL.createObjectURL(EditSelectedFile)} alt="Selected File" className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2" />
-                    <p className="text-gray-700">{EditSelectedFile.name}</p>
-                  </div>
-                )}
-              </div>
-            </fieldset>
-          </form>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold font-serif">Card Image</label>
+            {cardImage && (
+              <img src={cardImage} alt="Card" className="w-[150px] h-[150px] rounded" />
+            )}
+          </div>
         </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => setEditPopUpShow(false)} className="text-gray-700 hover:text-gray-900">
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeCardDataModal}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => { setEditPopUpShow(false); editHomeSolutionDataFunc() }} className="bg-blue-500 hover:bg-blue-600 text-white">
-            Save Changes
-          </Button>
         </Modal.Footer>
       </Modal>
 
-
-      {/* description showing modal */}
-
-      <Modal size="lg" show={DescModal} onHide={() => setDescModal(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit Hero Section Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <div dangerouslySetInnerHTML={{ __html: HomeSolutionDescData }} />
-
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => setDescModal(false)} className="text-gray-700 hover:text-gray-900">
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
 
     </div>
-  )
-}
+  );
+};
 
-export default Solution
+export default SolutionCMS;
