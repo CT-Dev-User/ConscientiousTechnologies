@@ -27,7 +27,7 @@ const MainDedicatedDevService = () => {
 
   return (
     <div>
-      <AllHeader category="Services" subCategory="Dedicated Software Team"/>
+      <AllHeader category="Dedicated Software Team"/>
       <OurPartener />
       <WhyChooseCTSlider category="Services" subCategory="Dedicated Software Team"/>
       <PartnerUpWithCity />

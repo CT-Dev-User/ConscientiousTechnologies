@@ -24,7 +24,7 @@ const QaService = () => {
 
   return (
     <div>
-      <AllHeader category="Services" subCategory="QA & Services" />
+      <AllHeader category="QA & Services" />
       <OurPartener />
       <TypesOfSoftwareInCT />
       <AreaOfExperties category="Services" subCategory="QA & Services" />

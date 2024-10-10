@@ -18,7 +18,7 @@ const UI_UXService = () => {
 
     return (
         <div>
-            <AllHeader category="Services" subCategory="UI-UX Design"/>
+            <AllHeader category="UI UX Design"/>
             <OurPartener />
             <WhyChooseCTSlider category="Services" subCategory="UI-UX Design"/>
             <PerkOfWebDesign />

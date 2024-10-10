@@ -2,7 +2,6 @@ import React from 'react'
 import OurPartener from '../../HomePage/Component/OurPartener/OurPartener'
 import MeetAllHealthcare from './Components/MeetAllHealthcare'
 import ITSolution from './Components/ITSolution'
-import TechnologyHeader from './Components/Technology/TechnologyHeader'
 import CaseStudies from '../../HomePage/Component/CaseStudies/CaseStudies'
 import MeetOurClient from '../../HomePage/Component/MeetOurClient/MeetOurClient'
 import BookFreeConsultation from '../../HomePage/Component/BookFreeConsultation/BookFreeConsultation'
@@ -11,6 +10,7 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import ReliableToolsHeading from '../../HomePage/Component/ReliableTools/ReliableToolsHeading'
 const Healthcare = () => {
     return (
         <div>
@@ -19,7 +19,7 @@ const Healthcare = () => {
             <MeetAllHealthcare />
             <WhyChooseCTSlider category="Industries" subCategory="Healthcare"/>
             <ITSolution />
-            <TechnologyHeader />
+            <ReliableToolsHeading/>
             <ReliableTools category="Industries" subCategory="Healthcare"/>
             <CaseStudies category="Industries" subCategory="Healthcare"/>
             <MeetOurClient />

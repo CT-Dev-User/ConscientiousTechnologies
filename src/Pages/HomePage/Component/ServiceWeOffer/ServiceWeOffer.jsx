@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 const ServiceWeOffer = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [homeServiceData, setHomeServiceData] = useState([]);
+  const [ServiceData, setServiceData] = useState([]);
+
   const navigate = useNavigate();
   const sliderRef = useRef(null);
 
@@ -29,20 +30,22 @@ const ServiceWeOffer = () => {
     sliderRef.current.slickGoTo(index);
   };
 
-  const fetchHomeServiceData = async () => {
+  const fetchServiceData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-service-data"
+        "http://localhost:8080/get-latest-service-data"
       );
-      setHomeServiceData(response.data.getData);
+      setServiceData(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchHomeServiceData();
+    fetchServiceData();
   }, []);
+
+
 
   return (
     <div
@@ -58,8 +61,8 @@ const ServiceWeOffer = () => {
           stage of SDLC..{" "}
         </p>
       </div>
-      <div className="hidden w-[90%] lg:w-[85%] mx-auto lg:flex gap-x-6 gap-y-10 flex-wrap mt-10">
-        {homeServiceData.map((item, index) => (
+      <div className="hidden w-[90%] lg:w-[85%] mx-auto lg:flex gap-x-7 gap-y-10 flex-wrap mt-10">
+        {ServiceData.map((item, index) => (
           <div
             key={index}
             className="service-item w-[23%]"
@@ -68,9 +71,9 @@ const ServiceWeOffer = () => {
             onClick={() => handleServiceItemClick(index)}
           >
             <div
-              className="text-[white] w-[100%] min-h-96 relative text-sm"
+              className="text-[white] w-[100%] h-[470px] relative text-sm"
               style={{
-                backgroundImage: `url(${item.ServiceHomePageimage})`,
+                backgroundImage: `url(${item.cardImage})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -83,44 +86,59 @@ const ServiceWeOffer = () => {
                     : "hidden"
                 }
               >
-                <div className="p-4">
-                  {item.points.map((point, index) => (
-                    <li key={index} className="mb-2 list-none">
-                      <h3 className="text-sm font-semibold underline ">
-                        {point.title}
-                      </h3>
-                      <p
-                        className="font-normal text-xs"
-                        dangerouslySetInnerHTML={{ __html: point.description }}
-                      />{" "}
-                      {/* Display description */}
-                    </li>
-                  ))}
+                <div className="p-4 flex flex-col gap-3">
+                  {/* {item.points.map((point, index) => ( */}
+                  <li key={index} className="mb-2 list-none">
+                    <h3 className="text-base font-semibold underline ">
+                      {item.cardPoint1Heading}
+                    </h3>
+                    <p className="font-normal text-sm">{item.cardPoint1Desc}</p>{" "}
+
+                  </li>
+                  <li key={index} className="mb-2 list-none">
+                    <h3 className="text-base font-semibold underline ">
+                      {item.cardPoint2Heading}
+                    </h3>
+                    <p className="font-normal text-sm">{item.cardPoint2Desc}</p>{" "}
+                  </li>
+                  <li key={index} className="mb-2 list-none">
+                    <h3 className="text-base font-semibold underline ">
+                      {item.cardPoint3Heading}
+                    </h3>
+                    <p className="font-normal text-sm">{item.cardPoint3Desc}</p>{" "}
+                  </li>
+                  <li key={index} className="mb-2 list-none">
+                    <h3 className="text-base font-semibold underline ">
+                      {item.cardPoint4Heading}
+                    </h3>
+                    <p className="font-normal text-sm">{item.cardPoint4Desc}</p>{" "}
+                  </li>
+                  {/* ))} */}
                 </div>
               </div>
               <button
-                className="text-xs border border-[white] px-5 w-40 h-11 absolute bottom-[-10px] left-[-5px] text-center bg-cyan-500 cursor-pointer"
+                className="text-xs border border-white px-5 w-40 h-11 absolute bottom-[-10px] left-[-5px] text-center bg-cyan-500 cursor-pointer"
                 style={{
                   opacity: hoveredIndex === index ? 1 : 0,
                   transition: "opacity .4s ease-in-out",
                 }}
                 onClick={() => {
-                  navigate(`/service/${item.title}`);
+                  navigate(`/service/${item.serviceName}`);
                 }}
               >
                 Explore More &rarr;
               </button>
               <button
-                className="text-xs border border-[white] px-4 absolute bottom-[-10px] left-[-5px] bg-[#474747] w-52 h-11 text-center"
+                className="text-sm border border-[white] px-4 absolute bottom-[-10px] left-[-5px] bg-[#474747] w-52 h-11 text-center"
                 style={{
                   opacity: hoveredIndex === index ? 0 : 1,
                   transition: "opacity .4s ease-in-out",
                 }}
                 onClick={() => {
-                  navigate(`/Services/${item.title}`);
+                  navigate(`/Services/${item.serviceName}`);
                 }}
               >
-                {item.title}
+                {item.serviceName}
               </button>
             </div>
           </div>
@@ -128,43 +146,68 @@ const ServiceWeOffer = () => {
       </div>
 
       <div className="lg:hidden flex w-[90%] flex-wrap mt-10 gap-4 mx-auto">
-        {homeServiceData.map((item, index) => (
+        {ServiceData.map((item, index) => (
           <div
             className="w-fit-content border border-gray-300 rounded-6 p-1"
             key={index}
             onClick={() => handleServiceItemClick(index)}
           >
-            <h3 className="text-xs">{item.title}</h3>
+            <h3 className="text-xs">{item.serviceName}</h3>
           </div>
         ))}
       </div>
 
       <div className="lg:hidden w-[90%] h-[auto] mx-auto mt-10">
         <Slider {...settings} className="w-[100%]" ref={sliderRef}>
-          {homeServiceData.map((item, index) => (
+          {ServiceData.map((item, index) => (
             <div key={index} className="service-item">
               <div
                 className="text-[white] w-[95%] h-[450px] bg-[white] relative text-xs gap-2"
                 style={{
-                  backgroundImage: `url(${item.ServiceHomePageimage})`,
+                  backgroundImage: `url(${item.cardImage})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
               >
                 <div className="overlay1"></div>
                 <div className="w-[100%] h-[100%] absolute top-0">
-                  <div
-                    dangerouslySetInnerHTML={{ __html: item.points }}
-                    className="py-1 px-2"
-                  />
+                  <div className="p-4">
+                    {/* {item.points.map((point, index) => ( */}
+                    <li key={index} className="mb-2 list-none">
+                      <h3 className="text-sm font-semibold underline ">
+                        {item.cardPoint1Heading}
+                      </h3>
+                      <p className="font-normal text-xs">{item.cardPoint1Desc}</p>{" "}
+
+                    </li>
+                    <li key={index} className="mb-2 list-none">
+                      <h3 className="text-sm font-semibold underline ">
+                        {item.cardPoint2Heading}
+                      </h3>
+                      <p className="font-normal text-xs">{item.cardPoint2Desc}</p>{" "}
+                    </li>
+                    <li key={index} className="mb-2 list-none">
+                      <h3 className="text-sm font-semibold underline ">
+                        {item.cardPoint3Heading}
+                      </h3>
+                      <p className="font-normal text-xs">{item.cardPoint3Desc}</p>{" "}
+                    </li>
+                    <li key={index} className="mb-2 list-none">
+                      <h3 className="text-sm font-semibold underline ">
+                        {item.cardPoint4Heading}
+                      </h3>
+                      <p className="font-normal text-xs">{item.cardPoint4Desc}</p>{" "}
+                    </li>
+                    {/* ))} */}
+                  </div>
                 </div>
                 <button
                   className="border border-[white] px-[20px] absolute bottom-0 bg-[#474747] w-52 h-11 text-center"
                   onClick={() => {
-                    navigate(`/Services/${item.title}`);
+                    navigate(`/Services/${item.serviceName}`);
                   }}
                 >
-                  {item.title}
+                  {item.serviceName}
                 </button>
               </div>
             </div>

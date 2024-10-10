@@ -108,7 +108,7 @@ import BigData from './Pages/Technologies/bigdata/BigData';
 import MainPage from './Pages/contactUs/MainPage';
 import Blogs from './Pages/blogs/Blogs';
 import AboutUs from './Pages/AboutUs/AboutUs';
-import Solution from './Pages/Solution/solutionPage/Solution';
+// import Solution from './Pages/Solution/solutionPage/Solution';
 
 function App() {
   const [hideNavbar, setHideNavbar] = useState(false);
@@ -125,7 +125,7 @@ function App() {
         <Route path='Services/Artificial Intelligence (AI) Services' element={<ArtificialIntelligence />} />
         <Route path='Services/QA & Services' element={<QaService />} />
         <Route path='Services/Ecommerce Services' element={<Ecommerse />} />
-        <Route path='Services/UI-UX Design' element={<UI_UXService />} />
+        <Route path='Services/UI UX Design' element={<UI_UXService />} />
         <Route path='Services/Cloud Computing Services' element={<CloudComputing />} />
 
         {/* software consulting service  */}

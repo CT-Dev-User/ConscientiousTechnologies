@@ -21,7 +21,7 @@ const Ecommerse = () => {
 
   return (
     <div>
-      <AllHeader category="Services" subCategory="Ecommerce Services"/>
+      <AllHeader category="Ecommerce Services"/>
       <OurPartener />
       <ExploreConsuting />
       <WhyChooseCTSlider category="Services" subCategory="Ecommerce Services"/>

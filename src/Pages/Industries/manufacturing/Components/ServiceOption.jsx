@@ -48,22 +48,62 @@ const ServiceOption = () => {
     ]
     return (
 
-        <div className='w-[100vw] h-[auto] box-border py-[80px] md:pt-[40px] pb-[20px]'>
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>Choose Your Service Option </h1>
-                <p className='w-[95%] text-[14px] mt-2 md:w-[100%] md:text-[16px]'>Telecommunications software is used to organize and manage all aspects of electronic data (text, voice, video, etc.) exchange. ScienceSoft helps telcos ensure that their networks run like clockwork.</p>
-
-            </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-[20px]'>
-                {ServiceOptionArr.map((item, index) => (
-                    <div key={index} className='w-[350px] md:w-[90%] h-[200px] border border-gray-300 p-3 md:w-full md:border-none md:p-0 md:h-auto md:py-3'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+        <div className="w-screen h-auto">
+        <div className="w-full h-auto bg-black box-border py-16 text-white hidden lg:block">
+          <div className="lg:w-[85%] mx-auto">
+            <h1 className="lg:text-3xl text-xl 2xl:text-[2rem] font-bold text-[blue] lg:text-white">
+            Choose Your Service Option 
+            </h1>
+            <p className="w-[85%] text-base mt-2">
+            Telecommunications software is used to organize and manage all aspects of electronic data (text, voice, video, etc.) exchange. ScienceSoft helps telcos ensure that their networks run like clockwork.
+            </p>
+          </div>
+          <div className="w-[85%] mx-auto mt-10 hidden lg:block">
+            {ServiceOptionArr.map((step, index) => {
+              return (
+                <div
+                  key={index}
+                  className={`${
+                    index % 2 === 0 ? "flex-row border-r-2 border-r-[#FFC635]" : "border-l-2 border-l-[#FFC635] ml-[50%] flex-row-reverse"
+                  } w-1/2 h-auto py-5 flex justify-between flex-wrap`}
+                >
+                  <div className="w-[95%] flex flex-col h-auto bg-[#3C3C3C] p-4 box-border">
+                    <h4 className="text-base 2xl:text-xl">{step.step}</h4>
+                    <h5 className="text-base 2xl:text-xl">{step.title}</h5>
+                    <div className="text-sm font-normal w-[95%]">{step.desc}</div>
+                  </div>
+                  <div className="w-[2px] h-auto relative">
+                    <div className={`w-[25px] h-[25px] bg-[#FFC635] absolute top-[-20px] ${index % 2 === 0 ? "left-1/2" : "left-0"} -translate-x-1/2 -translate-y-1/2`}>
+  
                     </div>
-                ))}
-            </div>
-
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
+  
+        <div className="w-full py-10 lg:hidden block">
+          <div className="mx-auto w-[95%]">
+            <h1 className="font-bold text-base text-blue">
+            Choose Your Service Option
+            </h1>
+            <p className="text-sm mt-2 w-full">
+            Telecommunications software is used to organize and manage all aspects of electronic data (text, voice, video, etc.) exchange. ScienceSoft helps telcos ensure that their networks run like clockwork.
+            </p>
+          </div>
+          <div className="w-[95%] flex mx-auto flex-wrap gap-3 mt-8 items-center justify-center ">
+            {ServiceOptionArr.map((item, index) => (
+              <div key={index} className="p-3 w-full h-auto border">
+                <h1 className="text-base">{item.title}</h1>
+                <div className="text-xs mt-2 font-medium">{item.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      
 
     )
 }

@@ -19,7 +19,7 @@ import Footer from '../../HomePage/Component/Footer/Footer'
 const ArtificialIntelligence = () => {
   return (
     <div>
-      <AllHeader category="Services" subCategory="Artificial Intelligence (AI) Services" />
+      <AllHeader category="Artificial Intelligence (AI) Services" />
       <OurPartener />
       <WhyChooseCTSlider category="Services" subCategory="Artificial Intelligence (AI) Services" />
       <SoftWareAdvBussiness />

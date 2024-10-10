@@ -40,22 +40,28 @@ const WhoWeServe = () => {
     }
     ]
     return (
-        <div className='w-[100vw] h-[auto] box-border py-[80px] md:pt-[40px] pb-[20px]'>
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>Whom We Serve </h1>
-                <p className='w-[95%] text-[14px] mt-2 md:w-[100%] md:text-[16px]'>From simple mobile apps to large-scale networks for multi-party transaction processing – as a fintech software development company, ScienceSoft ensures prompt and risk-free implementation of all kinds of fintech initiatives.</p>
 
+        <div className="w-full py-16">
+            <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
+                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>
+                Whom We Serve 
+                </h1>
+                <p className='lg:w-11/12 mt-2 w-full text-base'>
+                From simple mobile apps to large-scale networks for multi-party transaction processing – as a fintech software development company, ScienceSoft ensures prompt and risk-free implementation of all kinds of fintech initiatives.
+                </p>
             </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-[20px]'>
+            <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-5 w-[95%]'>
                 {WhoWeServeArr.map((item, index) => (
-                    <div key={index} className='w-[350px] md:w-[90%] h-[200px] border border-gray-300 p-3 md:w-full md:border-none md:p-0 md:h-auto md:py-3'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-medium'>{item.desc}</div>
+                    <div key={index} className='lg:w-[31%] md:w-[45%] w-full lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                        <h1 className='text-lg text-bold'>{item.title}</h1>
+                        <div className='text-sm mt-3 font-medium'>
+                            <p className='text-base'>{item.desc}</p>
+                        </div>
                     </div>
                 ))}
             </div>
-
         </div>
+
     )
 }
 

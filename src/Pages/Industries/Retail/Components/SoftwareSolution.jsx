@@ -41,21 +41,27 @@ const SoftwareSolution = () => {
     ]
     return (
 
-        <div className='w-[100vw] h-[auto] box-border py-[80px] md:py-[30px] md:bg-[black] md:text-[white]'>
-            <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[#3970F0]'>Software Solutions We Provide</h1>
-                <p className='w-[95%] text-[14px] mt-2 md:w-[100%] md:text-[16px]'>From simple mobile apps to large-scale networks for multi-party transaction processing – as a fintech software development company, ScienceSoft ensures prompt and risk-free implementation of all kinds of fintech initiatives.</p>
-            </div>
-            <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8 md:w-[95%]'>
-                {SoftwareSolutionArr.map((item, index) => (
-                    <div key={index} className='w-[350px] h-[200px] border border-gray-300 p-3 md:text-[white] pt-6' style={{ backgroundColor: `#${item.bgColor}` }}>
-                        <h1 className='text-[18px] w-[90%]'>{item.title}</h1>
-                        <div className='text-[13.5px] mt-2 font-normal mx-auto w-[95%]'>{item.desc}</div>
-                    </div>
-                ))}
-            </div>
+        <div className="w-full py-16 ">
+        <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
+            <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>
+            Software Solutions We Provide               </h1>
+            <p className='lg:w-11/12 mt-2 w-full text-base'>
+            From simple mobile apps to large-scale networks for multi-party transaction processing – as a fintech software development company, ScienceSoft ensures prompt and risk-free implementation of all kinds of fintech initiatives.
+            </p>
         </div>
+        <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-5 w-[95%]'>
+            {SoftwareSolutionArr.map((item, index) => (
+                <div key={index} className='lg:w-[31%] md:w-[45%] w-full lg:border lg:border-gray-300 p-3 h-auto py-3'>
+                    <h1 className='text-lg text-bold'>{item.title}</h1>
+                    <div className='text-sm mt-3 font-medium'>
 
+                        <p className='mb-2 text-base'>{item.desc}</p>
+
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div >
     )
 }
 
