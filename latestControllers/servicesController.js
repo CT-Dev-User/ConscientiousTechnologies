@@ -25,7 +25,7 @@ export const createService = async (req, res) => {
     try {
         const {
             serviceName,
-            headerTagLine,
+            headerDataTagLine,
             cardPoint1Heading, cardPoint1Desc,
             cardPoint2Heading, cardPoint2Desc,
             cardPoint3Heading, cardPoint3Desc,
@@ -45,7 +45,7 @@ export const createService = async (req, res) => {
 
         const newService = new LatestServiceModel({
             serviceName,
-            headerTagLine,
+            headerDataTagLine,
             headerImage,
             cardImage,
             cardPoint1Heading,
@@ -72,7 +72,7 @@ export const editService = async (req, res) => {
         const { id } = req.params;
         const {
             serviceName,
-            headerTagLine,
+            headerDataTagLine,
             cardPoint1Heading, cardPoint1Desc,
             cardPoint2Heading, cardPoint2Desc,
             cardPoint3Heading, cardPoint3Desc,
@@ -99,7 +99,7 @@ export const editService = async (req, res) => {
             id,
             {
                 serviceName,
-                headerTagLine,
+                headerDataTagLine,
                 headerImage,
                 cardImage,
                 cardPoint1Heading,

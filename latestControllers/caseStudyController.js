@@ -182,6 +182,28 @@ export const getCaseStudyById = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+// Controller to get a case study by its ID
+export const getCaseStudyBySubCategory = async (req, res) => {
+    try {
+        const { category, Subcategory } = req.params;
+        const caseStudy = await CaseStudyModel.find({category:category, Subcategory:Subcategory});
+        if (!caseStudy) return res.status(404).json({ message: "Case study not found" });
+        res.status(200).json(caseStudy);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+// Controller to get a case study by its ID
+export const getCaseStudyByCategory = async (req, res) => {
+    try {
+        const { category } = req.params;
+        const caseStudy = await CaseStudyModel.find({category:category});
+        if (!caseStudy) return res.status(404).json({ message: "Case study not found" });
+        res.status(200).json(caseStudy);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 // Controller to delete a case study by ID
 export const deleteCaseStudy = async (req, res) => {
