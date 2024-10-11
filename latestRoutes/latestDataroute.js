@@ -3,7 +3,7 @@ import express from 'express';
 import upload from "../multer.js"; // assuming multer is set up for file uploads
 import { createService, deleteService, editService, getAllServices, getServiceById, getServiceByserviceName } from '../latestControllers/servicesController.js';
 import { createSolution, deleteSolution, editSolution, getAllSolutions, getSolutionById, getSolutionBySolutionName } from '../latestControllers/solutionController.js';
-import { createIndustry,deleteIndustry, editIndustry, getAllIndustries, getIndustryById } from '../latestControllers/industriesController.js';
+import { createIndustry,deleteIndustry, editIndustry, getAllIndustries, getIndustryById, getIndustryByIndustryName } from '../latestControllers/industriesController.js';
 import { createCaseStudy, deleteCaseStudy, editCaseStudy, getAllCaseStudies, getCaseStudyByCategory, getCaseStudyById, getCaseStudyBySubCategory } from '../latestControllers/caseStudyController.js';
 
 const latestrouter = express.Router();
@@ -52,6 +52,7 @@ latestrouter.put('/edit-existing-industry-data/:id', upload.fields([
 
 latestrouter.get('/get-latest-industry-data', getAllIndustries);
 latestrouter.get('/get-latest-industry-data-by-id/:id', getIndustryById);
+latestrouter.get('/get-latest-industry-data-by-industryName/:industryName', getIndustryByIndustryName);
 latestrouter.delete('/delete-existing-industry-data-by-id/:id', deleteIndustry);
 
 

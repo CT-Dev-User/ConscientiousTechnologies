@@ -23,7 +23,7 @@ const uploadToCloudinary = async (filePath) => {
 // Controller to create a new LatestIndustry entry
 export const createIndustry = async (req, res) => {
     try {
-        const { industryName, cardDescription, headerTagLine } = req.body;
+        const { industryName, cardTitle, cardDescription, headerTagLine, headerDescription } = req.body;
 
         // File upload handling for card and header images
         let cardImageUrl, headerImageUrl;
@@ -37,8 +37,10 @@ export const createIndustry = async (req, res) => {
         const newIndustry = new LatestIndustryModel({
             industryName,
             cardImage: cardImageUrl || '',
+            cardTitle,
             cardDescription,
             headerTagLine,
+            headerDescription,
             headerImage: headerImageUrl || '',
         });
 
@@ -54,7 +56,7 @@ export const createIndustry = async (req, res) => {
 export const editIndustry = async (req, res) => {
     try {
         const { id } = req.params;
-        const { industryName, cardDescription, headerTagLine } = req.body;
+        const { industryName, cardTitle, cardDescription, headerTagLine, headerDescription } = req.body;
 
         // File upload handling for images
         let cardImageUrl, headerImageUrl;
@@ -75,8 +77,10 @@ export const editIndustry = async (req, res) => {
             {
                 industryName,
                 cardImage: cardImageUrl,
+                cardTitle,
                 cardDescription,
                 headerTagLine,
+                headerDescription,
                 headerImage: headerImageUrl,
             },
             { new: true }
@@ -104,6 +108,16 @@ export const getIndustryById = async (req, res) => {
     try {
         const { id } = req.params;
         const industry = await LatestIndustryModel.findById(id);
+        if (!industry) return res.status(404).json({ message: "Industry not found" });
+        res.status(200).json(industry);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+export const getIndustryByIndustryName = async (req, res) => {
+    try {
+        const { industryName } = req.params;
+        const industry = await LatestIndustryModel.find({ industryName: industryName });
         if (!industry) return res.status(404).json({ message: "Industry not found" });
         res.status(200).json(industry);
     } catch (error) {
