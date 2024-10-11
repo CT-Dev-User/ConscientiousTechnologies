@@ -23,7 +23,7 @@ const uploadToCloudinary = async (filePath) => {
 // Controller to create a new LatestSolution entry
 export const createSolution = async (req, res) => {
     try {
-        const { solutionName, cardDescription, headerTagLine } = req.body;
+        const { solutionName, cardTitle, cardDescription, headerTagLine, headerDescription } = req.body;
 
         // File upload handling for card and header images
         const handleFileUpload = async (fileKey) => {
@@ -39,8 +39,10 @@ export const createSolution = async (req, res) => {
 
         const newSolution = new LatestSolutionModel({
             solutionName,
+            cardTitle,
             cardDescription,
             headerTagLine,
+            headerDescription,
             cardImage: cardImageUrl,
             headerImage: headerImageUrl,
         });
@@ -57,7 +59,7 @@ export const createSolution = async (req, res) => {
 export const editSolution = async (req, res) => {
     try {
         const { id } = req.params;
-        const { solutionName, cardDescription, headerTagLine } = req.body;
+        const { solutionName,cardTitle, cardDescription, headerTagLine, headerDescription } = req.body;
 
         // File upload handling for images
         const handleFileUpload = async (fileKey) => {
@@ -81,8 +83,10 @@ export const editSolution = async (req, res) => {
             id,
             {
                 solutionName,
+                cardTitle,
                 cardDescription,
                 headerTagLine,
+                headerDescription,
                 cardImage: cardImageUrl || existingSolution.cardImage,
                 headerImage: headerImageUrl || existingSolution.headerImage,
             },
@@ -112,6 +116,16 @@ export const getSolutionById = async (req, res) => {
         const { id } = req.params;
         const solution = await LatestSolutionModel.findById(id);
         if (!solution) return res.status(404).json({ message: "Solution not found" });
+        res.status(200).json(solution);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+export const getSolutionBySolutionName = async (req, res) => {
+    try {
+        const { solutionName } = req.params;
+        const solution = await LatestSolutionModel.find({ solutionName: solutionName });
+        if (!solution) return res.status(404).json({ solutionName: solutionName });
         res.status(200).json(solution);
     } catch (error) {
         res.status(500).json({ error: error.message });

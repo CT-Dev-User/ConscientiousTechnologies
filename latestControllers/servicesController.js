@@ -25,7 +25,9 @@ export const createService = async (req, res) => {
     try {
         const {
             serviceName,
-            headerDataTagLine,
+            headerTagLine,
+            headerDescription,
+            cardTitle,
             cardPoint1Heading, cardPoint1Desc,
             cardPoint2Heading, cardPoint2Desc,
             cardPoint3Heading, cardPoint3Desc,
@@ -45,8 +47,10 @@ export const createService = async (req, res) => {
 
         const newService = new LatestServiceModel({
             serviceName,
-            headerDataTagLine,
+            headerTagLine,
+            headerDescription,
             headerImage,
+            cardTitle,
             cardImage,
             cardPoint1Heading,
             cardPoint1Desc,
@@ -72,7 +76,9 @@ export const editService = async (req, res) => {
         const { id } = req.params;
         const {
             serviceName,
-            headerDataTagLine,
+            headerTagLine,
+            headerDescription,
+            cardTitle,
             cardPoint1Heading, cardPoint1Desc,
             cardPoint2Heading, cardPoint2Desc,
             cardPoint3Heading, cardPoint3Desc,
@@ -99,8 +105,10 @@ export const editService = async (req, res) => {
             id,
             {
                 serviceName,
-                headerDataTagLine,
+                headerTagLine,
+                headerDescription,
                 headerImage,
+                cardTitle,
                 cardImage,
                 cardPoint1Heading,
                 cardPoint1Desc,
@@ -136,6 +144,18 @@ export const getServiceById = async (req, res) => {
     try {
         const { id } = req.params;
         const service = await LatestServiceModel.findById(id);
+        if (!service) return res.status(404).json({ message: "Service not found" });
+        res.status(200).json(service);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+export const getServiceByserviceName = async (req, res) => {
+    try {
+        console.log(req.params)
+        const { serviceName } = req.params;
+        const service = await LatestServiceModel.find({ serviceName: serviceName });
         if (!service) return res.status(404).json({ message: "Service not found" });
         res.status(200).json(service);
     } catch (error) {

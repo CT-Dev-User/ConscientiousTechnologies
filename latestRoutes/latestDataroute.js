@@ -1,8 +1,8 @@
 import express from 'express';
 
 import upload from "../multer.js"; // assuming multer is set up for file uploads
-import { createService, deleteService, editService, getAllServices, getServiceById } from '../latestControllers/servicesController.js';
-import { createSolution, deleteSolution, editSolution, getAllSolutions, getSolutionById } from '../latestControllers/solutionController.js';
+import { createService, deleteService, editService, getAllServices, getServiceById, getServiceByserviceName } from '../latestControllers/servicesController.js';
+import { createSolution, deleteSolution, editSolution, getAllSolutions, getSolutionById, getSolutionBySolutionName } from '../latestControllers/solutionController.js';
 import { createIndustry,deleteIndustry, editIndustry, getAllIndustries, getIndustryById } from '../latestControllers/industriesController.js';
 import { createCaseStudy, deleteCaseStudy, editCaseStudy, getAllCaseStudies, getCaseStudyByCategory, getCaseStudyById, getCaseStudyBySubCategory } from '../latestControllers/caseStudyController.js';
 
@@ -20,7 +20,7 @@ latestrouter.put('/edit-existing-service-data/:id', upload.fields([
 
 latestrouter.get('/get-latest-service-data', getAllServices);
 latestrouter.get('/get-service-data-by-id/:id', getServiceById);
-// latestrouter.get('/get-service-data-by-category/:category', getServiceByCategory);
+latestrouter.get('/get-service-data-by-serviceName/:serviceName', getServiceByserviceName);
 latestrouter.delete('/delete-existing-service-data-by-id/:id', deleteService);
 
 
@@ -36,6 +36,7 @@ latestrouter.put('/edit-solution-data/:id', upload.fields([
 ]), editSolution);
 latestrouter.get('/get-latest-solution-data', getAllSolutions);
 latestrouter.get('/get-solution-data-by-id/:id', getSolutionById);
+latestrouter.get('/get-solution-data-by-solutionName/:solutionName', getSolutionBySolutionName);
 latestrouter.delete('/delete-existing-solution-data-by-id/:id', deleteSolution);
 
 //industries routes
