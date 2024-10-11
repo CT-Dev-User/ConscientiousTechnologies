@@ -2,8 +2,10 @@ import mongoose from "mongoose";
 
 const LatestServiceSchema = new mongoose.Schema({
     serviceName: { type: String },
-    heroDataTagLine: {type: String},
-    heroImage:{type:String},
+    headerTagLine: {type: String},
+    headerDescription:{type:String},
+    headerImage:{type:String},
+    cardTitle:{type:String},
     cardImage: { type: String },
     cardPoint1Heading:{ type: String },
     cardPoint1Desc:{type:String},
@@ -13,12 +15,6 @@ const LatestServiceSchema = new mongoose.Schema({
     cardPoint3Desc:{type:String},
     cardPoint4Heading:{ type: String },
     cardPoint4Desc:{type:String},
-
-
-    headerData:{
-        headerTagLine: { type: String },
-        headerImage: { type: String }
-    }
 }, { timestamps: true });
 
 const LatestServiceModel = mongoose.model('latestService', LatestServiceSchema);

@@ -1,31 +1,31 @@
 import express from 'express';
 
 import upload from "../multer.js"; // assuming multer is set up for file uploads
-import { createService, deleteService, editService, getAllServices, getServiceById } from '../latestControllers/servicesController.js';
-import { createSolution, deleteSolution, editSolution, getAllSolutions, getSolutionById } from '../latestControllers/solutionController.js';
+import { createService, deleteService, editService, getAllServices, getServiceById, getServiceByserviceName } from '../latestControllers/servicesController.js';
+import { createSolution, deleteSolution, editSolution, getAllSolutions, getSolutionById, getSolutionBySolutionName } from '../latestControllers/solutionController.js';
 import { createIndustry,deleteIndustry, editIndustry, getAllIndustries, getIndustryById } from '../latestControllers/industriesController.js';
 import { createCaseStudy, deleteCaseStudy, editCaseStudy, getAllCaseStudies, getCaseStudyByCategory, getCaseStudyById, getCaseStudyBySubCategory } from '../latestControllers/caseStudyController.js';
 
 const latestrouter = express.Router();
 
 // Route to get all services
-latestrouter.post('/create-service-data', upload.fields([
+latestrouter.post('/create-new-service-data', upload.fields([
     { name: 'cardImage', maxCount: 1 },
     { name: 'headerImage', maxCount: 1 }
 ]), createService);
-latestrouter.put('/edit-service-data/:id', upload.fields([
+latestrouter.put('/edit-existing-service-data/:id', upload.fields([
     { name: 'cardImage', maxCount: 1 },
     { name: 'headerImage', maxCount: 1 }
 ]), editService);
 
-latestrouter.get('/get-service-data', getAllServices);
+latestrouter.get('/get-latest-service-data', getAllServices);
 latestrouter.get('/get-service-data-by-id/:id', getServiceById);
-// latestrouter.get('/get-service-data-by-category/:category', getServiceByCategory);
-latestrouter.delete('/delete-service-data-by-id/:id', deleteService);
+latestrouter.get('/get-service-data-by-serviceName/:serviceName', getServiceByserviceName);
+latestrouter.delete('/delete-existing-service-data-by-id/:id', deleteService);
 
 
 // Route to create a new solution
-latestrouter.post('/create-solution-data', upload.fields([
+latestrouter.post('/create-new-solution-data', upload.fields([
     { name: 'cardImage', maxCount: 1 },
     { name: 'headerImage', maxCount: 1 }
 ]), createSolution);
@@ -34,24 +34,25 @@ latestrouter.put('/edit-solution-data/:id', upload.fields([
     { name: 'cardImage', maxCount: 1 },
     { name: 'headerImage', maxCount: 1 }
 ]), editSolution);
-latestrouter.get('/get-solution-data', getAllSolutions);
+latestrouter.get('/get-latest-solution-data', getAllSolutions);
 latestrouter.get('/get-solution-data-by-id/:id', getSolutionById);
-latestrouter.delete('/delete-solution-data-by-id/:id', deleteSolution);
+latestrouter.get('/get-solution-data-by-solutionName/:solutionName', getSolutionBySolutionName);
+latestrouter.delete('/delete-existing-solution-data-by-id/:id', deleteSolution);
 
 //industries routes
-latestrouter.post('/create-industry-data', upload.fields([
+latestrouter.post('/create-new-industry-data', upload.fields([
     { name: 'cardImage', maxCount: 1 },
     { name: 'headerImage', maxCount: 1 }
 ]), createIndustry);
 
-latestrouter.put('/edit-industry-data/:id', upload.fields([
+latestrouter.put('/edit-existing-industry-data/:id', upload.fields([
     { name: 'cardImage', maxCount: 1 },
     { name: 'headerImage', maxCount: 1 }
 ]), editIndustry);
 
-latestrouter.get('/get-industry-data', getAllIndustries);
-latestrouter.get('/get-industry-data-by-id/:id', getIndustryById);
-latestrouter.delete('/delete-industry-data-by-id/:id', deleteIndustry);
+latestrouter.get('/get-latest-industry-data', getAllIndustries);
+latestrouter.get('/get-latest-industry-data-by-id/:id', getIndustryById);
+latestrouter.delete('/delete-existing-industry-data-by-id/:id', deleteIndustry);
 
 
 latestrouter.post(
