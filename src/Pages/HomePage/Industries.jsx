@@ -1,106 +1,49 @@
-import axios from 'axios'
-import JoditEditor from 'jodit-react'
-import React, { useEffect, useRef, useState } from 'react'
-import { Button, Modal } from 'react-bootstrap'
-import { AiOutlineClose } from 'react-icons/ai'
-import { FaEye } from 'react-icons/fa'
-import Swal from 'sweetalert2'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Modal, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
-const Industries = () => {
-  const [homeIndustriesData, setHomeIndustriesData] = useState([])
-  const [addHomeIndustryData, setAddHomeIndustryData] = useState({ title: "", images: "", desc: "" })
-  const [editHomeIndustryData, seteditHomeIndustryData] = useState({ title: "", images: "", desc: "" })
-  const [addPopupShow, setAddPopUpShow] = useState(false);
-  const [addSelectedFile, setAddSelectedFile] = useState(null);
-  const [editPopUpShow, setEditPopUpShow] = useState(false)
-  const [EditSelectedFile, setEditSelectedFile] = useState(null)
-  const [editId, setEditId] = useState(null)
-  const [descModal, setDescModal] = useState(false);
-  const [desc, setDesc] = useState(null)
+const IndustryCMS = () => {
+  const [Industries, setIndustries] = useState([]); // Fixed the name from 'Industry' to 'Industries'
+  const [industryId, setindustryId] = useState(null);
+  const [industryName, setindustryName] = useState('');
+  const [cardImage, setCardImage] = useState(null);
+  const [cardDescription, setCardDescription] = useState('');
+  const [headerTagLine, setHeaderTagLine] = useState('');
+  const [headerImage, setHeaderImage] = useState(null);
 
-  const addEditor = useRef(null);
-  const editEditor = useRef(null)
+  const [showModal, setShowModal] = useState(false);
+  const [showHeaderModal, setShowHeaderModal] = useState(false);
+  const [showCardModal, setShowCardModal] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(3);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = homeIndustriesData.slice(indexOfFirstItem, indexOfLastItem);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const handleAddfileChange = (e) => {
-    setAddHomeIndustryData({ ...addHomeIndustryData, images: e.target.files[0] });
-    setAddSelectedFile(e.target.files[0]);
+  const openHeaderModal = (Industry) => {
+    setHeaderTagLine(Industry.headerTagLine);
+    setHeaderImage(Industry.headerImage);
+    setShowHeaderModal(true);
   };
 
-  const handleEditFileChange = (e) => {
-    seteditHomeIndustryData({ ...editHomeIndustryData, images: e.target.files[0] });
-    setEditSelectedFile(e.target.files[0])
-  }
+  const closeHeaderModal = () => {
+    setShowHeaderModal(false);
+  };
 
-  const addHomeIndustryDatafunc = async () => {
+
+  // Fetch all Industry data on mount
+  useEffect(() => {
+    fetchIndustries();
+  }, []);
+
+  const fetchIndustries = async () => {
     try {
-      const formData = new FormData();
-      formData.append('title', addHomeIndustryData.title);
-      formData.append('desc', addHomeIndustryData.desc);
-      formData.append('images', addHomeIndustryData.images);
-
-      const response = await axios.post("http://localhost:8080/add-industries-data", formData);
-      if (response.status === 200) {
-        // Assuming you want to fetch updated data after adding
-        getHomeIndustriesData();
-        setAddPopUpShow(false);
-        setAddHomeIndustryData({ title: "", images: "", desc: "" });
-
-      }
-
+      const response = await axios.get('http://localhost:8080/get-latest-industry-data');
+      console.log(response.data);
+      setIndustries(response.data);
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching Industry Data:', error);
     }
   };
 
-  const getHomeIndustriesData = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/get-industries-data")
-      if (response.status === 200) {
-        setHomeIndustriesData(response.data.getData)
-      }
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const editHomeIndustriesDataFunc = async () => {
-    try {
-      const formData = new FormData();
-      formData.append('title', editHomeIndustryData.title);
-      formData.append('desc', editHomeIndustryData.desc);
-      formData.append('images', editHomeIndustryData.images);
-
-      const response = await axios.put(`http://localhost:8080/edit-industries-data/${editId}`, formData)
-      console.log(response.status)
-      if (response.status === 200) {
-        Swal.fire(
-          'Saved!',
-          'Your changes have been saved.',
-          'success'
-        );
-        seteditHomeIndustryData({ title: "", images: "", desc: "" });
-        getHomeIndustriesData();
-      }
-    } catch (error) {
-      console.log(error)
-      Swal.fire(
-        'Error!',
-        'Failed to save changes. Please try again later.',
-        'error'
-      );
-    }
-  }
-
-  const deleteHomeIndustriesData = async (id) => {
+  const handleDelete = async (id) => {
     Swal.fire({
       title: 'Are you sure?',
       text: 'You will not be able to recover this data!',
@@ -111,194 +54,253 @@ const Industries = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        // If user confirms deletion
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-industries-data/${id}`);
+          const response = await axios.delete(`http://localhost:8080/delete-existing-Industry-data-by-id/${id}`);
           if (response.status === 200) {
-            setEditId(null);
-            getHomeIndustriesData()
-            Swal.fire(
-              'Deleted!',
-              'Your data has been deleted.',
-              'success'
-            );
+            fetchIndustries(); // Refresh the Industry list
+            Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
           }
         } catch (error) {
           console.log(error);
-          Swal.fire(
-            'Error!',
-            'Failed to delete data. Please try again later.',
-            'error'
-          );
+          Swal.fire('Error!', 'Failed to delete data. Please try again later.', 'error');
         }
       }
     });
-  }
+  };
 
+  const openModal = (Industry = null) => {
+    if (Industry) {
+      setindustryId(Industry._id);
+      setindustryName(Industry.industryName);
+      setHeaderTagLine(Industry.headerTagLine);
+      setCardDescription(Industry.cardDescription);
+      setCardImage(null); // Reset cardImage for editing
+      setHeaderImage(null); // Reset headerImage for editing
+    } else {
+      setindustryId(null); // Reset ID for adding a new Industry
+      setindustryName('');
+      setHeaderTagLine('');
+      setCardDescription('');
+    }
+    setShowModal(true);
+  };
 
-  useEffect(() => {
-    getHomeIndustriesData()
-  }, [])
+  const closeModal = () => {
+    setShowModal(false);
+    // Reset form fields
+    setindustryId(null);
+    setindustryName('');
+    setHeaderTagLine('');
+    setCardDescription('');
+    setCardImage(null);
+    setHeaderImage(null);
+  };
+
+  const openCardDataModal = (Industry) => {
+    setCardImage(Industry.cardImage);
+    setCardDescription(Industry.cardDescription);
+    setShowCardModal(true);
+  };
+
+  const closeCardDataModal = () => {
+    setShowCardModal(false);
+  };
+
+  const handleFileChange = (event, setImage) => {
+    setImage(event.target.files[0]); // Handle file input
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('industryName', industryName);
+    formData.append('headerTagLine', headerTagLine);
+    formData.append('cardDescription', cardDescription);
+    if (headerImage) formData.append('headerImage', headerImage);
+    if (cardImage) formData.append('cardImage', cardImage);
+
+    try {
+      if (industryId) {
+        // Update existing Industry
+        const response = await axios.put(`http://localhost:8080/edit-existing-industry-data/${industryId}`, formData);
+        if (response.status === 200) {
+          Swal.fire('Success!', 'Industry updated successfully.', 'success');
+        }
+      } else {
+        // Create new Industry
+        const response = await axios.post('http://localhost:8080/create-new-industry-data', formData);
+        if (response.status === 200) {
+          Swal.fire('Success!', 'New Industry added successfully.', 'success');
+        }
+      }
+      fetchIndustries(); // Refresh the Industries list
+      closeModal(); // Close the modal after submission
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      Swal.fire('Error!', 'Failed to save data. Please try again later.', 'error');
+    }
+  };
 
   return (
-    <div className='w-full mx-auto p-6'>
-      <div className="flex justify-between mb-5 mr-3">
-        <h5 className='underline'> Industries Data </h5>
-        <Button onClick={() => setAddPopUpShow(true)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Industry</Button>
+    <div className="p-4">
+      <div className='flex justify-between'>
+        <h1 className="text-xl font-bold mb-4">Industries Management</h1>
+        <button onClick={() => openModal()} className="bg-blue-500 text-white px-4 py-2 rounded">
+          Add New Industry
+        </button>
       </div>
 
-      {/* Add Modals popup*/}
-      <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Add Industries Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">Title</label>
-              <input type="text" name="title" id="title" className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500" onChange={(e) => setAddHomeIndustryData({ ...addHomeIndustryData, title: e.target.value })} />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="desc" className="block text-gray-700 font-bold">Description</label>
-              <JoditEditor
-                ref={addEditor}
-                value={addHomeIndustryData.desc}
-                onChange={(value) => { setAddHomeIndustryData({ ...addHomeIndustryData, desc: value }) }}
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
-              <div className="relative">
-                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
-                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
-                {addSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button className="text-red-500 hover:text-red-700 mt-1 ms-[110px] " onClick={() => setAddSelectedFile(null)}>
-                      < AiOutlineClose />
-                    </button>
-                    <img src={URL.createObjectURL(addSelectedFile)} alt="Selected File" className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2" />
-                    <p className="text-gray-700">{addSelectedFile.name}</p>
-                  </div>
-                )}
-              </div>
-            </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => setAddPopUpShow(false)} className="text-gray-700 hover:text-gray-900">Close</Button>
-          <Button variant="primary" onClick={() => { { addHomeIndustryDatafunc(); setAddPopUpShow(false) } }} className="bg-blue-500 hover:bg-blue-600 text-white">Save Changes</Button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* Edit Service Data */}
-      <Modal show={editPopUpShow} onHide={() => setEditPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit Hero Section Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">Title</label>
-              <input type="text" name="hero_title" id="title" className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500" onChange={(e) => { seteditHomeIndustryData({ ...editHomeIndustryData, title: e.target.value }) }} />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="hero-home-desc" className="block text-gray-700 font-bold">Home Service Desc</label>
-
-              <JoditEditor
-                ref={editEditor}
-                value={editHomeIndustryData.desc}
-                onChange={(value) => { seteditHomeIndustryData({ ...editHomeIndustryData, desc: value }) }}
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="hero-home-image" className="block font-bold">Home Service Image</label>
-              <div className="relative">
-                <div>
-                  <input type="file" name="hero_image" id="hero-home-image" className="form-input  block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                  <label htmlFor="hero-home-image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
-                </div>
-
-                {EditSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button className="text-red-500 hover:text-red-700  mt-1 ms-[110px] " onClick={() => setEditSelectedFile(null)}>
-                      < AiOutlineClose />
-                    </button>
-                    <img src={URL.createObjectURL(EditSelectedFile)} alt="Selected File" className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2" />
-                    <p className="text-gray-700">{EditSelectedFile.name}</p>
-                  </div>
-                )}
-              </div>
-            </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => setEditPopUpShow(false)} className="text-gray-700 hover:text-gray-900">
-            Close
-          </Button>
-          <Button variant="primary" onClick={() => { setEditPopUpShow(false); editHomeIndustriesDataFunc() }} className="bg-blue-500 hover:bg-blue-600 text-white">
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal size="lg" show={descModal} onHide={() => setDescModal(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit Hero Section Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <div dangerouslySetInnerHTML={{ __html: desc }} />
-
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => setDescModal(false)} className="text-gray-700 hover:text-gray-900">
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <table className="w-full border-collapse border mx-auto">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border p-2">Sr. No</th>
-            <th className="border p-2">Industry Title</th>
-            <th className="border p-2">Industry Description</th>
-            <th className="border p-2">Industry Image</th>
-            <th className="border p-2">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.map((homeindustryData, i) => (
-            <tr key={i}>
-              <td className="border p-2">{i + indexOfFirstItem + 1}</td>
-              <td className="border p-2">{homeindustryData.title}</td>
-              <td className="border p-2">
-                <FaEye onClick={() => { setDesc(homeindustryData.desc); setDescModal(true) }} />
-              </td>
-              <td className="border p-2"><img src={homeindustryData.homePageIndustryImage} alt={homeindustryData.title} className='h-[50px]' /></td>
-              <td className="border p-2 flex gap-x-2">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setEditId(homeindustryData._id); setEditPopUpShow(true) }}>Edit</button>
-                <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={() => deleteHomeIndustriesData(homeindustryData._id)}>Delete</button>
-              </td>
+      <div className="mt-4">
+        <table className="w-full border-collapse ">
+          <thead className='bg-gray-500 text-white'>
+            <tr>
+              <th className="border p-2">Industry Name</th>
+              <th className="border p-2">Header Data</th>
+              <th className="border p-2">Card Data</th>
+              <th className="border p-2">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      {/* Pagination */}
-      <ul className="flex justify-center mt-[90px]">
-        <li>
-          <button onClick={() => setCurrentPage(prevPage => Math.max(prevPage - 1, 1))} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">Previous</button>
-        </li>
-        {[...Array(Math.ceil(homeIndustriesData.length / itemsPerPage)).keys()].map(number => (
-          <li key={number} className="mx-1">
-            <button onClick={() => paginate(number + 1)} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">{number + 1}</button>
-          </li>
-        ))}
-        <li>
-          <button onClick={() => setCurrentPage(prevPage => Math.min(prevPage + 1, Math.ceil(homeIndustriesData.length / itemsPerPage)))} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">Next</button>
-        </li>
-      </ul>
-    </div>
-  )
-}
+          </thead>
+          <tbody>
+            {Industries.map(Industry => (
+              <tr key={Industry._id}>
+                <td className="border p-2">{Industry.industryName}</td>
+                <td className="border p-2">
+                  <button onClick={() => openHeaderModal(Industry)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
+                </td>
+                <td className="border p-2">
+                  <button onClick={() => openCardDataModal(Industry)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
+                </td>
+                <td className="border p-2">
+                  <button onClick={() => openModal(Industry)} className="bg-green-500 text-white px-2 py-1 rounded mr-2">Edit</button>
+                  <button onClick={() => handleDelete(Industry._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-export default Industries
+      <Modal show={showModal} onHide={closeModal}>
+        <div className='w-[50vw] mx-auto bg-white'>
+          <Modal.Header closeButton className="bg-gray-100">
+            <Modal.Title>{industryId ? 'Edit Industry' : 'Add New Industry'}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="w-full mx-auto">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block text-gray-700">Industry Name</label>
+                <input
+                  type="text"
+                  value={industryName}
+                  onChange={(e) => setindustryName(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Header Tagline</label>
+                <input
+                  type="text"
+                  value={headerTagLine}
+                  onChange={(e) => setHeaderTagLine(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Header Image</label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setHeaderImage)}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Image</label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setCardImage)}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Description</label>
+                <textarea
+                  value={cardDescription}
+                  onChange={(e) => setCardDescription(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+              <div className='flex justify-start gap-4'>
+                <button className='py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md' type="submit">
+                  {industryId ? 'Update Industry' : 'Add Industry'}
+                </button>
+                <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeModal}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </Modal.Body>
+        </div>
+      </Modal>
+
+      <Modal show={showHeaderModal} onHide={closeHeaderModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Header Data</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold font-serif">Header Tagline</label>
+            <p>{headerTagLine}</p>
+          </div>
+
+          <div className="mb-4">
+            <label className="lock text-gray-700 font-bold font-serif">Header Image</label>
+            {headerImage && (
+              <img src={headerImage} alt="Header" className="w-[400px] h-[150px] rounded" />
+            )}
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeHeaderModal}>
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Card Data Modal */}
+      <Modal show={showCardModal} onHide={closeCardDataModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Card Data</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold font-serif">Card Description</label>
+            <p>{cardDescription}</p>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold font-serif">Card Image</label>
+            {cardImage && (
+              <img src={cardImage} alt="Card" className="w-[150px] h-[150px] rounded" />
+            )}
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeCardDataModal}>
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+
+    </div>
+  );
+};
+
+export default IndustryCMS;
