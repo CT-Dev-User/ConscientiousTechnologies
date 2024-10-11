@@ -61,11 +61,11 @@ const ServiceWeOffer = () => {
           stage of SDLC..{" "}
         </p>
       </div>
-      <div className="hidden w-[90%] lg:w-[85%] mx-auto lg:flex gap-x-7 gap-y-10 flex-wrap mt-10">
+      <div className="hidden w-[90%] lg:w-[85%] mx-auto lg:flex gap-x-10 gap-y-10 flex-wrap mt-10">
         {ServiceData.map((item, index) => (
           <div
             key={index}
-            className="service-item w-[23%]"
+            className="service-item w-[22%]"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             onClick={() => handleServiceItemClick(index)}
@@ -163,6 +163,7 @@ const ServiceWeOffer = () => {
             <div key={index} className="service-item">
               <div
                 className="text-[white] w-[95%] h-[450px] bg-[white] relative text-xs gap-2"
+                key={index}
                 style={{
                   backgroundImage: `url(${item.cardImage})`,
                   backgroundSize: "cover",

@@ -18,7 +18,7 @@ const ProjectMang = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" subCategory="Project Management"/>
+            <AllHeader category="Solutions" solutionName="Project Management"/>
             <OurPartener />
             <KeyFeaturesPM />
             <ExtendedFeature />

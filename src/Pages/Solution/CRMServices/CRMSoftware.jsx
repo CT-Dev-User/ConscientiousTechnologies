@@ -20,7 +20,7 @@ const CRMSoftware = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="CRM Services"/>
+      <AllHeader category="Solutions" solutionName="CRM Services"/>
       <OurPartener />
       <WhyChooseCTSlider category="Solutions" subCategory="CRM Services"/>
       <MeetingAll />

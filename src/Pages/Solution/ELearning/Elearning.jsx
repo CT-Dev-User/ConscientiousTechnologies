@@ -18,7 +18,7 @@ const Elearning = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" subCategory="eLearning"/>
+            <AllHeader category="Solutions" solutionName="eLearning"/>
             <OurPartener />
             <KeyFeatureOfELearning />
             <BenefitsFromPartenerShip />

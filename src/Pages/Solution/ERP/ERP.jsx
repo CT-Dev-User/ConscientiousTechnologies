@@ -21,7 +21,7 @@ const ERP = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" subCategory="ERP"/>
+            <AllHeader category="Solutions" solutionName="ERP"/>
             <OurPartener />
             <WhyChooseCTSlider category="Solutions" subCategory="ERP"/>
             <FunctionalERPModule />

@@ -20,7 +20,7 @@ const HRSoftwareDevelopment = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="HR Software Development Services"/>
+      <AllHeader category="Solutions" solutionName="HR Software Development Services"/>
       <OurPartener />
       <FunctionalModule />
       <WhyChooseCTSlider category="Solutions" subCategory="HR Software Development Services"/>

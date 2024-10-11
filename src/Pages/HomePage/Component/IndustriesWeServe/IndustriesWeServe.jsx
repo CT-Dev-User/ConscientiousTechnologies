@@ -11,10 +11,11 @@ const IndustriesWeServe = () => {
   const getHomeIndustriesData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-industries-data"
+        "http://localhost:8080/get-latest-industry-data"
       );
       if (response.status === 200) {
-        setHomeIndustriesData(response.data.getData);
+        setHomeIndustriesData(response.data);
+        console.log(response.data);
       }
     } catch (error) {
       console.log(error);
@@ -52,25 +53,25 @@ const IndustriesWeServe = () => {
             <div
               className="bg-image bg-center bg-cover w-full h-full"
               style={{
-                backgroundImage: `url(${item.homePageIndustryImage})`,
+                backgroundImage: `url(${item.cardImage})`,
                 transform: hoveredIndex === index ? "scale(1.5)" : "scale(1)",
                 transition: "transform 1.5s ease-in-out",
               }}
             ></div>
             <div className="w-full border-t-2 border-white absolute bottom-0 text-center flex items-center justify-center font-medium cursor-pointer title-div text-base lg:text-lg 2xl:text-xl py-2">
-              {item.title}
+              {item.cardTitle}
             </div>
             <div className="desc-div ">
               <p
                 className="mt-7 text-sm text-center py-7 w-4/5 mx-auto"
-                dangerouslySetInnerHTML={{ __html: item.desc }}
-              />
+               
+              >{item.cardDescription}</p>
               <div className="flex justify-center">
                 <button
                   className="relative overflow-hidden border border-white px-4 py-2 w-fit text-xs group mt-5 mx-auto"
                   style={{ position: "relative" }}
                   onClick={() => {
-                    navigate(`/industries/${item.title}`);
+                    navigate(`/industries/${item.industryName}`);
                   }}
                 >
                   <span className="absolute inset-0 bg-[#33B7D4] transition-all duration-300 ease-in-out transform -translate-x-full group-hover:translate-x-0"></span>
@@ -88,14 +89,14 @@ const IndustriesWeServe = () => {
           <div
             className="bg-black relative w-[45%] h-32"
             style={{
-              backgroundImage: `url(${item.homePageIndustryImage})`,
+              backgroundImage: `url(${item.cardImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
             key={index}
           >
             <div className="w-full border-t-2 border-white absolute bottom-0 text-center flex items-center justify-center font-medium cursor-pointer title-div text-sm">
-              {item.title}
+              {item.cardTitle}
             </div>
           </div>
         ))}

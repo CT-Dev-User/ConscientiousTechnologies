@@ -17,7 +17,7 @@ import ReliableToolsHeading from '../financialSoftware/ReliableTools/ReliableToo
 const Investment = () => {
     return (
         <div>
-            <AllHeader category="Industries" subCategory="Investment"/>
+            <AllHeader category="Industries" industryName="Investment"/>
             <OurPartener />
             <WhyChooseCTSlider category="Industries" subCategory="Investment"/>
             <MeetWhereWe />

@@ -16,7 +16,7 @@ const DocumentManagement = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="Document Management"/>
+      <AllHeader category="Solutions" solutionName="Document Management"/>
       <OurPartener/>
       <AutomationSoftware/>
       <IntegrationsDocumentation/>

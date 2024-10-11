@@ -16,7 +16,7 @@ import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTe
 const Payments = () => {
     return (
         <div>
-            <AllHeader category="Industries" subCategory="Payments"/>
+            <AllHeader category="Industries" industryName="Payments"/>
             <OurPartener />
             <WhyChooseCTSlider ategory="Industries" subCategory="Payments"/>
             <WhoWeServe />

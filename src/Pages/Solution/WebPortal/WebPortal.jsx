@@ -21,7 +21,7 @@ const WebPortal = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="Web Portal"/>
+      <AllHeader category="Solutions" solutionName="Web Portal"/>
       <OurPartener />
       <WhyChooseCTSlider category="Solutions" subCategory="Web Portal"/>
       <WebPortalWeCreated />

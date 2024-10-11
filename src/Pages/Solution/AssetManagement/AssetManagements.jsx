@@ -20,7 +20,7 @@ const AssetManagements = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="Asset Management"/>
+      <AllHeader category="Solutions" solutionName="Asset Management"/>
       <OurPartener />
       <FunctionalityModule />
       <WhyChooseCTSlider category="Solutions" subCategory="Asset Management"/>

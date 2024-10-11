@@ -20,7 +20,7 @@ const PaymentManageMent = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="Payment Management" />
+      <AllHeader category="Solutions" solutionName="Payment Management" />
       <OurPartener />
       <WhomWeServe />
       <PaymentSolution />

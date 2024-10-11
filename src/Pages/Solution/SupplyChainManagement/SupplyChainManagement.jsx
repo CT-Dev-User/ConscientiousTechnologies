@@ -19,7 +19,7 @@ const SupplyChainManagement = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="Supply Chain Management"/>
+      <AllHeader category="Solutions" solutionName="Supply Chain Management"/>
       <OurPartener/>
       <SupplyChainSolutions />
       <WhyChooseCTSlider category="Solutions" subCategory="Supply Chain Management"/>

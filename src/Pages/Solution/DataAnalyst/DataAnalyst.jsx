@@ -21,7 +21,7 @@ const DataAnalystSolution = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="Data Analytics"/>
+      <AllHeader category="Solutions" solutionName="Data Analytics"/>
       <OurPartener />
       <BuildingDataAnalyst />
       <WhyChooseCTSlider category="Solutions" subCategory="Data Analytics"/>

@@ -22,7 +22,7 @@ const EcommerceServices = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="Ecommerce Services"/>
+      <AllHeader category="Solutions" solutionName="Ecommerce Services"/>
       <OurPartener />
       <WhyChooseCTSlider category="Solutions" subCategory="Ecommerce Services"/>
       <ConsultingService />

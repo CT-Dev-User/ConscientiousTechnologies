@@ -140,7 +140,7 @@ function App() {
         <Route path='/Software Development Services/maintenance' element={<SoftSupportMaintainence />} />
 
         {/* Dedicated Development Team */}
-        <Route path='Services/Dedicated Software Team' element={<MainDedicatedDevService />} />
+        <Route path='Services/Dedicated Software Teams' element={<MainDedicatedDevService />} />
         <Route path='/Dedicated Software Team/Software Development' element={<SoftwareDevelopment />} />
         <Route path='/Dedicated Software Team/Web Development' element={<SoftDevWebDevelopment />} />
         <Route path='/Dedicated Software Team/Mobile Development' element={<MobileDevelopment />} />

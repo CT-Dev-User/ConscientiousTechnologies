@@ -17,7 +17,7 @@ const Banking = () => {
     return (
         <div>
             
-            <AllHeader category="Industries" subCategory="Banking"/>
+            <AllHeader category="Industries" industryName="Banking"/>
             <OurPartener />
             <WhyChooseCTSlider category="Industries" subCategory="Banking"/>
             <BankingSoftSolution />

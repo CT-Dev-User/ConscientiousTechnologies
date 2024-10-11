@@ -16,7 +16,7 @@ const MarketingAdvertising = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" subCategory="Marketing & advertising"/>
+            <AllHeader category="Solutions" solutionName="Marketing & advertising"/>
             <OurPartener />
             <SoftwareThatDrives />
             <WhyChooseCTSlider category="Solutions" subCategory="Marketing & advertising"/>

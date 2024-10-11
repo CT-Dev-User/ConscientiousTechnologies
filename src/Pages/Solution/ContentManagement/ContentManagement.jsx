@@ -19,7 +19,7 @@ const ContentManagement = () => {
   }, [])
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="Content Management"/>
+      <AllHeader category="Solutions" solutionName="Content Management"/>
       <OurPartener />
       <WhyChooseCTSlider category="Solutions" subCategory="Content Management"/>
       <CMSKeyFeatures />

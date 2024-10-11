@@ -17,7 +17,7 @@ import ReliableToolsHeading from './ReliableTools/ReliableToolsHeading'
 const Finance = () => {
     return (
         <div>
-            <AllHeader category="Industries" subCategory="Financial Services"/>
+            <AllHeader category="Industries" industryName="Financial Services"/>
             <OurPartener/>
             <WhyChooseCTSlider category="Industries" subCategory="Financial Services"/>
             <FinancialSerDomain />

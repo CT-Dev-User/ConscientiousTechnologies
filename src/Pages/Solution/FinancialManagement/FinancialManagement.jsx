@@ -22,7 +22,7 @@ const FinancialManagement = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" subCategory="Financial Management"/>
+      <AllHeader category="Solutions" solutionName="Financial Management"/>
       <OurPartener />
       <CTService />
       <SolutionSpecilization />

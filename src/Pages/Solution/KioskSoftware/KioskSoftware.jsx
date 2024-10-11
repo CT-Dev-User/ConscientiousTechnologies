@@ -20,7 +20,7 @@ const KioskSoftware = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" subCategory="Kiosk Software"/>
+            <AllHeader category="Solutions" solutionName="Kiosk Software"/>
             <OurPartener />
             <WhyChooseCTSlider category="Solutions" subCategory="Kiosk Software"/>
             <Architecture />

@@ -13,7 +13,7 @@ import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 const OilandGasInustry = () => {
   return (
     <div>
-      <AllHeader category="Industries" subCategory="Oil and Gas"/>
+      <AllHeader category="Industries" industryName="Oil and Gas"/>
       <OurPartener />
       <WhyChooseCTSlider category="Industries" subCategory="Oil and Gas" />
       <ITSolution />

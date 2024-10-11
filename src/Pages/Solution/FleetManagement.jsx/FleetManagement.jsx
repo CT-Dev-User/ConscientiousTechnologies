@@ -18,7 +18,7 @@ const FleetManagement = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" subCategory="Fleet Management"/>
+            <AllHeader category="Solutions" solutionName="Fleet Management"/>
             <OurPartener />
             <ChallengesFleet />
             <Solution/>

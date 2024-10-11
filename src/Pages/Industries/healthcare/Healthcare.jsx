@@ -14,7 +14,7 @@ import ReliableToolsHeading from '../../HomePage/Component/ReliableTools/Reliabl
 const Healthcare = () => {
     return (
         <div>
-            <AllHeader category="Industries" subCategory="Healthcare"/>
+            <AllHeader category="Industries" industryName="Healthcare"/>
             <OurPartener />
             <MeetAllHealthcare />
             <WhyChooseCTSlider category="Industries" subCategory="Healthcare"/>

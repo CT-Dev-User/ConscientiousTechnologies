@@ -22,7 +22,7 @@ const OperationMang = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" subCategory="Operations Management"/>
+            <AllHeader category="Solutions" solutionName="Operations Management"/>
             <OurPartener />
             <OpManFeature />
             <ServiceOpMang />

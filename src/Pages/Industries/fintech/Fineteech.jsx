@@ -17,7 +17,7 @@ import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTe
 const Fineteech = () => {
     return (
         <div>
-            <AllHeader category="Industries" subCategory="Fintech"/>
+            <AllHeader category="Industries" industryName="Fintech"/>
             <OurPartener />
             <Solutions />
             <WhyChooseCTSlider category="Industries" subCategory="Fintech"/>
