@@ -144,7 +144,7 @@ function App() {
         }
       />
       <Route
-        path="/conscientious-home-faq-data"
+        path="/conscientious-home-faq"
         element={
           <SideBar>
             <HomeFAQ />

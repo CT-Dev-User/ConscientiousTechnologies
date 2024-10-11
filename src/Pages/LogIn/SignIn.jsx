@@ -59,7 +59,7 @@ const SignIn = () => {
         <div className="w-full bg-black py-2 mb-4 rounded-md flex justify-center box-border px-4">
           <h1 className="text-2xl font-semibold">
             <span className="text-yellow-500">Conscientious</span>
-            <span className="text-blue-500 ml-2">Technologies</span>
+            <span className="text-white ml-2">Technologies</span>
           </h1>
         </div>
 
