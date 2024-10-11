@@ -1,153 +1,140 @@
 import axios from "axios";
-import JoditEditor from "jodit-react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { AiOutlineClose } from "react-icons/ai";
-import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const HomeCaseStudies = () => {
-  const [CaseStudiesData, setCaseStudies] = useState([]);
-  const [addCaseStudyData, setAddCaseStudyData] = useState({
-    title: "",
-    images: "",
-    desc: "",
-    coreTec: "",
-  });
-  const [editCaseStudyData, seteditCaseStudyData] = useState({
-    title: "",
-    images: "",
-    desc: "",
-    coreTec: "",
-  });
-
-  const [editId, setEditId] = useState(null);
+  const [caseStudies, setCaseStudies] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
-  const [editPopupShow, setEditPopUpShow] = useState(false);
-  const [addSelectedFile, setAddSelectedFile] = useState(null);
-  const [EditSelectedFile, setEditSelectedFile] = useState(null);
-  const [descModal, setDescModal] = useState(false);
-  const [CaseStudiesDesc, setCaseStudiesDesc] = useState(null);
-  const addEditor = useRef(null);
-  const editEditor = useRef(null);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(3);
+  // Card section
+  const [cardDatatitle, setCardDatatitle] = useState("");
+  const [cardDatasubTitle, setCardDatasubTitle] = useState("");
+  const [cardDatacoreTech, setCardDatacoreTech] = useState("");
+  const [cardDatacardImage, setCardDatacardImage] = useState(null); // file input
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = CaseStudiesData.slice(indexOfFirstItem, indexOfLastItem);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Header section
+  const [headerTagLine, setheaderTagLine] = useState("");
+  const [headerdesc, setheaderdesc] = useState("");
+  const [headerImage, setheaderImage] = useState(null); // file input
 
-  const handleAddfileChange = (e) => {
-    setAddCaseStudyData({ ...addCaseStudyData, images: e.target.files[0] });
-    setAddSelectedFile(e.target.files[0]);
-  };
+  // Overview section
+  const [overviewtitle, setOverviewtitle] = useState("");
+  const [overviewindustryType, setOverviewindustryType] = useState("");
+  const [overviewbusinessType, setOverviewbusinessType] = useState("");
+  const [overviewservicesProvided, setOverviewservicesProvided] = useState("");
+  const [overviewdescription, setOverviewdescription] = useState("");
+  const [overviewimage, setOverviewimage] = useState(null); // file input
 
-  const handleEditFileChange = (e) => {
-    setEditSelectedFile({ ...editCaseStudyData, images: e.target.files[0] });
-    setEditSelectedFile(e.target.files[0]);
+  // Additional fields
+  const [goals, setGoals] = useState(""); // comma-separated
+  const [insights, setInsights] = useState("");
+  const [insightsImage, setInsightsImage] = useState(null); // file input
+  const [challenges, setChallenges] = useState(""); // comma-separated
+  const [approach, setApproach] = useState("");
+
+  // Execution section
+  const [executionHeading1, setExecutionHeading1] = useState("");
+  const [executionPoint1, setExecutionPoint1] = useState("");
+  const [executionHeading2, setExecutionHeading2] = useState("");
+  const [executionPoint2, setExecutionPoint2] = useState("");
+  const [executionHeading3, setExecutionHeading3] = useState("");
+  const [executionPoint3, setExecutionPoint3] = useState("");
+
+  const [solution, setSolution] = useState("");
+  const [solutionImage, setSolutionImage] = useState(null); // file input
+  const [techTools, setTechTools] = useState(""); // comma-separated
+
+  // Result Images
+  const [resultsImg1, setResultsImg1] = useState(null); // file input
+  const [resultsImg2, setResultsImg2] = useState(null); // file input
+  const [resultsImg3, setResultsImg3] = useState(null); // file input
+
+  // Handlers for file input changes
+  const handleFileChange = (e, setImageState) => {
+    setImageState(e.target.files[0]);
   };
 
   const getCaseStudiesDataFunc = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-case-studies-data"
+        "http://localhost:8080/get-all-case-studies"
       );
-      setCaseStudies(response.data.getData);
+      setCaseStudies(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const addCaseStudyDataFunc = async () => {
+  const addCaseStudyDataFunc = async (req, res) => {
     try {
       const formData = new FormData();
-      formData.append("title", addCaseStudyData.title);
-      formData.append("desc", addCaseStudyData.desc);
-      formData.append("images", addCaseStudyData.images);
-      formData.append("coreTech", addCaseStudyData.coreTec);
+
+      formData.append('category', "Home");
+      formData.append('Subcategory', "Home Case Studies");
+      formData.append('cardDatatitle', cardDatatitle);
+      formData.append('cardDatasubTitle', cardDatasubTitle);
+      formData.append('cardDatacoreTech', cardDatacoreTech);
+      formData.append('headerTagLine', headerTagLine);
+      formData.append('headerdesc', headerdesc);
+      formData.append('overviewtitle', overviewtitle);
+      formData.append('overviewindustryType', overviewindustryType);
+      formData.append('overviewbusinessType', overviewbusinessType);
+      formData.append('overviewservicesProvided', overviewservicesProvided);
+      formData.append('overviewdescription', overviewdescription);
+      formData.append('goals', goals);
+      formData.append('insights', insights);
+      formData.append('challenges', challenges);
+      formData.append('approach', approach);
+      formData.append('executionHeading1', executionHeading1);
+      formData.append('executionPoint1', executionPoint1);
+      formData.append('executionHeading2', executionHeading2);
+      formData.append('executionPoint2', executionPoint2);
+      formData.append('executionHeading3', executionHeading3);
+      formData.append('executionPoint3', executionPoint3);
+      formData.append('solution', solution);
+      formData.append('techTools', techTools);
+      formData.append('cardDatacardImage', cardDatacardImage);
+      formData.append('cardDataheaderImage', headerImage);
+      formData.append('overviewimage', overviewimage);
+      formData.append('insightsImage', insightsImage);
+      formData.append('solutionImage', solutionImage);
+      formData.append('resultsImg1', resultsImg1);
+      formData.append('resultsImg2', resultsImg2);
+      formData.append('resultsImg3', resultsImg3);
 
       const response = await axios.post(
-        "http://localhost:8080/add-case-studies-data",
+        "http://localhost:8080/create-case-studies",
         formData
       );
-
-      // Assuming you want to fetch updated data after adding
-      if (response.status === 200) {
-        getCaseStudiesDataFunc();
+      
+        Swal.fire("Saved!", "Your data has been saved.", "success");
         setAddPopUpShow(false);
-        // setAddSelectedFile(null)
-        setAddCaseStudyData({ title: "", images: "", desc: "", coreTec: "" });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const editCaseStudyDataFunc = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("title", editCaseStudyData.title);
-      formData.append("desc", editCaseStudyData.desc);
-      formData.append("images", editCaseStudyData.images);
-      formData.append("coreTech", editCaseStudyData.coreTec);
-
-      const response = await axios.put(
-        `http://localhost:8080/edit-case-studies-data/${editId}`,
-        formData
-      );
-      if (response.status === 200) {
-        setEditPopUpShow(false);
         getCaseStudiesDataFunc();
-        Swal.fire("Saved!", "Your changes have been saved.", "success");
-      }
+      
     } catch (error) {
       console.log(error);
-      Swal.fire(
-        "Error!",
-        "Failed to save changes. Please try again later.",
-        "error"
-      );
+      res.status(400).json({ message: "Error creating case study." });
     }
   };
+
 
   useEffect(() => {
     getCaseStudiesDataFunc();
   }, []);
 
-  const deleteHomeCaseStudiesData = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You will not be able to recover this data!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        // If user confirms deletion
-        try {
-          const response = await axios.delete(
-            `http://localhost:8080/delete-case-studies-data/${id}`
-          );
-          if (response.status === 200) {
-            setEditId(null);
-            getCaseStudiesDataFunc();
-            Swal.fire("Deleted!", "Your data has been deleted.", "success");
-          }
-        } catch (error) {
-          console.log(error);
-          Swal.fire(
-            "Error!",
-            "Failed to delete data. Please try again later.",
-            "error"
-          );
-        }
+  const deleteCaseStudies = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/delete-case-studies/${id}`
+      );
+      if (response.status === 200) {
+        getCaseStudiesDataFunc();
+        Swal.fire("Deleted!", "Your data has been deleted.", "success");
       }
-    });
-  };
+    } catch (error) {
+      console.log(error)
+    }
 
   return (
     <div className="w-full bg-gray-300 h-full mx-auto p-4">
@@ -161,103 +148,472 @@ const HomeCaseStudies = () => {
         </button>
       </div>
 
+      <div className="overflow-x-auto">
+        <table className="min-w-full border border-gray-300">
+          <thead className="bg-gray-800 text-white text-left">
+            <tr className="border-b border-gray-300">
+              <th className="border-r px-4 py-2">
+                Cards
+              </th>
+              <th className="border-r px-4 py-2">
+                Header
+              </th>
+              <th className="border-r px-4 py-2">
+                Overview
+              </th>
+              <th className="border-r px-4 py-2">
+                Additional
+              </th>
+              <th className="border-r px-4 py-2">
+                Execution
+              </th>
+              <th className="border-r px-4 py-2">
+                Solution
+              </th>
+              <th className="border-r px-4 py-2">
+                Result
+              </th>
+              <th className="border-r px-4 py-2">
+               Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody className="text-left bg-white text-black">
+            {caseStudies.map((caseStudy) => (
+              <tr key={caseStudy._id} className="border-b border-gray-300">
+                <td className="border-r px-4 py-2">{caseStudy.cardDatatitle}</td>
+                <td className="border-r px-4 py-2"></td>
+                <td className="border-r px-4 py-2"></td>
+                <td className="border-r px-4 py-2"></td>
+                <td className="border-r px-4 py-2"></td>
+                <td className="border-r px-4 py-2"></td>
+                <td className="border-r px-4 py-2"></td>
+                <td className="border-r px-4 py-2">
+                  <button className="text-blue-500 hover:underline">
+                    Edit
+                  </button>
+                  <button className="text-red-500 hover:underline ml-4" onClick={() => deleteCaseStudies(caseStudy._id)}>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
       {/* Add Modals popup*/}
       <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
         <Modal.Header closeButton className="bg-gray-800 text-white">
           <Modal.Title>Add Case Study</Modal.Title>
         </Modal.Header>
         <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">
-                Title
-              </label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) =>
-                  setAddCaseStudyData({
-                    ...addCaseStudyData,
-                    title: e.target.value,
-                  })
-                }
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="desc" className="block text-gray-700 font-bold">
-                Description
-              </label>
-
-              <JoditEditor
-                ref={addEditor}
-                value={addCaseStudyData.desc}
-                onChange={(value) => {
-                  setAddCaseStudyData({ ...addCaseStudyData, desc: value });
-                }}
-              />
-            </fieldset>
-
-            <fieldset className="mb-4">
-              <label
-                htmlFor="core-tech"
-                className="block text-gray-700 font-bold"
-              >
-                Core Tech
-              </label>
-              <input
-                type="text"
-                name="core-Tech"
-                id="core-tech"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) =>
-                  setAddCaseStudyData({
-                    ...addCaseStudyData,
-                    coreTec: e.target.value,
-                  })
-                }
-              />
-            </fieldset>
-
-            <fieldset className="mb-4">
-              <label htmlFor="ServiceHomePageimage" className="block font-bold">
-                Image
-              </label>
-              <div className="relative">
+          <form className="space-y-6">
+            {/* Card Data */}
+            <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
+              <div>
+                <h1 className="text-base font-bold">Card Data</h1>
+                <label htmlFor="cardDatatitle" className="font-semibold mt-2">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  name="cardDatatitle"
+                  value={cardDatatitle}
+                  onChange={(e) => setCardDatatitle(e.target.value)}
+                  placeholder="Card Title"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="cardDataSubtitle" className="font-semibold">
+                  Subtitle
+                </label>
+                <input
+                  type="text"
+                  name="cardDatasubTitle"
+                  value={cardDatasubTitle}
+                  onChange={(e) => setCardDatasubTitle(e.target.value)}
+                  placeholder="Card Subtitle"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="cardDataCoreTech" className="font-semibold">
+                  Core Tech
+                </label>
+                <input
+                  type="text"
+                  name="cardDatacoreTech"
+                  value={cardDatacoreTech}
+                  onChange={(e) => setCardDatacoreTech(e.target.value)}
+                  placeholder="Card Core Tech"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="cardDataheaderImage" className="font-semibold">
+                  Image
+                </label>
                 <input
                   type="file"
-                  name="ServiceHomePageimage"
-                  id="ServiceHomePageimage"
-                  className="form-input block w-full rounded-md overflow-hidden"
-                  aria-describedby="file-upload-label"
-                  onChange={handleAddfileChange}
+                  name="cardDatacardImage"
+                  onChange={(e) => handleFileChange(e, setCardDatacardImage)}
+                  className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
                 />
-                <label
-                  htmlFor="ServiceHomePageimage"
-                  id="file-upload-label"
-                  className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border"
-                >
-                  Upload File
-                </label>
-                {addSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button
-                      className="text-red-500 hover:text-red-700  mt-1 ms-[110px] "
-                      onClick={() => setAddSelectedFile(null)}
-                    >
-                      <AiOutlineClose />
-                    </button>
-                    <img
-                      src={URL.createObjectURL(addSelectedFile)}
-                      alt="Selected File"
-                      className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2"
-                    />
-                    <p className="text-gray-700">{addSelectedFile.name}</p>
-                  </div>
-                )}
               </div>
-            </fieldset>
+            </div>
+            {/* heade section */}
+            <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
+              <div>
+                <h1 className="text-base font-bold">Header</h1>
+                <label htmlFor="headerTagLine" className="font-semibold mt-2">
+                  TagLine
+                </label>
+                <input
+                  type="text"
+                  name="headerTagLine"
+                  value={headerTagLine}
+                  onChange={(e) => setheaderTagLine(e.target.value)}
+                  placeholder="Header Title"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="headerdesc" className="font-semibold">
+                  Description
+                </label>
+                <textarea
+                  name="headerdesc"
+                  value={headerdesc}
+                  onChange={(e) => setheaderdesc(e.target.value)}
+                  placeholder="Header Description"
+                  className="p-2 border border-gray-300 rounded w-full"
+                ></textarea>
+              </div>
+              <div>
+                <label htmlFor="headerImage" className="font-semibold">
+                  Image
+                </label>
+                <input
+                  type="file"
+                  name="headerImage"
+                  onChange={(e) => handleFileChange(e, setheaderImage)}
+                  className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
+                />
+              </div>
+            </div>
+            {/* Overview Section */}
+            <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
+              <div>
+                <h1 className="text-base font-bold">Overview</h1>
+                <label htmlFor="overviewtitle" className="font-semibold mt-2">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  name="overviewtitle"
+                  value={overviewtitle}
+                  onChange={(e) => setOverviewtitle(e.target.value)}
+                  placeholder="Overview Title"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="overviewindustryType" className="font-semibold">
+                  Industry Type
+                </label>
+                <input
+                  type="text"
+                  name="overviewindustryType"
+                  value={overviewindustryType}
+                  onChange={(e) => setOverviewindustryType(e.target.value)}
+                  placeholder="Overview Industry Type"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="overviewbusinessType" className="font-semibold">
+                  Business Type
+                </label>
+                <input
+                  type="text"
+                  name="overviewbusinessType"
+                  value={overviewbusinessType}
+                  onChange={(e) => setOverviewbusinessType(e.target.value)}
+                  placeholder="Overview Business Type"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="overviewservicesProvided"
+                  className="font-semibold"
+                >
+                  Services Provided
+                </label>
+                <input
+                  type="text"
+                  name="overviewservicesProvided"
+                  value={overviewservicesProvided}
+                  onChange={(e) => setOverviewservicesProvided(e.target.value)}
+                  placeholder="Overview Services Provided"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="overviewdescription" className="font-semibold">
+                  Description
+                </label>
+                <textarea
+                  type="text"
+                  name="overviewdescription"
+                  value={overviewdescription}
+                  onChange={(e) => setOverviewdescription(e.target.value)}
+                  placeholder="Overview Description"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="overviewimage" className="font-semibold">
+                  image
+                </label>
+                <input
+                  type="file"
+                  name="overviewimage"
+                  onChange={(e) => handleFileChange(e, setOverviewimage)}
+                  className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
+                />
+              </div>
+            </div>
+
+            {/* Goals, Insights, Challenges, Approach */}
+            <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
+              <div>
+                <h1 className="text-base font-bold">
+                  Goals, Insights, Challenges, Approach
+                </h1>
+                <label htmlFor="goals" className="font-semibold mt-2">
+                  Goals
+                </label>
+                <textarea
+                  type="text"
+                  name="goals"
+                  value={goals}
+                  onChange={(e) => setGoals(e.target.value)}
+                  placeholder="Goals"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="insights" className="font-semibold">
+                  insights
+                </label>
+                <textarea
+                  name="insights"
+                  value={insights}
+                  onChange={(e) => setInsights(e.target.value)}
+                  placeholder="Insights"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="insightsImage" className="font-semibold">
+                  insightsImage
+                </label>
+                <input
+                  type="file"
+                  name="insightsImage"
+                  onChange={(e) => handleFileChange(e, setInsightsImage)}
+                  className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
+                />
+              </div>
+              <div>
+                <label htmlFor="challenges" className="font-semibold">
+                  Challenges
+                </label>
+                <textarea
+                  name="challenges"
+                  value={challenges}
+                  onChange={(e) => setChallenges(e.target.value)}
+                  placeholder="Challenges"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="approach" className="font-semibold">
+                  Approach
+                </label>
+                <textarea
+                  name="approach"
+                  value={approach}
+                  onChange={(e) => setApproach(e.target.value)}
+                  placeholder="Approach"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+            </div>
+
+            {/* Execution Section */}
+            <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
+              <div>
+                <h1 className="text-base font-bold">Execution</h1>
+                <label
+                  htmlFor="executionHeading1"
+                  className="font-semibold mt-2"
+                >
+                  Execution Heading 1
+                </label>
+                <input
+                  type="text"
+                  name="executionHeading1"
+                  value={executionHeading1}
+                  onChange={(e) => setExecutionHeading1(e.target.value)}
+                  placeholder="Execution Heading 1"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionPoint1" className="font-semibold">
+                  Execution Point 1
+                </label>
+                <textarea
+                  name="executionPoint1"
+                  value={executionPoint1}
+                  onChange={(e) => setExecutionPoint1(e.target.value)}
+                  placeholder="Execution Point 1"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionHeading2" className="font-semibold">
+                  {" "}
+                  Execution Heading 2
+                </label>
+                <input
+                  type="text"
+                  name="executionHeading2"
+                  value={executionHeading2}
+                  onChange={(e) => setExecutionHeading2(e.target.value)}
+                  placeholder="Execution Heading 2"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionPoint2" className="font-semibold">
+                  Execution Point 2
+                </label>
+                <textarea
+                  name="executionPoint2"
+                  value={executionPoint2}
+                  onChange={(e) => setExecutionPoint2(e.target.value)}
+                  placeholder="Execution Point 2"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionHeading3" className="font-semibold">
+                  {" "}
+                  Execution Heading 3
+                </label>
+                <input
+                  type="text"
+                  name="executionHeading3"
+                  value={executionHeading3}
+                  onChange={(e) => setExecutionHeading3(e.target.value)}
+                  placeholder="Execution Heading 3"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionPoint3" className="font-semibold">
+                  Execution Point 3
+                </label>
+                <textarea
+                  name="executionPoint3"
+                  value={executionPoint3}
+                  onChange={(e) => setExecutionPoint3(e.target.value)}
+                  placeholder="Execution Point 3"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+            </div>
+
+            {/* Solution and Tech Tools */}
+            <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
+              <div>
+                <h1 className="text-base font-bold">Solution</h1>
+                <label htmlFor="solution" className="font-semibold">
+                  heading
+                </label>
+                <textarea
+                  name="solution"
+                  value={solution}
+                  onChange={(e) => setSolution(e.target.value)}
+                  placeholder="Solution"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="solutionImg" className="font-semibold">
+                  Image
+                </label>
+                <input
+                  type="file"
+                  name="solutionImage"
+                  onChange={(e) => handleFileChange(e, setSolutionImage)}
+                  className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
+                />
+              </div>
+              <div>
+                <label htmlFor="techTools" className="font-semibold">
+                  Tech Tools (comma-separated)
+                </label>
+                <textarea
+                  name="techTools"
+                  value={techTools}
+                  onChange={(e) => setTechTools(e.target.value)}
+                  placeholder="Tech Tools"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+            </div>
+
+            {/* Result Images */}
+            <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
+              <div>
+                <h1 className="text-base font-bold">Results</h1>
+                <label htmlFor="resultsImg1" className="font-semibold">
+                  Image 1
+                </label>
+                <input
+                  type="file"
+                  name="resultsImg1"
+                  onChange={(e) => handleFileChange(e, setResultsImg1)}
+                  className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
+                />
+              </div>
+              <div>
+                <label htmlFor="resultsImg2" className="font-semibold">
+                  Image 2
+                </label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setResultsImg2)}
+                  className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
+                />
+              </div>
+              <div>
+                <label htmlFor="resultsImg3" className="font-semibold">
+                  image 3
+                </label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileChange(e, setResultsImg3)}
+                  className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
+                />
+              </div>
+            </div>
           </form>
         </Modal.Body>
         <Modal.Footer className="bg-gray-100">
@@ -273,241 +629,17 @@ const HomeCaseStudies = () => {
           <Button
             variant="primary"
             onClick={() => {
-              {
-                addCaseStudyDataFunc();
-                setAddPopUpShow(false);
-              }
-            }}
-            className="bg-blue-500 hover:bg-blue-600 text-white"
-          >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* Edit Service Data */}
-      <Modal show={editPopupShow} onHide={() => setEditPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Add Case Studies Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">
-                Title
-              </label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) =>
-                  seteditCaseStudyData({
-                    ...editCaseStudyData,
-                    title: e.target.value,
-                  })
-                }
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="desc" className="block text-gray-700 font-bold">
-                Description
-              </label>
-
-              <JoditEditor
-                ref={editEditor}
-                value={editCaseStudyData.desc}
-                onChange={(value) => {
-                  seteditCaseStudyData({ ...editCaseStudyData, desc: value });
-                }}
-              />
-            </fieldset>
-
-            <fieldset className="mb-4">
-              <label
-                htmlFor="core-tech"
-                className="block text-gray-700 font-bold"
-              >
-                Core Tech
-              </label>
-              <input
-                type="text"
-                name="core-Tech"
-                id="core-tech"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) =>
-                  seteditCaseStudyData({
-                    ...editCaseStudyData,
-                    coreTec: e.target.value,
-                  })
-                }
-              />
-            </fieldset>
-
-            <fieldset className="mb-4">
-              <label htmlFor="ServiceHomePageimage" className="block font-bold">
-                Image
-              </label>
-              <div className="relative">
-                <input
-                  type="file"
-                  name="ServiceHomePageimage"
-                  id="ServiceHomePageimage"
-                  className="form-input block w-full rounded-md overflow-hidden"
-                  aria-describedby="file-upload-label"
-                  onChange={handleEditFileChange}
-                />
-                <label
-                  htmlFor="ServiceHomePageimage"
-                  id="file-upload-label"
-                  className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border"
-                >
-                  Upload File
-                </label>
-                {EditSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button
-                      className="text-red-500 hover:text-red-700  mt-1 ms-[110px] "
-                      onClick={() => setEditSelectedFile(null)}
-                    >
-                      <AiOutlineClose />
-                    </button>
-                    <img
-                      src={URL.createObjectURL(EditSelectedFile)}
-                      alt="Selected File"
-                      className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2"
-                    />
-                    <p className="text-gray-700">{EditSelectedFile.name}</p>
-                  </div>
-                )}
-              </div>
-            </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={() => {
+              addCaseStudyDataFunc();
               setAddPopUpShow(false);
             }}
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              {
-                editCaseStudyDataFunc();
-                setEditPopUpShow(false);
-              }
-            }}
             className="bg-blue-500 hover:bg-blue-600 text-white"
           >
             Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
-
-      <Modal size="lg" show={descModal} onHide={() => setDescModal(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit Hero Section Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <div dangerouslySetInnerHTML={{ __html: CaseStudiesDesc }} />
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={() => setDescModal(false)}
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <table className="w-full border-collapse border bg-white text-left">
-        <thead className="text-white bg-gray-800">
-          <tr>
-            <th className="border p-2">Sr. No</th>
-            <th className="border p-2">Case Studies Title</th>
-            <th className="border p-2">Case Studies Description</th>
-            <th className="border p-2">Case Studies Image</th>
-            <th className="border p-2">Action</th>
-          </tr>
-        </thead>
-        <tbody className="text-black text-left">
-          {currentItems.map((caseStudy, i) => (
-            <tr key={i} className="border-b">
-              <td className="border-r p-2">{i + indexOfFirstItem + 1}</td>
-              <td className="border-r p-2">{caseStudy.title}</td>
-              <td className="border-r p-2">
-                <FaEye
-                  onClick={() => {
-                    setDescModal(true);
-                    setCaseStudiesDesc(caseStudy.desc);
-                  }}
-                  className="cursor-pointer mx-auto"
-                />
-              </td>
-              <td className="border-r p-2">
-                <img
-                  src={caseStudy.homePageCaseStudiesImage}
-                  alt={caseStudy.title}
-                  className="h-14"
-                />
-              </td>
-              <td className="p-2 flex gap-x-5">
-                <FaEdit
-                className="text-green-500 hover:text-green-900 cursor-pointer"
-                  onClick={() => {
-                    setEditId(caseStudy._id);
-                    setEditPopUpShow(true);
-                  }}
-                />
-                <FaTrash
-                className=" hover:text-red-700 text-[red] cursor-pointer"
-                  onClick={() => {
-                    deleteHomeCaseStudiesData(caseStudy._id);
-                  }}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {/* Pagination */}
-      <ul className="flex justify-center mt-5 gap-2">
-        <li>
-          <button
-            onClick={() =>
-              setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
-            }
-            className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white"
-          >
-            Prev
-          </button>
-        </li>
-
-        <li>
-          <button
-            onClick={() =>
-              setCurrentPage((prevPage) =>
-                Math.min(
-                  prevPage + 1,
-                  Math.ceil(CaseStudiesData.length / itemsPerPage)
-                )
-              )
-            }
-            className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white"
-          >
-            Next
-          </button>
-        </li>
-      </ul>
     </div>
   );
 };
-
+}
 export default HomeCaseStudies;
