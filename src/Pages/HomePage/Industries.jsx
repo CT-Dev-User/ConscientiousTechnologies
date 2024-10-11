@@ -4,22 +4,29 @@ import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 const IndustryCMS = () => {
-  const [Industries, setIndustries] = useState([]); // Fixed the name from 'Industry' to 'Industries'
-  const [industryId, setindustryId] = useState(null);
-  const [industryName, setindustryName] = useState('');
+  const [Industrys, setIndustrys] = useState([]); // Fixed the name from 'Industry' to 'Industrys'
+  const [IndustryId, setIndustryId] = useState(null);
+  const [IndustryName, setIndustryName] = useState('');
+  const [cardTitle, setCardTitle] = useState('');
   const [cardImage, setCardImage] = useState(null);
   const [cardDescription, setCardDescription] = useState('');
   const [headerTagLine, setHeaderTagLine] = useState('');
+  const [headerDescription, setheaderDescription] = useState('')
   const [headerImage, setHeaderImage] = useState(null);
-
   const [showModal, setShowModal] = useState(false);
   const [showHeaderModal, setShowHeaderModal] = useState(false);
   const [showCardModal, setShowCardModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5); // Number of items per page
+  const [paginatedIndustrys, setPaginatedIndustrys] = useState([]);
 
 
   const openHeaderModal = (Industry) => {
     setHeaderTagLine(Industry.headerTagLine);
+    // setCardTitle(Industry.cardTitle);
+    setIndustryName(Industry.IndustryName);
     setHeaderImage(Industry.headerImage);
+    setheaderDescription(Industry.headerDescription);
     setShowHeaderModal(true);
   };
 
@@ -27,20 +34,38 @@ const IndustryCMS = () => {
     setShowHeaderModal(false);
   };
 
-
   // Fetch all Industry data on mount
   useEffect(() => {
-    fetchIndustries();
+    fetchIndustrys();
   }, []);
 
-  const fetchIndustries = async () => {
+  useEffect(() => {
+    setPaginatedIndustrys(paginate(Industrys, currentPage, itemsPerPage));
+  }, [Industrys, currentPage, itemsPerPage]);
+
+  const fetchIndustrys = async () => {
     try {
       const response = await axios.get('http://localhost:8080/get-latest-industry-data');
       console.log(response.data);
-      setIndustries(response.data);
+      setIndustrys(response.data);
     } catch (error) {
       console.error('Error fetching Industry Data:', error);
     }
+  };
+
+
+  const paginate = (Industrys, currentPage, itemsPerPage) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return Industrys.slice(startIndex, endIndex);
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < Math.ceil(Industrys.length / itemsPerPage)) setCurrentPage(currentPage + 1);
   };
 
   const handleDelete = async (id) => {
@@ -55,9 +80,9 @@ const IndustryCMS = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-existing-Industry-data-by-id/${id}`);
+          const response = await axios.delete(`http://localhost:8080/delete-existing-industry-data-by-id/${id}`);
           if (response.status === 200) {
-            fetchIndustries(); // Refresh the Industry list
+            fetchIndustrys(); // Refresh the Industry list
             Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
           }
         } catch (error) {
@@ -70,17 +95,21 @@ const IndustryCMS = () => {
 
   const openModal = (Industry = null) => {
     if (Industry) {
-      setindustryId(Industry._id);
-      setindustryName(Industry.industryName);
+      setIndustryId(Industry._id);
+      setIndustryName(Industry.industryName);
       setHeaderTagLine(Industry.headerTagLine);
+      setCardTitle(Industry.cardTitle);
+      setheaderDescription(Industry.headerDescription);
       setCardDescription(Industry.cardDescription);
       setCardImage(null); // Reset cardImage for editing
       setHeaderImage(null); // Reset headerImage for editing
     } else {
-      setindustryId(null); // Reset ID for adding a new Industry
-      setindustryName('');
+      setIndustryId(null); // Reset ID for adding a new Industry
+      setIndustryName('');
       setHeaderTagLine('');
       setCardDescription('');
+      setCardTitle('');
+      setheaderDescription('');
     }
     setShowModal(true);
   };
@@ -88,12 +117,13 @@ const IndustryCMS = () => {
   const closeModal = () => {
     setShowModal(false);
     // Reset form fields
-    setindustryId(null);
-    setindustryName('');
+    setIndustryId(null);
+    setIndustryName('');
     setHeaderTagLine('');
     setCardDescription('');
     setCardImage(null);
     setHeaderImage(null);
+    setCardTitle('');
   };
 
   const openCardDataModal = (Industry) => {
@@ -113,16 +143,18 @@ const IndustryCMS = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('industryName', industryName);
+    formData.append('industryName', IndustryName);
     formData.append('headerTagLine', headerTagLine);
+    formData.append('headerDescription', headerDescription);
+    formData.append('cardTitle',  cardTitle);
     formData.append('cardDescription', cardDescription);
     if (headerImage) formData.append('headerImage', headerImage);
     if (cardImage) formData.append('cardImage', cardImage);
 
     try {
-      if (industryId) {
+      if (IndustryId) {
         // Update existing Industry
-        const response = await axios.put(`http://localhost:8080/edit-existing-industry-data/${industryId}`, formData);
+        const response = await axios.put(`http://localhost:8080/edit-existing-industry-data/${IndustryId}`, formData);
         if (response.status === 200) {
           Swal.fire('Success!', 'Industry updated successfully.', 'success');
         }
@@ -133,7 +165,7 @@ const IndustryCMS = () => {
           Swal.fire('Success!', 'New Industry added successfully.', 'success');
         }
       }
-      fetchIndustries(); // Refresh the Industries list
+      fetchIndustrys(); // Refresh the Industrys list
       closeModal(); // Close the modal after submission
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -144,7 +176,7 @@ const IndustryCMS = () => {
   return (
     <div className="p-4">
       <div className='flex justify-between'>
-        <h1 className="text-xl font-bold mb-4">Industries Management</h1>
+        <h1 className="text-xl font-bold mb-4">Industry Management</h1>
         <button onClick={() => openModal()} className="bg-blue-500 text-white px-4 py-2 rounded">
           Add New Industry
         </button>
@@ -154,6 +186,7 @@ const IndustryCMS = () => {
         <table className="w-full border-collapse ">
           <thead className='bg-gray-500 text-white'>
             <tr>
+              <th className="border p-2">Sr No.</th>
               <th className="border p-2">Industry Name</th>
               <th className="border p-2">Header Data</th>
               <th className="border p-2">Card Data</th>
@@ -161,8 +194,9 @@ const IndustryCMS = () => {
             </tr>
           </thead>
           <tbody>
-            {Industries.map(Industry => (
+            {paginatedIndustrys.map((Industry, index) => (
               <tr key={Industry._id}>
+                <td className="border p-2">{(currentPage - 1) * itemsPerPage + index + 1}</td>
                 <td className="border p-2">{Industry.industryName}</td>
                 <td className="border p-2">
                   <button onClick={() => openHeaderModal(Industry)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
@@ -178,12 +212,34 @@ const IndustryCMS = () => {
             ))}
           </tbody>
         </table>
+
+        <div className="flex justify-center gap-x-6 items-center mt-4">
+          <button
+            onClick={goToPreviousPage}
+            className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          <span className="mx-2">
+            Page {currentPage} of {Math.ceil(Industrys.length / itemsPerPage)}
+          </span>
+          <button
+            onClick={goToNextPage}
+            className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === Math.ceil(Industrys.length / itemsPerPage) ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={currentPage === Math.ceil(Industrys.length / itemsPerPage)}
+          >
+            Next
+          </button>
+        </div>
+
+
       </div>
 
       <Modal show={showModal} onHide={closeModal}>
         <div className='w-[50vw] mx-auto bg-white'>
           <Modal.Header closeButton className="bg-gray-100">
-            <Modal.Title>{industryId ? 'Edit Industry' : 'Add New Industry'}</Modal.Title>
+            <Modal.Title>{IndustryId ? 'Edit Industry' : 'Add New Industry'}</Modal.Title>
           </Modal.Header>
           <Modal.Body className="w-full mx-auto">
             <form onSubmit={handleSubmit}>
@@ -191,8 +247,8 @@ const IndustryCMS = () => {
                 <label className="block text-gray-700">Industry Name</label>
                 <input
                   type="text"
-                  value={industryName}
-                  onChange={(e) => setindustryName(e.target.value)}
+                  value={IndustryName}
+                  onChange={(e) => setIndustryName(e.target.value)}
                   className="w-full p-2 border rounded"
                   required
                 />
@@ -208,12 +264,33 @@ const IndustryCMS = () => {
                   required
                 />
               </div>
+              <div className="mb-4">
+                <label className="block text-gray-700">Header Description</label>
+                <input
+                  type="text"
+                  value={headerDescription}
+                  onChange={(e) => setheaderDescription(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
 
               <div className="mb-4">
                 <label className="block text-gray-700">Header Image</label>
                 <input
                   type="file"
                   onChange={(e) => handleFileChange(e, setHeaderImage)}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <h1 className='text-lg font-semibold text-black'>Card Data</h1>
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Title</label>
+                <input
+                  type="text"
+                  value={cardTitle}
+                  onChange={(e) => setCardTitle(e.target.value)}
                   className="w-full p-2 border rounded"
                 />
               </div>
@@ -238,7 +315,7 @@ const IndustryCMS = () => {
               </div>
               <div className='flex justify-start gap-4'>
                 <button className='py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md' type="submit">
-                  {industryId ? 'Update Industry' : 'Add Industry'}
+                  {IndustryId ? 'Update Industry' : 'Add Industry'}
                 </button>
                 <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeModal}>
                   Cancel
@@ -258,11 +335,15 @@ const IndustryCMS = () => {
             <label className="block text-gray-700 font-bold font-serif">Header Tagline</label>
             <p>{headerTagLine}</p>
           </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold font-serif">Header Description</label>
+            <p>{headerDescription}</p>
+          </div>
 
           <div className="mb-4">
             <label className="lock text-gray-700 font-bold font-serif">Header Image</label>
             {headerImage && (
-              <img src={headerImage} alt="Header" className="w-[400px] h-[150px] rounded" />
+              <img src={headerImage} alt="Header" className="w-full h-auto rounded" />
             )}
           </div>
         </Modal.Body>
@@ -280,6 +361,10 @@ const IndustryCMS = () => {
         </Modal.Header>
         <Modal.Body>
           <div className="mb-4">
+            <label className="block text-gray-700 font-bold font-serif">Card Title</label>
+            <p>{cardTitle}</p>
+          </div>
+          <div className="mb-4">
             <label className="block text-gray-700 font-bold font-serif">Card Description</label>
             <p>{cardDescription}</p>
           </div>
@@ -292,9 +377,9 @@ const IndustryCMS = () => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeCardDataModal}>
+          <Button variant="secondary" onClick={closeCardDataModal}>
             Close
-          </button>
+          </Button>
         </Modal.Footer>
       </Modal>
 
