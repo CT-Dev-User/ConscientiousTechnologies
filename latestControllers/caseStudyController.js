@@ -24,7 +24,7 @@ const uploadToCloudinary = async (filePath) => {
 export const createCaseStudy = async (req, res) => {
     try {
         const {
-            category, Subcategory, cardDatatitle, cardDatasubTitle, cardDatacoreTech,
+            category, Subcategory, cardDatatitle, cardDatasubTitle, cardDatacoreTech, headerTagLine, headerdesc, 
             overviewtitle, overviewindustryType, overviewbusinessType, overviewservicesProvided, overviewdescription,
             goals, insights, challenges, approach, executionHeading1, executionPoint1, executionHeading2, executionPoint2, executionHeading3, executionPoint3,
             solution, techTools
@@ -41,14 +41,19 @@ export const createCaseStudy = async (req, res) => {
         const resultsImg3 = req.files?.resultsImg3 ? await uploadToCloudinary(req.files.resultsImg3[0].path) : '';
 
         const newCaseStudy = new CaseStudyModel({
+            // card data
             category,
             Subcategory,
             cardDatatitle,
             cardDatasubTitle,
             cardDatacoreTech,
             cardDatacardImage: cardImage,
-            cardDataheaderImage: headerImage,
 
+            // header data
+            headerTagLine,
+            headerdesc,
+            headerImage,
+            
             // overview data
             overviewtitle,
             overviewindustryType,
@@ -94,7 +99,7 @@ export const editCaseStudy = async (req, res) => {
     try {
         const { id } = req.params;
         const {
-            category, Subcategory, cardDatatitle, cardDatasubTitle, cardDatacoreTech,
+            category, Subcategory, cardDatatitle, cardDatasubTitle, cardDatacoreTech, headerTagLine, headerdesc, 
             overviewtitle, overviewindustryType, overviewbusinessType, overviewservicesProvided, overviewdescription,
             goals, insights, challenges, approach, executionHeading1, executionPoint1, executionHeading2, executionPoint2, executionHeading3, executionPoint3,
             solution, techTools
@@ -121,7 +126,10 @@ export const editCaseStudy = async (req, res) => {
                 cardDatasubTitle,
                 cardDatacoreTech,
                 cardDatacardImage: cardImage,
-                cardDataheaderImage: headerImage,
+
+                headerTagLine,
+                headerdesc,
+                headerImage,
 
                 overviewtitle,
                 overviewindustryType,
