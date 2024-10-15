@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const OurPartener = () => {
@@ -370,10 +369,13 @@ const OurPartener = () => {
               <td className="border p-1 flex gap-x-[10px]">
                 <Button
                   onClick={() => {
-                    {
+                    setEditOurPartenerData({
+                      title: item.title,
+                      logo: item.logo,    
+                    })
                       setEditOurPartenerDataShow(true);
                       setEditId(item._id);
-                    }
+                    
                   }}
                 >
                   Edit

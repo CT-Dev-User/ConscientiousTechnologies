@@ -198,14 +198,6 @@ function App() {
           </SideBar>
         }
       />
-      <Route
-        path="/conscientious-Home-casestudies"
-        element={
-          <SideBar>
-            <HomeCaseStudies />
-          </SideBar>
-        }
-      />
       {/* FAQ Routes */}
       <Route
         path="/conscientious-faq-category"

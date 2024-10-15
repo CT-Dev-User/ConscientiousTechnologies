@@ -193,7 +193,7 @@ const CaseStudies = () => {
         </Modal.Body>
         <Modal.Footer className="bg-gray-100">
           <Button variant="secondary" onClick={() => { setAddPopUpShow(false) }} className="text-gray-700 hover:text-gray-900">Close</Button>
-          <Button variant="primary" onClick={() => { { addCaseStudyDataFunc(); setAddPopUpShow(false) } }} className="bg-blue-500 hover:bg-blue-600 text-white">Save Changes</Button>
+          <Button variant="primary" onClick={() => {  addCaseStudyDataFunc(); setAddPopUpShow(false)  }} className="bg-blue-500 hover:bg-blue-600 text-white">Save Changes</Button>
         </Modal.Footer>
       </Modal>
 
@@ -244,7 +244,7 @@ const CaseStudies = () => {
         </Modal.Body>
         <Modal.Footer className="bg-gray-100">
           <Button variant="secondary" onClick={() => { setAddPopUpShow(false) }} className="text-gray-700 hover:text-gray-900">Close</Button>
-          <Button variant="primary" onClick={() => { { editCaseStudyDataFunc(); setEditPopUpShow(false) } }} className="bg-blue-500 hover:bg-blue-600 text-white">Save Changes</Button>
+          <Button variant="primary" onClick={() => {  editCaseStudyDataFunc(); setEditPopUpShow(false)  }} className="bg-blue-500 hover:bg-blue-600 text-white">Save Changes</Button>
         </Modal.Footer>
       </Modal>
 
