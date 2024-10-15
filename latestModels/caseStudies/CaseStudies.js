@@ -38,6 +38,7 @@ const CaseStudySchema = new mongoose.Schema({
     executionHeading3: { type: String },
     executionPoint3: { type: String },
 
+    // solution
     solution: { type: String },
     solutionImage: { type: String },
     techTools: { type: String },// separated by comma
