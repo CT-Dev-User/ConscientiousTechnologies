@@ -7,19 +7,24 @@ const SolutionCMS = () => {
   const [solutions, setSolutions] = useState([]); // Fixed the name from 'solution' to 'solutions'
   const [solutionId, setSolutionId] = useState(null);
   const [solutionName, setSolutionName] = useState('');
+  const [cardTitle, setCardTitle] = useState('');
   const [cardImage, setCardImage] = useState(null);
   const [cardDescription, setCardDescription] = useState('');
   const [headerTagLine, setHeaderTagLine] = useState('');
+  const [headerDescription, setheaderDescription] = useState('')
   const [headerImage, setHeaderImage] = useState(null);
-
   const [showModal, setShowModal] = useState(false);
   const [showHeaderModal, setShowHeaderModal] = useState(false);
   const [showCardModal, setShowCardModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5); // Number of items per page
+  const [paginatedSolutions, setPaginatedSolutions] = useState([]);
 
 
   const openHeaderModal = (solution) => {
     setHeaderTagLine(solution.headerTagLine);
     setHeaderImage(solution.headerImage);
+    setheaderDescription(solution.headerDescription);
     setShowHeaderModal(true);
   };
 
@@ -27,11 +32,14 @@ const SolutionCMS = () => {
     setShowHeaderModal(false);
   };
 
-
   // Fetch all solution data on mount
   useEffect(() => {
     fetchSolutions();
   }, []);
+
+  useEffect(() => {
+    setPaginatedSolutions(paginate(solutions, currentPage, itemsPerPage));
+  }, [solutions, currentPage, itemsPerPage]);
 
   const fetchSolutions = async () => {
     try {
@@ -41,6 +49,21 @@ const SolutionCMS = () => {
     } catch (error) {
       console.error('Error fetching Solution Data:', error);
     }
+  };
+
+
+  const paginate = (solutions, currentPage, itemsPerPage) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return solutions.slice(startIndex, endIndex);
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < Math.ceil(solutions.length / itemsPerPage)) setCurrentPage(currentPage + 1);
   };
 
   const handleDelete = async (id) => {
@@ -73,6 +96,8 @@ const SolutionCMS = () => {
       setSolutionId(solution._id);
       setSolutionName(solution.solutionName);
       setHeaderTagLine(solution.headerTagLine);
+      setCardTitle(solution.cardTitle);
+      setheaderDescription(solution.headerDescription);
       setCardDescription(solution.cardDescription);
       setCardImage(null); // Reset cardImage for editing
       setHeaderImage(null); // Reset headerImage for editing
@@ -81,6 +106,8 @@ const SolutionCMS = () => {
       setSolutionName('');
       setHeaderTagLine('');
       setCardDescription('');
+      setCardTitle('');
+      setheaderDescription('');
     }
     setShowModal(true);
   };
@@ -115,6 +142,7 @@ const SolutionCMS = () => {
     const formData = new FormData();
     formData.append('solutionName', solutionName);
     formData.append('headerTagLine', headerTagLine);
+    formData.append('headerDescription', headerDescription);
     formData.append('cardDescription', cardDescription);
     if (headerImage) formData.append('headerImage', headerImage);
     if (cardImage) formData.append('cardImage', cardImage);
@@ -154,6 +182,7 @@ const SolutionCMS = () => {
         <table className="w-full border-collapse ">
           <thead className='bg-gray-500 text-white'>
             <tr>
+              <th className="border p-2">Sr No</th>
               <th className="border p-2">Solution Name</th>
               <th className="border p-2">Header Data</th>
               <th className="border p-2">Card Data</th>
@@ -161,8 +190,9 @@ const SolutionCMS = () => {
             </tr>
           </thead>
           <tbody>
-            {solutions.map(solution => (
+            {paginatedSolutions.map((solution, index) => (
               <tr key={solution._id}>
+                <td className="border p-2">{(currentPage - 1) * itemsPerPage + index + 1}</td>
                 <td className="border p-2">{solution.solutionName}</td>
                 <td className="border p-2">
                   <button onClick={() => openHeaderModal(solution)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
@@ -178,6 +208,28 @@ const SolutionCMS = () => {
             ))}
           </tbody>
         </table>
+
+        <div className="flex justify-center gap-x-6 items-center mt-4">
+          <button
+            onClick={goToPreviousPage}
+            className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          <span className="mx-2">
+            Page {currentPage} of {Math.ceil(solutions.length / itemsPerPage)}
+          </span>
+          <button
+            onClick={goToNextPage}
+            className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === Math.ceil(solutions.length / itemsPerPage) ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={currentPage === Math.ceil(solutions.length / itemsPerPage)}
+          >
+            Next
+          </button>
+        </div>
+
+
       </div>
 
       <Modal show={showModal} onHide={closeModal}>
@@ -208,12 +260,33 @@ const SolutionCMS = () => {
                   required
                 />
               </div>
+              <div className="mb-4">
+                <label className="block text-gray-700">Header Description</label>
+                <input
+                  type="text"
+                  value={headerDescription}
+                  onChange={(e) => setheaderDescription(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
 
               <div className="mb-4">
                 <label className="block text-gray-700">Header Image</label>
                 <input
                   type="file"
                   onChange={(e) => handleFileChange(e, setHeaderImage)}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <h1 className='text-lg font-semibold text-black'>Card Data</h1>
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Title</label>
+                <input
+                  type="text"
+                  value={cardTitle}
+                  onChange={(e) => setCardTitle(e.target.value)}
                   className="w-full p-2 border rounded"
                 />
               </div>
@@ -258,6 +331,10 @@ const SolutionCMS = () => {
             <label className="block text-gray-700 font-bold font-serif">Header Tagline</label>
             <p>{headerTagLine}</p>
           </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold font-serif">Header Description</label>
+            <p>{headerDescription}</p>
+          </div>
 
           <div className="mb-4">
             <label className="lock text-gray-700 font-bold font-serif">Header Image</label>
@@ -279,6 +356,10 @@ const SolutionCMS = () => {
           <Modal.Title>Card Data</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold font-serif">Card Title</label>
+            <p>{cardTitle}</p>
+          </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-bold font-serif">Card Description</label>
             <p>{cardDescription}</p>

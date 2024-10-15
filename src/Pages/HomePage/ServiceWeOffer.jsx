@@ -14,8 +14,10 @@ const ServicesCMS = () => {
   // States for each form field
   const [serviceName, setServiceName] = useState('');
   const [headerTagLine, setHeaderTagLine] = useState('');
+  const [headerDescription, setheaderDescription] = useState('');
   const [headerImage, setHeaderImage] = useState(null);
   const [cardImage, setCardImage] = useState(null);
+  const [cardTitle, setcardTitle] = useState('');
   const [cardPoint1Heading, setCardPoint1Heading] = useState('');
   const [cardPoint1Desc, setCardPoint1Desc] = useState('');
   const [cardPoint2Heading, setCardPoint2Heading] = useState('');
@@ -28,7 +30,10 @@ const ServicesCMS = () => {
   // States for viewing header data
   const [viewHeaderTagLine, setViewHeaderTagLine] = useState('');
   const [viewHeaderImage, setViewHeaderImage] = useState(null);
+  const [viewheaderDescription, setViewheaderDescription] = useState(null);
+
   const [viewCardService, setviewCardService] = useState(null);
+
 
   // States for viewing card data
   const [viewCardImage, setViewCardImage] = useState(null);
@@ -40,6 +45,7 @@ const ServicesCMS = () => {
   const [viewCardPoint3Desc, setViewCardPoint3Desc] = useState('');
   const [viewCardPoint4Heading, setViewCardPoint4Heading] = useState('');
   const [viewCardPoint4Desc, setViewCardPoint4Desc] = useState('');
+  const [viewcardTitle, setviewcardTitle] = useState('');
 
 
 
@@ -51,8 +57,10 @@ const ServicesCMS = () => {
   // New function to open view modal for header data
   const openViewModal = (service) => {
     console.log(service)
-    setViewHeaderTagLine(service.headerDataTagLine);
+    setViewHeaderTagLine(service.headerTagLine);
+    setViewheaderDescription(service.headerDescription);
     setviewCardService(service.serviceName);
+
     setViewHeaderImage(service.headerImage);
     setShowViewModal(true);
   };
@@ -75,6 +83,7 @@ const ServicesCMS = () => {
   // Open the modal for adding or editing
 
   const openViewCardModal = (service) => {
+    setviewcardTitle(service.cardTitle);
     setViewCardImage(service.cardImage);
     setViewCardPoint1Heading(service.cardPoint1Heading);
     setViewCardPoint1Desc(service.cardPoint1Desc);
@@ -96,7 +105,9 @@ const ServicesCMS = () => {
       // Pre-fill form for editing
       setServiceId(service._id);
       setServiceName(service.serviceName);
-      setHeaderTagLine(service.headerDataTagLine);
+      setHeaderTagLine(service.headerTagLine);
+      setcardTitle(service.cardTitle);
+      setheaderDescription(service.headerDescription);
       setCardPoint1Heading(service.cardPoint1Heading);
       setCardPoint1Desc(service.cardPoint1Desc);
       setCardPoint2Heading(service.cardPoint2Heading);
@@ -122,7 +133,9 @@ const ServicesCMS = () => {
   const clearForm = () => {
     setServiceId(null);
     setServiceName('');
+    setcardTitle('')
     setHeaderTagLine('');
+    setheaderDescription('');
     setHeaderImage(null);
     setCardImage(null);
     setCardPoint1Heading('');
@@ -140,9 +153,11 @@ const ServicesCMS = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('serviceName', serviceName);
-    formData.append('headerDataTagLine', headerTagLine);
+    formData.append('headerTagLine', headerTagLine);
+    formData.append('headerDescription', headerDescription);
     formData.append('headerImage', headerImage);
     formData.append('cardImage', cardImage);
+    formData.append('cardTitle', cardTitle);
     formData.append('cardPoint1Heading', cardPoint1Heading);
     formData.append('cardPoint1Desc', cardPoint1Desc);
     formData.append('cardPoint2Heading', cardPoint2Heading);
@@ -274,6 +289,17 @@ const ServicesCMS = () => {
                   value={headerTagLine}
                   onChange={(e) => setHeaderTagLine(e.target.value)}
                   className="w-full p-2 border rounded"
+
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">Header Description</label>
+                <input
+                  type="text"
+                  value={headerDescription}
+                  onChange={(e) => setheaderDescription(e.target.value)}
+                  className="w-full p-2 border rounded"
                   required
                 />
               </div>
@@ -283,6 +309,16 @@ const ServicesCMS = () => {
                 <input
                   type="file"
                   onChange={(e) => handleFileChange(e, setHeaderImage)}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+              <h1 className='text-lg font-semibold text-black'>Card Data</h1>
+              <div className="mb-4">
+                <label className="block text-gray-700">Card Title</label>
+                <input
+                  type="text"
+                  value={cardTitle}
+                  onChange={(e) => setcardTitle(e.target.value)}
                   className="w-full p-2 border rounded"
                 />
               </div>
@@ -403,10 +439,15 @@ const ServicesCMS = () => {
         </Modal.Header>
         <Modal.Body>
           <h2 className="text-lg font-semibold className='text-black'"> <span className='font-bold'>Header Services :-</span> {viewCardService}</h2>
+
           <h2 className="text-lg font-semibold className='text-black'"> <span className='font-bold'>Header TagLine :-</span> {viewHeaderTagLine}</h2>
-          {viewHeaderImage && (
-            <img src={viewHeaderImage} alt="Header" className="mt-2 w-[150px] h-[100px]" />
-          )}
+          <h2 className="text-lg font-semibold className='text-black'"> <span className='font-bold'>Header Description :-</span> {viewheaderDescription}</h2>
+          <div> <span className='font-bold'>Header Image :-</span>
+            {viewHeaderImage && (
+              <img src={viewHeaderImage} alt="Header" className="mt-2 w-[150px] h-[100px]" />
+            )}
+          </div>
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeViewModal}>
@@ -422,6 +463,7 @@ const ServicesCMS = () => {
         </Modal.Header>
         <Modal.Body className="p-6 bg-white">
           <div className="mt-4">
+            <h5 className="text-xl font-bold text-gray-800 underline">{viewcardTitle}</h5>
             <h5 className="text-xl font-bold text-gray-800 underline">{viewCardPoint1Heading}</h5>
             <p className="text-gray-600 mb-4">{viewCardPoint1Desc}</p>
 
