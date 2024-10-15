@@ -111,14 +111,14 @@ const SideBar = ({ children }) => {
         title: "Home",
         list: [
           {
-            path: "/conscientious-home-heroslider",
-            name: "Hero Slider",
-            icon: <FaLaptop />,
-          },
-          {
             path: "/conscientious-users-registration",
             name: "Add Users",
             icon: <FaUser />,
+          },
+          {
+            path: "/conscientious-home-heroslider",
+            name: "Hero Slider",
+            icon: <FaLaptop />,
           },
           {
             path: "/conscientious-home-partners",
@@ -133,6 +133,11 @@ const SideBar = ({ children }) => {
           {
             path: "/conscientious-home-casestudies",
             name: "Case Studies",
+            icon: <FaFileAlt />,
+          },
+          {
+            path: "/conscientious-key-feature",
+            name: "Key Features", 
             icon: <FaFileAlt />,
           },
           {

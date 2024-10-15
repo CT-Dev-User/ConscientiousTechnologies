@@ -364,14 +364,6 @@ function App() {
         }
       />
       <Route
-        path="/conscientious-key-feature"
-        element={
-          <SideBar>
-            <KeyFeature />
-          </SideBar>
-        }
-      />
-      <Route
         path="/conscientious-contact-us"
         element={
           <SideBar>
