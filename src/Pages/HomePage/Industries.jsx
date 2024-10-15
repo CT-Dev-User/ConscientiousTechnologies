@@ -7,6 +7,7 @@ const IndustryCMS = () => {
   const [Industrys, setIndustrys] = useState([]); // Fixed the name from 'Industry' to 'Industrys'
   const [IndustryId, setIndustryId] = useState(null);
   const [IndustryName, setIndustryName] = useState('');
+  const [cardNo, setCardNo] = useState(0);
   const [cardTitle, setCardTitle] = useState('');
   const [cardImage, setCardImage] = useState(null);
   const [cardDescription, setCardDescription] = useState('');
