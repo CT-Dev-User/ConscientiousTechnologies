@@ -111,6 +111,11 @@ const SideBar = ({ children }) => {
         title: "Home",
         list: [
           {
+            path: "/conscientious-home-heroslider",
+            name: "Hero Slider",
+            icon: <FaLaptop />,
+          },
+          {
             path: "/conscientious-users-registration",
             name: "Add Users",
             icon: <FaUser />,
