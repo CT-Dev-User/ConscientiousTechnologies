@@ -23,7 +23,7 @@ const uploadToCloudinary = async (filePath) => {
 // Controller to create a new LatestIndustry entry
 export const createIndustry = async (req, res) => {
     try {
-        const { industryName, cardTitle, cardDescription, headerTagLine, headerDescription } = req.body;
+        const { industryName, cardTitle, cardDescription, headerTagLine, headerDescription, cardNo } = req.body;
 
         // File upload handling for card and header images
         let cardImageUrl, headerImageUrl;
@@ -36,6 +36,7 @@ export const createIndustry = async (req, res) => {
 
         const newIndustry = new LatestIndustryModel({
             industryName,
+            cardNo,
             cardImage: cardImageUrl || '',
             cardTitle,
             cardDescription,
@@ -56,7 +57,7 @@ export const createIndustry = async (req, res) => {
 export const editIndustry = async (req, res) => {
     try {
         const { id } = req.params;
-        const { industryName, cardTitle, cardDescription, headerTagLine, headerDescription } = req.body;
+        const { industryName, cardTitle,cardNo, cardDescription, headerTagLine, headerDescription } = req.body;
 
         // File upload handling for images
         let cardImageUrl, headerImageUrl;
@@ -76,6 +77,7 @@ export const editIndustry = async (req, res) => {
             id,
             {
                 industryName,
+                cardNo,
                 cardImage: cardImageUrl,
                 cardTitle,
                 cardDescription,
