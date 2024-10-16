@@ -66,7 +66,7 @@ const WhoWorkWithUs = () => {
       <div className="lg:flex text-white w-[85%] gap-9 flex-wrap mx-auto mt-8 hidden">
         {whoWorkWithUsData.map((items, i) => (
           <div
-            className="parent-div h-[26rem]"
+            className="parent-div h-[35rem]"
             style={{
               backgroundImage: `url(${items.image})`,
               backgroundSize: "cover",

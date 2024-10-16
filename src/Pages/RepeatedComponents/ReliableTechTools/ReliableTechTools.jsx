@@ -72,8 +72,8 @@ const ReliableTools = ({ category, subCategory }) => {
                   <div className="flex lg:gap-5 mt-2 gap-2 flex-wrap">
                     {item.techLogos.slice(0, 5).map((logo, i) => (
                       <div key={i} className="lg:w-14 w-12">
-                        {/* <img src={logo.logo} alt={item.title} /> */}
-                        <img src={aboutUs} className="w-12" alt="" />
+                        <img src={logo.logo} alt={item.title} />
+                        {/* <img src={aboutUs} className="w-12" alt="" /> */}
                       </div>
                     ))}
                     {item.techLogos.length > 5 && (

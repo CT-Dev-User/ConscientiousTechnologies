@@ -6,7 +6,29 @@ import "./keyfeature.css"
 import axios from 'axios';
 const KeyFeature = () => {
   const sliderRef = useRef(null);
+  const [autoplayPaused, setAutoplayPaused] = useState(false);
   const [KeyFeatureData, setKeyFeatureData] = useState([]);
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (slider) {
+        if (autoplayPaused) {
+            slider.slickPause();
+        } else {
+            slider.slickPlay();
+        }
+    }
+}, [autoplayPaused]);
+
+
+const handleMouseEnter = () => {
+  setAutoplayPaused(true);
+};
+
+const handleMouseLeave = () => {
+  setAutoplayPaused(false);
+};
+
   const fetchKeyFeatureData = async () => {
     try {
       const response = await axios.get("http://localhost:8080/get-key-feature-data");
@@ -27,7 +49,7 @@ const KeyFeature = () => {
     infinite: true,
     fade: true,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 1000,
     cssEase: 'ease-in-out',
     speed: 400,
     slidesToShow: 1,
@@ -52,7 +74,7 @@ const KeyFeature = () => {
             return (
               <div key={i}>
                 <div className='flex w-screen lg:h-auto flex-col lg:flex-row h-4/5'>
-                  <div className='w-2/5 lg:h-[38rem] lg:block hidden' style={{ backgroundImage: `url(${item.keyFeatureImag})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
+                  <div className='w-2/5 lg:h-[38rem] lg:block hidden' style={{ backgroundImage: `url(${item.keyFeatureImag})`, backgroundSize: 'cover', backgroundPosition: 'center' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                   </div>
                   <div className='lg:w-3/5 lg:h-full w-full h-[70%]'>
                     <div className='lg:w-[90%] w-full mx-auto h-[15%] flex mt-2 lg:mt-0 box-border pt-2'>

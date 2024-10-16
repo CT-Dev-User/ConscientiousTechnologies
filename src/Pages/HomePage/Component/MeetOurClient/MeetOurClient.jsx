@@ -3,21 +3,22 @@ import Slider from "react-slick";
 import quotes from '../assets/meetOurClient/quotes.png'
 import './meetOurClient.css'
 import axios from 'axios';
+import { FaStar } from 'react-icons/fa';
 const MeetOurClient = () => {
     const [clientReviewsData, setClientReviewsData] = useState([])
 
     const fetchClientReviewData = async () => {
         try {
-          const response = await axios.get("http://localhost:8080/get-client-review-data");
-          setClientReviewsData(response.data.getData);
+            const response = await axios.get("http://localhost:8080/get-client-review-data");
+            setClientReviewsData(response.data.getData);
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
-      };
-    
-      useEffect(() => {
+    };
+
+    useEffect(() => {
         fetchClientReviewData();
-      }, []);
+    }, []);
 
     // const meetOurClientData = [{ review: "We successfully delivered a bug-free module, enhancing the platform's user-friendliness. A comprehensive web..Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, We successfully delivered a bug-free module, enhancing the platform's user-friendliness. A comprehensive web..Lorem ipsum dolor sit amet, consectetur adipiscing", nameOfClient: "Johan Garbrielsson", image: require('../assets/meetOurClient/first.png'), Jobprofile: "Head of Digital Product & Services", rating: "5" },
     //  { review: "We successfully delivered a bug-free module, enhancing the platform's user-friendliness. A comprehensive web..Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, We successfully delivered a bug-free module, enhancing the platform's user-friendliness. A comprehensive web..Lorem ipsum dolor sit amet, consectetur adipiscing", nameOfClient: "Johan Garbrielsson", image: require('../assets/meetOurClient/first.png'), Jobprofile: "Head of Digital Product & Services", rating: "5" }, { review: "We successfully delivered a bug-free module, enhancing the platform's user-friendliness. A comprehensive web..Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, We successfully delivered a bug-free module, enhancing the platform's user-friendliness. A comprehensive web..Lorem ipsum dolor sit amet, consectetur adipiscing", nameOfClient: "Johan Garbrielsson", image: require('../assets/meetOurClient/first.png'), Jobprofile: "Head of Digital Product & Services", rating: "5" }, { review: "We successfully delivered a bug-free module, enhancing the platform's user-friendliness. A comprehensive web..Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, We successfully delivered a bug-free module, enhancing the platform's user-friendliness. A comprehensive web..Lorem ipsum dolor sit amet, consectetur adipiscing", nameOfClient: "Johan Garbrielsson", image: require('../assets/meetOurClient/second.png'), Jobprofile: "Head of Digital Product & Services", rating: "5" }]
@@ -58,23 +59,35 @@ const MeetOurClient = () => {
                 <Slider {...settings} dotsClass="slick-custom-dots">
                     {clientReviewsData.map((items, i) => {
                         return (
-                            <div className='h-80 mt-7 w-[85%]' key={i}>
+                            <div className='h-96 mt-7 w-[85%]' key={i}>
                                 <div className='w-[96%] h-full bg-[#464444] flex justify-around py-5'>
                                     <div className='w-[36%] h-full flex justify-center items-center'>
                                         <img src={items.profileImage} alt={items.name} className='w-[97%] h-full mx-auto' />
                                     </div>
-                                    <div className='w-[55%]'>
-                                        <img src={quotes} alt='quotes' className='w-4' />
-                                        <div className='ms-7 flex flex-col justify-start gap-6'>
-                                            <div>
-                                                <h1 className='text-lg mt-0'>Review Heading {i + 1}</h1>
-                                                <p className='text-sm font-normol w-11/12 mt-2'>{items.review}</p>
+                                    <div className='w-[55%] h-[100%] flex flex-col justify-between'>
+                                        <div className='h-[95%]'>
+                                            <img src={quotes} alt='quotes' className='w-4' />
+                                            <div className='ms-7 flex flex-col justify-start gap-6'>
+                                                <div className='h-[80%]'>
+                                                    <h1 className='text-lg mt-0'>{items.reviewHeading}</h1>
+                                                    <p className='text-base font-normal w-11/12 mt-2'>{items.review}</p>
+                                                </div>
+                                                <div className='h-[20%]'>
+                                                    <h6 className='text-lg font-semibold'>{items.name}</h6>
+                                                    <p className='text-xs'>{items.jobProfile}</p>
+                                                </div>
                                             </div>
+                                        </div>
 
-                                            <div>
-                                                <h6 className='text-lg font-semibold'>{items.name}</h6>
-                                                <p className='text-xs'>{items.Jobprofile}</p>
-                                            </div>
+                                        <div className='flex justify-end gap-2 h-[5%] pr-5'>
+                                            {Array.from({ length: items.rating }, (_, index) => (
+                                                <FaStar
+                                                    key={index}
+                                                    color={index < items.rating ? 'gold' : 'gray'}
+                                                    className='h-5 w-5'
+                                                    size={5} // Size of the star
+                                                />
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +121,11 @@ const MeetOurClient = () => {
                     })}
                 </Slider>
             </div>
+
+
         </div>
+
+
     )
 }
 
