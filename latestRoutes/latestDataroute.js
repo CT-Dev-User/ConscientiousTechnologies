@@ -86,7 +86,7 @@ latestrouter.put(
     ]),
     editCaseStudy
 );
-latestrouter.get('/get-all-case-studies', getAllCaseStudies);
+latestrouter.get('/get-latest-case-studies', getAllCaseStudies);
 latestrouter.get('/get-case-studies-by-id/:id', getCaseStudyById);
 latestrouter.get('/get-case-studies-by-cateory/:category', getCaseStudyByCategory);
 latestrouter.get('/get-case-studies-by-subcategory/category/:category/subcategory/:Subcategory', getCaseStudyBySubCategory);

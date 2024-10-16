@@ -3,11 +3,17 @@ import mongoose from "mongoose";
 const CaseStudySchema = new mongoose.Schema({
     category: { type: String },
     Subcategory: { type: String },
+
+    // card
     cardDatatitle: { type: String },
     cardDatasubTitle: { type: String },
-    cardDatacoreTech: { type: String },
+    cardDatacoreTech: { type: String },// comma separated
     cardDatacardImage: { type: String },
-    cardDataheaderImage: { type: String },
+
+    // header
+    headerTagLine: { type: String },
+    headerdesc: { type: String },
+    headerImage: { type: String },
 
     // overview 
     overviewtitle: { type: String },
@@ -17,6 +23,7 @@ const CaseStudySchema = new mongoose.Schema({
     overviewdescription: { type: String },
     overviewimage: { type: String },
 
+    // goals, insights, challenges, approach
     goals: { type: String }, // separated by comma
     insights: { type: String },
     insightsImage: { type: String },
@@ -31,6 +38,7 @@ const CaseStudySchema = new mongoose.Schema({
     executionHeading3: { type: String },
     executionPoint3: { type: String },
 
+    // solution
     solution: { type: String },
     solutionImage: { type: String },
     techTools: { type: String },// separated by comma
