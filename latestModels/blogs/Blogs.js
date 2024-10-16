@@ -3,12 +3,10 @@ import mongoose from "mongoose";
 const LatestBlogSchema = new mongoose.Schema({
     category: { type: String },
     subCategory: { type: String },
-    cardData: {
-        heading: { type: String },
-        subHeading: { type: String },
-        CardImg: { type: String },
-        headerImg: { type: String },
-    },
+    cardHeading: { type: String },
+    cardSubHeading: { type: String },
+    cardImage: { type: String },
+    headerImage: { type: String },
     articleData: [{
         Title: { type: String },
         Desc: { type: String }

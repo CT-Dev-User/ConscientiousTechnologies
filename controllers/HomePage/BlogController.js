@@ -1,11 +1,10 @@
-
 import blogsModel from "../../Models/HomePage/blogsModel.js";
 import cloudinary from "../../cloudinary.js";
 import fs from 'fs'
 
 export const addBlogsData = async (req, res) => {
     try {
-        const { title, desc} = req.body;
+        const { title, desc, } = req.body;
         const images = [];
         const uploadedFiles = req.files;
         for (const file of uploadedFiles) {

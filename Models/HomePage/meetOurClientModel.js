@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 
 const ClientReviewSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    profileImage: { type: String, required: true },
-    review: { type: String, required: true },
-    jobProfile:{type:String, required:true}
+    reviewHeading :{type:String},
+    name: { type: String },
+    profileImage: { type: String },
+    review: { type: String },
+    jobProfile:{type:String},
+    rating:{type:String}
 
 }, { timestamps: true });
 

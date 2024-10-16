@@ -5,6 +5,8 @@ import { createService, deleteService, editService, getAllServices, getServiceBy
 import { createSolution, deleteSolution, editSolution, getAllSolutions, getSolutionById, getSolutionBySolutionName } from '../latestControllers/solutionController.js';
 import { createIndustry,deleteIndustry, editIndustry, getAllIndustries, getIndustryById, getIndustryByIndustryName } from '../latestControllers/industriesController.js';
 import { createCaseStudy, deleteCaseStudy, editCaseStudy, getAllCaseStudies, getCaseStudyByCategory, getCaseStudyById, getCaseStudyBySubCategory } from '../latestControllers/caseStudyController.js';
+import { addBlog, deleteBlog, getAllBlogs, getBlogById, getBlogBysubCategory, updateBlog } from '../latestControllers/blogController.js';
+import { get } from 'mongoose';
 
 const latestrouter = express.Router();
 
@@ -89,6 +91,23 @@ latestrouter.get('/get-case-studies-by-id/:id', getCaseStudyById);
 latestrouter.get('/get-case-studies-by-cateory/:category', getCaseStudyByCategory);
 latestrouter.get('/get-case-studies-by-subcategory/category/:category/subcategory/:Subcategory', getCaseStudyBySubCategory);
 latestrouter.delete('/delete-case-studies/:id', deleteCaseStudy);
+
+
+//blogs routes
+latestrouter.post('/create-new-blog-data', upload.fields([
+    { name: 'cardImage', maxCount: 1 },
+    { name: 'headerImage', maxCount: 1 }
+]), addBlog);
+
+latestrouter.put('/edit-existing-blog-data/:id', upload.fields([
+    { name: 'cardImage', maxCount: 1 },
+    { name: 'headerImage', maxCount: 1 }
+]), updateBlog);
+
+latestrouter.get('/get-latest-blog-data', getAllBlogs);
+latestrouter.get('/get-latest-blog-data-by-id/:id', getBlogById);
+latestrouter.get('/get-latest-blog-data-by-subcategory/:category/:Subcategory', getBlogBysubCategory);
+latestrouter.delete('/delete-existing-blog-data-by-id/:id', deleteBlog);
 
 
 export default latestrouter;

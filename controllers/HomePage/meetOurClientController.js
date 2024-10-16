@@ -5,7 +5,7 @@ import fs from 'fs'
 
 export const addClientReviewData = async (req, res) => {
     try {
-        const { name, review, jobProfile } = req.body;
+        const { name, review, jobProfile, rating, reviewHeading } = req.body;
         const images = [];
         const uploadedFiles = req.files;
         for (const file of uploadedFiles) {
@@ -14,7 +14,7 @@ export const addClientReviewData = async (req, res) => {
             fs.unlinkSync(file.path);
         }
         const newData = new ClientReviewModel({
-            name, review, jobProfile, profileImage: images[0] || ""
+            name, review, jobProfile, profileImage: images[0] || "", rating, reviewHeading
         })
         const saveData = await newData.save();
         res.status(200).send({
@@ -42,7 +42,7 @@ export const getClientReviewData = async (req, res) => {
 export const editClientReviewData = async (req, res) => {
     try {
         const { id } = req.params
-        const {name, review, jobProfile } = req.body;
+        const { name, review, jobProfile, rating, reviewHeading } = req.body;
         const images = [];
         const uploadedFiles = req.files;
         for (const file of uploadedFiles) {
@@ -52,18 +52,24 @@ export const editClientReviewData = async (req, res) => {
         }
 
         const clientById = await ClientReviewModel.findById(id);
-        if (!caseStudyById) {
+        if (!clientById) {
+            console.log("object")
             return res.status(404).json({
-                error: 'solution not found'
+                error: 'client not found'
             })
         }
         clientById.name = name || clientById.title
         clientById.review = review || clientById.review
         clientById.profileImage = images[0] || clientById.profileImage
         clientById.jobProfile = jobProfile || clientById.jobProfile
-        const saveData = await clientById
+        clientById.rating = rating || clientById.rating
+        clientById.reviewHeading = reviewHeading || clientById.reviewHeading
+        // const saveData = await clientById
+        const saveData = await clientById.save();
+        console.log(clientById)
 
-        res.status(200).send({
+        
+        res.send({
             message: "Data updated Successfully",
             saveData
         })

@@ -74,9 +74,9 @@ dataroute.put("/edit-blog-data/:id",authlogin, Super_Admin, MultiImageupload.arr
 dataroute.delete("/delete-blog-data/:id",authlogin, Super_Admin, deleteBlogData)
 
 //meet our client data routes
-dataroute.post("/add-client-review-data",authlogin, Super_Admin, MultiImageupload.array('images', 1), addClientReviewData)
+dataroute.post("/add-client-review-data", MultiImageupload.array('profileImage', 1), addClientReviewData)
 dataroute.get("/get-client-review-data", getClientReviewData)
-dataroute.put("/edit-client-review-data/:id",authlogin, Super_Admin, MultiImageupload.array('images', 1), editClientReviewData)
+dataroute.put("/edit-client-review-data/:id",authlogin, Super_Admin, MultiImageupload.array('profileImage', 1), editClientReviewData)
 dataroute.delete("/delete-client-review-data/:id",authlogin, Super_Admin, deleteClientReviewData)
 
 //home faq routes
@@ -197,3 +197,4 @@ dataroute.delete('/delete-blogs-data-by-id/:id',authlogin, Super_Admin, deleteBl
 dataroute.get('/get-blogs-data-by-id/:id', getBlogDataByCategory)
 dataroute.get('/get-blogs-data-by-SubCategory/:SubCategory', getBlogDataBySubCategory)
 dataroute.get('/get-blogs-data-by-CategoryandSubCategory/:Category/:SubCategory', getBlogDataByCategorySubCategory)
+
