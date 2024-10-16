@@ -44,7 +44,7 @@ const HomeFAQ = () => {
             formData.append('answerText', addHomeFAQ.answer.answerText);
             formData.append('images', addHomeFAQ.answer.answerImg);
 
-            const response = await axios.post("http://localhost:8080/add-home-faq", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-home-faq", formData);
 
             if (response.status === 200) {
                 fetchHomeFaqs();
@@ -64,7 +64,7 @@ const HomeFAQ = () => {
             formData.append('answerText', editHomeFAQ.answer.answerText);
             formData.append('images', editHomeFAQ.answer.answerImg);
 
-            const response = await axios.put(`http://localhost:8080/edit-home-faq/${editId}`, formData)
+            const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-home-faq/${editId}`, formData)
             console.log(response.status)
             if (response.status === 200) {
                 setEditPopUpShow(false);
@@ -89,7 +89,7 @@ const HomeFAQ = () => {
 
     const fetchHomeFaqs = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-home-faq");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-home-faq");
             setHomeFaqs(response.data.getData);
         } catch (error) {
             console.log(error);
@@ -112,7 +112,7 @@ const HomeFAQ = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-home-faq/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-home-faq/${id}`);
                     if (response.status === 200) {
                         setEditId(null);
                         fetchHomeFaqs()

@@ -27,7 +27,7 @@ const SignIn = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:8080/login", {
+      const response = await axios.post("https://conscientious-technologies-backend.vercel.app/login", {
         email,
         password,
       });

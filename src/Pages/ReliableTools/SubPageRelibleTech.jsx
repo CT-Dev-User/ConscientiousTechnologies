@@ -82,7 +82,7 @@ const SubPageRelibleTech = () => {
 
     const fetchReliableDataByCategory = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-reliable-tools-data/${subcategory}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/${subcategory}`);
             setReliableToolsData(response.data.data);
         } catch (error) {
             console.error(error);
@@ -112,7 +112,7 @@ const SubPageRelibleTech = () => {
                 });
             });
 
-            const response = await axios.post("http://localhost:8080/add-reliable-tools-data", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-reliable-tools-data", formData);
             console.log(response)
             if (response.status === 200) {
 
@@ -137,7 +137,7 @@ const SubPageRelibleTech = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-reliable-tools-data/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-reliable-tools-data/${id}`);
                     if (response.status === 200) {
                         // setEditId(null);
                         fetchReliableDataByCategory()

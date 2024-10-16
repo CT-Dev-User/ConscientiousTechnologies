@@ -52,7 +52,7 @@ const HeroSection = () => {
       formData.append('heroHomedesc', addHeroHomeData.heroHomedesc);
       formData.append('herosliderImage', addHeroHomeData.herosliderImage);
 
-      const response = await axios.post("http://localhost:8080/add-heroslider-data", formData);
+      const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-heroslider-data", formData);
       if (response.status === 200) {
         setAddHeroShow(false);
         setAddHeroHomeData({ title: "", herosliderImage: "", heroHomedesc: "" });
@@ -65,7 +65,7 @@ const HeroSection = () => {
 
   const fetchHomeHeroData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/get-heroslider-data");
+      const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-heroslider-data");
       setHeroData(response.data.getdata);
     } catch (error) {
       console.log(error);
@@ -92,7 +92,7 @@ const HeroSection = () => {
           formData.append("heroHomedesc", editHeroData.heroHomedesc);
           formData.append("herosliderImage", editHeroData.herosliderImage);
 
-          const response = await axios.put(`http://localhost:8080/edit-heroslider-data/${editId}`, formData);
+          const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-heroslider-data/${editId}`, formData);
           if (response.status === 200) {
             setEditId(null);
             handleEditHeroDataClose();
@@ -127,7 +127,7 @@ const HeroSection = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-heroslider-data/${id}`);
+          const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-heroslider-data/${id}`);
           if (response.status === 200) {
             setEditId(null);
             fetchHomeHeroData();
@@ -185,8 +185,8 @@ const HeroSection = () => {
               <label htmlFor="hero-home-image" className="block font-bold">Hero Home Image</label>
               <div className="relative">
                 <div>
-                  <input type="file" name="hero_image" id="hero-home-image" className="form-input  block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleFileChange} />
-                  <label htmlFor="hero-home-image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                  <input type="file" name="hero_image" id="hero-home-image" className="form-input w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleFileChange} />
+                  <label htmlFor="hero-home-image" id="file-upload-label" className="cursor-pointer  hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                 </div>
                 {selectedFile && (
                   <div className="ml-2 mt-4">
@@ -230,8 +230,8 @@ const HeroSection = () => {
               <label htmlFor="hero-home-image" className="block font-bold">Hero Home Image</label>
               <div className="relative">
                 <div>
-                  <input type="file" name="hero_image" id="hero-home-image" className="form-input  block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                  <label htmlFor="hero-home-image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                  <input type="file" name="hero_image" id="hero-home-image" className="form-input  block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
+                  <label htmlFor="hero-home-image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md ">Upload File</label>
                 </div>
                 {editSelectedFile && (
                   <div className="ml-2 mt-4">

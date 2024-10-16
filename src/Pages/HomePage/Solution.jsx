@@ -43,7 +43,7 @@ const SolutionCMS = () => {
 
   const fetchSolutions = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/get-latest-solution-data');
+      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-solution-data');
       console.log(response.data);
       setSolutions(response.data);
     } catch (error) {
@@ -78,7 +78,7 @@ const SolutionCMS = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-existing-solution-data-by-id/${id}`);
+          const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-existing-solution-data-by-id/${id}`);
           if (response.status === 200) {
             fetchSolutions(); // Refresh the solution list
             Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
@@ -150,13 +150,13 @@ const SolutionCMS = () => {
     try {
       if (solutionId) {
         // Update existing solution
-        const response = await axios.put(`http://localhost:8080/edit-solution-data/${solutionId}`, formData);
+        const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-solution-data/${solutionId}`, formData);
         if (response.status === 200) {
           Swal.fire('Success!', 'Solution updated successfully.', 'success');
         }
       } else {
         // Create new solution
-        const response = await axios.post('http://localhost:8080/create-new-solution-data', formData);
+        const response = await axios.post('https://conscientious-technologies-backend.vercel.app/create-new-solution-data', formData);
         if (response.status === 200) {
           Swal.fire('Success!', 'New solution added successfully.', 'success');
         }

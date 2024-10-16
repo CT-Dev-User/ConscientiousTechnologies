@@ -15,7 +15,7 @@ const PartnerUp = () => {
 
     const fetchPartnerUpData = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-partner-up-data");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-partner-up-data");
             if (response.status === 200) {
                 setPartnerUpData(response.data.getdata);
             }
@@ -77,7 +77,7 @@ const PartnerUp = () => {
             addPartnerUpData.images1.forEach((image) => formData.append('images1', image));
             addPartnerUpData.images2.forEach((image) => formData.append('images2', image));
 
-            const response = await axios.post("http://localhost:8080/add-partner-up-data", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-partner-up-data", formData);
 
             if (response.status === 200) {
                 fetchPartnerUpData();
@@ -100,7 +100,7 @@ const PartnerUp = () => {
             editPartnerUpData.images1.forEach((image) => formData.append('images1', image));
             editPartnerUpData.images2.forEach((image) => formData.append('images2', image));
 
-            const response = await axios.put(`http://localhost:8080/edit-partner-up-data/${editId}`, formData);
+            const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-partner-up-data/${editId}`, formData);
             if (response.status === 200) {
                 setEditPopUpShow(false);
                 setEditPartnerUpData({ heading1: "", images1: [], heading2: "", images2: [] });
@@ -125,7 +125,7 @@ const PartnerUp = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-partner-up-data/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-partner-up-data/${id}`);
                     if (response.status === 200) {
                         fetchPartnerUpData();
                         Swal.fire('Deleted!', 'Your data has been deleted.', 'success');

@@ -11,7 +11,7 @@ const ConsultationData = () => {
 
   const fetchConsultationData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/get-book-free-con-data");
+      const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-book-free-con-data");
       setConsultationData(response.data.getData);
     } catch (error) {
       console.log(error);
@@ -30,7 +30,7 @@ const ConsultationData = () => {
     }).then(async (result) => {
         if (result.isConfirmed) {
             try {
-                const response = await axios.delete(`http://localhost:8080/delete-book-free-con-data/${id}`);
+                const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-book-free-con-data/${id}`);
                 if (response.status === 200) {
                   fetchConsultationData()
                     Swal.fire(

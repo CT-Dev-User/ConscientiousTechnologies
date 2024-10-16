@@ -1,111 +1,132 @@
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import JoditEditor from 'jodit-react';
-import React, { useEffect, useRef, useState } from 'react'
-import { Button, Modal } from 'react-bootstrap';
-import { AiOutlineClose } from 'react-icons/ai';
-import { FaEye } from 'react-icons/fa';
+import { Modal, Button, Table } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
-const Blogs = () => {
-  const [blogData, setBlogData] = useState([])
-  const [addBlogData, setAddBlogData] = useState({ title: "", images: "", desc: "" })
-  const [EditBlogData, setEditBlogData] = useState({ title: "", images: "", desc: "" })
-  const [descModal, setDescModal] = useState(false)
-  const [BlogDesc, setBlogDesc] = useState(null)
-  const [addPopupShow, setAddPopUpShow] = useState(false);
-  const [editPopupShow, setEditPopUpShow] = useState(false);
-  const [addselectedFile, setAddSelectedFile] = useState(null);
-  const [editSelectedFile, setEditSelectedFile] = useState(null);
-  const [editId, setEditId] = useState(null);
-  const addEditor = useRef(null);
-  const editEditor = useRef(null)
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(3);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = blogData.slice(indexOfFirstItem, indexOfLastItem);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const handleAddfileChange = (e) => {
-    setAddBlogData({ ...addBlogData, images: e.target.files[0] });
-    setAddSelectedFile(e.target.files[0]);
-  };
-
-  const handleEditFileChange = (e) => {
-    setEditBlogData({ ...EditBlogData, images: e.target.files[0] });
-    setEditSelectedFile(e.target.files[0])
-  }
-
-
-  const fetchBlogsData = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/get-blog-data");
-      setBlogData(response.data.getData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const BlogCMS = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentBlog, setCurrentBlog] = useState(null);
+  const [formData, setFormData] = useState({
+    category: '',
+    subCategory: '',
+    cardHeading: '',
+    cardSubHeading: '',
+    articleData: [{ Title: '', Desc: '' }],  // Initialize as array of objects
+    blogTags: '',
+    cardImage: null,
+    headerImage: null,
+  });
 
   useEffect(() => {
-    fetchBlogsData();
+    fetchBlogs();
   }, []);
 
-  const addCBlogDataFunc = async () => {
+  // Fetch all blogs
+  const fetchBlogs = async () => {
     try {
-      const formData = new FormData();
-      formData.append('title', addBlogData.title);
-      formData.append('desc', addBlogData.desc);
-      formData.append('images', addBlogData.images);
-
-      const response = await axios.post("http://localhost:8080/add-blog-data", formData);
-
-      // Assuming you want to fetch updated data after adding
-      if (response.status === 200) {
-        fetchBlogsData();
-        setAddPopUpShow(false);
-        // setAddSelectedFile(null)
-        setAddBlogData({ title: "", images: "", desc: "", coreTec: "" });
-      }
+      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-blog-data');
+      setBlogs(response.data.blogs);
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching blogs:', error);
     }
-  }
+  };
 
-  const editBlogDataFunc = async () => {
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+  };
+
+  // Handle changes in articleData (Title/Desc)
+  const handleArticleChange = (index, e) => {
+    const newArticleData = [...formData.articleData];
+    newArticleData[index][e.target.name] = e.target.value;
+    setFormData({ ...formData, articleData: newArticleData });
+  };
+
+  // Add new article
+  const addArticle = () => {
+    setFormData({
+      ...formData,
+      articleData: [...formData.articleData, { Title: '', Desc: '' }],
+    });
+  };
+
+  // Remove article
+  const removeArticle = (index) => {
+    const newArticleData = formData.articleData.filter((_, i) => i !== index);
+    setFormData({ ...formData, articleData: newArticleData });
+  };
+
+  // Open modal for editing or adding new blog
+  const toggleModal = (blog = null) => {
+    if (blog) {
+      setCurrentBlog(blog);
+      setFormData({
+        category: blog.category,
+        subCategory: blog.subCategory,
+        cardHeading: blog.cardHeading,
+        cardSubHeading: blog.cardSubHeading,
+        articleData: blog.articleData || [{ Title: '', Desc: '' }],  // Load article data or empty array
+        blogTags: blog.blogTags,
+        cardImage: null,
+        headerImage: null,
+      });
+    } else {
+      setCurrentBlog(null);
+      setFormData({
+        category: '',
+        subCategory: '',
+        cardHeading: '',
+        cardSubHeading: '',
+        articleData: [{ Title: '', Desc: '' }],  // Reset articleData to one empty item
+        blogTags: '',
+        cardImage: null,
+        headerImage: null,
+      });
+    }
+    setIsModalOpen(!isModalOpen);
+  };
+
+  // Submit blog data (Add/Edit)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = new FormData();
+    Object.keys(formData).forEach((key) => {
+      if (key === 'articleData') {
+        form.append(key, JSON.stringify(formData[key]));  // Convert articleData to JSON string
+      } else {
+        form.append(key, formData[key]);
+      }
+    });
+
     try {
-      const formData = new FormData();
-      formData.append('title', EditBlogData.title);
-      formData.append('desc', EditBlogData.desc);
-      formData.append('images', EditBlogData.images);
-
-      const response = await axios.put(`http://localhost:8080/edit-blog-data/${editId}`, formData)
-      console.log(response.status)
-      if (response.status === 200) {
-        setEditPopUpShow(false);
-        setEditBlogData({ title: "", images: "", desc: "", coreTec: "" })
-        fetchBlogsData();
-        Swal.fire(
-          'Saved!',
-          'Your changes have been saved.',
-          'success'
-        );
+      if (currentBlog) {
+        // Update existing blog
+        await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-existing-blog-data/${currentBlog._id}`, form, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+      } else {
+        // Create new blog
+        await axios.post('https://conscientious-technologies-backend.vercel.app/create-new-blog-data', form, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
       }
 
+      fetchBlogs();
+      toggleModal();
     } catch (error) {
-      console.log(error)
-      Swal.fire(
-        'Error!',
-        'Failed to save changes. Please try again later.',
-        'error'
-      );
+      console.error('Error saving blog:', error);
     }
-  }
+  };
 
-
-  // setAddBlogData({ ...addBlogData
-  const deletesDataBlogData = (id) => {
+  // Delete blog
+  const handleDelete = async (id) => {
     Swal.fire({
       title: 'Are you sure?',
       text: 'You will not be able to recover this data!',
@@ -116,187 +137,163 @@ const Blogs = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        // If user confirms deletion
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-blog-data/${id}`);
-          if (response.status === 200) {
-            setEditId(null);
-            fetchBlogsData()
-            Swal.fire(
-              'Deleted!',
-              'Your data has been deleted.',
-              'success'
-            );
-          }
+          await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-existing-blog-data-by-id/${id}`);
+          fetchBlogs();
         } catch (error) {
-          console.log(error);
-          Swal.fire(
-            'Error!',
-            'Failed to delete data. Please try again later.',
-            'error'
-          );
+          console.error('Error deleting blog:', error);
         }
       }
     });
-  }
+  };
 
   return (
-    <div className="w-full bg-gray-300 h-full mx-auto p-4">
-      <div className="flex justify-end mb-5 mr-3">
-        <Button onClick={() => setAddPopUpShow(true)} className='className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"'>Add Case Study</Button>
+    <div className="container mx-auto mt-5">
+      <div className="flex justify-between mb-4">
+        <h1 className="text-xl font-bold">Manage Blogs</h1>
+        <Button variant="primary" onClick={() => toggleModal()}>Add New Blog</Button>
       </div>
 
-      <table className="w-full border-collapse border" >
+      <Table striped bordered hover>
         <thead>
-          <tr className="bg-gray-200">
-            <th className="border p-2">Sr. No</th>
-            <th className="border p-2">Blogs Title</th>
-            <th className="border p-2">Blogs Description</th>
-            <th className="border p-2">Blogs Image</th>
-            <th className="border p-2">Action</th>
+          <tr>
+            <th>Category</th>
+            <th>Subcategory</th>
+            <th>Card Heading</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((blog, i) => (
-            <tr key={i}>
-              <td className="border p-2">{i + 1}</td>
-              <td className="border p-2">{blog.title}</td>
-              <td className="border p-2">
-                <FaEye onClick={() => { setDescModal(true); setBlogDesc(blog.desc) }} className='usersor-pointer' />
-              </td>
-              <td className="border p-2"><img src={blog.homePageBlogImage} alt={blog.title} className='h-[50px]' /></td>
-              <td className="border p-2 flex gap-x-[20px]">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setEditId(blog._id); setEditPopUpShow(true) }}>Edit</button>
-
-                <button className=' hover:bg-red-700 bg-[red] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={() => { deletesDataBlogData(blog._id) }}>Delete</button>
+          {blogs.map((blog) => (
+            <tr key={blog._id}>
+              <td>{blog.category}</td>
+              <td>{blog.subCategory}</td>
+              <td>{blog.cardHeading}</td> 
+              <td>
+                <button className='bg-blue-500 text-white px-2 py-1 rounded mr-2' size="sm" onClick={() => toggleModal(blog)}>Edit</button>{' '}
+                <button className='hover:bg-red-700 bg-[red] px-2 py-1 rounded text-white shadow-md' size="sm" onClick={() => handleDelete(blog._id)}>Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
-       {/* Pagination */}
-       <ul className="flex justify-center mt-[90px]">
-        <li>
-          <button onClick={() => setCurrentPage(prevPage => Math.max(prevPage - 1, 1))} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">Previous</button>
-        </li>
-        {[...Array(Math.ceil(blogData.length / itemsPerPage)).keys()].map(number => (
-          <li key={number} className="mx-1">
-            <button onClick={() => paginate(number + 1)} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">{number + 1}</button>
-          </li>
-        ))}
-        <li>
-          <button onClick={() => setCurrentPage(prevPage => Math.min(prevPage + 1, Math.ceil(blogData.length / itemsPerPage)))} className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white">Next</button>
-        </li>
-      </ul>
+      </Table>
 
-      {/* Add Modals popup*/}
-      <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Add Blog Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">Title</label>
-              <input type="text" name="title" id="title" className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500" onChange={(e) => setAddBlogData({ ...addBlogData, title: e.target.value })} />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="desc" className="block text-gray-700 font-bold">Description</label>
-
-              <JoditEditor
-                ref={addEditor}
-                value={addBlogData.desc}
-                onChange={(value) => { setAddBlogData({ ...addBlogData, desc: value }) }}
+      {/* Add/Edit Modal */}
+      <Modal show={isModalOpen} onHide={() => toggleModal()}>
+        <form onSubmit={handleSubmit}>
+          <Modal.Header closeButton>
+            <Modal.Title>{currentBlog ? 'Edit Blog' : 'Add Blog'}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="mb-4">
+              <label>Category</label>
+              <input
+                type="text"
+                name="category"
+                value={formData.category}
+                onChange={handleInputChange}
+                className="form-control"
+                required
               />
-
-            </fieldset>
-
-            <fieldset className="mb-4">
-              <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
-              <div className="relative">
-                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
-                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
-                {addselectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button className="text-red-500 hover:text-red-700  mt-1 ms-[110px] " onClick={() => setAddSelectedFile(null)}>
-                      < AiOutlineClose />
-                    </button>
-                    <img src={URL.createObjectURL(addselectedFile)} alt="Selected File" className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2" />
-                    <p className="text-gray-700">{addselectedFile.name}</p>
-                  </div>
-                )}
-              </div>
-            </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => { setAddPopUpShow(false) }} className="text-gray-700 hover:text-gray-900">Close</Button>
-          <Button variant="primary" onClick={() => { { setAddPopUpShow(false); addCBlogDataFunc() } }} className="bg-blue-500 hover:bg-blue-600 text-white">Save Changes</Button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* Edit Modal PopPup */}
-      <Modal show={editPopupShow} onHide={() => setEditPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Add Blog Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">Title</label>
-              <input type="text" name="title" id="title" className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500" onChange={(e) => setEditBlogData({ ...EditBlogData, title: e.target.value })} />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="desc" className="block text-gray-700 font-bold">Description</label>
-
-              <JoditEditor
-                ref={editEditor}
-                value={EditBlogData.desc}
-                onChange={(value) => { setEditBlogData({ ...EditBlogData, desc: value }) }}
+            </div>
+            <div className="mb-4">
+              <label>Subcategory</label>
+              <input
+                type="text"
+                name="subCategory"
+                value={formData.subCategory}
+                onChange={handleInputChange}
+                className="form-control"
+                required
               />
+            </div>
+            <div className="mb-4">
+              <label>Card Heading</label>
+              <input
+                type="text"
+                name="cardHeading"
+                value={formData.cardHeading}
+                onChange={handleInputChange}
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label>Card Subheading</label>
+              <input
+                type="text"
+                name="cardSubHeading"
+                value={formData.cardSubHeading}
+                onChange={handleInputChange}
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label>Blog Tags (Saperated By Commas)</label>
+              <input
+                type="text"
+                name="blogTags"
+                value={formData.blogTags}
+                onChange={handleInputChange}
+                className="form-control"
+                required
+              />
+            </div>
 
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
-              <div className="relative">
-                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
-                {editSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button className="text-red-500 hover:text-red-700  mt-1 ms-[110px] " onClick={() => setEditSelectedFile(null)}>
-                      < AiOutlineClose />
-                    </button>
-                    <img src={URL.createObjectURL(editSelectedFile)} alt="Selected File" className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2" />
-                    <p className="text-gray-700">{editSelectedFile.name}</p>
-                  </div>
-                )}
-              </div>
-            </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => { setEditPopUpShow(false) }} className="text-gray-700 hover:text-gray-900">Close</Button>
-          <Button variant="primary" onClick={() => { setEditPopUpShow(false); editBlogDataFunc() }} className="bg-blue-500 hover:bg-blue-600 text-white">Save Changes</Button>
-        </Modal.Footer>
+            {/* Article Data */}
+            <div className="mb-4">
+              <label>Article Data</label>
+              {formData.articleData.map((article, index) => (
+                <div key={index} className="mb-2">
+                  <input
+                    type="text"
+                    name="Title"
+                    placeholder="Title"
+                    value={article.Title}
+                    onChange={(e) => handleArticleChange(index, e)}
+                    className="form-control mb-1"
+                    required
+                  />
+                  <textarea
+                    name="Desc"
+                    placeholder="Description"
+                    value={article.Desc}
+                    onChange={(e) => handleArticleChange(index, e)}
+                    className="form-control mb-1"
+                    required
+                  />
+                  <Button variant="danger" size="sm" onClick={() => removeArticle(index)} className='text-black'>
+                    Remove Article
+                  </Button>
+                </div>
+              ))}
+              <Button variant="success" size="sm" onClick={addArticle} className='text-black'>
+                Add Article
+              </Button>
+            </div>
+
+            <div className="mb-4">
+              <label>Card Image</label>
+              <input type="file" name="cardImage" onChange={handleFileChange} className="form-control" />
+            </div>
+            <div className="mb-4">
+              <label>Header Image</label>
+              <input type="file" name="headerImage" onChange={handleFileChange} className="form-control" />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => toggleModal()} className='text-black'>
+              Close
+            </Button>
+            <Button type="submit" variant="primary" className='text-black'> 
+              {currentBlog ? 'Update Blog' : 'Add Blog'}
+            </Button>
+          </Modal.Footer>
+        </form>
       </Modal>
-
-      <Modal size="lg" show={descModal} onHide={() => setDescModal(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit Hero Section Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <div dangerouslySetInnerHTML={{ __html: BlogDesc }} />
-
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button variant="secondary" onClick={() => setDescModal(false)} className="text-gray-700 hover:text-gray-900">
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
     </div>
-  )
-}
+  );
+};
 
-export default Blogs
+export default BlogCMS;

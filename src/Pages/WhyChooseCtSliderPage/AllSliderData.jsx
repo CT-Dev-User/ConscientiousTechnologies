@@ -45,7 +45,6 @@ const AllSliderData = () => {
             const response = await axios.get('http://localhost:8080/get-industries-data')
             setDropdown(response.data.getData)
         }
-
     }
     useEffect(() => {
         SubCategoryDropdown();

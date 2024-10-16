@@ -46,7 +46,7 @@ const IndustryCMS = () => {
 
   const fetchIndustrys = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/get-latest-industry-data');
+      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-industry-data');
       console.log(response.data);
       setIndustrys(response.data);
     } catch (error) {
@@ -81,7 +81,7 @@ const IndustryCMS = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-existing-industry-data-by-id/${id}`);
+          const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-existing-industry-data-by-id/${id}`);
           if (response.status === 200) {
             fetchIndustrys(); // Refresh the Industry list
             Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
@@ -155,13 +155,13 @@ const IndustryCMS = () => {
     try {
       if (IndustryId) {
         // Update existing Industry
-        const response = await axios.put(`http://localhost:8080/edit-existing-industry-data/${IndustryId}`, formData);
+        const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-existing-industry-data/${IndustryId}`, formData);
         if (response.status === 200) {
           Swal.fire('Success!', 'Industry updated successfully.', 'success');
         }
       } else {
         // Create new Industry
-        const response = await axios.post('http://localhost:8080/create-new-industry-data', formData);
+        const response = await axios.post('https://conscientious-technologies-backend.vercel.app/create-new-industry-data', formData);
         if (response.status === 200) {
           Swal.fire('Success!', 'New Industry added successfully.', 'success');
         }
