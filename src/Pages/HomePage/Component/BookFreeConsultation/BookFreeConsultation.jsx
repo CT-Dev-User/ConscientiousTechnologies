@@ -22,8 +22,7 @@ const BookFreeConsultation = () => {
             } 
         } catch (error) {
             console.log(error)
-        }
-        
+        }   
     }
 
     return (

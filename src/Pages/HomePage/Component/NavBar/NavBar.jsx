@@ -9,6 +9,11 @@ import axios from "axios";
 import { CTContext } from "../../../../Context/createContext";
 
 const NavBar = ({ hideNavbar, setHideNavbar }) => {
+
+  const navCategory = [{name:"Service", name:"Solution", name:"Industries", name:"About Us", name:"Career", name:"Service"}];
+  console.log(navCategory);
+  const navCategoryData = ["Service", "Solution", "Industries", "About Us", "Career", "Service"];
+
   const { dropdowns, setDropdowns, activeItem, setActiveItem } =
     useContext(CTContext);
   const [toggle, setToggle] = useState(false);
@@ -17,6 +22,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
   const [navigations, setNavigations] = useState([]);
   const [dropdownsData, setDropdownsData] = useState([]);
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +47,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
     try {
       const response = await axios.get("http://localhost:8080/get-category");
       setNavigations(response.data.getData);
+      console.log(response.data.getData);
     } catch (error) {
       console.error(error);
     }
@@ -61,6 +68,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
         );
         if (response.data.message === "Category retrieved successfully") {
           setDropdownsData(response.data.data);
+          
         } else {
           setDropdownsData([]);
           setActiveItem("");
@@ -111,10 +119,10 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
             </div>
           ))}
         </div>
-        {/* Additional menu when Services is active */}
+        {/* Additional menu when Services is active
         <div
           className={`w-[95%] h-52 mx-auto text-white pt-5 ${
-            dropdownsData && activeItem === "Services" ? "flex" : "hidden"
+            dropdownsData && activeItem === "Service" ? "flex" : "hidden"
           }`}
         >
           <div className="w-[70%] h-4/5">
@@ -156,7 +164,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
             </div>
             <img src={clientby} alt="client by" />
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Navbar content */}
@@ -184,22 +192,23 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
         </div>
 
         {/* Desktop menu */}
+      
         <ul className="hidden lg:flex gap-10 text-white text-sm">
-          {navigations.map((nav, i) => (
+          {navCategory.map((nav, i) => (
             <li
               key={i}
               className={`cursor-pointer ${
-                activeItem === nav.faqCategory ? "active2" : ""
+                activeItem === nav.name ? "active2" : ""
               } hover:text-[#FFA843]`}
               onClick={() => {
-                setActiveItem(nav.faqCategory);
-                dropdownToggle(nav.faqCategory);
-                if (nav.faqCategory === "Career") {
+                setActiveItem(nav.name);
+                dropdownToggle(nav.name);
+                if (nav.name === "Career") {
                   navigate("/Career");
                 }
               }}
             >
-              {nav.faqCategory}
+              {nav.name}
             </li>
           ))}
         </ul>
@@ -223,7 +232,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
               : "left-[-100%] opacity-0 pointer-events-none"
           }`}
         >
-          {navigations.map((nav, i) => {
+          {navCategory.map((nav, i) => {
             return (
               <li
                 key={i}
