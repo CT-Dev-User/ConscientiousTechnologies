@@ -15,8 +15,8 @@ const Blogs = () => {
 
     const fetchBlogDataById = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-blogs-data-by-id/${id}`);
-            setBlogsData(response.data.data);
+            const response = await axios.get(`http://localhost:8080/get-latest-blog-data-by-id/${id}`);
+            setBlogsData(response.data.blog);
         } catch (error) {
             console.log(error);
         }
@@ -32,13 +32,13 @@ const Blogs = () => {
 
     return (
         <div>
-            <BlogHeader headerImg={blogsData.headerImg} heading={blogsData.heading} subHeading={blogsData.subHeading} />
+            <BlogHeader headerImg={blogsData.headerImage} heading={blogsData.headerTitle} subHeading={blogsData.HeaderDesc} />
             <OurPartener />
-            <BlogContent blogData={blogsData.blogData} />
+            <BlogContent blogData={blogsData.articleData} />
             <BlogTags blogTags={blogsData.blogTags} />
             <RelatedBlog />
             <BookFreeConsultation />
-              <Footer/>
+            <Footer />
 
         </div>
     );

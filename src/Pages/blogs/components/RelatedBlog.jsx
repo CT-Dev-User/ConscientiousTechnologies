@@ -82,9 +82,9 @@ const RelatedBlog = () => {
   };
 
   return (
-    <div className='w-[100vw] h-auto pt-[30px]'>
-      <div className='w-[85%] mx-auto md:w-[95%]'>
-        <h2 className='text-[#3970F0] font-bold text-[24px] md:text-[18px] mb-[20px]'>Related Blog</h2>
+    <div className='w-screen h-auto py-16'>
+      <div className='lg:w-[85%] mx-auto w-[95%]'>
+        <h2 className='lg:text-3xl font-bold text-2xl text-[blue] lg:text-black'>Related Blog</h2>
         <div className='w-[100%] h-[100%] mx-auto md:hidden'>
           <Slider {...settings}>
             {relatedBlog.map((items, i) => {

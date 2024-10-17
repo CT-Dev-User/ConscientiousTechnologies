@@ -31,7 +31,7 @@ const handleMouseLeave = () => {
 
   const fetchKeyFeatureData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/get-key-feature-data");
+      const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-key-feature-data");
       setKeyFeatureData(response.data.getdata);
     } catch (error) {
       console.log(error);

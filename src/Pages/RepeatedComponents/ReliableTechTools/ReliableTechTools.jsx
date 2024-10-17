@@ -14,12 +14,12 @@ const ReliableTools = ({ category, subCategory }) => {
     try {
       if (category === "HomePage") {
         const response = await axios.get(
-          "http://localhost:8080/get-reliable-tools-data"
+          "https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data"
         );
         setReliableToolsData(response.data.data);
       } else {
         const response = await axios.get(
-          `http://localhost:8080/get-reliable-tools-data/${category}/${subCategory}`
+          `https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/${category}/${subCategory}`
         );
         setReliableToolsData(response.data.data);
       }

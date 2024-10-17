@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 
 const BlogContent = ({ blogData = [] }) => {
+  console.log(blogData)
   const blogRefs = useRef([]);
   const tocRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -38,17 +39,17 @@ const BlogContent = ({ blogData = [] }) => {
   }, []);
 
   return (
-    <div className="flex w-[85vw] mx-auto py-[30px] main-div relative h-auto md:w-[95vw]">
+    <div className="flex lg:w-[85vw] mx-auto pt-16 pb-10 main-div relative h-auto w-[95vw]">
       <div className="w-4/5 pr-5 md:w-full">
         {blogData.map((blog, index) => (
           <div key={blog._id} ref={el => blogRefs.current[index] = el} className="mb-5">
-            <h2 className="text-2xl font-bold mb-2 md:text-[18px]" id={`blogs${index}`}>{blog.blogTitle}</h2>
-            <div dangerouslySetInnerHTML={{ __html: blog.blogDesc }} className="text-gray-700" />
+            <h2 className="text-xl lg:text-3xl font-bold mb-2 " id={`blogs${index}`}>{blog.Title}</h2>
+            <div dangerouslySetInnerHTML={{ __html: blog.Desc }} className="text-gray-700" />
           </div>
         ))}
       </div>
-      <div className="w-1/5 pl-5 relative  md:hidden" ref={tocRef} style={{ top: '10px', right: '10px' }}>
-        <div className="relative sticky top-[40px]">
+      <div className="w-1/5 pl-5 relative lg:block hidden" ref={tocRef} style={{ top: '10px', right: '10px' }}>
+        <div className="sticky top-10">
           <h1 className="font-bold mb-4 ml-[10px]">Table of Contents</h1>
           <div className="absolute top-0 left-0 h-full w-1 bg-gray-200">
             <div className="bg-blue-500 w-full rounded" style={{ height: `${scrollProgress}%` }} />
@@ -60,7 +61,7 @@ const BlogContent = ({ blogData = [] }) => {
                   e.preventDefault();
                   scrollToBlog(index);
                 }} className={`text-blue-500 hover:underline ${activeLink === `${index}` ? 'h-auto' : ''}`}>
-                  {blog.blogTitle}
+                  {blog.Title}
                 </a>
               </div>
             ))}

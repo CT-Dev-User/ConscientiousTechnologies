@@ -9,12 +9,15 @@ const Blog = () => {
   const navigate = useNavigate();
   const fetchBlogsData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/get-blogs-data");
-      setBlogData(response.data.getData);
+      const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-latest-blog-data");
+      setBlogData(response.data.blogs);
+      console.log(blogData)
     } catch (error) {
       console.log(error);
     }
   };
+
+
 
   useEffect(() => {
     fetchBlogsData();
@@ -41,11 +44,11 @@ const Blog = () => {
     sliderRef1.current.slickPrev();
   };
 
-  const extractFirst10Words = (text, num) => {
-    const words = text.split(/\s+/); // Split the text into words using whitespace as delimiter
-    const first20Words = words.slice(0, num); // Get the first 20 words
-    return first20Words.join(" "); // Join them back into a single string
-  };
+  // const extractFirst10Words = (text, num) => {
+  //   const words = text.split(/\s+/); // Split the text into words using whitespace as delimiter
+  //   const first20Words = words.slice(0, num); // Get the first 20 words
+  //   return first20Words.join(" "); // Join them back into a single string
+  // };
 
   return (
     <div className="w-screen h-auto bg-black py-14 box-border text-white border-t-[.1px] border-[#cccc]">
@@ -62,25 +65,26 @@ const Blog = () => {
           return (
             <div
               style={{
-                backgroundImage: `url(${items.homeImg})`,
+                backgroundImage: `url(${items.headerImage})`,
                 backgroundSize: "cover",
                 backgroundPosition: "cover",
               }}
-              className={`${
-                i > 3
+              className={`${i > 3
                   ? "hidden"
                   : "w-[35rem] h-96 bg-black relative blog-main-div"
-              }`}
+                }`}
               key={i}
             >
               <div className="blog-child-div flex flex-col justify-between">
                 <div className="flex flex-col justify-around gap-4">
                   <h1 className="font-semibold text-lg">
-                    {extractFirst10Words(items.heading, 5)}...
+                    {items.cardHeading}
+                    {/* {extractFirst10Words(items.heading, 5)}... */}
                   </h1>
                   <p className="text-sm">
                     {" "}
-                    {extractFirst10Words(items.subHeading, 10)}...
+                    {items.cardSubHeading}
+                    {/* {extractFirst10Words(items.subHeading, 10)}... */}
                   </p>
                 </div>
                 <button
@@ -105,19 +109,20 @@ const Blog = () => {
                 <div
                   className="w-full h-full relative"
                   style={{
-                    backgroundImage: `url(${items.homeImg})`,
+                    backgroundImage: `url(${items.cardImage})`,
                     backgroundSize: "cover",
                     backgroundPosition: "cover",
                   }}
                 >
                   <div className="w-full absolute flex flex-col justify-around bottom-0 h-3/5 bg-[black] box-border p-2 opacity-[0.8]">
                     <div className="flex flex-col justify-around gap-4">
-                      <h1 className="font-semibold text-lg">
-                        {extractFirst10Words(items.heading, 5)}...
+                      <h1 className="font-semibold text-lg">{items.cardHeading}
+                        {/* {extractFirst10Words(items.cardHeading, 5)}... */}
                       </h1>
                       <p className="text-base">
                         {" "}
-                        {extractFirst10Words(items.subHeading, 10)}...
+                        {items.cardSubHeading}
+                        {/* {extractFirst10Words(items.subHeading, 10)}... */}
                       </p>
                     </div>
 
@@ -141,8 +146,7 @@ const Blog = () => {
         <button
           className="w-20 h-11 shadow-sm shadow-[gray] p-1"
           onClick={goToPrevSlide}
-        >
-          &#9666; <span>PREV</span>
+        > &#9666; <span>PREV</span>
         </button>
         <button
           className="w-20 h-11 shadow-sm shadow-[gray] p-1"

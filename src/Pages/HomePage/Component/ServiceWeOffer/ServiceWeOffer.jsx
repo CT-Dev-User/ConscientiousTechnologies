@@ -33,7 +33,7 @@ const ServiceWeOffer = () => {
   const fetchServiceData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-latest-service-data"
+        "https://conscientious-technologies-backend.vercel.app/get-latest-service-data"
       );
       setServiceData(response.data);
     } catch (error) {

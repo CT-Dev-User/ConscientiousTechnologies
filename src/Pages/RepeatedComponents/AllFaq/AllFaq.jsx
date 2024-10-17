@@ -10,7 +10,7 @@ const AllFaq = ({ category, subCategory }) => {
   const fetchHomeFaqs = async () => {
     if (category === "All") {
       try {
-        const response = await axios.get("http://localhost:8080/get-faq");
+        const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-faq");
         setHomeFaqs(response.data.getData);
       } catch (error) {
         console.log(error);
@@ -18,7 +18,7 @@ const AllFaq = ({ category, subCategory }) => {
     } else {
       try {
         const response = await axios.get(
-          `http://localhost:8080/get-faq-bycategorysubcategory/${category}/${subCategory}`
+          `https://conscientious-technologies-backend.vercel.app/get-faq-bycategorysubcategory/${category}/${subCategory}`
         );
         setHomeFaqs(response.data.data);
       } catch (error) {

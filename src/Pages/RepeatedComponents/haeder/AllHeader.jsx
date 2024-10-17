@@ -9,19 +9,19 @@ const AllHeader = ({ category, serviceName, solutionName, industryName }) => {
         try {
             if (category === "Services") {
                 console.log("ok")
-                const response = await axios.get(`http://localhost:8080/get-service-data-by-serviceName/${serviceName}`);
+                const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-service-data-by-serviceName/${serviceName}`);
                 setHeaderData(response.data);
                 // console.log(response.data)
             } else if (category === "Solutions") {
-                const response = await axios.get(`http://localhost:8080/get-solution-data-by-solutionName/${solutionName}`);
+                const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-solution-data-by-solutionName/${solutionName}`);
                 console.log(response.data)
                 setHeaderData(response.data);
             }else if(category === "Industries"){
-                const response = await axios.get(`http://localhost:8080/get-latest-industry-data-by-industryName/${industryName}`);
+                const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-latest-industry-data-by-industryName/${industryName}`);
                 console.log(response.data)
                 setHeaderData(response.data);
             }
-            // const response = await axios.get(`http://localhost:8080/get-service-data-by-category/${category}`);
+            // const response = await axios.get(`https://conscientious-technologies-backend.vercel.app//get-service-data-by-category/${category}`);
             // setHeaderData(response.data);
             // console.log(response.data)
         } catch (error) {

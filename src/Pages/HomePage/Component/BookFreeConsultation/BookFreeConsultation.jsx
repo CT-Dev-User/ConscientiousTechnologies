@@ -11,7 +11,7 @@ const BookFreeConsultation = () => {
 
     const postBookFreeConsultation = async () => {
         try {
-            const response = await axios.post("http://localhost:8080/add-book-free-con-data", freeConsultationData)
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-book-free-con-data", freeConsultationData)
             if (response.status === 200) {
                 Swal.fire({
                     title: "Good job!",

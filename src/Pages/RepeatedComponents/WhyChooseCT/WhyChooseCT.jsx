@@ -103,7 +103,7 @@ const WhyChooseCTSlider = () => {
   const fetchSliderData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/get-choose-ct-slider-data-byCategorySubCategory/Solutions/${subCategory}`
+        `https://conscientious-technologies-backend.vercel.app/get-choose-ct-slider-data-byCategorySubCategory/Solutions/${subCategory}`
       );
       setSliderData(response.data.data);
     } catch (error) {

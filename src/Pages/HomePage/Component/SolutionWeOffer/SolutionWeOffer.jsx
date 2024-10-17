@@ -8,7 +8,7 @@ const SolutionWeOffer = () => {
 
     const getHomeSolutionDataFunc = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-solution-we-offer-data")
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-solution-we-offer-data")
             setGetSolutionData(response.data.getData)
 
         } catch (error) {
@@ -21,7 +21,7 @@ const SolutionWeOffer = () => {
     }, [])
     const getAllSolutionDataFunc = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-latest-solution-data")
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-latest-solution-data")
             setAllSolutionData(response.data)
 
         } catch (error) {

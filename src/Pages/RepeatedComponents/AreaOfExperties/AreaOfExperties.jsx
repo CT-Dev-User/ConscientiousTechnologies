@@ -6,7 +6,7 @@ const AreaOfExperties = ({ category, subCategory, navSubCategory }) => {
     const [expertiesData, setexpertiesData] = useState([])
     const fetchHeader = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-experties-by-CategoryandSubCategory/${category}/${subCategory}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-experties-by-CategoryandSubCategory/${category}/${subCategory}`);
             setexpertiesData(response.data.data);
         } catch (error) {
             console.log(error);

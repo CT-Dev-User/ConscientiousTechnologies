@@ -11,7 +11,7 @@ const IndustriesWeServe = () => {
   const getHomeIndustriesData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-latest-industry-data"
+        "https://conscientious-technologies-backend.vercel.app/get-latest-industry-data"
       );
       if (response.status === 200) {
         setHomeIndustriesData(response.data);
