@@ -78,7 +78,7 @@ const AllCategoryReliableTools = () => {
         setAddReliableData(newData);
     };
 
-    const SubCategoryDropdown = async () => {
+    const SubCategoryDropdown = async (category) => {
         try {
             let response;
             if (category === "Technologies") {
@@ -99,10 +99,10 @@ const AllCategoryReliableTools = () => {
     };
 
     useEffect(() => {
-        SubCategoryDropdown();
-    }, []);
+        SubCategoryDropdown(category);
+    }, [category]);
 
-    const fetchReliableDataByCategory = async () => {
+    const fetchReliableDataByCategory = async (category) => {
         try {
             const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/${category}`);
             setReliableToolsData(response.data.data);
@@ -112,8 +112,8 @@ const AllCategoryReliableTools = () => {
     };
 
     useEffect(() => {
-        fetchReliableDataByCategory();
-    }, []);
+        fetchReliableDataByCategory(category);
+    }, [category]);
 
 
 
