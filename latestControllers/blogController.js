@@ -23,7 +23,7 @@ const uploadToCloudinary = async (filePath) => {
 // Add new blog
 export const addBlog = async (req, res) => {
     try {
-        const { category, subCategory, cardHeading, cardSubHeading, articleData, blogTags, headerTitle,HeaderDesc  } = req.body;
+        const { category, subCategory, cardHeading, cardSubHeading, articleData, blogTags, headerTitle, HeaderDesc } = req.body;
         let headerImage = "";
         let cardImage = "";
         const parsedArticleData = JSON.parse(articleData);
@@ -111,7 +111,7 @@ export const getBlogBysubCategory = async (req, res) => {
 export const updateBlog = async (req, res) => {
     try {
         const { id } = req.params;
-        const { category, subCategory, cardHeading, cardSubHeading, articleData, blogTags, headerTitle,HeaderDesc } = req.body;
+        const { category, subCategory, cardHeading, cardSubHeading, articleData, blogTags, headerTitle, HeaderDesc } = req.body;
         const blog = await LatestBlogModel.findById(id);
 
         if (!blog) {
