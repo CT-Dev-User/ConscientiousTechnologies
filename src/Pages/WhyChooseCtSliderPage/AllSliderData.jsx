@@ -444,7 +444,7 @@ const AllSliderData = () => {
 
 
                             <td className="border flex items-center justify-start gap-[20px] p-2">
-                                <button className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7x] text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(slider._id); }}>Edit</button>
+                                <button className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(slider._id); }}>Edit</button>
                                 <button className='hover:bg-red-700 h-[37px] bg-[red] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={() => deleteHeaderData(slider._id)}>Delete</button>
                                 <button className='hover:bg-red-700 h-[37px] bg-[green] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={() => navigate(`/conscientious-why-choose-subpage/${slider.Subcategory}`)}>SubPages</button>
 
