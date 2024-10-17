@@ -13,10 +13,13 @@ import Footer from '../HomePage/Component/Footer/Footer'
 import OurPeople from './Component/OurPeople/OurPeople'
 import PartnerEcoSystem from './Component/PartnerEcosystem/PartnerEcoSystem'
 import ServiceWeProvide from './Component/serviceWeProvide/ServiceWeProvide'
+import Header from './Component/aboutUsHeader/AboutUsHeader'
 const AboutUs = ({ setHideNavbar, setActiveSubNav }) => {
     return (
         <div>
-            <AllHeader category="About Us" subCategory="About Us" />
+            {/* <AllHeader category="About Us" subCategory="About Us" /> */}
+            {/* <Header/> */}
+            <Header/>
             <OurPartener />
             <SubNavBar setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav} />
             <AboutUsDesc />

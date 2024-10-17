@@ -21,9 +21,6 @@ const AllHeader = ({ category, serviceName, solutionName, industryName }) => {
                 console.log(response.data)
                 setHeaderData(response.data);
             }
-            // const response = await axios.get(`https://conscientious-technologies-backend.vercel.app//get-service-data-by-category/${category}`);
-            // setHeaderData(response.data);
-            // console.log(response.data)
         } catch (error) {
             console.log(error);
         }

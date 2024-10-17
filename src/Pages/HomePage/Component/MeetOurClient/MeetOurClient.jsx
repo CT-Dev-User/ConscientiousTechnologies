@@ -59,7 +59,7 @@ const MeetOurClient = () => {
                 <Slider {...settings} dotsClass="slick-custom-dots">
                     {clientReviewsData.map((items, i) => {
                         return (
-                            <div className='h-96 mt-7 w-[85%]' key={i}>
+                            <div className='lg:h-80 2xl:h-96 mt-7 w-[85%]' key={i}>
                                 <div className='w-[96%] h-full bg-[#464444] flex justify-around py-5'>
                                     <div className='w-[36%] h-full flex justify-center items-center'>
                                         <img src={items.profileImage} alt={items.name} className='w-[97%] h-full mx-auto' />
@@ -67,13 +67,13 @@ const MeetOurClient = () => {
                                     <div className='w-[55%] h-[100%] flex flex-col justify-between'>
                                         <div className='h-[95%]'>
                                             <img src={quotes} alt='quotes' className='w-4' />
-                                            <div className='ms-7 flex flex-col justify-start gap-6'>
+                                            <div className='h-[90%] ms-7 flex flex-col justify-start gap-6'>
                                                 <div className='h-[80%]'>
-                                                    <h1 className='text-lg mt-0'>{items.reviewHeading}</h1>
-                                                    <p className='text-base font-normal w-11/12 mt-2'>{items.review}</p>
+                                                    <h1 className='text-base 2xl:text-lg mt-0'>{items.reviewHeading}</h1>
+                                                    <p className='text-xs 2xl:text-base font-normal w-11/12 mt-2'>{items.review}</p>
                                                 </div>
                                                 <div className='h-[20%]'>
-                                                    <h6 className='text-lg font-semibold'>{items.name}</h6>
+                                                    <h6 className='text-base 2xl:text-lg font-semibold'>{items.name}</h6>
                                                     <p className='text-xs'>{items.jobProfile}</p>
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@ const MeetOurClient = () => {
                                                 <FaStar
                                                     key={index}
                                                     color={index < items.rating ? 'gold' : 'gray'}
-                                                    className='h-5 w-5'
+                                                    className='h-4 w-4'
                                                     size={5} // Size of the star
                                                 />
                                             ))}

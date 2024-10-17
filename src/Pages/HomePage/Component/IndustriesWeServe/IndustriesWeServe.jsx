@@ -45,7 +45,7 @@ const IndustriesWeServe = () => {
       <div className="lg:flex text-white w-[90%] gap-4 flex-wrap mx-auto justify-center mt-4 hidden">
         {firstTwelveData.map((item, index) => (
           <div
-            className="w-[22.5%] h-96 bg-black relative main-div overflow-hidden"
+            className="w-[22.5%] lg:h-72 2xl:h-96 bg-black relative main-div overflow-hidden"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             key={index}

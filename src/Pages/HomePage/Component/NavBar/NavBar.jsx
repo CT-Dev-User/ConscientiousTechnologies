@@ -10,7 +10,7 @@ import { CTContext } from "../../../../Context/createContext";
 
 const NavBar = ({ hideNavbar, setHideNavbar }) => {
 
-  const navCategory = [{ name: "Service" }, { name: "Solution" }, { name: "Industries" }, { name: "About Us" }, { name: "Career" }, { name: "Contact Us" }];
+  const navCategory = [{ name: "Services" }, { name: "Solutions" }, { name: "Industries" }, { name: "About Us" }, { name: "Career" }, { name: "Contact Us" }];
   console.log(navCategory);
 
   const { dropdowns, setDropdowns, activeItem, setActiveItem } =
@@ -20,6 +20,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
   const [visible, setVisible] = useState(true);
   const [navigations, setNavigations] = useState([]);
   const [dropdownsData, setDropdownsData] = useState([]);
+  const[search,setSearch]=useState("")
   const navigate = useNavigate();
 
 
@@ -44,7 +45,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
 
   const fetchNavCategory = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/get-category");
+      const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-category");
       setNavigations(response.data.getData);
       console.log(response.data.getData);
     } catch (error) {
@@ -56,41 +57,20 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
     fetchNavCategory();
   }, []);
 
-  // const dropdownToggle = async (navCategory) => {
-  //   try {
-  //     if (activeItem === navCategory) {
-  //       setDropdownsData([]);
-  //       setActiveItem("");
-  //     } else {
-  //       const response = await axios.get(
-  //         `http://localhost:8080/get-navigation-by-navCategory/${navCategory}`
-  //       );
-  //       if (response.data.message === "Category retrieved successfully") {
-  //         setDropdownsData(response.data.data);
 
-  //       } else {
-  //         setDropdownsData([]);
-  //         setActiveItem("");
-  //         setToggle(false);
-  //         navigate(`/${navCategory}`);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
   const dropdownToggle = async (navCategory) => {
     try {
       if (activeItem === navCategory) {
         setDropdownsData([]);
         setActiveItem("");
       } else {
-        if (navCategory === "Service") {
+        if (navCategory === "Services") {
           const response = await axios.get(
-            `http://localhost:8080/get-latest-service-data`
+            `https://conscientious-technologies-backend.vercel.app/get-latest-service-data`
           )
           if (response.status === 200) {
             setDropdownsData(response.data);
+            setSearch("serviceName")
           } else {
             setDropdownsData([]);
             setActiveItem("");
@@ -98,12 +78,14 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
             navigate(`/${navCategory}`);
           }
 
-        } else if (navCategory === "Solution") {
+        } else if (navCategory === "Solutions") {
           const response = await axios.get(
-            `http://localhost:8080/get-latest-solution-data`
+            `https://conscientious-technologies-backend.vercel.app/get-latest-solution-data`
           )
          if (response.status === 200) {
             setDropdownsData(response.data);
+            setSearch("solutionName")
+
           } else {
             setDropdownsData([]);
             setActiveItem("");
@@ -112,10 +94,11 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
           }
         } else if (navCategory === "Industries") {
           const response = await axios.get(
-            `http://localhost:8080/get-latest-industry-data`
+            `https://conscientious-technologies-backend.vercel.app/get-latest-industry-data`
           )
           if (response.status === 200) {
             setDropdownsData(response.data);
+            setSearch("industryName")
           } else {
             setDropdownsData([]);
             setActiveItem("");
@@ -128,11 +111,6 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
       console.error(error);
     }
   };
-
-
-
-
-
   return (
     <nav
       className={`navbar  ${visible && !hideNavbar ? "active" : "hidden"
@@ -158,12 +136,12 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
               key={index}
               className="hover:text-[#FFA843] hover:border-b hover:border-[#FFA843] transition-border h-6 w-[18%] text-[12px] text-white flex justify-between items-center mb-[10px] font-normal cursor-pointer"
               onClick={() => {
-                setDropdowns(`${item.navSubcategory}`);
-                navigate(`${activeItem}/${item.navSubcategory}`);
+                setDropdowns(`${item[search]}`);
+                navigate(`${activeItem}/${item[search]}`);
                 setDropdownsData([]);
               }}
             >
-              <h4>{item.navSubcategory}</h4>
+              <h4>{item[search]}</h4>
               <h4 className="text-xl">›</h4>
             </div>
           ))}
@@ -252,6 +230,10 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
                 dropdownToggle(nav.name);
                 if (nav.name === "Career") {
                   navigate("/Career");
+                }else if(nav.name === "Contact Us"){
+                  navigate("/contact-us")
+                }else if(nav.name === "About Us"){
+                  navigate("/about-us")
                 }
               }}
             >
@@ -302,19 +284,19 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
                     } duration-1000 transition-height ease-in-out bg-black text-white p-3 h-[40vh] overflow-y-auto`}
                 >
                   {dropdownsData.map((item, index) => {
-                    if (item.navCategory === nav.name) {
+                    if (navCategory === nav.name) {
                       return (
                         <li
                           className="border-t border-[#FFA843]"
                           key={index}
                           onClick={() => {
-                            navigate(`${activeItem}/${item.navSubcategory}`);
+                            navigate(`${activeItem}/${item.serviceName}`);
                             setDropdownsData([]);
                             setToggle(false);
                           }}
                         >
                           <div className="flex justify-between items-center">
-                            <span> {item.navSubcategory}</span>
+                            <span> {item.serviceName}</span>
                             <span className="text-xl">›</span>
                           </div>
                         </li>

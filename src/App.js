@@ -232,7 +232,7 @@ function App() {
         <Route path='/get-connect-with-us' element={<MainPage />} />
         <Route path='/Career' element={<CareerPage />} />
         <Route path='/blog/:id' element={<Blogs />} />
-        <Route path='/about us' element={<AboutUs setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav} />} />
+        <Route path='/about-us' element={<AboutUs setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav} />} />
       </Routes>
     </div>
   );

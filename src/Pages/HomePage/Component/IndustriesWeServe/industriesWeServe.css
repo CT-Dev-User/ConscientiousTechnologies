@@ -16,9 +16,20 @@
   transition: transform 1.3s ease;
 }
 
-.main-div:hover .title-div {
-  border-top: none;
-  transform: translateY(calc(-550% - 49px)); /* Adjust based on container height */
+@media (min-width: 1536px) { /* Tailwind 2xl breakpoint */
+  .main-div:hover .title-div {
+    border-top: none;
+    transform: translateY(calc(-543% - 49px)); /* Adjust based on container height */
+  }
+}
+
+
+
+@media (max-width: 1536px) { /* Tailwind lg breakpoint */
+  .main-div:hover .title-div {
+    border-top: none;
+    transform: translateY(calc(-380% - 49px)); /* Adjust based on container height */
+  }
 }
 
 .desc-div {
