@@ -174,7 +174,7 @@ const HomeCaseStudies = () => {
           </button>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto custom-scrollbar">
           <table className="min-w-full border border-gray-300">
             <thead className="bg-gray-800 text-white text-left">
               <tr className="border-b border-gray-300">
@@ -237,14 +237,14 @@ const HomeCaseStudies = () => {
                   <td className="border-r px-4 py-2">
                     <button
                       type="button"
-                      className="text-blue-500 hover:underline"
+                      className="text-white hover:bg-green-700 px-3 py-1 bg-green-500 rounded font-semibold"
                       onClick={() => {setEditPopUpShow(true); setEditCaseStudy(caseStudy); existingValues(caseStudy);}}
                     >
                       Edit
                     </button>
                     <button
                       type="button"
-                      className="text-red-500 hover:underline ml-4"
+                      className="text-white hover:bg-red-800 px-3 py-1 bg-red-600 rounded font-semibold mt-2"
                       onClick={() => deleteCaseStudies(caseStudy._id)}
                     >
                       Delete

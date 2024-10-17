@@ -209,15 +209,14 @@ const AllCategoryReliableTools = () => {
                     {selectedItem && selectedItem.subTech.map((subTechItem, index) => (
                         <div key={index}>
                             <h5 className='mt-2'>{subTechItem.title}</h5>
-                            <div className='flex flex-wrap gap-x-[30px] gap-y-[10px]'>
+                            <div className='flex flex-wrap gap-x-7 gap-y-2'>
                                 {subTechItem.techLogos.map((logoItem, logoIndex) => (
                                     <div key={logoIndex}>
 
-                                        <img src={logoItem.logo} width="50" />
+                                        <img src={logoItem.logo} width="50" alt='logo'/>
                                     </div>
                                 ))}
                             </div>
-
                         </div>
 
                     ))}

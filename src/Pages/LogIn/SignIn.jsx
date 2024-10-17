@@ -8,7 +8,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [ userAuth, setUserAuth ] = useAuth();
+  const [ setUserAuth ] = useAuth();
 
   const [type, setType] = useState(true); // Toggles password visibility
   const [loading, setLoading] = useState(false);
