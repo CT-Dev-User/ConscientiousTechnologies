@@ -30,7 +30,7 @@ const ServiceWeProvide = () => {
                   key={index}
                   className="md:px-10 md:py-3 px-4 2xl:px-16 2xl:py-6 py-3 rounded-md text-gray-600 bg-[#C8E5FF] md:mb-4"
                 >
-                  <p className="font-semibold text-xs md:text-lg lg:text-lg 2xl:text-[1.35rem]">{pd}</p>
+                  <p className="font-semibold text-xs md:text-base lg:text-base 2xl:text-[1.35rem]">{pd}</p>
                 </div>
               );
             })}

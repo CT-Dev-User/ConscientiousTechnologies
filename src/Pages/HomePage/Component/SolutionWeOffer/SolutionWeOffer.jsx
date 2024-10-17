@@ -44,7 +44,7 @@ const SolutionWeOffer = () => {
             <div className="lg:flex text-[white] w-[85%] gap-5 flex-wrap mx-auto mt-7 hidden pb-8">
                 {firstTwelveData.map((items, i) => {
                     return (
-                        <div className='flex w-[31%] bg-[#333333] h-48 justify-center gap-x-5' key={i}>
+                        <div className='flex w-[31%] bg-[#333333] lg:h-40 2xl:h-48 justify-center gap-x-5' key={i}>
                             <div className='w-[45%] h-full'>
                                 <img src={items.cardImage} alt={items.solutionName} className='w-full h-full' />
                             </div>

@@ -141,7 +141,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
                 setDropdownsData([]);
               }}
             >
-              <h4>{item[search]}</h4>
+              <h4 >{item[search]}</h4>
               <h4 className="text-xl">›</h4>
             </div>
           ))}
@@ -224,7 +224,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
           {navCategory.map((nav, i) => (
             <li
               key={i}
-              className={`cursor-pointer ${activeItem === nav.name ? "active2" : ""} hover:text-[#FFA843]`}
+              className={`cursor-pointer lg:text-sm text-base ${activeItem === nav.name ? "active2" : ""} hover:text-[#FFA843]`}
               onClick={() => {
                 setActiveItem(nav.name);
                 dropdownToggle(nav.name);

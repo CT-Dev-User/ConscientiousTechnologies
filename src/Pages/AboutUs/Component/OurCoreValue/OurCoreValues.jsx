@@ -14,8 +14,8 @@ const OurCoreValues = () => {
                     {coreValuesArr.map((items, i) => (
                         <div className='w-[45%] lg:w-[300px] border-b border-[#D9D9D9] pb-[30px] flex flex-col gap-3'>
                             <img src={items.icon} alt={items.title} className='w-[80px] h-[80px]'/>
-                            <h4 className='lg:text-2xl text-xl 2xl:text-[1.7rem] font-semibold'>{items.title}</h4>
-                            <p className='lg:text-[1rem] text-sm 2xl:text-[1rem]'>{items.subTitle}</p>
+                            <h4 className='lg:text-xl text-xl 2xl:text-[1.7rem] font-semibold'>{items.title}</h4>
+                            <p className='text-sm 2xl:text-[1rem]'>{items.subTitle}</p>
                         </div>
                     ))}
                 </div>
