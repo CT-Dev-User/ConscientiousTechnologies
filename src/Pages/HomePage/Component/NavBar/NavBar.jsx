@@ -10,9 +10,8 @@ import { CTContext } from "../../../../Context/createContext";
 
 const NavBar = ({ hideNavbar, setHideNavbar }) => {
 
-  const navCategory = [{name:"Service", name:"Solution", name:"Industries", name:"About Us", name:"Career", name:"Service"}];
+  const navCategory = [{ name: "Service" }, { name: "Solution" }, { name: "Industries" }, { name: "About Us" }, { name: "Career" }, { name: "Contact Us" }];
   console.log(navCategory);
-  const navCategoryData = ["Service", "Solution", "Industries", "About Us", "Career", "Service"];
 
   const { dropdowns, setDropdowns, activeItem, setActiveItem } =
     useContext(CTContext);
@@ -57,23 +56,72 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
     fetchNavCategory();
   }, []);
 
+  // const dropdownToggle = async (navCategory) => {
+  //   try {
+  //     if (activeItem === navCategory) {
+  //       setDropdownsData([]);
+  //       setActiveItem("");
+  //     } else {
+  //       const response = await axios.get(
+  //         `http://localhost:8080/get-navigation-by-navCategory/${navCategory}`
+  //       );
+  //       if (response.data.message === "Category retrieved successfully") {
+  //         setDropdownsData(response.data.data);
+
+  //       } else {
+  //         setDropdownsData([]);
+  //         setActiveItem("");
+  //         setToggle(false);
+  //         navigate(`/${navCategory}`);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const dropdownToggle = async (navCategory) => {
     try {
       if (activeItem === navCategory) {
         setDropdownsData([]);
         setActiveItem("");
       } else {
-        const response = await axios.get(
-          `http://localhost:8080/get-navigation-by-navCategory/${navCategory}`
-        );
-        if (response.data.message === "Category retrieved successfully") {
-          setDropdownsData(response.data.data);
-          
-        } else {
-          setDropdownsData([]);
-          setActiveItem("");
-          setToggle(false);
-          navigate(`/${navCategory}`);
+        if (navCategory === "Service") {
+          const response = await axios.get(
+            `http://localhost:8080/get-latest-service-data`
+          )
+          if (response.status === 200) {
+            setDropdownsData(response.data);
+          } else {
+            setDropdownsData([]);
+            setActiveItem("");
+            setToggle(false);
+            navigate(`/${navCategory}`);
+          }
+
+        } else if (navCategory === "Solution") {
+          const response = await axios.get(
+            `http://localhost:8080/get-latest-solution-data`
+          )
+         if (response.status === 200) {
+            setDropdownsData(response.data);
+          } else {
+            setDropdownsData([]);
+            setActiveItem("");
+            setToggle(false);
+            navigate(`/${navCategory}`);
+          }
+        } else if (navCategory === "Industries") {
+          const response = await axios.get(
+            `http://localhost:8080/get-latest-industry-data`
+          )
+          if (response.status === 200) {
+            setDropdownsData(response.data);
+          } else {
+            setDropdownsData([]);
+            setActiveItem("");
+            setToggle(false);
+            navigate(`/${navCategory}`);
+          }
         }
       }
     } catch (error) {
@@ -81,23 +129,24 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
     }
   };
 
+
+
+
+
   return (
     <nav
-      className={`navbar ${
-        visible && !hideNavbar ? "active" : "hidden"
-      } w-screen lg:p-1 z-50 fixed top-0 p-2 ${
-        visible && prevScrollPos > 10
+      className={`navbar  ${visible && !hideNavbar ? "active" : "hidden"
+        } w-screen lg:p-1 z-50 fixed top-0 p-2 ${visible && prevScrollPos > 10
           ? "bg-black opacity-80"
           : "transparent opacity-100"
-      }`}
+        }`}
     >
       {/* Dropdown menu */}
       <div
-        className={`hidden lg:block w-4/5 overflow-y-auto absolute top-12 left-[12%] duration-1000 transition-height ease-in-out ${
-          dropdownsData.length > 0
-            ? "p-2 h-auto opacity-100 dropdown"
-            : "p-0 h-0 opacity-0 pointer-events-none"
-        }`}
+        className={`hidden lg:block w-4/5 overflow-y-auto absolute top-12 left-[12%] duration-1000 transition-height ease-in-out ${dropdownsData.length > 0
+          ? "p-2 h-auto opacity-100 dropdown"
+          : "p-0 h-0 opacity-0 pointer-events-none"
+          }`}
         onMouseLeave={() => {
           setActiveItem("");
           setDropdownsData([]);
@@ -168,7 +217,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
       </div>
 
       {/* Navbar content */}
-      <div className="w-full py-[2px] mx-auto flex justify-between items-center">
+      <div className="lg:w-[90%] w-full py-2 mx-auto flex justify-between items-center">
         <div>
           <img
             src={ctlogo}
@@ -192,14 +241,12 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
         </div>
 
         {/* Desktop menu */}
-      
+
         <ul className="hidden lg:flex gap-10 text-white text-sm">
           {navCategory.map((nav, i) => (
             <li
               key={i}
-              className={`cursor-pointer ${
-                activeItem === nav.name ? "active2" : ""
-              } hover:text-[#FFA843]`}
+              className={`cursor-pointer ${activeItem === nav.name ? "active2" : ""} hover:text-[#FFA843]`}
               onClick={() => {
                 setActiveItem(nav.name);
                 dropdownToggle(nav.name);
@@ -226,39 +273,36 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
 
         {/* Mobile menu */}
         <ul
-          className={`lg:hidden duration-1000 w-screen h-screen overflow-y-auto text-white fixed top-[70px] box-border p-5 ${
-            toggle
-              ? "left-[0%] opacity-100 dark-bg"
-              : "left-[-100%] opacity-0 pointer-events-none"
-          }`}
+          className={`lg:hidden duration-1000 w-screen h-screen overflow-y-auto text-white fixed top-[70px] box-border p-5 ${toggle
+            ? "left-[0%] opacity-100 dark-bg"
+            : "left-[-100%] opacity-0 pointer-events-none"
+            }`}
         >
           {navCategory.map((nav, i) => {
             return (
               <li
                 key={i}
-                className={`border-t border-[#FFA843] ${
-                  activeItem === `${nav.faqCategory}` ? "active2" : ""
-                }`}
+                className={`border-t border-[rgb(255,168,67)] ${activeItem === `${nav.name}` ? "active2" : ""
+                  }`}
               >
                 <div
                   className="flex justify-between items-center"
                   onClick={() => {
-                    setActiveItem(`${nav.faqCategory}`);
-                    dropdownToggle(`${nav.faqCategory}`);
+                    setActiveItem(`${nav.name}`);
+                    dropdownToggle(`${nav.name}`);
                   }}
                 >
-                  <span>{nav.faqCategory}</span>
+                  <span>{nav.name}</span>
                   <span className="text-[20px]">⌵</span>
                 </div>
                 <ul
-                  className={`${
-                    activeItem === nav.faqCategory && dropdownsData
-                      ? "block"
-                      : "hidden"
-                  } duration-1000 transition-height ease-in-out bg-black text-white p-3 h-[40vh] overflow-y-auto`}
+                  className={`${activeItem === nav.name && dropdownsData
+                    ? "block"
+                    : "hidden"
+                    } duration-1000 transition-height ease-in-out bg-black text-white p-3 h-[40vh] overflow-y-auto`}
                 >
                   {dropdownsData.map((item, index) => {
-                    if (item.navCategory === nav.faqCategory) {
+                    if (item.navCategory === nav.name) {
                       return (
                         <li
                           className="border-t border-[#FFA843]"

@@ -50,7 +50,7 @@ const ServiceWeOffer = () => {
   return (
     <div
       id="service"
-      className="w-screen bg-[black] h-auto md:pt-24 pt-10 md:pb-16 pb-0 text-[white] box-border"
+      className="w-screen bg-black h-auto md:pt-24 pt-10 md:pb-16 pb-0 text-white box-border"
     >
       <div className="w-[90%] lg:w-[85%] mx-auto">
         <h1 className="font-bold text-lg lg:text-3xl 2xl:text-[2.5rem]">Service We Offers</h1>
@@ -71,7 +71,7 @@ const ServiceWeOffer = () => {
             onClick={() => handleServiceItemClick(index)}
           >
             <div
-              className="text-[white] w-[100%] h-[470px] relative text-sm"
+              className="text-white w-[100%] h-[400px] 2xl:h-[470px] relative text-sm"
               style={{
                 backgroundImage: `url(${item.cardImage})`,
                 backgroundSize: "cover",
@@ -89,29 +89,29 @@ const ServiceWeOffer = () => {
                 <div className="p-4 flex flex-col gap-3">
                   {/* {item.points.map((point, index) => ( */}
                   <li key={index} className="mb-2 list-none">
-                    <h3 className="text-base font-semibold underline ">
+                    <h3 className="lg:text-sm 2xl:text-base font-semibold underline ">
                       {item.cardPoint1Heading}
                     </h3>
-                    <p className="font-normal text-sm">{item.cardPoint1Desc}</p>{" "}
+                    <p className="font-normal text-xs 2xl:text-sm">{item.cardPoint1Desc}</p>{" "}
 
                   </li>
                   <li key={index} className="mb-2 list-none">
-                    <h3 className="text-base font-semibold underline ">
+                    <h3 className="lg:text-sm 2xl:text-base font-semibold underline ">
                       {item.cardPoint2Heading}
                     </h3>
-                    <p className="font-normal text-sm">{item.cardPoint2Desc}</p>{" "}
+                    <p className="font-normal text-xs 2xl:text-sm">{item.cardPoint2Desc}</p>{" "}
                   </li>
                   <li key={index} className="mb-2 list-none">
-                    <h3 className="text-base font-semibold underline ">
+                    <h3 className="lg:text-sm 2xl:text-base font-semibold underline ">
                       {item.cardPoint3Heading}
                     </h3>
-                    <p className="font-normal text-sm">{item.cardPoint3Desc}</p>{" "}
+                    <p className="font-normal text-xs 2xl:text-sm">{item.cardPoint3Desc}</p>{" "}
                   </li>
                   <li key={index} className="mb-2 list-none">
-                    <h3 className="text-base font-semibold underline ">
+                    <h3 className="lg:text-sm 2xl:text-base font-semibold underline ">
                       {item.cardPoint4Heading}
                     </h3>
-                    <p className="font-normal text-sm">{item.cardPoint4Desc}</p>{" "}
+                    <p className="font-normal text-xs 2xl:text-sm">{item.cardPoint4Desc}</p>{" "}
                   </li>
                   {/* ))} */}
                 </div>
