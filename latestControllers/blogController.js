@@ -23,7 +23,7 @@ const uploadToCloudinary = async (filePath) => {
 // Add new blog
 export const addBlog = async (req, res) => {
     try {
-        const { category, subCategory, cardHeading, cardSubHeading, articleData, blogTags } = req.body;
+        const { category, subCategory, cardHeading, cardSubHeading, articleData, blogTags, headerTitle,HeaderDesc  } = req.body;
         let headerImage = "";
         let cardImage = "";
         const parsedArticleData = JSON.parse(articleData);
@@ -42,6 +42,8 @@ export const addBlog = async (req, res) => {
             subCategory,
             cardHeading,
             cardSubHeading,
+            headerTitle,
+            HeaderDesc,
             cardImage, // Assuming first image is the Card Image
             headerImage, // Assuming second image is the Header Image
             articleData: parsedArticleData,
@@ -109,7 +111,7 @@ export const getBlogBysubCategory = async (req, res) => {
 export const updateBlog = async (req, res) => {
     try {
         const { id } = req.params;
-        const { category, subCategory, cardHeading, cardSubHeading, articleData, blogTags } = req.body;
+        const { category, subCategory, cardHeading, cardSubHeading, articleData, blogTags, headerTitle,HeaderDesc } = req.body;
         const blog = await LatestBlogModel.findById(id);
 
         if (!blog) {
@@ -137,6 +139,8 @@ export const updateBlog = async (req, res) => {
         }
 
         // Update the blog fields
+        blog.headerTitle = headerTitle || blog.headerTitle;
+        blog.HeaderDesc = HeaderDesc || blog.HeaderDesc;
         blog.category = category || blog.category;
         blog.subCategory = subCategory || blog.subCategory;
         blog.cardHeading = cardHeading || blog.cardHeading;
