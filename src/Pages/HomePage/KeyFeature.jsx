@@ -83,7 +83,7 @@ const KeyFeature = () => {
             formData.append('point_three_Desc', addKeyFeatureData.point_three_Desc);
             formData.append('keyFeatureImag', addKeyFeatureData.keyFeatureImag);
 
-            const response = await axios.post("http://localhost:8080/add-key-feature-data", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-key-feature-data", formData);
             if (response.status === 200) {
                 setAddKeyFeatureShow(false);
                 setAddKeyFeatureData({ keyFeatureTitle: "", point_one_Title: "", point_one_Desc: "", point_two_Title: "", point_two_Desc: "", point_three_Title: "", point_three_Desc: "", keyFeatureImag: "" });
@@ -96,7 +96,7 @@ const KeyFeature = () => {
 
     const fetchKeyFeatureData = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-key-feature-data");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-key-feature-data");
             setKeyFeatureData(response.data.getdata);
             console.log(response.data.getdata)
         } catch (error) {
@@ -133,7 +133,7 @@ const KeyFeature = () => {
                     formData.append('keyFeatureImag', editKeyFeatureData.keyFeatureImag);
 
 
-                    const response = await axios.put(`http://localhost:8080/update-key-feature-data/${editId}`, formData);
+                    const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/update-key-feature-data/${editId}`, formData);
                     if (response.status === 200) {
                         setEditId(null);
                         handleEditKeyFeatureDataClose();
@@ -168,7 +168,7 @@ const KeyFeature = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-key-feature-data/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-key-feature-data/${id}`);
                     if (response.status === 200) {
                         setEditId(null);
                         fetchKeyFeatureData();
@@ -251,8 +251,8 @@ const KeyFeature = () => {
                             <label htmlFor="key-feature-image" className="block font-bold">Key Feature Image</label>
                             <div className="relative">
                                 <div>
-                                    <input type="file" name="keyFeatureImage" id="key-feature-image" className="form-input  block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleFileChange} />
-                                    <label htmlFor="key-feature-image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                    <input type="file" name="keyFeatureImage" id="key-feature-image" className="form-input w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleFileChange} />
+                                    <label htmlFor="key-feature-image" id="file-upload-label" className="cursor-pointer  hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 </div>
                                 {selectedFile && (
                                     <div className="ml-2 mt-4">
@@ -374,8 +374,8 @@ const KeyFeature = () => {
                             <label htmlFor="key-feature-image" className="block font-bold">Key Feature Image</label>
                             <div className="relative">
                                 <div>
-                                    <input type="file" name="keyFeatureImage" id="key-feature-image" className="form-input  block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                                    <label htmlFor="key-feature-image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                    <input type="file" name="keyFeatureImage" id="key-feature-image" className="form-input w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
+                                    <label htmlFor="key-feature-image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md">Upload File</label>
                                 </div>
                                 {editSelectedFile && (
                                     <div className="ml-2 mt-4">

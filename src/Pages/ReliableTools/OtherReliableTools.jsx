@@ -77,7 +77,7 @@ const OtherReliableTools = () => {
 
     const fetchReliableData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-reliable-tools-data`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data`);
             const fetchData = response.data.data
             const filteredData = fetchData.filter(item =>
                 item.category !== 'Technologies' &&
@@ -114,7 +114,7 @@ const OtherReliableTools = () => {
                 });
             });
 
-            const response = await axios.post("http://localhost:8080/add-reliable-tools-data", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-reliable-tools-data", formData);
             if (response.status === 200) {
                 fetchReliableData();
                 setAddPopUpShow(false);
@@ -137,7 +137,7 @@ const OtherReliableTools = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-reliable-tools-data/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-reliable-tools-data/${id}`);
                     if (response.status === 200) {
                         // setEditId(null);
                         fetchReliableData()

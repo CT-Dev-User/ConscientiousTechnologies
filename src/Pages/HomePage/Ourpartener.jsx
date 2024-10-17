@@ -41,7 +41,7 @@ const OurPartener = () => {
       formData.append("logo", addOurPartenerData.logo);
 
       const response = await axios.post(
-        "http://localhost:8080/add-partener-data",
+        "https://conscientious-technologies-backend.vercel.app/add-partener-data",
         formData
       );
       if (response.status === 200) {
@@ -57,7 +57,7 @@ const OurPartener = () => {
   const fetchOurPartenerData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-partener-data"
+        "https://conscientious-technologies-backend.vercel.app/get-partener-data"
       );
       setOurPartenerData(response.data.getdata);
     } catch (error) {
@@ -87,7 +87,7 @@ const OurPartener = () => {
           formData.append("title", editOurPartenerData.title);
           formData.append("logo", editOurPartenerData.logo);
           const response = await axios.put(
-            `http://localhost:8080/edit-partener-data/${editId}`,
+            `https://conscientious-technologies-backend.vercel.app/edit-partener-data/${editId}`,
             formData
           );
           console.log(response.status);
@@ -125,7 +125,7 @@ const OurPartener = () => {
         // If user confirms deletion
         try {
           const response = await axios.delete(
-            `http://localhost:8080/delete-partener-data/${id}`
+            `https://conscientious-technologies-backend.vercel.app/delete-partener-data/${id}`
           );
           if (response.status === 200) {
             setEditId(null);

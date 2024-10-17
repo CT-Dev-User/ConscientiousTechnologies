@@ -72,7 +72,7 @@ const ServicesCMS = () => {
 
   const fetchServices = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/get-latest-service-data');
+      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-service-data');
       console.log(response.data);
       setServices(response.data);
     } catch (error) {
@@ -170,10 +170,10 @@ const ServicesCMS = () => {
     try {
       if (serviceId) {
         // Update service
-        await axios.put(`http://localhost:8080/edit-existing-service-data/${serviceId}`, formData);
+        await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-existing-service-data/${serviceId}`, formData);
       } else {
         // Create new service
-        await axios.post('http://localhost:8080/create-new-service-data', formData);
+        await axios.post('https://conscientious-technologies-backend.vercel.app/create-new-service-data', formData);
       }
       closeModal();
       fetchServices();
@@ -201,7 +201,7 @@ const ServicesCMS = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-existing-service-data-by-id/${id}`);
+          const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-existing-service-data-by-id/${id}`);
           if (response.status === 200) {
             // setEditId(null);
             fetchServices();

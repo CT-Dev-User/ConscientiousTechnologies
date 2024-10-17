@@ -84,11 +84,11 @@ const AllCategoryReliableTools = () => {
             if (category === "Technologies") {
                 // Add your endpoint here if needed
             } else if (category === "Solutions") {
-                response = await axios.get('http://localhost:8080/get-solution-we-offer-data');
+                response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-solution-we-offer-data');
             } else if (category === "Services") {
-                response = await axios.get('http://localhost:8080/get-service-data');
+                response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-service-data');
             } else if (category === "Industries") {
-                response = await axios.get('http://localhost:8080/get-industries-data');
+                response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-industries-data');
             }
             if (response) {
                 setDropdown(response.data.getData);
@@ -104,7 +104,7 @@ const AllCategoryReliableTools = () => {
 
     const fetchReliableDataByCategory = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-reliable-tools-data/${category}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/${category}`);
             setReliableToolsData(response.data.data);
         } catch (error) {
             console.error(error);
@@ -134,7 +134,7 @@ const AllCategoryReliableTools = () => {
                 });
             });
 
-            const response = await axios.post("http://localhost:8080/add-reliable-tools-data", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-reliable-tools-data", formData);
             console.log(response)
             if (response.status === 200) {
 
@@ -159,7 +159,7 @@ const AllCategoryReliableTools = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-reliable-tools-data/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-reliable-tools-data/${id}`);
                     if (response.status === 200) {
                         // setEditId(null);
                         fetchReliableDataByCategory()
