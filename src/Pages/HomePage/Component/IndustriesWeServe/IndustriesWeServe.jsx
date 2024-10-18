@@ -63,12 +63,12 @@ const IndustriesWeServe = () => {
             </div>
             <div className="desc-div ">
               <p
-                className="mt-7 text-xs 2xltext-sm text-center py-7 w-4/5 mx-auto"
+                className="text-xs 2xl:text-sm text-center py-7 w-4/5 mx-auto "
                
               >{item.cardDescription}</p>
               <div className="flex justify-center">
                 <button
-                  className="relative overflow-hidden border border-white px-4 py-2 w-fit text-xs group mt-5 mx-auto"
+                  className="relative overflow-hidden border border-white hover:border-[#33B7D4] px-4 py-2 w-fit text-xs group mt-5 mx-auto"
                   style={{ position: "relative" }}
                   onClick={() => {
                     navigate(`/industries/${item.industryName}`);
