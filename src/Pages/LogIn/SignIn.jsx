@@ -8,7 +8,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [ userAuth, setUserAuth ] = useAuth();
+  const [, setUserAuth] = useAuth(); // Omit the unused 'userAuth'
 
   const [type, setType] = useState(true); // Toggles password visibility
   const [loading, setLoading] = useState(false);
@@ -48,7 +48,6 @@ const SignIn = () => {
     }
   };
 
-  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200 text-black">
       <form
