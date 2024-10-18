@@ -78,7 +78,7 @@ const AllCategoryReliableTools = () => {
         setAddReliableData(newData);
     };
 
-    const SubCategoryDropdown = async () => {
+    const SubCategoryDropdown = async (category) => {
         try {
             let response;
             if (category === "Technologies") {
@@ -99,10 +99,10 @@ const AllCategoryReliableTools = () => {
     };
 
     useEffect(() => {
-        SubCategoryDropdown();
-    }, []);
+        SubCategoryDropdown(category);
+    }, [category]);
 
-    const fetchReliableDataByCategory = async () => {
+    const fetchReliableDataByCategory = async (category) => {
         try {
             const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/${category}`);
             setReliableToolsData(response.data.data);
@@ -112,8 +112,8 @@ const AllCategoryReliableTools = () => {
     };
 
     useEffect(() => {
-        fetchReliableDataByCategory();
-    }, []);
+        fetchReliableDataByCategory(category);
+    }, [category]);
 
 
 
@@ -209,15 +209,14 @@ const AllCategoryReliableTools = () => {
                     {selectedItem && selectedItem.subTech.map((subTechItem, index) => (
                         <div key={index}>
                             <h5 className='mt-2'>{subTechItem.title}</h5>
-                            <div className='flex flex-wrap gap-x-[30px] gap-y-[10px]'>
+                            <div className='flex flex-wrap gap-x-7 gap-y-2'>
                                 {subTechItem.techLogos.map((logoItem, logoIndex) => (
                                     <div key={logoIndex}>
 
-                                        <img src={logoItem.logo} width="50" />
+                                        <img src={logoItem.logo} width="50" alt='logo'/>
                                     </div>
                                 ))}
                             </div>
-
                         </div>
 
                     ))}

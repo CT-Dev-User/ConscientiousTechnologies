@@ -5,7 +5,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaEye } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-
+import "../../SideBar/sidebar.css"
 const CaseStudies = () => {
   const [CaseStudiesData, setCaseStudies] = useState([])
   const [addCaseStudyData, setAddCaseStudyData] = useState({ title: "", images: "", desc: "", coreTec: "" })

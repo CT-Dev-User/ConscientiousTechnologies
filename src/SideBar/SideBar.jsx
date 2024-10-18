@@ -74,7 +74,7 @@ const SideBar = ({ children }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         // Make a request to the backend to log out
-        axios.post("http://localhost:8080/logout") // Adjust the URL as per your backend route
+        axios.post("https://conscientious-technologies-backend.vercel.app/logout") // Adjust the URL as per your backend route
           .then((response) => {
             // Clear user authentication state and token from local storage
             setuserauth({ user: null, token: "" });
