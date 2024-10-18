@@ -20,7 +20,7 @@ const Spinner = () => (
 
 const SignUp = () => {
   const router = useNavigate();
-  const [userauth, setuserauth] = useAuth();
+  const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [type, setType] = useState(true);
