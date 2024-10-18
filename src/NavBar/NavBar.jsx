@@ -27,7 +27,7 @@ const NavBar = () => {
           />
         )}
         <ul className="md:hidden flex text-white gap-10">
-          <li>{userauth.user.email.split("@")[0]}</li>
+          <li>{userauth.user && userauth.user.email.split("@")[0]}</li>
         </ul>
         {/* Responsive Menu */}
         <ul
