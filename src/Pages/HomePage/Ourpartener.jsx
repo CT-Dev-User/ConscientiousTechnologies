@@ -206,17 +206,10 @@ const OurPartener = () => {
                     type="file"
                     name="hero_image"
                     id="hero-home-image"
-                    className="form-input  block w-full rounded-md overflow-hidden"
+                    className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
                     aria-describedby="file-upload-label"
                     onChange={handleAddSelectedFile}
                   />
-                  <label
-                    htmlFor="hero-home-image"
-                    id="file-upload-label"
-                    className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md"
-                  >
-                    Upload File
-                  </label>
                 </div>
                 {selectedFile && (
                   <div className="ml-2 mt-4">
