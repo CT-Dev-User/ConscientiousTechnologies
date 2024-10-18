@@ -20,7 +20,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
   const [visible, setVisible] = useState(true);
   const [navigations, setNavigations] = useState([]);
   const [dropdownsData, setDropdownsData] = useState([]);
-  const[search,setSearch]=useState("")
+  const [search, setSearch] = useState("")
   const navigate = useNavigate();
 
 
@@ -82,7 +82,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
           const response = await axios.get(
             `https://conscientious-technologies-backend.vercel.app/get-latest-solution-data`
           )
-         if (response.status === 200) {
+          if (response.status === 200) {
             setDropdownsData(response.data);
             setSearch("solutionName")
 
@@ -111,6 +111,8 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
       console.error(error);
     }
   };
+  console.log(dropdownsData, "drop")
+
   return (
     <nav
       className={`navbar  ${visible && !hideNavbar ? "active" : "hidden"
@@ -230,9 +232,9 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
                 dropdownToggle(nav.name);
                 if (nav.name === "Career") {
                   navigate("/Career");
-                }else if(nav.name === "Contact Us"){
+                } else if (nav.name === "Contact Us") {
                   navigate("/contact-us")
-                }else if(nav.name === "About Us"){
+                } else if (nav.name === "About Us") {
                   navigate("/about-us")
                 }
               }}
@@ -272,37 +274,42 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
                   onClick={() => {
                     setActiveItem(`${nav.name}`);
                     dropdownToggle(`${nav.name}`);
+                    if (nav.name === "Career") {
+                      navigate("/Career");
+                    } else if (nav.name === "Contact Us") {
+                      navigate("/contact-us")
+                    } else if (nav.name === "About Us") {
+                      navigate("/about-us")
+                    }
                   }}
                 >
                   <span>{nav.name}</span>
-                  <span className="text-[20px]">⌵</span>
+                  {nav.name !== "About Us" && nav.name !== "Contact Us" && nav.name !== "Career" ? <span className="text-[20px]">⌵</span> : <span className="text-[20px]"> &rarr; </span> }
+                  
                 </div>
                 <ul
                   className={`${activeItem === nav.name && dropdownsData
                     ? "block"
                     : "hidden"
-                    } duration-1000 transition-height ease-in-out bg-black text-white p-3 h-[40vh] overflow-y-auto`}
+                    } duration-1000 transition-height ease-in-out bg-black text-white h-auto overflow-y-auto`}
                 >
                   {dropdownsData.map((item, index) => {
-                    if (navCategory === nav.name) {
-                      return (
-                        <li
-                          className="border-t border-[#FFA843]"
-                          key={index}
-                          onClick={() => {
-                            navigate(`${activeItem}/${item.serviceName}`);
-                            setDropdownsData([]);
-                            setToggle(false);
-                          }}
-                        >
-                          <div className="flex justify-between items-center">
-                            <span> {item.serviceName}</span>
-                            <span className="text-xl">›</span>
-                          </div>
-                        </li>
-                      );
-                    }
-                    return null;
+                    // console.log("item", item[search])
+                    return (   
+                      <li
+                        className="border-t text-sm py-2 px-3 border-[#FFA843]"
+                        key={index}
+                        onClick={() => {
+                          navigate(`${activeItem}/${item[search]}`);
+                          setDropdownsData([]);
+                          setToggle(false);
+                        }}
+                      >
+                        {(`${item[search]}`)}
+                      </li>
+                    );
+                    // }
+                    // return null;
                   })}
                 </ul>
               </li>

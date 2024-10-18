@@ -58,12 +58,12 @@ const IndustriesWeServe = () => {
                 transition: "transform 1.5s ease-in-out",
               }}
             ></div>
-            <div className="w-full border-t-2 border-white absolute bottom-0 text-center flex items-center justify-center font-medium cursor-pointer title-div text-base lg:text-lg 2xl:text-xl py-2">
+            <div className="w-full border-t-2 border-white absolute bottom-0 text-center flex items-center justify-center font-medium cursor-pointer title-div text-base lg:text-base 2xl:text-xl py-2">
               {item.cardTitle}
             </div>
             <div className="desc-div ">
               <p
-                className="mt-7 text-sm text-center py-7 w-4/5 mx-auto"
+                className="mt-7 text-xs 2xltext-sm text-center py-7 w-4/5 mx-auto"
                
               >{item.cardDescription}</p>
               <div className="flex justify-center">
