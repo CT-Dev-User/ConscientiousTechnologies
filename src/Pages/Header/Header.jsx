@@ -1,10 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { AiOutlineClose } from 'react-icons/ai';
-import JoditEditor from 'jodit-react';
-import Swal from 'sweetalert2';
-import { FaEye } from 'react-icons/fa';
 import { useNavigate} from 'react-router-dom';
 
 const Header = () => {
@@ -15,7 +11,7 @@ const Header = () => {
 
     const addCategory = async () => {
         try {
-            const response = await axios.post("http://localhost:8080/add-category", input);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-category", input);
             if (response.status === 200) {
                 fetchCategory();
                 setAddPopUpShow(false);
@@ -28,7 +24,7 @@ const Header = () => {
 
     const fetchCategory = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-category");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-category");
             setCategories(response.data.getData);
         } catch (error) {
             console.log(error);
@@ -78,9 +74,9 @@ const Header = () => {
                         <tr key={header._id}>
                             <td className="border p-2">{i + 1}</td>
                             <td className="border p-2">{header.faqCategory}</td>
-                            <td className="border p-2"><button className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7x] text-white font-bold py-2 px-4 rounded" onClick={() => { navigate(`/conscientious-header/${header.faqCategory}`) }}>See All</button></td>
+                            <td className="border p-2"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { navigate(`/conscientious-header/${header.faqCategory}`) }}>See All</button></td>
                             <td className="border flex items-center justify-start gap-[20px] p-2">
-                                <button className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7x] text-white font-bold py-2 px-4 rounded">Edit</button>
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
                                 <button className='hover:bg-red-700 h-[37px] bg-[red] px-[20px] py-[7x] rounded-[7px] text-white shadow-md'>Delete</button>
                             </td>
                         </tr>

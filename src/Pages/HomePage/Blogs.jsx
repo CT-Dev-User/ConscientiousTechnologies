@@ -14,8 +14,8 @@ const BlogCMS = () => {
   const [viewBlogTagsData, setViewBlogTagsData] = useState(null);
 
   const [formData, setFormData] = useState({
-    category: '',
-    subCategory: '',
+    category: 'Home',
+    subCategory: 'Home Blogs',
     cardHeading: '',
     cardSubHeading: '',
     articleData: [{ Title: '', Desc: '' }],  // Initialize as array of objects
@@ -33,7 +33,7 @@ const BlogCMS = () => {
   // Fetch all blogs
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/get-latest-blog-data');
+      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-blog-data');
       setBlogs(response.data.blogs);
       console.log(response.data.blogs);
     } catch (error) {
@@ -88,8 +88,8 @@ const BlogCMS = () => {
     } else {
       setCurrentBlog(null);
       setFormData({
-        category: '',
-        subCategory: '',
+        category: 'Home',
+        subCategory: 'Home Blogs',
         cardHeading: '',
         cardSubHeading: '',
         articleData: [{ Title: '', Desc: '' }],  // Reset articleData to one empty item
@@ -136,12 +136,12 @@ const BlogCMS = () => {
     try {
       if (currentBlog) {
         // Update existing blog
-        await axios.put(`http://localhost:8080/edit-existing-blog-data/${currentBlog._id}`, form, {
+        await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-existing-blog-data/${currentBlog._id}`, form, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
       } else {
         // Create new blog
-        await axios.post('http://localhost:8080/create-new-blog-data', form, {
+        await axios.post('https://conscientious-technologies-backend.vercel.app/create-new-blog-data', form, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
       }
@@ -166,7 +166,7 @@ const BlogCMS = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http:localhost:8080/delete-existing-blog-data-by-id/${id}`);
+          await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-existing-blog-data-by-id/${id}`);
           fetchBlogs();
         } catch (error) {
           console.error('Error deleting blog:', error);
@@ -221,38 +221,12 @@ const BlogCMS = () => {
 
       {/* Add/Edit Modal */}
       <Modal show={isModalOpen} onHide={() => toggleModal()} centered>
-        <form onSubmit={handleSubmit}>
-          <Modal.Header closeButton>
-            <Modal.Title className="text-lg font-bold text-gray-800">{currentBlog ? 'Edit Blog' : 'Add Blog'}</Modal.Title>
+        <form onSubmit={handleSubmit} className='font-semibold'>
+          <Modal.Header closeButton className='bg-gray-800 text-white'>
+            <Modal.Title className="text-lg font-bold">{currentBlog ? 'Edit Blog' : 'Add Blog'}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="space-y-4">
-              {/* Category Field */}
-              <div className="mb-4">
-                <label className="font-semibold">Category</label>
-                <input
-                  type="text"
-                  name="category"
-                  value={formData.category}
-                  onChange={handleInputChange}
-                  className="form-control border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
-
-              {/* Subcategory Field */}
-              <div className="mb-4">
-                <label className="font-semibold">Subcategory</label>
-                <input
-                  type="text"
-                  name="subCategory"
-                  value={formData.subCategory}
-                  onChange={handleInputChange}
-                  className="form-control border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
-
               {/* Header Title Field */}
               <div className="mb-4">
                 <label className="font-semibold">Header Heading</label>
@@ -262,7 +236,6 @@ const BlogCMS = () => {
                   value={formData.headerTitle}
                   onChange={handleInputChange}
                   className="form-control border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
                 />
               </div>
 
@@ -275,7 +248,6 @@ const BlogCMS = () => {
                   value={formData.HeaderDesc}
                   onChange={handleInputChange}
                   className="form-control border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
                 />
               </div>
 
@@ -288,7 +260,6 @@ const BlogCMS = () => {
                   value={formData.cardHeading}
                   onChange={handleInputChange}
                   className="form-control border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
                 />
               </div>
 
@@ -301,7 +272,6 @@ const BlogCMS = () => {
                   value={formData.cardSubHeading}
                   onChange={handleInputChange}
                   className="form-control border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
                 />
               </div>
 
@@ -314,7 +284,6 @@ const BlogCMS = () => {
                   value={formData.blogTags}
                   onChange={handleInputChange}
                   className="form-control border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
                 />
               </div>
 
@@ -330,7 +299,6 @@ const BlogCMS = () => {
                       value={article.Title}
                       onChange={(e) => handleArticleChange(index, e)}
                       className="form-control border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-1"
-                      required
                     />
                     <textarea
                       name="Desc"
@@ -338,7 +306,6 @@ const BlogCMS = () => {
                       value={article.Desc}
                       onChange={(e) => handleArticleChange(index, e)}
                       className="form-control border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-1"
-                      required
                     />
                     <Button variant="danger" size="sm" onClick={() => removeArticle(index)} className='text-black'>
                       Remove Article
@@ -373,7 +340,6 @@ const BlogCMS = () => {
           </Modal.Footer>
         </form>
       </Modal>
-
 
       {/* // Modal to view card data */}
       <Modal show={viewCardData !== null} onHide={() => setViewCardData(null)} centered>
@@ -418,7 +384,6 @@ const BlogCMS = () => {
         </Modal.Footer>
       </Modal>
 
-
       {/* // Modal to view header data */}
       <Modal show={viewHeaderData !== null} onHide={() => setViewHeaderData(null)} centered>
         <Modal.Header closeButton className="border-b border-gray-200">
@@ -462,7 +427,6 @@ const BlogCMS = () => {
         </Modal.Footer>
       </Modal>
 
-
       {/* // Modal to view article data */}
       <Modal show={viewArticleData !== null} onHide={() => setViewArticleData(null)} centered>
         <Modal.Header closeButton className="border-b border-gray-200">
@@ -492,7 +456,6 @@ const BlogCMS = () => {
         </Modal.Footer>
       </Modal>
 
-
       {/* // Modal to view blog tags data */}
       <Modal show={viewBlogTagsData !== null} onHide={() => setViewBlogTagsData(null)} centered>
         <Modal.Header closeButton className="border-b border-gray-200">
@@ -516,10 +479,6 @@ const BlogCMS = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
-
-
-
     </div>
   );
 };

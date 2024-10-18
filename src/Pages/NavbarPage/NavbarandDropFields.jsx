@@ -1,10 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { AiOutlineClose } from 'react-icons/ai';
-import JoditEditor from 'jodit-react';
 import Swal from 'sweetalert2';
-import { FaEye } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const NavbarandDropFields = () => {
@@ -24,29 +21,29 @@ const NavbarandDropFields = () => {
   const currentItems = fieldsByCategory.slice(indexOfFirstItem, indexOfLastItem);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const SubCategoryDropdown = async () => {
+  const SubCategoryDropdown = async (navcategory) => {
     if (navcategory === "Technologies") {
       setDropdown("")
     } else if (navcategory === "Solutions") {
-      const response = await axios.get('http://localhost:8080/get-solution-we-offer-data')
+      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-solution-we-offer-data')
       setDropdown(response.data.getData)
     } else if (navcategory === "Services") {
-      const response = await axios.get('http://localhost:8080/get-service-data')
+      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-service-data')
       setDropdown(response.data.getData)
     } else if (navcategory === "Industries") {
-      const response = await axios.get('http://localhost:8080/get-industries-data')
+      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-industries-data')
       setDropdown(response.data.getData)
     }
 
   }
   useEffect(() => {
-    SubCategoryDropdown();
-  }, [])
+    SubCategoryDropdown(navcategory);
+  }, [navcategory])
 
 
-  const fetchNavByCategory = async () => {
+  const fetchNavByCategory = async (navcategory) => {
     try {
-      const response = await axios.get(`http://localhost:8080/get-navigation-by-navCategory/${navcategory}`);
+      const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-navigation-by-navCategory/${navcategory}`);
       setFieldsByCategory(response.data.data);
     } catch (error) {
       console.log(error);
@@ -54,12 +51,12 @@ const NavbarandDropFields = () => {
   };
 
   useEffect(() => {
-    fetchNavByCategory();
-  }, []);
+    fetchNavByCategory(navcategory);
+  }, [navcategory]);
 
   const addNavFiledsDataFunc = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/add-navigation", addnavFields);
+      const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-navigation", addnavFields);
       // console.log(response)
       if (response.status === 200) {
         fetchNavByCategory()
@@ -78,12 +75,12 @@ const NavbarandDropFields = () => {
       formData.append('navCategory', navcategory);
       formData.append('navSubCategory', editnavFields.navSubcategory);
 
-      const response = await axios.put(`http://localhost:8080/edit-navigation-by-id//${editId}`, formData)
+      const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-navigation-by-id//${editId}`, formData)
       if (response.status === 200) {
         fetchNavByCategory();
         setEditPopUpShow(false);
 
-        setAddNavFields({ navCategory: navcategory, navSubcategory: "" });
+        seteditNavFields({ navCategory: navcategory, navSubcategory: "" });
         Swal.fire(
           'Saved!',
           'Your changes have been saved.',
@@ -113,7 +110,7 @@ const NavbarandDropFields = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-navigation-by-id/${id}`);
+          const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-navigation-by-id/${id}`);
           if (response.status === 200) {
             setEditId(null);
             fetchNavByCategory();
@@ -222,7 +219,7 @@ const NavbarandDropFields = () => {
               <td className="border p-2">{nav.navSubcategory}</td>
               {/* <td className="border p-2">{faq.question}</td> */}
               <td className="border flex items-center justify-start gap-[20px] p-2">
-                <button className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7x] text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(nav._id) }}>Edit</button>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(nav._id) }}>Edit</button>
                 <button className='hover:bg-red-700 h-[37px] bg-[red] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={() => deleteNavData(nav._id)}>Delete</button>
               </td>
             </tr>

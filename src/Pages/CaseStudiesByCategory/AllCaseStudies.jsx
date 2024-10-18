@@ -30,28 +30,28 @@ const AllCaseStudies = () => {
     const currentItems = CSByCategory.slice(indexOfFirstItem, indexOfLastItem);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    const SubCategoryDropdown = async () => {
+    const SubCategoryDropdown = async (category) => {
         if (category === "Technologies") {
             // Handle Technologies category
         } else if (category === "Solutions") {
-            const response = await axios.get('http://localhost:8080/get-solution-we-offer-data');
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-solution-we-offer-data');
             setDropdown(response.data.getData);
         } else if (category === "Services") {
-            const response = await axios.get('http://localhost:8080/get-service-data');
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-service-data');
             setDropdown(response.data.getData);
         } else if (category === "Industries") {
-            const response = await axios.get('http://localhost:8080/get-industries-data');
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-industries-data');
             setDropdown(response.data.getData);
         }
     };
 
     useEffect(() => {
-        SubCategoryDropdown();
-    }, []);
+        SubCategoryDropdown(category);
+    }, [category]);
 
-    const fetchCSByCategory = async () => {
+    const fetchCSByCategory = async (category) => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-case-study-bycategory/${category}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-case-study-bycategory/${category}`);
             setCSByCategory(response.data.data);
         } catch (error) {
             console.log(error);
@@ -59,8 +59,8 @@ const AllCaseStudies = () => {
     };
 
     useEffect(() => {
-        fetchCSByCategory();
-    }, []);
+        fetchCSByCategory(category);
+    }, [category]);
 
     const handleAddFileChange = (e) => {
         setAddSelectedFile(e.target.files[0]);
@@ -92,7 +92,7 @@ const AllCaseStudies = () => {
             formData.append('coreTech', addCS.coreTech);
             formData.append('images', addCS.caseStudyImage);
 
-            const response = await axios.post("http://localhost:8080/add-case-study", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-case-study", formData);
 
             if (response.status === 200) {
                 fetchCSByCategory();
@@ -114,7 +114,7 @@ const AllCaseStudies = () => {
             formData.append('desc', editCS.desc);
             formData.append('coreTech', editCS.coreTech);
             formData.append('images', editCS.caseStudyImage);
-            const response = await axios.put(`http://localhost:8080/update-case-study/${editId}`, formData);
+            const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/update-case-study/${editId}`, formData);
             if (response.status === 200) {
                 setEditPopUpShow(false);
                 setEditCS({ Subcategory: "", title: "", desc: "", coreTech: "", caseStudyImage: "" }); // Reset form fields
@@ -148,7 +148,7 @@ const AllCaseStudies = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-case-study/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-case-study/${id}`);
                     if (response.status === 200) {
                         setEditId(null);
                         fetchCSByCategory();

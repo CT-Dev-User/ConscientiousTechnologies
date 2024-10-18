@@ -46,7 +46,7 @@ const SignUp = () => {
   const getAllUsersData = async () => {
     setLoading(true); // Start loading spinner
     try {
-      const response = await axios.get("http://localhost:8080/all-users");
+      const response = await axios.get("https://conscientious-technologies-backend.vercel.app/all-users");
       setUsers(response.data);
       setLoading(false); // Stop loading spinner
     } catch (error) {
@@ -93,7 +93,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8080/update-user/${editId}`,
+        `https://conscientious-technologies-backend.vercel.app/update-user/${editId}`,
         user
       );
       setEditUserModal(false);
@@ -110,7 +110,7 @@ const SignUp = () => {
   const registerUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/register", user);
+      const response = await axios.post("https://conscientious-technologies-backend.vercel.app/register", user);
       if (response.status === 200) {
         Swal.fire({
           icon: "success",
@@ -137,7 +137,7 @@ const SignUp = () => {
       if (result.isConfirmed) {
         try {
           const response = await axios.delete(
-            `http://localhost:8080/delete-user/${delete_id}`
+            `https://conscientious-technologies-backend.vercel.app/delete-user/${delete_id}`
           );
           if (response.status === 200) {
             Swal.fire({

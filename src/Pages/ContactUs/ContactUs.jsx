@@ -13,7 +13,7 @@ const ContactUs = () => {
 
   const fetchContactUsData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/get-contact-us-data");
+      const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-contact-us-data");
       setContactUsData(response.data.getData);
     } catch (error) {
       console.log(error);
@@ -32,7 +32,7 @@ const ContactUs = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-contact-us-data/${id}`);
+          const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-contact-us-data/${id}`);
           if (response.status === 200) {
             fetchContactUsData();
             Swal.fire(

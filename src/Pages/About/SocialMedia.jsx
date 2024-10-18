@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { AiOutlineClose } from 'react-icons/ai';
-import { FaEye } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const SocialMedia = () => {
@@ -20,18 +18,12 @@ const SocialMedia = () => {
     const [editId, setEditId] = useState(null);
 
 
-    const handleSocialMediaShow = () => {
-        setAddSocialMediasShow(false);
-        setSelectedFile(null);
-    };
-
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         setSelectedFile(file);
         setAddSocialMedias(prevState => ({ ...prevState, social_icon: file }));
     };
 
-    const handleEditSocialMediaShow = () => setEditSocialMedias(true);
     const handleEditSocialMediaClose = () => {
         setEditSocialMediasShow(false);
     };
@@ -52,7 +44,7 @@ const SocialMedia = () => {
             formData.append('social_icon', addSocialMedias.social_icon);
             formData.append('link', addSocialMedias.link);
 
-            const response = await axios.post("http://localhost:8080/add-social-media-data", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-social-media-data", formData);
             if (response.status === 200) {
                 setAddSocialMediasShow(false);
                 setAddSocialMedias({ title: "", social_icon: "" });
@@ -65,7 +57,7 @@ const SocialMedia = () => {
 
     const fetchSocialMedias = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-social-media-data");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-social-media-data");
             setSocialMedias(response.data.getdata);
         } catch (error) {
             console.log(error);
@@ -94,8 +86,7 @@ const SocialMedia = () => {
                     formData.append('social_icon', editSocialMedias.social_icon);
                     formData.append('link', editSocialMedias.link);
 
-
-                    const response = await axios.put(`http://localhost:8080/update-social-media-data/${editId}`, formData);
+                    const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/update-social-media-data/${editId}`, formData);
                     if (response.status === 200) {
                         setEditId(null);
                         handleEditSocialMediaClose();
@@ -130,7 +121,7 @@ const SocialMedia = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-social-media-data/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-social-media-data/${id}`);
                     if (response.status === 200) {
                         setEditId(null);
                         fetchSocialMedias();
@@ -189,8 +180,8 @@ const SocialMedia = () => {
                             <label htmlFor="key-feature-image" className="block font-bold">Social Icons</label>
                             <div className="relative">
                                 <div>
-                                    <input type="file" name="social_icon" id="social_icon" className="form-input  block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleFileChange} />
-                                    <label htmlFor="social_icon" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                    <input type="file" name="social_icon" id="social_icon" className="form-input  block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleFileChange} />
+                                    <label htmlFor="social_icon" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 </div>
                                 {selectedFile && (
                                     <div className="ml-2 mt-4">
@@ -235,8 +226,8 @@ const SocialMedia = () => {
                             <label htmlFor="social_icon" className="block font-bold">Social Image</label>
                             <div className="relative">
                                 <div>
-                                    <input type="file" name="social_icon" id="social_icon" className="form-input  block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                                    <label htmlFor="social_icon" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                    <input type="file" name="social_icon" id="social_icon" className="form-input  block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
+                                    <label htmlFor="social_icon" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 </div>
                                 {editSelectedFile && (
                                     <div className="ml-2 mt-4">
@@ -302,10 +293,6 @@ const SocialMedia = () => {
                     ))}
                 </ul>
             </div>
-
-
-
-
         </div >
     );
 };

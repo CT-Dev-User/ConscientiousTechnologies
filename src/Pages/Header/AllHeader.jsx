@@ -30,29 +30,29 @@ const AllHeader = () => {
     const currentItems = headersByCategory.slice(indexOfFirstItem, indexOfLastItem);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    const SubCategoryDropdown = async () => {
+    const SubCategoryDropdown = async (category) => {
         if (category === "Technologies") {
 
         } else if (category === "Solutions") {
-            const response = await axios.get('http://localhost:8080/get-solution-we-offer-data')
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-solution-we-offer-data')
             setDropdown(response.data.getData)
         } else if (category === "Services") {
-            const response = await axios.get('http://localhost:8080/get-service-data')
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-service-data')
             setDropdown(response.data.getData)
         } else if (category === "Industries") {
-            const response = await axios.get('http://localhost:8080/get-industries-data')
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-industries-data')
             setDropdown(response.data.getData)
         }
 
     }
     useEffect(() => {
-        SubCategoryDropdown();
-    }, [])
+        SubCategoryDropdown(category);
+    }, [category])
 
 
-    const fetchHeadersByCategory = async () => {
+    const fetchHeadersByCategory = async (category) => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-header-by-headerCategory/${category}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-header-by-headerCategory/${category}`);
             setHeadersByCategory(response.data.data);
         } catch (error) {
             console.log(error);
@@ -60,8 +60,8 @@ const AllHeader = () => {
     };
 
     useEffect(() => {
-        fetchHeadersByCategory();
-    }, []);
+        fetchHeadersByCategory(category);
+    }, [category]);
 
     const handleAddfileChange = (e) => {
         setAddHeaders({ ...addHeaders, image: e.target.files[0] });
@@ -82,7 +82,7 @@ const AllHeader = () => {
             formData.append('subTitle', addHeaders.subTitle);
             formData.append('image', addHeaders.image);
 
-            const response = await axios.post("http://localhost:8080/add-header", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-header", formData);
 
             if (response.status === 200) {
                 fetchHeadersByCategory()
@@ -105,7 +105,7 @@ const AllHeader = () => {
             formData.append('subTitle', editHeaders.subTitle);
             formData.append('images', editHeaders.image);
 
-            const response = await axios.put(`http://localhost:8080/edit-header-by-id/${editId}`, formData)
+            const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-header-by-id/${editId}`, formData)
             // console.log(response.status)
             if (response.status === 200) {
 
@@ -142,7 +142,7 @@ const AllHeader = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-header-by-id/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-header-by-id/${id}`);
                     if (response.status === 200) {
                         setEditId(null);
                         fetchHeadersByCategory()
@@ -212,8 +212,8 @@ const AllHeader = () => {
                         <fieldset className="mb-4">
                             <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
                             <div className="relative">
-                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
-                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
+                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 {addselectedFile && (
                                     <div className="ml-2 mt-4">
                                         <button className="text-red-500 hover:text-red-700 mt-1 ms-[110px] " onClick={() => setAddSelectedFile(null)}>
@@ -276,8 +276,8 @@ const AllHeader = () => {
                         <fieldset className="mb-4">
                             <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
                             <div className="relative">
-                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
+                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 {editSelectedFile && (
                                     <div className="ml-2 mt-4">
                                         <button className="text-red-500 hover:text-red-700  mt-1 ms-[110px] " onClick={() => seteditHeaders(null)}>
@@ -340,7 +340,7 @@ const AllHeader = () => {
                                 <img src={header.image} alt={header.title} className="w-[60px] h-[60px]" />
                             </td>
                             <td className="border flex items-center justify-start gap-[20px] p-2">
-                                <button className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7x] text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(header._id) }}>Edit</button>
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(header._id) }}>Edit</button>
                                 <button className='hover:bg-red-700 h-[37px] bg-[red] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={() => deleteHeaderData(header._id)}>Delete</button>
                                 <button className='hover:bg-red-700 h-[37px] bg-[green] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={() => navigate(`/conscientious-header-subpage/${header.headerSubCategory}`)}>SubPages</button>
                             </td>

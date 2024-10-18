@@ -16,7 +16,6 @@ const AllExperties = () => {
     const [addSelectedFile, setAddSelectedFile] = useState(null);
     const [editSelectedFile, setEditSelectedFile] = useState(null);
     const [editId, setEditId] = useState(null);
-    const addEditor = useRef(null);
     const editEditor = useRef(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(3);
@@ -26,29 +25,29 @@ const AllExperties = () => {
     const currentItems = expertiesData.slice(indexOfFirstItem, indexOfLastItem);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    const SubCategoryDropdown = async () => {
+    const SubCategoryDropdown = async (category) => {
         if (category === "Technologies") {
             // Add code to fetch Technologies dropdown if needed
         } else if (category === "Solutions") {
-            const response = await axios.get('http://localhost:8080/get-solution-we-offer-data');
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-solution-we-offer-data');
             setDropdown(response.data.getData);
         } else if (category === "Services") {
-            const response = await axios.get('http://localhost:8080/get-service-data');
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-service-data');
             setDropdown(response.data.getData);
         } else if (category === "Industries") {
-            const response = await axios.get('http://localhost:8080/get-industries-data');
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-industries-data');
             setDropdown(response.data.getData);
         }
     };
 
     useEffect(() => {
-        SubCategoryDropdown();
-        fetchExperties();
-    }, []);
+        SubCategoryDropdown(category);
+        fetchExperties(category);
+    }, [category]);
 
-    const fetchExperties = async () => {
+    const fetchExperties = async (category) => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-experies-by-category/${category}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-experies-by-category/${category}`);
             setExpertiesData(response.data.data);
         } catch (error) {
             console.log(error);
@@ -73,7 +72,7 @@ const AllExperties = () => {
             formData.append('title', addData.title);
             formData.append('image', addData.image);
 
-            const response = await axios.post("http://localhost:8080/add-experies-data", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-experies-data", formData);
 
             if (response.status === 200) {
                 fetchExperties();
@@ -94,7 +93,7 @@ const AllExperties = () => {
             formData.append('title', editData.title);
             formData.append('image', editData.image);
 
-            const response = await axios.put(`http://localhost:8080/edit-experties-by-id/${editId}`, formData);
+            const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-experties-by-id/${editId}`, formData);
             console.log(response.status)
             if (response.status === 200) {
                 fetchExperties();
@@ -119,7 +118,7 @@ const AllExperties = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-experties-by-id/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-experties-by-id/${id}`);
                     if (response.status === 200) {
                         fetchExperties();
                         Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
@@ -167,8 +166,8 @@ const AllExperties = () => {
                         <fieldset className="mb-4">
                             <label htmlFor="image" className="block font-bold">Image</label>
                             <div className="relative">
-                                <input type="file" name="image" id="image" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddFileChange} />
-                                <label htmlFor="image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                <input type="file" name="image" id="image" className="form-input block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddFileChange} />
+                                <label htmlFor="image" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 {addSelectedFile && (
                                     <div className="ml-2 mt-4">
                                         <button className="text-red-500 hover:text-red-700" onClick={() => setAddSelectedFile(null)}>
@@ -225,8 +224,8 @@ const AllExperties = () => {
                         <fieldset className="mb-4">
                             <label htmlFor="image" className="block font-bold">Image</label>
                             <div className="relative">
-                                <input type="file" name="image" id="image" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                                <label htmlFor="image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                <input type="file" name="image" id="image" className="form-input block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
+                                <label htmlFor="image" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 {editSelectedFile && (
                                     <div className="ml-2 mt-4">
                                         <button className="text-red-500 hover:text-red-700" onClick={() => setEditSelectedFile(null)}>

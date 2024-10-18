@@ -1,8 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { AiOutlineClose } from 'react-icons/ai';
-import JoditEditor from 'jodit-react';
 import Swal from 'sweetalert2';
 import { FaEye } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,8 +13,6 @@ const SubPageSlider = () => {
     const [editPopupShow, setEditPopUpShow] = useState(false);
     const [addSliderData, setAddSliderData] = useState({ category: "", Subcategory: "", heading: "", subtitle: "", logoHeading: "", images: [], points: [] });
     const [editSliderData, seteditSliderData] = useState({ category: "", Subcategory: "", heading: "", subtitle: "", logoHeading: "", images: [], points: [] });
-    const [addselectedFile, setAddSelectedFile] = useState(null);
-    const [editSelectedFile, setEditSelectedFile] = useState(null);
     const [headerSubtitle, setHeadersubtitle] = useState(null)
     const [subtitlePopUp, setSubtitlePopUp] = useState(false)
     const [logosPopUp, setLogosPopUp] = useState(false)
@@ -33,9 +29,9 @@ const SubPageSlider = () => {
 
 
 
-    const fetchSliderDataByCategory = async () => {
+    const fetchSliderDataByCategory = async (subcategory) => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-choose-ct-slider-data/${subcategory}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-choose-ct-slider-data/${subcategory}`);
             console.log(response.data.data)
             setsliderDataByCaregory(response.data.data);
         } catch (error) {
@@ -44,8 +40,8 @@ const SubPageSlider = () => {
     };
 
     useEffect(() => {
-        fetchSliderDataByCategory();
-    }, []);
+        fetchSliderDataByCategory(subcategory);
+    }, [subcategory]);
 
 
     const handleAddSliderDataChange = (field, value) => {
@@ -127,12 +123,11 @@ const SubPageSlider = () => {
             formData.append('points', JSON.stringify(addSliderData.points));
             console.log([...formData]); // Log FormData object to check its contents
 
-            const response = await axios.post("http://localhost:8080/add-choose-ct-slider-data", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data", formData);
 
             if (response.status === 200) {
                 fetchSliderDataByCategory();
                 setAddPopUpShow(false);
-                setAddSelectedFile(null);
                 setAddSliderData({ category: "", Subcategory: "", heading: "", subtitle: "", logoHeading: "", images: [], points: [] });
             }
         } catch (error) {
@@ -158,12 +153,11 @@ const SubPageSlider = () => {
 
             formData.append('points', JSON.stringify(editSliderData.points));
 
-            const response = await axios.put(`http://localhost:8080/edit-choose-ct-slider-data/${editId}`, formData);
+            const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-choose-ct-slider-data/${editId}`, formData);
             console.log(response.status)
             if (response.status === 200) {
                 fetchSliderDataByCategory();
                 setEditPopUpShow(false);
-                setEditSelectedFile(null);
                 seteditSliderData({ category: "", Subcategory: "", heading: "", subtitle: "", logoHeading: "", images: [], points: [] });
             }
         } catch (error) {
@@ -184,7 +178,7 @@ const SubPageSlider = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-choose-ct-slider-data/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-choose-ct-slider-data/${id}`);
                     if (response.status === 200) {
                         setEditId(null);
                         fetchSliderDataByCategory()
@@ -407,7 +401,7 @@ const SubPageSlider = () => {
 
 
                             <td className="border flex items-center justify-start gap-[20px] p-2">
-                                <button className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7x] text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(slider._id); }}>Edit</button>
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(slider._id); }}>Edit</button>
                                 <button className='hover:bg-red-700 h-[37px] bg-[red] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={() => deleteHeaderData(slider._id)}>Delete</button>
 
                             </td>

@@ -10,7 +10,7 @@ const WhyChooseCtSliderPage = () => {
 
     const fetchFaqCategory = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-category");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-category");
             setCategories(response.data.getData);
         } catch (error) {
             console.log(error);
@@ -41,9 +41,9 @@ const WhyChooseCtSliderPage = () => {
                         <tr key={ct_items._id}>
                             <td className="border p-2">{i + 1}</td>
                             <td className="border p-2">{ct_items.faqCategory}</td>
-                            <td className="border p-2"><button className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7x] text-white font-bold py-2 px-4 rounded" onClick={() => { navigate(`/conscientious-choose-ct/${ct_items.faqCategory}`) }}>See All</button></td>
+                            <td className="border p-2"><button className="bg-blue-500 hover:bg-blue-700 px-[20px] text-white font-bold py-2 rounded" onClick={() => { navigate(`/conscientious-choose-ct/${ct_items.faqCategory}`) }}>See All</button></td>
                             <td className="border flex items-center justify-start gap-[20px] p-2">
-                                <button className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7x] text-white font-bold py-2 px-4 rounded">Edit</button>
+                                <button className="bg-blue-500 hover:bg-blue-700 px-[20px] text-white font-bold py-2 rounded">Edit</button>
                                 <button className='hover:bg-red-700 h-[37px] bg-[red] px-[20px] py-[7x] rounded-[7px] text-white shadow-md'>Delete</button>
                             </td>
                         </tr>

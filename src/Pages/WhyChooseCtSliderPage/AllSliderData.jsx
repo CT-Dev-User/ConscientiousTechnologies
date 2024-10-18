@@ -1,8 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { AiOutlineClose } from 'react-icons/ai';
-import JoditEditor from 'jodit-react';
 import Swal from 'sweetalert2';
 import { FaEye } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,8 +13,6 @@ const AllSliderData = () => {
     const [editPopupShow, setEditPopUpShow] = useState(false);
     const [addSliderData, setAddSliderData] = useState({ category: "", Subcategory: "", heading: "", subtitle: "", logoHeading: "", images: [], points: [] });
     const [editSliderData, seteditSliderData] = useState({ category: "", Subcategory: "", heading: "", subtitle: "", logoHeading: "", images: [], points: [] });
-    const [addselectedFile, setAddSelectedFile] = useState(null);
-    const [editSelectedFile, setEditSelectedFile] = useState(null);
     const [headerSubtitle, setHeadersubtitle] = useState(null)
     const [subtitlePopUp, setSubtitlePopUp] = useState(false)
     const [logosPopUp, setLogosPopUp] = useState(false)
@@ -32,28 +28,28 @@ const AllSliderData = () => {
     const currentItems = sliderDataByCaregory.slice(indexOfFirstItem, indexOfLastItem);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    const SubCategoryDropdown = async () => {
+    const SubCategoryDropdown = async (slidercategory) => {
         if (slidercategory === "Technologies") {
 
         } else if (slidercategory === "Solutions") {
-            const response = await axios.get('http://localhost:8080/get-solution-we-offer-data')
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-solution-we-offer-data')
             setDropdown(response.data.getData)
         } else if (slidercategory === "Services") {
-            const response = await axios.get('http://localhost:8080/get-service-data')
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-service-data')
             setDropdown(response.data.getData)
         } else if (slidercategory === "Industries") {
-            const response = await axios.get('http://localhost:8080/get-industries-data')
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-industries-data')
             setDropdown(response.data.getData)
         }
     }
     useEffect(() => {
-        SubCategoryDropdown();
-    }, [])
+        SubCategoryDropdown(slidercategory);
+    }, [slidercategory])
 
 
-    const fetchSliderDataByCategory = async () => {
+    const fetchSliderDataByCategory = async (slidercategory) => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-choose-ct-slider-data/${slidercategory}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-choose-ct-slider-data/${slidercategory}`);
             setsliderDataByCaregory(response.data.data);
         } catch (error) {
             console.log(error);
@@ -61,8 +57,8 @@ const AllSliderData = () => {
     };
 
     useEffect(() => {
-        fetchSliderDataByCategory();
-    }, []);
+        fetchSliderDataByCategory(slidercategory);
+    }, [slidercategory]);
 
 
     const handleAddSliderDataChange = (field, value) => {
@@ -144,12 +140,11 @@ const AllSliderData = () => {
             formData.append('points', JSON.stringify(addSliderData.points));
             console.log([...formData]); // Log FormData object to check its contents
 
-            const response = await axios.post("http://localhost:8080/add-choose-ct-slider-data", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data", formData);
 
             if (response.status === 200) {
                 fetchSliderDataByCategory();
                 setAddPopUpShow(false);
-                setAddSelectedFile(null);
                 setAddSliderData({ category: "", Subcategory: "", heading: "", subtitle: "", logoHeading: "", images: [], points: [] });
             }
         } catch (error) {
@@ -175,12 +170,11 @@ const AllSliderData = () => {
 
             formData.append('points', JSON.stringify(editSliderData.points));
 
-            const response = await axios.put(`http://localhost:8080/edit-choose-ct-slider-data/${editId}`, formData);
+            const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-choose-ct-slider-data/${editId}`, formData);
             console.log(response.status)
             if (response.status === 200) {
                 fetchSliderDataByCategory();
                 setEditPopUpShow(false);
-                setEditSelectedFile(null);
                 seteditSliderData({ category: "", Subcategory: "", heading: "", subtitle: "", logoHeading: "", images: [], points: [] });
             }
         } catch (error) {
@@ -201,7 +195,7 @@ const AllSliderData = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-choose-ct-slider-data/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-choose-ct-slider-data/${id}`);
                     if (response.status === 200) {
                         setEditId(null);
                         fetchSliderDataByCategory()

@@ -29,7 +29,7 @@ const OtherFaqs = () => {
 
     const fetchOtherFaq = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-faq");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-faq");
             const fetchData = response.data.getData;
             const filteredData = fetchData.filter(item =>
                 item.category !== 'Technologies' &&
@@ -66,7 +66,7 @@ const OtherFaqs = () => {
             formData.append('answerText', addFAQ.answer.answerText);
             formData.append('images', addFAQ.answer.answerImg);
 
-            const response = await axios.post("http://localhost:8080/add-faq", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-faq", formData);
             if (response.status === 200) {
                 fetchOtherFaq();
                 setAddPopUpShow(false);
@@ -85,7 +85,7 @@ const OtherFaqs = () => {
             formData.append('answerText', editHomeFAQ.answer.answerText);
             formData.append('images', editHomeFAQ.answer.answerImg);
 
-            const response = await axios.put(`http://localhost:8080/update-faq/${editId}`, formData);
+            const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/update-faq/${editId}`, formData);
             if (response.status === 200) {
                 setEditPopUpShow(false);
                 seteditHomeFAQ({ question: "", answer: { answerText: "", answerImg: null } });
@@ -119,7 +119,7 @@ const OtherFaqs = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-faq/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-faq/${id}`);
                     if (response.status === 200) {
                         setEditId(null);
                         fetchOtherFaq();
@@ -177,8 +177,8 @@ const OtherFaqs = () => {
                         <fieldset className="mb-4">
                             <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
                             <div className="relative">
-                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
-                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
+                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 {addselectedFile && (
                                     <div className="ml-2 mt-4">
                                         <button className="text-red-500 hover:text-red-700 mt-1 ms-[110px] " onClick={() => setAddSelectedFile(null)}>
@@ -222,8 +222,8 @@ const OtherFaqs = () => {
                         <fieldset className="mb-4">
                             <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
                             <div className="relative">
-                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
+                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 {editSelectedFile && (
                                     <div className="ml-2 mt-4">
                                         <button className="text-red-500 hover:text-red-700 mt-1 ms-[110px] " onClick={() => setEditSelectedFile(null)}>

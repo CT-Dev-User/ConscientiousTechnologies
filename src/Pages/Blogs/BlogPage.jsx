@@ -38,7 +38,7 @@ const BlogPage = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/get-blogs-data');
+      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-blogs-data');
       setBlogs(response.data.getData);
     } catch (error) {
       console.error('Error fetching blogs:', error);
@@ -77,10 +77,10 @@ console.log(blogs)
 
     try {
       if (editingBlog) {
-        await axios.put(`http://localhost:8080/edit-blogs-data-by-id/${editingBlog._id}`, data);
+        await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-blogs-data-by-id/${editingBlog._id}`, data);
         Swal.fire('Updated!', 'Your blog has been updated.', 'success');
       } else {
-        await axios.post('http://localhost:8080/add-blogs-data', data);
+        await axios.post('https://conscientious-technologies-backend.vercel.app/add-blogs-data', data);
         Swal.fire('Added!', 'Your blog has been added.', 'success');
       }
       fetchBlogs();
@@ -103,7 +103,7 @@ console.log(blogs)
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/delete-blogs-data-by-id/${id}`);
+      await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-blogs-data-by-id/${id}`);
       Swal.fire('Deleted!', 'Your blog has been deleted.', 'success');
       fetchBlogs();
     } catch (error) {

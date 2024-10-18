@@ -11,7 +11,7 @@ const NavbarPage = () => {
 
     const addFaqCategory = async () => {
         try {
-            const response = await axios.post("http://localhost:8080/add-category", input);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-category", input);
             if (response.status === 200) {
                 fetchFaqCategory();
                 setAddPopUpShow(false);
@@ -24,7 +24,7 @@ const NavbarPage = () => {
 
     const fetchFaqCategory = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-category");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-category");
             setCategories(response.data.getData);
         } catch (error) {
             console.log(error);

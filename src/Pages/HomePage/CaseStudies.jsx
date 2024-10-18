@@ -41,7 +41,7 @@ const CaseStudies = () => {
 
   const getCaseStudiesDataFunc = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/get-case-studies-data");
+      const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-case-studies-data");
       setCaseStudies(response.data.getData);
     }
     catch (error) {
@@ -57,7 +57,7 @@ const CaseStudies = () => {
       formData.append('images', addCaseStudyData.images);
       formData.append('coreTech', addCaseStudyData.coreTec);
 
-      const response = await axios.post("http://localhost:8080/add-case-studies-data", formData);
+      const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-case-studies-data", formData);
 
       // Assuming you want to fetch updated data after adding
       if (response.status === 200) {
@@ -79,7 +79,7 @@ const CaseStudies = () => {
       formData.append('images', editCaseStudyData.images);
       formData.append('coreTech', editCaseStudyData.coreTec);
 
-      const response = await axios.put(`http://localhost:8080/edit-case-studies-data/${editId}`, formData)
+      const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-case-studies-data/${editId}`, formData)
       if(response.status === 200){
         setEditPopUpShow(false)
         getCaseStudiesDataFunc();
@@ -117,7 +117,7 @@ const CaseStudies = () => {
       if (result.isConfirmed) {
         // If user confirms deletion
         try {
-          const response = await axios.delete(`http://localhost:8080/delete-case-studies-data/${id}`);
+          const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-case-studies-data/${id}`);
           if (response.status === 200) {
             setEditId(null);
             getCaseStudiesDataFunc()

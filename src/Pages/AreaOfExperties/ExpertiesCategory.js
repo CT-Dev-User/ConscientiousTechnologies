@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate} from 'react-router-dom';
 
@@ -9,13 +9,12 @@ const ExpertiesCategory = () => {
 
     const fetchFaqCategory = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-category");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-category");
             setCategories(response.data.getData);
         } catch (error) {
             console.log(error);
         }
     };
-
 
     useEffect(() => {
         fetchFaqCategory();
@@ -40,7 +39,7 @@ const ExpertiesCategory = () => {
                         <tr key={faq._id}>
                             <td className="border p-2">{i + 1}</td>
                             <td className="border p-2">{faq.faqCategory}</td>
-                            <td className="border p-2"><button className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7x] text-white font-bold py-2 px-4 rounded" onClick={() => { navigate(`/conscientious-area-of-experties/${faq.faqCategory}`) }}>See All</button></td>
+                            <td className="border p-2"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { navigate(`/conscientious-area-of-experties/${faq.faqCategory}`) }}>See All</button></td>
                         </tr>
                     ))}
                 </tbody>

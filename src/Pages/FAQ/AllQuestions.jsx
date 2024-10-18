@@ -31,28 +31,28 @@ const AllFAQ = () => {
     const currentItems = FaqsByCategory.slice(indexOfFirstItem, indexOfLastItem);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    const SubCategoryDropdown = async () => {
+    const SubCategoryDropdown = async (faqCategory1) => {
         if (faqCategory1 === "Technologies") {
 
         } else if (faqCategory1 === "Solutions") {
-            const response = await axios.get('http://localhost:8080/get-solution-we-offer-data')
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-solution-we-offer-data')
             setDropdown(response.data.getData)
         } else if (faqCategory1 === "Services") {
-            const response = await axios.get('http://localhost:8080/get-service-data')
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-service-data')
             setDropdown(response.data.getData)
         } else if (faqCategory1 === "Industries") {
-            const response = await axios.get('http://localhost:8080/get-industries-data')
+            const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-industries-data')
             setDropdown(response.data.getData)
         }
 
     }
     useEffect(() => {
-        SubCategoryDropdown();
-    }, [])
+        SubCategoryDropdown(faqCategory1);
+    }, [faqCategory1])
 
     const fetchHomeFaqs = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-faq");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-faq");
             setHomeFaqs(response.data.getData);
         } catch (error) {
             console.log(error);
@@ -64,9 +64,9 @@ const AllFAQ = () => {
     }, []);
 
 
-    const fetchFaqsByCategory = async () => {
+    const fetchFaqsByCategory = async (faqCategory1) => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-faq-bycategory/${faqCategory1}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-faq-bycategory/${faqCategory1}`);
             setFaqsByCategory(response.data.data);
         } catch (error) {
             console.log(error);
@@ -74,8 +74,8 @@ const AllFAQ = () => {
     };
 
     useEffect(() => {
-        fetchFaqsByCategory();
-    }, []);
+        fetchFaqsByCategory(faqCategory1);
+    }, [faqCategory1]);
 
     const handleAddfileChange = (e) => {
         setAddSelectedFile(e.target.files[0]);
@@ -96,7 +96,7 @@ const AllFAQ = () => {
             formData.append('answerText', addFAQ.answer.answerText);
             formData.append('images', addFAQ.answer.answerImg);
 
-            const response = await axios.post("http://localhost:8080/add-faq", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-faq", formData);
 
             if (response.status === 200) {
                 fetchFaqsByCategory()
@@ -116,7 +116,7 @@ const AllFAQ = () => {
             formData.append('answerText', editHomeFAQ.answer.answerText);
             formData.append('images', editHomeFAQ.answer.answerImg);
 
-            const response = await axios.put(`http://localhost:8080/update-faq/${editId}`, formData)
+            const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/update-faq/${editId}`, formData)
             console.log(response.status)
             if (response.status === 200) {
                 setEditPopUpShow(false);
@@ -151,7 +151,7 @@ const AllFAQ = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-faq/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-faq/${id}`);
                     if (response.status === 200) {
                         setEditId(null);
                         fetchFaqsByCategory()
@@ -219,8 +219,8 @@ const AllFAQ = () => {
                         <fieldset className="mb-4">
                             <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
                             <div className="relative">
-                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
-                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddfileChange} />
+                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 {addselectedFile && (
                                     <div className="ml-2 mt-4">
                                         <button className="text-red-500 hover:text-red-700 mt-1 ms-[110px] " onClick={() => setAddSelectedFile(null)}>
@@ -272,8 +272,8 @@ const AllFAQ = () => {
                         <fieldset className="mb-4">
                             <label htmlFor="ServiceHomePageimage" className="block font-bold">Image</label>
                             <div className="relative">
-                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                <input type="file" name="ServiceHomePageimage" id="ServiceHomePageimage" className="form-input block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
+                                <label htmlFor="ServiceHomePageimage" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 {editSelectedFile && (
                                     <div className="ml-2 mt-4">
                                         <button className="text-red-500 hover:text-red-700  mt-1 ms-[110px] " onClick={() => seteditHomeFAQ(null)}>
@@ -334,7 +334,7 @@ const AllFAQ = () => {
                                 <img src={faq.answer && faq.answer.answerImg} alt={faq.question} className="w-[60px] h-[60px]" />
                             </td>
                             <td className="border flex items-center justify-start gap-[20px] p-2">
-                                <button className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7x] text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(faq._id) }}>Edit</button>
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setEditPopUpShow(true); setEditId(faq._id) }}>Edit</button>
                                 <button className='hover:bg-red-700 h-[37px] bg-[red] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={() => deleteHomeFAQData(faq._id)}>Delete</button>
                                 <button className='hover:bg-red-700 h-[37px] bg-[green] px-[20px] py-[7x] rounded-[7px] text-white shadow-md' onClick={() => navigate(`/conscientious-faq/${faq.Subcategory}`)}>SubPages</button>
                             </td>

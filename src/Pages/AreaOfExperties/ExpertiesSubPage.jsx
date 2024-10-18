@@ -16,22 +16,21 @@ const ExpertiesSubPage = () => {
     const [addSelectedFile, setAddSelectedFile] = useState(null);
     const [editSelectedFile, setEditSelectedFile] = useState(null);
     const [editId, setEditId] = useState(null);
-    const addEditor = useRef(null);
     const editEditor = useRef(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(3);
-    const [dropdown, setDropdown] = useState([]);
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = expertiesData.slice(indexOfFirstItem, indexOfLastItem);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-    useEffect(() => {
-        fetchExperties();
-    }, []);
 
-    const fetchExperties = async () => {
+    useEffect(() => {
+        fetchExperties(SubCategory);
+    }, [SubCategory]);
+
+    const fetchExperties = async (SubCategory) => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-experies-by-category/${SubCategory}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-experies-by-category/${SubCategory}`);
             setExpertiesData(response.data.data);
         } catch (error) {
             console.log(error);
@@ -56,7 +55,7 @@ const ExpertiesSubPage = () => {
             formData.append('title', addData.title);
             formData.append('image', addData.image);
 
-            const response = await axios.post("http://localhost:8080/add-experies-data", formData);
+            const response = await axios.post("https://conscientious-technologies-backend.vercel.app/add-experies-data", formData);
 
             if (response.status === 200) {
                 fetchExperties();
@@ -77,7 +76,7 @@ const ExpertiesSubPage = () => {
             formData.append('title', editData.title);
             formData.append('image', editData.image);
 
-            const response = await axios.put(`http://localhost:8080/edit-experties-by-id/${editId}`, formData);
+            const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-experties-by-id/${editId}`, formData);
             console.log(response.status)
             if (response.status === 200) {
                 fetchExperties();
@@ -102,7 +101,7 @@ const ExpertiesSubPage = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.delete(`http://localhost:8080/delete-experties-by-id/${id}`);
+                    const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-experties-by-id/${id}`);
                     if (response.status === 200) {
                         fetchExperties();
                         Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
@@ -141,8 +140,8 @@ const ExpertiesSubPage = () => {
                         <fieldset className="mb-4">
                             <label htmlFor="image" className="block font-bold">Image</label>
                             <div className="relative">
-                                <input type="file" name="image" id="image" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddFileChange} />
-                                <label htmlFor="image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                <input type="file" name="image" id="image" className="form-input block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleAddFileChange} />
+                                <label htmlFor="image" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 {addSelectedFile && (
                                     <div className="ml-2 mt-4">
                                         <button className="text-red-500 hover:text-red-700" onClick={() => setAddSelectedFile(null)}>
@@ -189,8 +188,8 @@ const ExpertiesSubPage = () => {
                         <fieldset className="mb-4">
                             <label htmlFor="image" className="block font-bold">Image</label>
                             <div className="relative">
-                                <input type="file" name="image" id="image" className="form-input block w-full rounded-md hidden overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
-                                <label htmlFor="image" id="file-upload-label" className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
+                                <input type="file" name="image" id="image" className="form-input block w-full rounded-md overflow-hidden" aria-describedby="file-upload-label" onChange={handleEditFileChange} />
+                                <label htmlFor="image" id="file-upload-label" className="cursor-pointer hover:bg-blue-700 font-bold py-2 px-4 rounded-md border">Upload File</label>
                                 {editSelectedFile && (
                                     <div className="ml-2 mt-4">
                                         <button className="text-red-500 hover:text-red-700" onClick={() => setEditSelectedFile(null)}>
