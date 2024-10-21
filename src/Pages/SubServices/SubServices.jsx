@@ -49,11 +49,7 @@ const SubServicesCMS = () => {
   const fetchSubservices = async () => {
     try {
       const response = await axios.get('http://localhost:8080/get-latest-subservice-data');
-<<<<<<< HEAD
-      // console.log(response.data);
-=======
       console.log(response.data);
->>>>>>> e39a4b8f5ac87fdafe53bd2bf34935d982055504
       setSubServices(response.data);
     } catch (error) {
       console.error('Error fetching service Data:', error);
@@ -106,7 +102,7 @@ const SubServicesCMS = () => {
     if (service) {
       setserviceId(service._id);
       setserviceName(service.serviceName);
-      setSubServices(service.subServiceTitle)
+      setsubServiceTitle(service.subServiceTitle)
       setHeaderTagLine(service.headerTagLine);
       setCardTitle(service.cardTitle);
       setCardNo(service.cardNo)
@@ -117,7 +113,7 @@ const SubServicesCMS = () => {
     } else {
       setserviceId(null); // Reset ID for adding a new service
       setserviceName('');
-      setSubServices('')
+      setsubServiceTitle('')
       setHeaderTagLine('');
       setCardDescription('');
       setCardTitle('');
@@ -132,7 +128,7 @@ const SubServicesCMS = () => {
     // Reset form fields
     setserviceId(null);
     setserviceName('');
-    setSubServices('')
+    setsubServiceTitle('')
     setHeaderTagLine('');
     setCardDescription('');
     setCardNo('');
@@ -347,7 +343,7 @@ const SubServicesCMS = () => {
                 <button className='py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md' type="submit">
                   {serviceId ? 'Update service' : 'Add service'}
                 </button>
-                <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeModal}>
+                <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={()=>{closeModal()}}>
                   Cancel
                 </button>
               </div>
