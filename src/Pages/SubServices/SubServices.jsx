@@ -47,7 +47,7 @@ const SubServicesCMS = () => {
 
   const fetchSubservices = async () => {
     try {
-      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-subservice-data');
+      const response = await axios.get('http://localhost:8080/get-latest-subservice-data');
       console.log(response.data);
       setSubServices(response.data);
     } catch (error) {
@@ -82,7 +82,7 @@ const SubServicesCMS = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-existing-service-data-by-id/${id}`);
+          const response = await axios.delete(`http://localhost:8080/delete-existing-service-data-by-id/${id}`);
           if (response.status === 200) {
             fetchSubservices(); // Refresh the service list
             Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
@@ -165,13 +165,13 @@ const SubServicesCMS = () => {
     try {
       if (serviceId) {
         // Update existing service
-        const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-existing-subservice-data/${serviceId}`, formData);
+        const response = await axios.put(`http://localhost:8080/edit-existing-subservice-data/${serviceId}`, formData);
         if (response.status === 200) {
           Swal.fire('Success!', 'service updated successfully.', 'success');
         }
       } else {
         // Create new service
-        const response = await axios.post('https://conscientious-technologies-backend.vercel.app//create-new-subservice-data', formData);
+        const response = await axios.post('http://localhost:8080/create-new-subservice-data', formData);
         if (response.status === 200) {
           Swal.fire('Success!', 'New service added successfully.', 'success');
         }

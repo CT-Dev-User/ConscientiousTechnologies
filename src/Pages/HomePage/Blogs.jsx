@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Modal, Button, Table } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { FaEye } from 'react-icons/fa';
 
@@ -33,9 +33,8 @@ const BlogCMS = () => {
   // Fetch all blogs
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-blog-data');
-      setBlogs(response.data.blogs);
-      console.log(response.data.blogs);
+      const response = await axios.get('http://localhost:8080/get-latest-blog-data-by-category/Home');
+      setBlogs(response.data.blog);
     } catch (error) {
       console.error('Error fetching blogs:', error);
     }
@@ -136,12 +135,12 @@ const BlogCMS = () => {
     try {
       if (currentBlog) {
         // Update existing blog
-        await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-existing-blog-data/${currentBlog._id}`, form, {
+        await axios.put(`http://localhost:8080/edit-existing-blog-data/${currentBlog._id}`, form, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
       } else {
         // Create new blog
-        await axios.post('https://conscientious-technologies-backend.vercel.app/create-new-blog-data', form, {
+        await axios.post('http://localhost:8080/create-new-blog-data', form, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
       }
@@ -166,7 +165,7 @@ const BlogCMS = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-existing-blog-data-by-id/${id}`);
+          await axios.delete(`http://localhost:8080/delete-existing-blog-data-by-id/${id}`);
           fetchBlogs();
         } catch (error) {
           console.error('Error deleting blog:', error);
@@ -176,39 +175,39 @@ const BlogCMS = () => {
   };
 
   return (
-    <div className="container mx-auto mt-5">
+    <div className="container mx-auto mt-5 bg-white p-4">
       <div className="flex justify-between mb-4">
         <h1 className="text-xl font-bold">Manage Blogs</h1>
         <Button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => toggleModal()}>Add New Blog</Button>
       </div>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Subcategory</th>
-            <th>Card Data</th>
-            <th>Header Data</th>
-            <th>Article Data</th>
-            <th>Blog Tags</th>
-            <th>Actions</th>
+      <table className="w-full border-collapse border mt-4">
+        <thead className='bg-gray-800 text-white'>
+          <tr className='border border-gray-700 py-2'>
+            <th className='border-r px-2 py-2'>Category</th>
+            <th className='border-r px-2 py-2'>Subcategory</th>
+            <th className='border-r px-2 py-2'>Card Data</th>
+            <th className='border-r px-2 py-2'>Header Data</th>
+            <th className='border-r px-2 py-2'>Article Data</th>
+            <th className='border-r px-2 py-2'>Blog Tags</th>
+            <th className='border-r px-2 py-2'>Actions</th>
           </tr>
         </thead>
         <tbody>
           {blogs.map((blog) => (
-            <tr key={blog._id}>
-              <td>{blog.category}</td>
-              <td>{blog.subCategory}</td>
-              <td onClick={() => viewCardDetails(blog)} style={{ cursor: 'pointer' }}>
+            <tr key={blog._id} className='border border-gray-700 py-2'>
+              <td className='border-r px-2 py-2'>{blog.category}</td>
+              <td className='border-r px-2 py-2'>{blog.subCategory}</td>
+              <td className='border-r px-2 py-2' onClick={() => viewCardDetails(blog)} style={{ cursor: 'pointer' }}>
                 <FaEye />
               </td>
-              <td onClick={() => viewHeaderDetails(blog)} style={{ cursor: 'pointer' }}>
+              <td className='border-r px-2 py-2' onClick={() => viewHeaderDetails(blog)} style={{ cursor: 'pointer' }}>
                 <FaEye />
               </td>
-              <td onClick={() => viewArticleDetails(blog)} style={{ cursor: 'pointer' }}>
+              <td className='border-r px-2 py-2' onClick={() => viewArticleDetails(blog)} style={{ cursor: 'pointer' }}>
                 <FaEye />
               </td>
-              <td onClick={() => viewBlogTagsDetails(blog)} style={{ cursor: 'pointer' }}>
+              <td className='border-r px-2 py-2' onClick={() => viewBlogTagsDetails(blog)} style={{ cursor: 'pointer' }}>
                 <FaEye />
               </td>              <td>
                 <button className='bg-blue-500 text-white px-2 py-1 rounded mr-2' size="sm" onClick={() => toggleModal(blog)}>Edit</button>{' '}
@@ -217,7 +216,7 @@ const BlogCMS = () => {
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
 
       {/* Add/Edit Modal */}
       <Modal show={isModalOpen} onHide={() => toggleModal()} centered>
