@@ -171,7 +171,7 @@ const SideBar = ({ children }) => {
             icon: <FaLaptop />,
           },
           {
-            path: "/conscientious-home-SubServices",
+            path: "/conscientious-SubServices",
             name: "Sub Services",
             icon: <FaLaptop />,
           },

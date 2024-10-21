@@ -44,11 +44,12 @@ const SubServicesCMS = () => {
   useEffect(() => {
     setPaginatedservices(paginate(subServices, currentPage, itemsPerPage));
   }, [subServices, currentPage, itemsPerPage]);
+  console.log(paginatedservices, "p")
 
   const fetchSubservices = async () => {
     try {
-      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-subservice-data');
-      console.log(response.data);
+      const response = await axios.get('http://localhost:8080/get-latest-subservice-data');
+      // console.log(response.data);
       setSubServices(response.data);
     } catch (error) {
       console.error('Error fetching service Data:', error);
@@ -57,10 +58,12 @@ const SubServicesCMS = () => {
 
 
   const paginate = (subServices, currentPage, itemsPerPage) => {
+    if (!subServices) return [];
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return subServices.slice(startIndex, endIndex);
   };
+
 
   const goToPreviousPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
@@ -82,7 +85,7 @@ const SubServicesCMS = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-existing-service-data-by-id/${id}`);
+          const response = await axios.delete(`http://localhost:8080/delete-existing-subservice-data-by-id/${id}`);
           if (response.status === 200) {
             fetchSubservices(); // Refresh the service list
             Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
@@ -136,8 +139,9 @@ const SubServicesCMS = () => {
 
   const openCardDataModal = (service) => {
     setCardImage(service.cardImage);
-    setCardDescription(service.cardDescription);
+    // setCardDescription(service.cardDescription);
     setCardNo(service.cardNo);
+    setCardTitle(service.cardTitle);
     setShowCardModal(true);
   };
 
@@ -153,7 +157,7 @@ const SubServicesCMS = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('serviceName', serviceName);
-    formData.append('subServices', subServices);
+    formData.append('subServiceTitle', subServiceTitle);
     formData.append('cardNo', cardNo);
     formData.append('headerTagLine', headerTagLine);
     formData.append('headerDescription', headerDescription);
@@ -165,13 +169,13 @@ const SubServicesCMS = () => {
     try {
       if (serviceId) {
         // Update existing service
-        const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-existing-subservice-data/${serviceId}`, formData);
+        const response = await axios.put(`http://localhost:8080/edit-existing-subservice-data/${serviceId}`, formData);
         if (response.status === 200) {
           Swal.fire('Success!', 'service updated successfully.', 'success');
         }
       } else {
         // Create new service
-        const response = await axios.post('https://conscientious-technologies-backend.vercel.app//create-new-subservice-data', formData);
+        const response = await axios.post('http://localhost:8080/create-new-subservice-data', formData);
         if (response.status === 200) {
           Swal.fire('Success!', 'New service added successfully.', 'success');
         }
@@ -206,7 +210,7 @@ const SubServicesCMS = () => {
             </tr>
           </thead>
           <tbody>
-            {paginatedservices.map((service, index) => (
+            {paginatedservices && Array.isArray(paginatedservices) && paginatedservices.map((service, index) => (
               <tr key={service._id}>
                 <td className="border p-2">{(currentPage - 1) * itemsPerPage + index + 1}</td>
                 <td className="border p-2">{service.serviceName}</td>
@@ -235,12 +239,12 @@ const SubServicesCMS = () => {
             Previous
           </button>
           <span className="mx-2">
-            Page {currentPage} of {Math.ceil(subServices.length / itemsPerPage)}
+            Page {currentPage} of {subServices ? Math.ceil(subServices.length / itemsPerPage) : 0}
           </span>
           <button
             onClick={goToNextPage}
-            className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === Math.ceil(subServices.length / itemsPerPage) ? 'opacity-50 cursor-not-allowed' : ''}`}
-            disabled={currentPage === Math.ceil(subServices.length / itemsPerPage)}
+            className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === (subServices ? Math.ceil(subServices.length / itemsPerPage) : 0) ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={currentPage === (subServices ? Math.ceil(subServices.length / itemsPerPage) : 0)}
           >
             Next
           </button>
@@ -320,7 +324,7 @@ const SubServicesCMS = () => {
               <div className="mb-4">
                 <label className="block text-gray-700">Card No</label>
                 <input
-                  type="text"
+                  type="number"
                   value={cardNo}
                   onChange={(e) => setCardNo(e.target.value)}
                   className="w-full p-2 border rounded"
@@ -335,15 +339,6 @@ const SubServicesCMS = () => {
                 />
               </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700">Card Description</label>
-                <textarea
-                  value={cardDescription}
-                  onChange={(e) => setCardDescription(e.target.value)}
-                  className="w-full p-2 border rounded"
-                  required
-                />
-              </div>
               <div className='flex justify-start gap-4'>
                 <button className='py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md' type="submit">
                   {serviceId ? 'Update service' : 'Add service'}
