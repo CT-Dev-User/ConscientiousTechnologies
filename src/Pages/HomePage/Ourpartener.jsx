@@ -359,7 +359,7 @@ const OurPartener = () => {
                   className="w-[60px] h-[60px]"
                 />
               </td>
-              <td className="border p-1 flex gap-x-[10px]">
+              <td className="p-1 flex gap-x-[10px]">
                 <Button
                   onClick={() => {
                     setEditOurPartenerData({
