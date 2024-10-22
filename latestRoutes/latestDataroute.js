@@ -5,7 +5,7 @@ import { createService, deleteService, editService, getAllServices, getServiceBy
 import { createSolution, deleteSolution, editSolution, getAllSolutions, getSolutionById, getSolutionBySolutionName } from '../latestControllers/solutionController.js';
 import { createIndustry,deleteIndustry, editIndustry, getAllIndustries, getIndustryById, getIndustryByIndustryName } from '../latestControllers/industriesController.js';
 import { createCaseStudy, deleteCaseStudy, editCaseStudy, getAllCaseStudies, getCaseStudyByCategory, getCaseStudyById, getCaseStudyBySubCategory } from '../latestControllers/caseStudyController.js';
-import { addBlog, deleteBlog, getAllBlogs, getBlogById, getBlogBysubCategory, updateBlog } from '../latestControllers/blogController.js';
+import { addBlog, deleteBlog, getAllBlogs, getBlogByCategory, getBlogById, getBlogBysubCategory, updateBlog } from '../latestControllers/blogController.js';
 import { createSubServices, deleteSubServices, editSubServices, getAllSubServices, getSubServicesById, getSubservicesBySubServicesName } from '../latestControllers/subServicesController.js';
 
 const latestrouter = express.Router();
@@ -106,6 +106,7 @@ latestrouter.put('/edit-existing-blog-data/:id', upload.fields([
 
 latestrouter.get('/get-latest-blog-data', getAllBlogs);
 latestrouter.get('/get-latest-blog-data-by-id/:id', getBlogById);
+latestrouter.get('/get-latest-blog-data-by-category/:category', getBlogByCategory);
 latestrouter.get('/get-latest-blog-data-by-subcategory/:category/:Subcategory', getBlogBysubCategory);
 latestrouter.delete('/delete-existing-blog-data-by-id/:id', deleteBlog);
 

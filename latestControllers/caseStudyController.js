@@ -213,6 +213,8 @@ export const getCaseStudyByCategory = async (req, res) => {
     }
 };
 
+
+
 // Controller to delete a case study by ID
 export const deleteCaseStudy = async (req, res) => {
     try {
