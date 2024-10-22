@@ -49,11 +49,6 @@ const SubServicesCMS = () => {
   const fetchSubservices = async () => {
     try {
       const response = await axios.get('http://localhost:8080/get-latest-subservice-data');
-<<<<<<< HEAD
-      // console.log(response.data);
-=======
-      console.log(response.data);
->>>>>>> e39a4b8f5ac87fdafe53bd2bf34935d982055504
       setSubServices(response.data);
     } catch (error) {
       console.error('Error fetching service Data:', error);
@@ -180,7 +175,7 @@ const SubServicesCMS = () => {
       } else {
         // Create new service
         const response = await axios.post('http://localhost:8080/create-new-subservice-data', formData);
-        if (response.status === 200) {
+        if (response.status === 201) {
           Swal.fire('Success!', 'New service added successfully.', 'success');
         }
       }
