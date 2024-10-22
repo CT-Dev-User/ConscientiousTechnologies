@@ -91,9 +91,24 @@ export const getBlogById = async (req, res) => {
     }
 };
 // Get blog by ID
+export const getBlogByCategory = async (req, res) => {
+    try {
+        const { category } = req.params;
+        const blog = await LatestBlogModel.find({ category: category});
+        // if (!blog) {
+        //     return res.status(404).send({ message: "Blog not found" });
+        // }
+        res.status(200).send({
+            status: "Success",
+            blog
+        });
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+};
 export const getBlogBysubCategory = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { category, subCategory } = req.params;
         const blog = await LatestBlogModel.find({ category: category, subCategory: subCategory });
         if (!blog) {
             return res.status(404).send({ message: "Blog not found" });
