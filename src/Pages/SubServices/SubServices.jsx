@@ -101,7 +101,7 @@ const SubServicesCMS = () => {
     if (service) {
       setserviceId(service._id);
       setserviceName(service.serviceName);
-      setSubServices(service.subServiceTitle)
+      setsubServiceTitle(service.subServiceTitle)
       setHeaderTagLine(service.headerTagLine);
       setCardTitle(service.cardTitle);
       setCardNo(service.cardNo)
@@ -112,7 +112,7 @@ const SubServicesCMS = () => {
     } else {
       setserviceId(null); // Reset ID for adding a new service
       setserviceName('');
-      setSubServices('')
+      setsubServiceTitle('')
       setHeaderTagLine('');
       setCardDescription('');
       setCardTitle('');
@@ -127,7 +127,7 @@ const SubServicesCMS = () => {
     // Reset form fields
     setserviceId(null);
     setserviceName('');
-    setSubServices('')
+    setsubServiceTitle('')
     setHeaderTagLine('');
     setCardDescription('');
     setCardNo('');
@@ -342,7 +342,7 @@ const SubServicesCMS = () => {
                 <button className='py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md' type="submit">
                   {serviceId ? 'Update service' : 'Add service'}
                 </button>
-                <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeModal}>
+                <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={()=>{closeModal()}}>
                   Cancel
                 </button>
               </div>
