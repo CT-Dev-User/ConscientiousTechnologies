@@ -84,13 +84,13 @@ const OurPartener = () => {
           Trusted By Startup & Fortune 500 Companies
         </p> 
       </div>
-      <div className='lg:w-3/5 bg-[#474747] text-[white] w-1/2 h-full'>
-        <Slider {...settings}>
+      <div className='lg:w-3/5 bg-[#474747] text-[white]  w-1/2 h-full'>
+        <Slider {...settings} className='h-full flex justify-center items-center'>
           {OurPartenerData.map((items, i) => {
             return (
-              <div className='w-7 lg:h-20 flex justify-center items-center h-[70px]' key={i}>
-                <div className='bg-[black] w-[90%] lg:h-full h-4/5 flex justify-center items-center mt-5'>
-                  <img src={items.logo} alt={items.title} />
+              <div className='w-10 lg:h-28 flex justify-center items-center h-[70px]' key={i}>
+                <div className='bg-[black] w-[90%] lg:h-[90%] h-4/5 flex justify-center items-center'>
+                  <img src={items.logo} alt={items.title} className='w-full h-full'/>
                 </div>
               </div>
             )

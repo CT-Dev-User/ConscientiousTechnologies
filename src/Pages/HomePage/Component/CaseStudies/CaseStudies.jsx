@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./caseStudies.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const CaseStudies = () => {
   const [CaseStudiesData, setCaseStudies] = useState([]);
+  const navigate = useNavigate()
 
   const getCaseStudiesDataFunc = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-case-studies"
+        "https://conscientious-technologies-backend.vercel.app/get-case-studies-by-cateory/Home"
       );
-      setCaseStudies(response.data.getData);
+      console.log(response.data)
+      setCaseStudies(response.data);
     } catch (error) {
       console.log(error);
     }
   };
+  console.log(CaseStudiesData)
 
   useEffect(() => {
     getCaseStudiesDataFunc();
@@ -34,7 +38,7 @@ const CaseStudies = () => {
           return (
             <div
               style={{
-                backgroundImage: `url(${items.caseStudyImage})`,
+                backgroundImage: `url(${items.cardDatacardImage})`,
                 backgroundSize: "cover",
                 backgroundPosition: "cover",
               }}
@@ -44,19 +48,24 @@ const CaseStudies = () => {
               <div className="case-studies-child-div flex flex-col justify-between">
                 <div className="flex flex-col justify-around gap-5">
                   <h1 className="font-semibold lg:text-xl text-base">
-                    {items.title}
+                    {items.cardDatatitle}
                   </h1>
                   <div className="flex flex-col gap-2">
                     <p
                       className="text-sm font-normal"
-                      dangerouslySetInnerHTML={{ __html: items.desc }}
+                      dangerouslySetInnerHTML={{
+                        __html: items.cardDatasubTitle
+                      }}
                     ></p>
-                    <h4>Core tech :- {items.coreTech}</h4>
+                    <h4>Core tech :- {items.cardDatacoreTech}</h4>
                   </div>
                 </div>
                 <button
                   className="relative overflow-hidden border border-white px-4 py-2 w-fit text-xs group"
                   style={{ position: "relative" }}
+                  // onClick={() => {
+                  //   navigate("/case-studies/" + items._id + "/")
+                  // }}
                 >
                   <span className="absolute inset-0 bg-[#33B7D4] transition-all duration-300 ease-in-out transform -translate-x-full group-hover:translate-x-0"></span>
                   <span className="relative z-10 transition-colors duration-300 ease-in-out group-hover:text-white">

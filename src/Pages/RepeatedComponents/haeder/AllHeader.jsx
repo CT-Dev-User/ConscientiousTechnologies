@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-const AllHeader = ({ category, serviceName, solutionName, industryName }) => {
+const AllHeader = ({ category, serviceName, solutionName, industryName, subServiceName, subCategory }) => {
     const [headerData, setHeaderData] = useState([])
 
 
@@ -9,7 +9,7 @@ const AllHeader = ({ category, serviceName, solutionName, industryName }) => {
         try {
             if (category === "Services") {
                 console.log("ok")
-                const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-service-data-by-serviceName/${serviceName}`);
+                const response = await axios.get(`http://localhost:8080/get-service-data-by-serviceName/${serviceName}`);
                 setHeaderData(response.data);
                 // console.log(response.data)
             } else if (category === "Solutions") {
@@ -20,6 +20,11 @@ const AllHeader = ({ category, serviceName, solutionName, industryName }) => {
                 const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-latest-industry-data-by-industryName/${industryName}`);
                 console.log(response.data)
                 setHeaderData(response.data);
+            }else if(category === "SubServices" ){
+                console.log("sub services")
+              const response = await axios.get(`http://localhost:8080/get-subservice-data-by-subservice/${serviceName}/${subServiceName}`); 
+              console.log("response",response.data) 
+              setHeaderData(response.data);
             }
         } catch (error) {
             console.log(error);

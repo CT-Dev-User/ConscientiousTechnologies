@@ -17,7 +17,7 @@ const HelpDesk = () => {
 
   return (
     <div>
-      <AllHeader category="Dedicated Software Team" subCategory="Help Desk" />
+      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Help Desk" />
       <OurPartener />
       <WhyChooseCTSlider category="Dedicated Software Team" subCategory="Help Desk" />
       <ITHelpDesk />

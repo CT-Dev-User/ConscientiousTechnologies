@@ -19,7 +19,9 @@ const CloudeApplication = () => {
 
     return (
         <div>
-            <AllHeader category="Software Development Services" subCategory="Cloud application"/>
+            <AllHeader 
+             category="SubServices"  serviceName="Software Development Services" subServiceName="Cloud application"
+            />
             <OurPartener />
             <WhyChooseCTSlider category="Software Development Services" subCategory="Cloud application"/>
             <ScopeOfCloudeApp />

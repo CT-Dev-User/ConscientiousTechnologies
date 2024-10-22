@@ -19,7 +19,9 @@ const LagencySoftModerization = () => {
   
     return (
         <div>
-            <AllHeader category="Software Development Services" subCategory="Legacy Software" />
+            <AllHeader  
+            category="SubServices"  serviceName="Software Development Services" subServiceName="Legacy Software" 
+            />
             <OurPartener />
             <WhyChooseCTSlider category="Software Development Services" subCategory="Legacy Software" />
             <AttributeOfOurApp />

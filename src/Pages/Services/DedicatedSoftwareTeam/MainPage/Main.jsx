@@ -29,10 +29,10 @@ const MainDedicatedDevService = () => {
     <div>
       <AllHeader category="Services" serviceName="Dedicated Software Teams" />
       <OurPartener />
-      <WhyChooseCTSlider category="Services" subCategory="Dedicated Software Team" />
+      <WhyChooseCTSlider category="Services" subCategory="Dedicated Software Teams" />
       <PartnerUpWithCity />
       <AreaOfExpertiesHeading />
-      <AreaOfExperties category="Services" subCategory="Dedicated Software Team" navCategory="Services" navSubCategory="Dedicated Software Team" />
+      <AreaOfExperties category="Services" serviceName="Dedicated Software Teams" navCategory="Services" navSubCategory="Dedicated Software Team" />
       <ReasonForDedicatedTeam />
       <TechnologyHeader />
       <ReliableTools category="Services" subCategory="Dedicated Software Team" />

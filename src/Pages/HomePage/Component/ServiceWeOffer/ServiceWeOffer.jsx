@@ -89,26 +89,26 @@ const ServiceWeOffer = () => {
                 <div className="p-4 flex flex-col gap-3">
                   {/* {item.points.map((point, index) => ( */}
                   <li key={index} className="mb-2 list-none">
-                    <h3 className="lg:text-sm 2xl:text-base font-semibold underline ">
+                    <h3 className="lg:text-[0.7rem] 2xl:text-base font-semibold underline ">
                       {item.cardPoint1Heading}
                     </h3>
                     <p className="font-normal text-xs 2xl:text-sm">{item.cardPoint1Desc}</p>{" "}
 
                   </li>
                   <li key={index} className="mb-2 list-none">
-                    <h3 className="lg:text-sm 2xl:text-base font-semibold underline ">
+                    <h3 className="lg:text-[0.7rem] 2xl:text-base font-semibold underline ">
                       {item.cardPoint2Heading}
                     </h3>
                     <p className="font-normal text-xs 2xl:text-sm">{item.cardPoint2Desc}</p>{" "}
                   </li>
                   <li key={index} className="mb-2 list-none">
-                    <h3 className="lg:text-sm 2xl:text-base font-semibold underline ">
+                    <h3 className="lg:text-[0.7rem] 2xl:text-base font-semibold underline ">
                       {item.cardPoint3Heading}
                     </h3>
                     <p className="font-normal text-xs 2xl:text-sm">{item.cardPoint3Desc}</p>{" "}
                   </li>
                   <li key={index} className="mb-2 list-none">
-                    <h3 className="lg:text-sm 2xl:text-base font-semibold underline ">
+                    <h3 className="lg:text-[0.7rem] 2xl:text-base font-semibold underline ">
                       {item.cardPoint4Heading}
                     </h3>
                     <p className="font-normal text-xs 2xl:text-sm">{item.cardPoint4Desc}</p>{" "}

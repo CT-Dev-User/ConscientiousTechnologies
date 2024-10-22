@@ -17,7 +17,7 @@ const CyberSecurity = () => {
 
   return (
     <div>
-      <AllHeader category="Dedicated Software Team" subCategory="Cyber Security" />
+      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Cyber Security" />
       <OurPartener />
       <WhyChooseCTSlider category="Dedicated Software Team" subCategory="Cyber Security"/>
       <CyberSecService />

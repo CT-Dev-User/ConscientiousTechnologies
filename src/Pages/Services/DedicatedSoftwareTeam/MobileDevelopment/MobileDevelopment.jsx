@@ -21,7 +21,7 @@ const MobileDevelopment = () => {
 
   return (
     <div>
-      <AllHeader category="Dedicated Software Team" subCategory="Mobile Development"/>
+      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Mobile Development"/>
       <OurPartener/>
       <MobileAppSolution/>
       <PartnerUpWithCity/>

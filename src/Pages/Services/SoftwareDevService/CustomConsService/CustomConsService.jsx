@@ -18,7 +18,9 @@ const CustomConsService = () => {
 
     return (
         <div>
-            <AllHeader category="Software Development Services" subCategory="Custom software development" />
+            <AllHeader 
+            category="SubServices"  serviceName="Software Development Services" subServiceName="Custom software development"
+            />
             <OurPartener />
             <PartnerUpWithCity/>
             <DiverseSkills />

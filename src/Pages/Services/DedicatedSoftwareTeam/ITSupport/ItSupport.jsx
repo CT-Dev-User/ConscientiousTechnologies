@@ -18,7 +18,7 @@ const ItSupport = () => {
 
   return (
     <div>
-      <AllHeader category="Dedicated Software Team" subCategory="IT Support"/>
+      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="IT Support"/>
       <OurPartener />
       <Scope />
       <WhyChooseCTSlider category="Dedicated Software Team" subCategory="IT Support"/>

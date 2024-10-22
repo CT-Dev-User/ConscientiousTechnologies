@@ -24,7 +24,7 @@ const SoftwareDevelopment = () => {
 
   return (
     <div>
-      <AllHeader category="Dedicated Software Team" subCategory="Software Development"/>
+      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Software Development"/>
       <OurPartener />
       <ExploreOurConsulting/>
       <AreaOfExperties category="Dedicated Software Team" subCategory="Software Development" navCategory="Services" navSubCategory="Software Development Services"/>

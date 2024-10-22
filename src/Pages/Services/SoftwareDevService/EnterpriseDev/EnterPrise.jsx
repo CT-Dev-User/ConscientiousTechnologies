@@ -19,7 +19,9 @@ const Enterprise = () => {
 
   return (
     <div>
-      <AllHeader category="Software Development Services" subCategory="Enterprise Software"/>
+      <AllHeader 
+      category="SubServices"  serviceName="Software Development Services" subServiceName="Enterprise software"
+      />
       <OurPartener />
       <ScopeEnterprise />
       <PartnerUpWithCity />

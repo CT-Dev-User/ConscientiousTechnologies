@@ -22,7 +22,7 @@ const DataAnalytics = () => {
 
   return (
     <div>
-      <AllHeader category="Dedicated Software Team" subCategory="Data Analyst" />
+      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Data Analytics" />
       <OurPartener />
       <BuildingDataAnalytics />
       <WhyChooseCTSlider category="Dedicated Software Team" subCategory="Data Analyst" />

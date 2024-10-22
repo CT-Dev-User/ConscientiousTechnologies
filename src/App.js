@@ -130,7 +130,9 @@ function App() {
 
         {/* software consulting service  */}
         <Route path='Services/Software Development Services' element={<SoftDevHomePage />} />
-        <Route path='/Software Development Services/Software consulting' element={<SoftwareConsulting />} />
+
+       
+        <Route path='/Software Development Services/Software Consulting Services' element={<SoftwareConsulting />} />
         <Route path='/Software Development Services/Custom software development' element={<CustomConsService />} />
         <Route path='/Software Development Services/Enterprise software' element={<Enterprise />} />
         <Route path='/Software Development Services/Software product' element={<SoftwareProduct />} />
@@ -144,7 +146,7 @@ function App() {
         <Route path='/Dedicated Software Team/Software Development' element={<SoftwareDevelopment />} />
         <Route path='/Dedicated Software Team/Web Development' element={<SoftDevWebDevelopment />} />
         <Route path='/Dedicated Software Team/Mobile Development' element={<MobileDevelopment />} />
-        <Route path='/Dedicated Software Team/Data Analyst' element={<DataAnalytics />} />
+        <Route path='/Dedicated Software Team/Data Analytics' element={<DataAnalytics />} />
         <Route path='/Dedicated Software Team/QA & Testing' element={<Qa_Service />} />
         <Route path='/Dedicated Software Team/IT support' element={<ItSupport />} />
         <Route path='/Dedicated Software Team/Cyber Security' element={<CyberSecurity />} />

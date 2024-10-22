@@ -23,10 +23,12 @@ const SoftDevHomePage = () => {
 
     return (
         <div>
-            <AllHeader category="Software Development Services" />
+            <AllHeader category="Services" serviceName="Software Development Services" />
             <OurPartener /> 
             <ExploreSoftDevHeading />
-            <AreaOfExperties category="Services" subCategory="Software Development Services" navSubCategory="Software Development Services" navCategory="Services" />
+            <AreaOfExperties
+            category="Services" serviceName="Software Development Services" navCategory="Services" navSubCategory="Software Development Services" 
+           />
             <StatsOfServices/>
             <PartnerUpWithCity />
             <CollabSenario />

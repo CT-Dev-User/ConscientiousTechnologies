@@ -22,11 +22,11 @@ const Qa_Service = () => {
 
   return (
     <div>
-      <AllHeader category="Dedicated Software Team" subCategory="QA & Testing"/>
+      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="QA & Testing"/>
       <OurPartener />
       <TypeOfSoft />
       <AreaOfExperties category="Dedicated Software Team" subCategory="QA & Testing"/>
-      <TestingType />
+      <TestingType /> 
       <WhyChooseCTSlider category="Dedicated Software Team" subCategory="QA & Testing"/>
       <QASoftTesingService />
       <TechToolsHeader />

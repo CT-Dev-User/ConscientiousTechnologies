@@ -11,7 +11,7 @@ import { CTContext } from "../../../../Context/createContext";
 const NavBar = ({ hideNavbar, setHideNavbar }) => {
 
   const navCategory = [{ name: "Services" }, { name: "Solutions" }, { name: "Industries" }, { name: "About Us" }, { name: "Career" }, { name: "Contact Us" }];
-  console.log(navCategory);
+
 
   const { dropdowns, setDropdowns, activeItem, setActiveItem } =
     useContext(CTContext);
@@ -47,7 +47,6 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
     try {
       const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-category");
       setNavigations(response.data.getData);
-      console.log(response.data.getData);
     } catch (error) {
       console.error(error);
     }
@@ -111,7 +110,6 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
       console.error(error);
     }
   };
-  console.log(dropdownsData, "drop")
 
   return (
     <nav
@@ -284,8 +282,8 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
                   }}
                 >
                   <span>{nav.name}</span>
-                  {nav.name !== "About Us" && nav.name !== "Contact Us" && nav.name !== "Career" ? <span className="text-[20px]">⌵</span> : <span className="text-[20px]"> &rarr; </span> }
-                  
+                  {nav.name !== "About Us" && nav.name !== "Contact Us" && nav.name !== "Career" ? <span className="text-[20px]">⌵</span> : <span className="text-[20px]"> &rarr; </span>}
+
                 </div>
                 <ul
                   className={`${activeItem === nav.name && dropdownsData
@@ -295,7 +293,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
                 >
                   {dropdownsData.map((item, index) => {
                     // console.log("item", item[search])
-                    return (   
+                    return (
                       <li
                         className="border-t text-sm py-2 px-3 border-[#FFA843]"
                         key={index}

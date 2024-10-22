@@ -21,7 +21,7 @@ const SoftDevWebDevelopment = () => {
 
     return (
         <div>
-            <AllHeader category="Dedicated Software Team" subCategory="Web Development"/>
+            <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Web Development"/>
             <OurPartener />
             <WebSolutionWeNeed />
             <PartnerUpWithCity />
