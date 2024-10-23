@@ -166,7 +166,7 @@ const SideBar = ({ children }) => {
         title: "Services",
         list: [
           {
-            path: "/conscientious-home-services",
+            path: "/conscientious-services",
             name: "Services",
             icon: <FaLaptop />,
           },

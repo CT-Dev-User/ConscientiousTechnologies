@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 const SubServicesCMS = () => {
+  const [services, setServices] = useState([]);
   const [subServices, setSubServices] = useState([]); // Fixed the name from 'service' to 'services'
   const [serviceId, setserviceId] = useState(null);
   const [serviceName, setserviceName] = useState('');
@@ -36,6 +37,9 @@ const SubServicesCMS = () => {
     setShowHeaderModal(false);
   };
 
+  useEffect(() => {
+    fetchServices();
+  }, []);
   // Fetch all service data on mount
   useEffect(() => {
     fetchSubservices();
@@ -46,6 +50,16 @@ const SubServicesCMS = () => {
   }, [subServices, currentPage, itemsPerPage]);
   console.log(paginatedservices, "p")
 
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-service-data');
+      console.log(response.data);
+      setServices(response.data);
+    } catch (error) {
+      console.error('Error fetching services:', error);
+    }
+  };
+  
   const fetchSubservices = async () => {
     try {
       const response = await axios.get('http://localhost:8080/get-latest-subservice-data');
@@ -188,7 +202,7 @@ const SubServicesCMS = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-gray-200">
       <div className='flex justify-between'>
         <h1 className="text-xl font-bold mb-4">Subservice Management</h1>
         <button onClick={() => openModal()} className="bg-blue-500 text-white px-4 py-2 rounded">
@@ -197,8 +211,8 @@ const SubServicesCMS = () => {
       </div>
 
       <div className="mt-4">
-        <table className="w-full border-collapse ">
-          <thead className='bg-gray-500 text-white'>
+        <table className="w-full border-collapse bg-white">
+          <thead className='bg-gray-800 text-white'>
             <tr>
               <th className="border p-2">Sr No.</th>
               <th className="border p-2">service Name</th>
@@ -248,26 +262,23 @@ const SubServicesCMS = () => {
             Next
           </button>
         </div>
-
-
       </div>
 
       <Modal show={showModal} onHide={closeModal}>
-        <div className='w-[50vw] mx-auto bg-white'>
-          <Modal.Header closeButton className="bg-gray-100">
+        <div className='w-[50vw] mx-auto bg-white rounded-xl'>
+          <Modal.Header closeButton className="bg-gray-800 text-white">
             <Modal.Title>{serviceId ? 'Edit service' : 'Add New service'}</Modal.Title>
           </Modal.Header>
           <Modal.Body className="w-full mx-auto">
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="block text-gray-700">service Name</label>
-                <input
-                  type="text"
-                  value={serviceName}
-                  onChange={(e) => setserviceName(e.target.value)}
-                  className="w-full p-2 border rounded"
-                  required
-                />
+                <select name="" value={serviceName} onChange={(e) => setserviceName(e.target.value)} className="w-full p-2 border rounded" id="">
+                  <option value="">Select service</option>
+                  {services.map((service, index) => (
+                    <option key={index} value={service.serviceName}>{service.serviceName}</option>
+                  ))}
+                </select>
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700">Subservice Name</label>
@@ -276,7 +287,6 @@ const SubServicesCMS = () => {
                   value={subServiceTitle}
                   onChange={(e) => setsubServiceTitle(e.target.value)}
                   className="w-full p-2 border rounded"
-                  required
                 />
               </div>
 
@@ -287,7 +297,6 @@ const SubServicesCMS = () => {
                   value={headerTagLine}
                   onChange={(e) => setHeaderTagLine(e.target.value)}
                   className="w-full p-2 border rounded"
-                  required
                 />
               </div>
               <div className="mb-4">
@@ -297,7 +306,6 @@ const SubServicesCMS = () => {
                   value={headerDescription}
                   onChange={(e) => setheaderDescription(e.target.value)}
                   className="w-full p-2 border rounded"
-                  required
                 />
               </div>
 
@@ -342,7 +350,7 @@ const SubServicesCMS = () => {
                 <button className='py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md' type="submit">
                   {serviceId ? 'Update service' : 'Add service'}
                 </button>
-                <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={()=>{closeModal()}}>
+                <button type='button' className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeModal}>
                   Cancel
                 </button>
               </div>
@@ -406,12 +414,11 @@ const SubServicesCMS = () => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={closeCardDataModal}>
+          <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeCardDataModal}>
             Close
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
-
 
     </div>
   );

@@ -31,9 +31,7 @@ const ServicesCMS = () => {
   const [viewHeaderTagLine, setViewHeaderTagLine] = useState('');
   const [viewHeaderImage, setViewHeaderImage] = useState(null);
   const [viewheaderDescription, setViewheaderDescription] = useState(null);
-
   const [viewCardService, setviewCardService] = useState(null);
-
 
   // States for viewing card data
   const [viewCardImage, setViewCardImage] = useState(null);
@@ -47,7 +45,12 @@ const ServicesCMS = () => {
   const [viewCardPoint4Desc, setViewCardPoint4Desc] = useState('');
   const [viewcardTitle, setviewcardTitle] = useState('');
 
-
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(4);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = services.slice(indexOfFirstItem, indexOfLastItem);
 
   // Fetch all services on mount
   useEffect(() => {
@@ -223,36 +226,34 @@ const ServicesCMS = () => {
     });
   };
   return (
-    <div className="p-4">
+    <div className="p-4 bg-gray-200">
       <div className='flex justify-between'>
         <h1 className="text-xl font-bold mb-4">Services Management</h1>
         <button onClick={() => openModal()} className="bg-blue-500 text-white px-4 py-2 rounded">
           Add New Service
         </button>
       </div>
-
-
       <div className="mt-4">
-        <table className="w-full border-collapse ">
-          <thead className='bg-gray-500 text-white'>
-            <tr>
-              <th className="border p-2">Service Name</th>
-              <th className="border p-2">Header Data</th>
-              <th className="border p-2">Card Data</th>
-              <th className="border p-2">Actions</th>
+        <table className="w-full border-collapse border bg-white">
+          <thead className='bg-gray-800 text-white'>
+            <tr className='border-b'>
+              <th className="border-r p-2">Service Name</th>
+              <th className="border-r p-2">Header Data</th>
+              <th className="border-r p-2">Card Data</th>
+              <th className="border-r p-2">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {services.map(service => (
-              <tr key={service._id}>
-                <td className="border p-2">{service.serviceName}</td>
-                <td className="border p-2">
+            {currentItems && currentItems.map(service => (
+              <tr key={service._id} className='border-b hover:bg-gray-300'>
+                <td className="border-r p-2">{service.serviceName}</td>
+                <td className="border-r p-2">
                   <button onClick={() => openViewModal(service)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
                 </td>
-                <td className="border p-2">
+                <td className="border-r p-2">
                   <button onClick={() => openViewCardModal(service)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
                 </td>
-                <td className="border p-2">
+                <td className="border-r p-2">
                   <button onClick={() => openModal(service)} className="bg-green-500 text-white px-2 py-1 rounded mr-2">Edit</button>
                   <button onClick={() => handleDelete(service._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
                 </td>
@@ -260,13 +261,42 @@ const ServicesCMS = () => {
             ))}
           </tbody>
         </table>
+        {/* Pagination */}
+      <ul className="flex justify-center gap-[20px] mt-2">
+        <li>
+          <button
+            onClick={() =>
+              setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+            }
+            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
+          >
+            Prev
+          </button>
+        </li>
+        <li className="py-2 px-2 text-black font-semibold">{currentPage}</li>
+        <li>
+          <button
+            onClick={() =>
+              setCurrentPage((prevPage) =>
+                Math.min(
+                  prevPage + 1,
+                  Math.ceil(services.length / itemsPerPage)
+                )
+              )
+            }
+            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
+          >
+            Next
+          </button>
+        </li>
+      </ul>
       </div>
 
       {/* Modal for Adding/Editing Services */}
 
       <Modal show={showModal} onHide={closeModal}>
-        <div className='w-[50vw] mx-auto bg-white'>
-          <Modal.Header closeButton className="bg-gray-100">
+        <div className='w-[50vw] mx-auto bg-white rounded-xl'>
+          <Modal.Header closeButton className="bg-gray-800 text-white">
             <Modal.Title>{serviceId ? 'Edit Service' : 'Add New Service'}</Modal.Title>
           </Modal.Header>
           <Modal.Body className="w-full mx-auto">

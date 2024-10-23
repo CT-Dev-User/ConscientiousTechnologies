@@ -81,7 +81,7 @@ function App() {
         }
       />
       <Route
-        path="/conscientious-home-services"
+        path="/conscientious-services"
         element={
           <SideBar>
             <ServiceWeOffer />
