@@ -35,7 +35,7 @@ const AppWeSupport = () => {
         <div className="w-full py-16">
             <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
                 <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Apps We Support and Maintain</h1>
-                <p className='lg:w-11/12 mt-2 w-full text-base'>Software product development is the process of ideating and creating commercial software, either unique on the market or having a solid competitive advantage. ScienceSoft is a leading software product development company that helps product startups and mature companies stay confident about the quality and ROI of a new solution they bring to the market</p>
+                <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>Software product development is the process of ideating and creating commercial software, either unique on the market or having a solid competitive advantage. ScienceSoft is a leading software product development company that helps product startups and mature companies stay confident about the quality and ROI of a new solution they bring to the market</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (

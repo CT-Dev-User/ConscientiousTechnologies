@@ -45,7 +45,7 @@ const FullScale = () => {
     return (
         <div className="w-screen lg:py-10 py-8">
             <div className='container lg:w-[85%] mx-auto w-[95%]'>
-                <h1 className='lg:text-3xl text-xl font-bold lg:text-black text-[#3970F0]'>Full-Scale Web Development by Conscientious Technology</h1>
+                <h1 className='2xl:text-3xl text-2xl font-bold lg:text-black text-[#3970F0]'>Full-Scale Web Development by Conscientious Technology</h1>
                 <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>Throughout all web development services, ScienceSoft adheres to a quality-first approach based on ISO 9001-certified quality management system. Our comprehensive security management program with robust security controls, policies and technologies is compliant with ISO 27001 regulations.</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-4 mt-8 w-[95%]'>

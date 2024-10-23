@@ -15,7 +15,7 @@ const SoftDevProjectMan = () => {
     <div id='how-we-work' className='w-screen h-[auto] bg-[white] box-border py-12'>
     <div className='lg:w-[85%] mx-auto w-[90%]'>
       <h1 className='lg:text-3xl font-bold text-2xl text-[blue] lg:text-black'>Software Development and Project Management We Implement</h1>
-      <p className='lg:w-[80%] mt-2 w-full text-base'>Streamlined Excellence: Unveiling our proven software development and project management methodologies. From Agile to DevOps, we ensure efficiency, quality, and timely delivery for unparalleled project success</p>
+      <p className='lg:w-[80%] mt-2 w-full text-sm 2xl:text-base'>Streamlined Excellence: Unveiling our proven software development and project management methodologies. From Agile to DevOps, we ensure efficiency, quality, and timely delivery for unparalleled project success</p>
     </div>
     <div className='hidden lg:flex text-[white] w-[90%] gap-0 mx-auto justify-center flex-wrap mt-7'>
 

@@ -81,9 +81,9 @@ const EndtoEndAIConsulting = () => {
         <div className="w-screen h-auto">
             <div className="w-full h-auto bg-black box-border py-16 text-white hidden lg:block">
                 <div className="lg:w-[85%] mx-auto">
-                    <h1 className="lg:text-3xl text-xl 2xl:text-[2rem] font-bold text-[blue] lg:text-white">
+                    <h1 className="2xl:text-3xl text-2xl font-bold text-[blue] lg:text-white">
                         End-to-End AI Consulting Services by CT          </h1>
-                    <p className="w-[85%] text-base mt-2">
+                    <p className="w-[85%] text-sm 2xl:text-base mt-2">
                         The scope of ScienceSoft’s AI consulting services varies depending on our customers’ business needs, maturity of the data management practices, and the current AI environment. Our AI services may include.
                     </p>
                 </div>

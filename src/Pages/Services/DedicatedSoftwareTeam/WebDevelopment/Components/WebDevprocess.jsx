@@ -82,8 +82,8 @@ const WebDevprocess = () => {
 
         <div className="w-screen lg:py-10 py-8">
         <div className='container lg:w-[85%] mx-auto w-[95%]'>
-            <h1 className='lg:text-3xl text-xl font-bold lg:text-black text-[#3970F0]'>How We Ensure Success in Web Development Projects</h1>
-            <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>Apart from technical expertise, many other factors influence project success and software quality. ScienceSoft’s teams approach all of them seriously. Here are our project management and software development practices to deliver on goal, quality, schedule, and budget:</p>
+            <h1 className='2xl:text-3xl text-2xl font-bold lg:text-black text-[#3970F0]'>How We Ensure Success in Web Development Projects</h1>
+            <p className='w-11/12 text-sm 2xl:text-base mt-2 md:w-full md:text-[16px]'>Apart from technical expertise, many other factors influence project success and software quality. ScienceSoft’s teams approach all of them seriously. Here are our project management and software development practices to deliver on goal, quality, schedule, and budget:</p>
         </div>
         <div className='lg:w-[85%] flex mx-auto flex-wrap gap-4 mt-8 w-[95%]'>
             {ScopeEnterprise.map((item, index) => (

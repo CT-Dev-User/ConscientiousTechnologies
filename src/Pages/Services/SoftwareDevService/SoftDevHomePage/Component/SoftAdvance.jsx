@@ -45,7 +45,7 @@ const SoftAdvance = () => {
         <div className="w-screen lg:py-16 py-8">
             <div className='container lg:w-[85%] mx-auto w-[95%]'>
                 <h1 className='lg:text-3xl text-xl 2xl:text-[2rem] font-bold  text-[#3970F0]'>Software for Advanced Business Tasks </h1>
-                <p className='w-11/12 text-sm mt-2 md:w-full md:text-[16px]'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
+                <p className='w-11/12 mt-2 md:w-full text-sm 2xl:text-base'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-4 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (

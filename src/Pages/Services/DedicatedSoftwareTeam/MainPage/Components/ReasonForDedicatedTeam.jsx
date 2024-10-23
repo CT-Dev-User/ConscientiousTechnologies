@@ -14,7 +14,7 @@ const ReasonForDedicatedTeam = () => {
     <div id='how-we-work' className='w-screen h-[auto] bg-[white] box-border py-8 lg:py-16'>
       <div className='lg:w-[85%] mx-auto w-[90%]'>
         <h1 className='lg:text-3xl font-bold text-2xl text-[blue] lg:text-black'>Reasons to Opt For the Dedicated Team Model </h1>
-        <p className='lg:w-[80%] mt-2 w-full text-base'>Maximize Efficiency: Discover the transformative advantages of Cloud Consulting Services with CT. From cost optimization to enhanced security, unlock the full potential of cloud technology for your business success.</p>
+        <p className='lg:w-[80%] mt-2 w-full text-sm 2xl:text-base'>Maximize Efficiency: Discover the transformative advantages of Cloud Consulting Services with CT. From cost optimization to enhanced security, unlock the full potential of cloud technology for your business success.</p>
       </div>
       <div className='hidden lg:flex text-[white] w-[90%] gap-0 mx-auto justify-center flex-wrap mt-7'>
 

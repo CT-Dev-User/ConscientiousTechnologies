@@ -69,8 +69,8 @@ const SoftWareAdvBussiness = () => {
 
         <div className="w-full py-16">
         <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
-            <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Software for Advanced Business Tasks</h1>
-            <p className='lg:w-11/12 mt-2 w-full text-base'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
+            <h1 className='2xl:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Software for Advanced Business Tasks</h1>
+            <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>We work with all the mainstream technologies to expand the scope of functions the software can perform.</p>
         </div>
         <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
             {softWareBussinessArr.map((item, index) => (

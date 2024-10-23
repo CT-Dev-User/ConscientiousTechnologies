@@ -35,8 +35,8 @@ const TestingType = () => {
     return (
         <div className='w-full lg:mt-16 mt-10 mb-8'>
             <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 lg:mt-16'>
-                <h1 className='lg:text-3xl font-bold text-xl lg:text-black text-primary'>We Can Perform Any Testing Type You Need</h1>
-                <p className='lg:w-11/12 mt-2 w-full text-base'>Comprehensive Testing Solutions: With CT, access a versatile array of testing types tailored to your needs. From functional to performance testing, ensure top-notch quality and reliability for your software projects.</p>
+                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-primary'>We Can Perform Any Testing Type You Need</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>Comprehensive Testing Solutions: With CT, access a versatile array of testing types tailored to your needs. From functional to performance testing, ensure top-notch quality and reliability for your software projects.</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {testingType.map((item, index) => (

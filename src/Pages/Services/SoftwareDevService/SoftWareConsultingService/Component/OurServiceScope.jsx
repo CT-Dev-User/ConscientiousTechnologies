@@ -32,7 +32,7 @@ const OurServiceScope = () => {
         <div className='w-full my-16'>
             <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 mt-16'>
                 <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-primary'>Our Service Scope: Technology Advisory and Beyond</h1>
-                <p className='lg:w-11/12 mt-2 w-full text-base'>Beyond Advisory: Unlocking Potential with CT. From strategic guidance to implementation, our service scope encompasses comprehensive technology solutions, propelling your business towards innovation and sustainable growth</p>
+                <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>Beyond Advisory: Unlocking Potential with CT. From strategic guidance to implementation, our service scope encompasses comprehensive technology solutions, propelling your business towards innovation and sustainable growth</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-10 w-[95%]'>
                 {softWareBussinessArr.map((item, index) => (

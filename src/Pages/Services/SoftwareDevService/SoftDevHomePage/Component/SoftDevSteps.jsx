@@ -81,7 +81,7 @@ const SoftDevSteps = () => {
             <div className='w-full h-auto bg-black box-border py-16 text-white hidden lg:block'>
                 <div className='lg:w-[85%] mx-auto'>
                     <h1 className='lg:text-3xl text-xl 2xl:text-[2rem] font-bold text-[blue] lg:text-white'>Check Out Our Software Development Steps </h1>
-                    <p className='w-[85%] text-base mt-2'>Discover Our Software Development Steps: Gain insights into our comprehensive approach, from ideation to deployment, ensuring transparency and delivering high-quality, custom solutions for your unique business requirements.</p>
+                    <p className='w-[85%] text-sm 2xl:text-base mt-2'>Discover Our Software Development Steps: Gain insights into our comprehensive approach, from ideation to deployment, ensuring transparency and delivering high-quality, custom solutions for your unique business requirements.</p>
                 </div>
                 <div className="w-[85%] flex justify-between mx-auto">
                     <div className="w-[47%] flex flex-col justify-start items-start gap-[230px] mt-12 ">

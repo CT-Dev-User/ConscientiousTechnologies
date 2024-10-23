@@ -62,7 +62,7 @@ const ModernizationCompetencies = () => {
             <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-8'>
                 {ourSoftDevOption.map((item, index) => (
                     <div key={index} className='w-[350px] h-[220px] border border-gray-300 p-3 shadow-md'>
-                        <h1 className='text-[18px] font-bold'>{item.title}</h1>
+                        <h1 className='text-[18px] text-sm 2xl:text-base'>{item.title}</h1>
                         <p className='text-[13.5px] mt-2 font-medium'>{item.desc}</p>
                     </div>
                 ))}

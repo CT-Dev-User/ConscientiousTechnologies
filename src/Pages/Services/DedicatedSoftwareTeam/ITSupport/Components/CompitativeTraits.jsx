@@ -11,10 +11,10 @@ const CompitativeTraits = () => {
 
         <div className="w-screen h-auto box-border lg:py-10 py-7 bg-black text-white lg:text-black lg:bg-white">
             <div className="lg:w-[85%] mx-auto w-full px-3 lg:px-0">
-                <h1 className="lg:text-3xl font-bold text-xl lg:text-black text-white">
+                <h1 className="2xl:text-3xl font-bold text-2xl lg:text-black text-white">
                     Competitive Traits of ScienceSoft’s IT Support Services
                 </h1>
-                <p className="lg:w-[95%] mt-4 w-full text-base">
+                <p className="lg:w-[95%] mt-4 w-full text-sm 2xl:text-base">
                     Collaboration Scenarios: Explore various engagement models, from in-house teams to outsourced partnerships, to tailor software development collaboration to your needs.Collaboration Scenarios: Explore various engagement models, from in-house teams to outsourced partnerships, to tailor software development collaboration to your needs.
                 </p>
             </div>

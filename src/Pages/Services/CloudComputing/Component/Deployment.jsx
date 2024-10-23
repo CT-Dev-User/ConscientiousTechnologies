@@ -11,9 +11,9 @@ const Deployment = () => {
 
         <div className="w-screen h-auto box-border lg:pt-16 py-7 bg-black text-white lg:text-black lg:bg-white">
             <div className="lg:w-[85%] mx-auto w-full px-3 lg:px-0">
-                <h1 className="lg:text-3xl font-bold text-2xl md:text-[blue]">
+                <h1 className="2xl:text-3xl font-bold text-2xl md:text-[blue]">
                     Cloud Deployments We Handle        </h1>
-                <p className="lg:w-[95%] mt-2 w-full text-base">
+                <p className="lg:w-[95%] mt-2 w-full text-sm 2xl:text-base">
                     Strategic Cloud Deployments: Harness the power of cloud with CT. From seamless migrations to robust architectures, we optimize deployments for scalability, security, and performance, ensuring a future-ready digital landscape
                 </p>
             </div>

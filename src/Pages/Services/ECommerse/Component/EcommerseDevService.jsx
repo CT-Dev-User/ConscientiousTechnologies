@@ -36,8 +36,8 @@ const EcommerseDevService = () => {
         
         <div className='w-[100vw] h-[auto] box-border py-[60px] md:py-[30px]'>
             <div className='w-[85%] mx-auto md:w-full md:px-3'>
-                <h1 className='text-3xl font-bold md:text-[24px] md:text-[blue]'>Ecommerce Development Services</h1>
-                <p className='w-[95%] text-[14px] mt-2 md:w-[100%] md:text-[16px]'>Empowering E-commerce: Partner with CT for comprehensive e-commerce development services. From intuitive UX/UI designs to secure payment gateways, we amplify your online presence for enhanced customer engagement and sales growth.</p>
+                <h1 className='2xl:text-3xl font-bold text-2xl md:text-[blue]'>Ecommerce Development Services</h1>
+                <p className='w-[95%] mt-2 md:w-[100%] text-sm 2xl:text-base'>Empowering E-commerce: Partner with CT for comprehensive e-commerce development services. From intuitive UX/UI designs to secure payment gateways, we amplify your online presence for enhanced customer engagement and sales growth.</p>
             </div>
             <div className='w-[85%] flex mx-auto mt-6 justify-between md:w-[95%]'>
                 <div className='w-[27%] h-[440px] md:hidden'>

@@ -7,8 +7,8 @@ const CloudServiceDev = () => {
 
         <div className='w-full mt-16 mb-8'>
             <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 mt-16'>
-                <h1 className='lg:text-3xl font-bold text-xl lg:text-black text-primary'>ConscientiousTech Cloud Service Option</h1>
-                <p className='lg:w-11/12 mt-2 w-full text-base'>We work with all the mainstream technologies to expand the scope of functions the software can perform</p>
+                <h1 className='2xl:text-3xl font-bold text-2xl lg:text-black text-primary'>ConscientiousTech Cloud Service Option</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>We work with all the mainstream technologies to expand the scope of functions the software can perform</p>
             </div>
             <div className='w-full  lg:w-[85%] flex mx-auto mt-6 gap-20 justify-start'>
                 <div className='w-[27%] h-[500px] hidden lg:block'>

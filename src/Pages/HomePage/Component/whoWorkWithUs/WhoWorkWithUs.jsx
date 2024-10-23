@@ -55,7 +55,7 @@ const WhoWorkWithUs = () => {
   return (
     <div className="w-screen h-auto bg-black pb-8 box-border text-white lg:pt-14 pt-12">
       <div className="lg:w-[85%] mx-auto w-[95%] pl-2 lg:pl-0">
-        <h1 className="lg:text-4xl font-bold text-3xl">Who We Work With</h1>
+        <h1 className="lg:text-3xl font-bold text-2xl">Who We Work With</h1>
         <p className="lg:w-[85%] text-base mt-4 w-[90%] font-normal">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas
           ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut

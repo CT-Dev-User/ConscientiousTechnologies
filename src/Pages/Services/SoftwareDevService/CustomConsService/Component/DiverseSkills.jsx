@@ -35,7 +35,7 @@ const DiverseSkills = () => {
         <div className="w-full py-16">
             <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
                 <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Find Diverse Skills and Experience at ScienceSoft</h1>
-                <p className='lg:w-11/12 mt-2 w-full text-base'>Elevate Your Experience: Explore a spectrum of user-centric cloud services with CT. From scalable infrastructure to seamless collaboration, we empower businesses with cutting-edge solutions for enhanced performance and agility.</p>
+                <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>Elevate Your Experience: Explore a spectrum of user-centric cloud services with CT. From scalable infrastructure to seamless collaboration, we empower businesses with cutting-edge solutions for enhanced performance and agility.</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {ourSoftDevOption.map((item, index) => (

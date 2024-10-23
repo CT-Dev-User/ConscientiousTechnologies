@@ -17,10 +17,10 @@ const AISolutionWeCreate = () => {
       className="w-screen h-[auto] bg-[white] box-border pt-12 pb-8"
     >
       <div className="lg:w-[85%] mx-auto w-[90%]">
-        <h1 className="lg:text-3xl font-bold text-2xl text-[blue] lg:text-black">
+        <h1 className="2xl:text-3xl font-bold text-2xl text-[blue] lg:text-black">
         AI Solutions We Create
         </h1>
-        <p className="lg:w-[80%] mt-2 w-full text-base">
+        <p className="lg:w-[80%] mt-2 w-full text-sm 2xl:text-base">
         According to PwC, AI realizes substantial value via increasing productivity through automation, improving decision-making, and enhancing customer experience. Solutions that ScienceSoft delivers embrace the latest AI developments to innovate and improve operational workflows, maximize user value, and enable innovative business models:
         </p>
       </div>

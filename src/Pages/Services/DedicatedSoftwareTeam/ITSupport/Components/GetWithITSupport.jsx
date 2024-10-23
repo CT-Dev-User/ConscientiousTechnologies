@@ -55,14 +55,14 @@ const GetWithITSupport = () => {
     return (
         <div className='w-full lg:mt-16 mt-10 mb-8'>
             <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 lg:mt-16'>
-                <h1 className='lg:text-3xl font-bold text-xl lg:text-black text-primary'>What You Get with IT Support Services</h1>
-                <p className='lg:w-11/12 mt-2 w-full text-base'>A data analytics company, ScienceSoft helps businesses from 30+ industries integrate, aggregate, and analyze various data types from multiple data sources to address their most ambitious needs at department and enterprise levels.</p>
+                <h1 className='2xl:text-3xl font-bold text-2xl lg:text-black text-primary'>What You Get with IT Support Services</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>A data analytics company, ScienceSoft helps businesses from 30+ industries integrate, aggregate, and analyze various data types from multiple data sources to address their most ambitious needs at department and enterprise levels.</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {getWithITSupportArr.map((item, index) => (
                     <div key={index} className='lg:w-[30%] md:w-[45%]  w-full lg:border lg:border-gray-300 p-3 h-auto py-3'>
                         <h1 className='text-lg 2xl:text-xl text-bold'>{item.title}</h1>
-                        <p className='text-sm mt-3 font-medium'>{item.desc}</p>
+                        <p className='text-sm 2xl:text-base mt-3 font-medium'>{item.desc}</p>
                     </div>
                 ))}
             </div>

@@ -123,7 +123,7 @@ const ScopeEnterprise = () => {
         <div className="w-full py-16">
         <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
             <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>The Scope of Our Enterprise Application Development Services</h1>
-            <p className='lg:w-11/12 mt-2 w-full text-base'>ScienceSoft company provides services that cover all aspects of enterprise application implementation. You can either choose one or several components from our offer to get a unique service pack fully covering your enterprise needs.</p>
+            <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>ScienceSoft company provides services that cover all aspects of enterprise application implementation. You can either choose one or several components from our offer to get a unique service pack fully covering your enterprise needs.</p>
         </div>
         <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
             {ScopeEnterprise.map((item, index) => (

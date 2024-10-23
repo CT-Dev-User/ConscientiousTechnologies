@@ -10,7 +10,7 @@ const OurOutSource = () => {
     return (
         <div className="w-screen h-auto lg:py-16 py-7 box-border bg-black text-white lg:text-black lg:bg-white">
             <div className="lg:w-[85%] mx-auto w-full px-3 lg:px-0">
-                <h1 className="lg:text-3xl font-bold text-xl lg:text-black text-[blue]">
+                <h1 className="2xl:text-3xl font-bold text-2xl lg:text-black text-[blue]">
                     What Makes Our Outsourced IT Help Desk Services Reliable
                 </h1>
                 <p className="lg:w-[95%] mt-2 w-full text-base">

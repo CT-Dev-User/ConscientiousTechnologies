@@ -165,7 +165,7 @@ const PartnerUpWithCity = () => {
     return (
         <div className='pt-10 box-border w-screen'>
             <div className='lg:w-[85%] w-[95%] mx-auto '>
-                <h1 className=' font-bold lg:text-3xl text-xl 2xl:text-[2.2rem] mb-[40px]'>Why Partner Up with CT ?</h1>
+                <h1 className='lg:text-3xl font-bold text-2xl mb-[40px]'>Why Partner Up with CT ?</h1>
                 <div className='w-[95%] lg:mx-auto lg:h-[70vh] flex gap-[20px] h-[30vh]'>
                     <div className='lg:w-[48%] h-[100%] flex flex-col gap-[20px] w-[100%] text-white]'>
                         <div className='w-[100%] h-[48%] flex gap-[20px]'>
@@ -182,29 +182,29 @@ const PartnerUpWithCity = () => {
                     </div>
                 </div>
                 <div className='w-[100%] my-10 lg:my-14'>
-                    <h1 className='font-bold lg:text-3xl text-xl 2xl:text-[2rem]'>Guaranteed service quality</h1>
+                    <h1 className='lg:text-3xl font-bold text-2xl'>Guaranteed service quality</h1>
                     <div className="paretndiv w-[100%] mt-7">
                         <div className="w-[100%] flex gap-[10px]">
                             <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
-                            <p className="w-[90%] lg:text-lg text-sm 2xl:text-[1rem] font-semibold">Quality-first approach based on a mature ISO 9001-certified quality management system.</p>
+                            <p className="w-[90%] lg:text-base text-sm 2xl:text-[1rem] font-semibold">Quality-first approach based on a mature ISO 9001-certified quality management system.</p>
                         </div>
 
                         <div className="mt-[10px] flex gap-[10px]">
                             <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
-                            <p className="w-[90%] lg:text-lg text-sm 2xl:text-[1rem] font-semibold">
+                            <p className="w-[90%] lg:text-base text-sm 2xl:text-[1rem] font-semibold">
                                 ISO 27001-certified security management that relies on comprehensive policies and processes, advanced security technology, and skilled professionals.
                             </p>
                         </div>
 
                         <div className="mt-[10px] flex gap-[10px]">
                             <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
-                            <p className="w-[90%] lg:text-lg text-sm 2xl:text-[1rem] font-semibold">
+                            <p className="w-[90%] lg:text-base text-sm 2xl:text-[1rem] font-semibold">
                                 A full-scale PMO able to carry out even the most complex projects.
                             </p>
                         </div>
                         <div className="mt-[10px] flex gap-[10px]">
                             <div className="w-[16px] h-[16px] bg-violet-300 mt-[4px]"></div>
-                            <p className="w-[90%] lg:text-lg text-sm 2xl:text-[1rem] font-semibold">
+                            <p className="w-[90%] lg:text-base text-sm 2xl:text-[1rem] font-semibold">
                                 A leading outsourcing provider featured on the Global Outsourcing 100 list by IAOP.
                             </p>
                         </div>

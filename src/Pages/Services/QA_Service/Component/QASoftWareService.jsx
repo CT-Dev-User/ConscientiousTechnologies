@@ -92,7 +92,7 @@ const QASoftWareService = () => {
         <div className="w-full py-16">
             <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
                 <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Our QA and Software Testing Services</h1>
-                <p className='lg:w-11/12 mt-2 w-full text-base'>Note: QA and testing services differ in the scope of activities involved. Software quality assurance (QA) is a process that may cover all stages of SDLC, from requirements gathering to maintenance, and ensures the software meets the established quality standards.Being a part of QA, testing is aimed to check software's functional, performance, security, and other aspects. For more details, you can check the article by ScienceSoft’s Senior QA Consultant.</p>
+                <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>Note: QA and testing services differ in the scope of activities involved. Software quality assurance (QA) is a process that may cover all stages of SDLC, from requirements gathering to maintenance, and ensures the software meets the established quality standards.Being a part of QA, testing is aimed to check software's functional, performance, security, and other aspects. For more details, you can check the article by ScienceSoft’s Senior QA Consultant.</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {softWareBussinessArr.map((item, index) => (

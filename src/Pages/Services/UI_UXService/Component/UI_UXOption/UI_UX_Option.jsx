@@ -16,7 +16,7 @@ const UI_UX_Option = () => {
 
       <div className="lg:w-[85%] mx-auto w-full px-3 lg:px-0">
         <h1 className="lg:text-3xl font-bold text-2xl lg:text-black text-[blue]">Our Web Design Service Options</h1>
-        <p className="lg:w-[95%] mt-2 w-full text-base">
+        <p className="lg:w-[95%] mt-2 w-full text-sm 2xl:text-base">
           While providing the option of one-off web design, we also suggest continuous design support services that enable non-stop evolution of your ever-growing web solution. Working in close cooperation with your team, we gradually introduce improvements and changes based on regular user surveys and A/B testing, thus ensuring superior user experience.
         </p>
       </div>

@@ -91,8 +91,8 @@ const BuildingDataAnalytics = () => {
     return (
         <div className='w-full mt-16 mb-8'>
             <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 mt-16'>
-                <h1 className='lg:text-3xl font-bold text-xl lg:text-black text-primary'>Building Data Analytics Solutions for Different Domains</h1>
-                <p className='lg:w-11/12 mt-2 w-full text-base'>A data analytics company, ScienceSoft helps businesses from 30+ industries integrate, aggregate, and analyze various data types from multiple data sources to address their most ambitious needs at department and enterprise levels.</p>
+                <h1 className='2xl:text-3xl font-bold text-2xl lg:text-black text-primary'>Building Data Analytics Solutions for Different Domains</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>A data analytics company, ScienceSoft helps businesses from 30+ industries integrate, aggregate, and analyze various data types from multiple data sources to address their most ambitious needs at department and enterprise levels.</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {buildingDataAnalyticsData.map((item, index) => (

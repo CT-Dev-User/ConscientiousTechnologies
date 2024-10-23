@@ -7,7 +7,7 @@ const About = () => {
   const aboutMiddleContent = [{ num: "11+ Years", desc: " Mobile App Design and Development" }, { num: "4500+", desc: "Mobile Apps Developed" }, { num: "110+", desc: "Websites Developed" }, { num: "1000+", desc: "Million App Downloads on App Stores (iOS + Android)" }, { num: "4.9", desc: "Ratings onClutch.co" }, { num: "100+", desc: "Mobile Apps Developed" }]
   return (
     <div id='overview' className='w-screen bg-white flex gap-6 flex-col lg:flex-row h-auto py-4 lg:pt-24 lg:py-0 lg:pb-8'>
-      <div className='lg:h-full lg:w-[35%] w-[90%] h-[20vh] mx-auto lg:mx-0'>
+      <div className='lg:h-full lg:w-[35%] w-[95%] h-[20vh] mx-auto lg:mx-0'>
         <div className='flex flex-col justify-around w-full h-full mx-auto'>
           <div className='flex flex-col gap-2 lg:ms-[110px]'>
             <h2 className='lg:font-bold lg:text-3xl text-2xl font-black'>About Company</h2>

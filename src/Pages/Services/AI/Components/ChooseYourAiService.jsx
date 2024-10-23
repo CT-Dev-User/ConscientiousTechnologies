@@ -33,8 +33,8 @@ const ChooseYourAiService = () => {
 
         <div className="w-full py-16">
         <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
-            <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Choose Your AI Service Option</h1>
-            <p className='lg:w-11/12 mt-2 w-full text-base'>Unlock AI Potential: Navigate through CT's AI service options for tailored solutions. From natural language processing to computer vision, harness the power of AI for transformative outcomes.</p>
+            <h1 className='2xl:text-3xl font-bold text-2xl lg:text-black text-[blue]'>Choose Your AI Service Option</h1>
+            <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>Unlock AI Potential: Navigate through CT's AI service options for tailored solutions. From natural language processing to computer vision, harness the power of AI for transformative outcomes.</p>
         </div>
         <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
             {ourSoftDevOption.map((item, index) => (

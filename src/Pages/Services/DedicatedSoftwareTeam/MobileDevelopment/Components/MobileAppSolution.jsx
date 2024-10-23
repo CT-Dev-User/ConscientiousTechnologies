@@ -45,8 +45,8 @@ const MobileAppSolution = () => {
     return (
         <div className='w-full mt-16 mb-8'>
             <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0 mt-16'>
-                <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-primary'>Our Mobile Application Development Services</h1>
-                <p className='lg:w-11/12 mt-2 w-full text-base'>ScienceSoft assists in specific development stages as well as provides full-cycle mobile app implementation. Our mobile app development services include:</p>
+                <h1 className='2xl:text-3xl font-bold text-2xl lg:text-black text-primary'>Our Mobile Application Development Services</h1>
+                <p className='lg:w-11/12 mt-2 w-full text-sm 2xl:text-base'>ScienceSoft assists in specific development stages as well as provides full-cycle mobile app implementation. Our mobile app development services include:</p>
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-8 w-[95%]'>
                 {ourmobileAppDevOption.map((item, index) => (

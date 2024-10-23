@@ -80,8 +80,8 @@ const Scope = () => {
     return (
         <div className='w-screen bg-[black] text-[white] pt-10 pb-8'>
             <div className='w-[95%] lg:w-[85%] mx-auto px-0 lg:px-3 '>
-                <h1 className='lg:text-3xl font-bold text-xl'>Scope of IT Components We Tackle</h1>
-                <p className='text-sm lg:mt-5 mt-2 font-normal'>ScienceSoft can take care of all your IT infrastructure components – from daily monitoring and management to long-term continuous optimization and evolution.</p>
+                <h1 className='2xl:text-3xl font-bold text-2xl'>Scope of IT Components We Tackle</h1>
+                <p className='text-sm 2xl:text-base lg:mt-5 mt-2 font-normal'>ScienceSoft can take care of all your IT infrastructure components – from daily monitoring and management to long-term continuous optimization and evolution.</p>
             </div>
         </div>
 
