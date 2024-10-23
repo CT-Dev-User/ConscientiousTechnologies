@@ -33,7 +33,7 @@ const IndustriesWeServe = () => {
       className="w-screen h-auto bg-white lg:pt-24 box-border text-black pb-14 pt-14"
       id="industries"
     >
-      <div className="w-[85%] mx-auto">
+      <div className="w-[95%] lg:w-[85%] mx-auto">
         <h1 className="lg:text-3xl font-bold text-2xl">Industries We Serve</h1>
         <p className="lg:w-[95%] text-base mt-2 md:mt-1 w-full">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas

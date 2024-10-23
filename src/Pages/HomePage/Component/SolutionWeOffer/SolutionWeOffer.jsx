@@ -36,7 +36,7 @@ const SolutionWeOffer = () => {
     const firstTwelveData = AllSolutionData.slice(0, 9);
     return (
         <div id='solution' className='w-screen h-auto bg-[white] py-8 box-border lg:pt-24 pt-12' >
-            <div className='w-[85%] mx-auto'>
+            <div className='w-[95%] lg:w-[85%] mx-auto'>
                 <h1 className='lg:text-3xl font-bold text-2xl'>Solution We Offers</h1>
                 <p className='text-sm lg:mt-5 mt-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
             </div>

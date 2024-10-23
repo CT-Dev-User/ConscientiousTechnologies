@@ -53,7 +53,7 @@ const ServiceWeOffer = () => {
       className="w-screen bg-black h-auto md:pt-24 pt-10 md:pb-16 pb-0 text-white box-border"
     >
       <div className="w-[90%] lg:w-[85%] mx-auto">
-        <h1 className="font-bold text-lg lg:text-3xl 2xl:text-[2.5rem]">Service We Offers</h1>
+        <h1 className="font-bold lg:text-3xl text-2xl">Service We Offers</h1>
         <p className="w-full text-xs lg:text-base mt-3 font-normal">
           At CT, we are ready to offer end-to-end development that covers
           everything from business analysis to software delivery and support,

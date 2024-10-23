@@ -52,8 +52,8 @@ const Blog = () => {
 
   return (
     <div className="w-screen h-auto bg-black py-14 box-border text-white border-t-[.1px] border-[#cccc]">
-      <div className="lg:w-[85%] mx-auto w-[90%]">
-        <h1 className="text-3xl font-bold">Blog</h1>
+      <div className="lg:w-[85%] mx-auto w-[95%]">
+        <h1 className="lg:text-3xl font-bold text-2xl">Blog</h1>
         <p className="lg:w-[85%] w-full text-base mt-2 font-normal">
           Revolutionizing Solutions : Unleashing Innovation through Client
           Success - A Software Development Company's Journey in Crafting

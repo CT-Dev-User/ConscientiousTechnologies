@@ -78,8 +78,8 @@ const handleMouseLeave = () => {
                   </div>
                   <div className='lg:w-3/5 lg:h-full w-full h-[70%]'>
                     <div className='lg:w-[90%] w-full mx-auto h-[15%] flex mt-2 lg:mt-0 box-border pt-2'>
-                      <div className='lg:w-full w-[90%] mx-auto'>
-                        <h2 className='font-bold lg:text-3xl text-xl text-[#3970F0] 2xl:text-[2.5rem]'>Our Key Features</h2>
+                      <div className='lg:w-full w-[95%] mx-auto'>
+                        <h2 className='lg:text-3xl font-bold text-2xl text-[#3970F0] '>Our Key Features</h2>
                         <p className='lg:text-base w-full mt-1 text-sm mx-auto py-4 lg:mx-0'>Services That We Deliver Makes Us Dignified As One of The Top Software Development Companies.</p>
                       </div>
                     </div>

@@ -23,7 +23,7 @@ const CaseStudies = () => {
   }, []);
   return (
     <div className="w-screen h-auto bg-black box-border text-[white] py-14">
-      <div className="lg:w-[85%] mx-auto w-[90%]">
+      <div className="lg:w-[85%] mx-auto w-[95%]">
         <h1 className="lg:text-3xl font-bold text-2xl">Case Studies</h1>
         <p className="lg:w-[85%] mt-2 w-full text-base font-normal">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas

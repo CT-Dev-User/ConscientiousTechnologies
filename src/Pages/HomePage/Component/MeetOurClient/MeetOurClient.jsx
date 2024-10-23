@@ -51,8 +51,8 @@ const MeetOurClient = () => {
     return (
 
         <div id='testimonials' className='w-screen h-auto bg-[#191919] pb-14 box-border text-white lg:pt-24 pt-7'>
-            <div className='lg:w-[85%] mx-auto w-[90%]'>
-                <h1 className='text-3xl font-bold'>Meet Our Client</h1>
+            <div className='lg:w-[85%] mx-auto w-[95%]'>
+                <h1 className='lg:text-3xl font-bold text-2xl'>Meet Our Client</h1>
                 <p className='lg:w-[85%] text-base mt-2 w-full font-normal'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
             </div>
             <div className='lg:block w-[85%] mx-auto hidden'>

@@ -10,7 +10,7 @@ const About = () => {
       <div className='lg:h-full lg:w-[35%] w-[90%] h-[20vh] mx-auto lg:mx-0'>
         <div className='flex flex-col justify-around w-full h-full mx-auto'>
           <div className='flex flex-col gap-2 lg:ms-[110px]'>
-            <h2 className='lg:font-bold lg:text-3xl text-xl font-black 2xl:text-[2.5rem]'>About Company</h2>
+            <h2 className='lg:font-bold lg:text-3xl text-2xl font-black'>About Company</h2>
             <p className='lg:text-base font-semibold text-s py-4 w-[95%]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas ultrices scelerisque urna sed man proin lacinia. Posuere facilisis ut nullam ipsum at enim. Ut imperdiet eu sodales eros. nibh elementum eget. Integer amet, consectetur adipiscing elit. </p>
           </div>
           <button

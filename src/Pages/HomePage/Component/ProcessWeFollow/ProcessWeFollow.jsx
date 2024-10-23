@@ -45,7 +45,7 @@ const ProcessWeFollow = () => {
       id="how-we-work"
       className="w-screen h-[auto] bg-[white] box-border pt-12 pb-8"
     >
-      <div className="lg:w-[85%] mx-auto w-[90%]">
+      <div className="lg:w-[85%] mx-auto w-[95%]">
         <h1 className="lg:text-3xl font-bold text-2xl text-[blue] lg:text-black">
           Process We Follow
         </h1>
