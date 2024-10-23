@@ -7,8 +7,8 @@ export const addHomeFaq = async (req, res) => {
         const images = [];
         for (const file of req.files) {
             const result = await cloudinary.v2.uploader.upload(file.path);
-            images.push(result.secure_url);
             fs.unlinkSync(file.path);
+            images.push(result.secure_url);
         }
         const newData = new HomeFaqModel({
             question,
@@ -51,6 +51,7 @@ export const updateHomeFaqById = async (req, res) => {
         // Upload all images to Cloudinary
         for (const file of req.files) {
             const result = await cloudinary.v2.uploader.upload(file.path);
+            fs.unlinkSync(file.path);
             images.push(result.secure_url);
         }
 
