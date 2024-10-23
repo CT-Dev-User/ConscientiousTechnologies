@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 const SubServicesCMS = () => {
@@ -183,7 +183,7 @@ const SubServicesCMS = () => {
       if (serviceId) {
         // Update existing service
         const response = await axios.put(`http://localhost:8080/edit-existing-subservice-data/${serviceId}`, formData);
-        if (response.status === 200) {
+        if (response.status === 201) {
           Swal.fire('Success!', 'service updated successfully.', 'success');
         }
       } else {
@@ -301,7 +301,7 @@ const SubServicesCMS = () => {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700">Header Description</label>
-                <input
+                <textarea
                   type="text"
                   value={headerDescription}
                   onChange={(e) => setheaderDescription(e.target.value)}
@@ -330,12 +330,16 @@ const SubServicesCMS = () => {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700">Card No</label>
-                <input
-                  type="number"
+                <select
                   value={cardNo}
                   onChange={(e) => setCardNo(e.target.value)}
                   className="w-full p-2 border rounded"
-                />
+                >
+                  {Array.from({ length: subServices.length + 1 }).map((_, i) => (
+                    <option key={i} value={i+1}>{i+1}</option>
+                  ))}
+                </select>
+
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700">Card Image</label>
