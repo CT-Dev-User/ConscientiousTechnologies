@@ -7,7 +7,7 @@ const HomeCaseStudies = () => {
   const [caseStudies, setCaseStudies] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
-  const [editCaseStudy, setEditCaseStudy] = useState({});
+  const [editId, setEditId] = useState(null);
   // Card section
   const [cardDatatitle, setCardDatatitle] = useState("");
   const [cardDatasubTitle, setCardDatasubTitle] = useState("");
@@ -160,7 +160,7 @@ const HomeCaseStudies = () => {
       formData.append("resultsImg2", resultsImg2);
       formData.append("resultsImg3", resultsImg3);
       await axios.put(
-        `http://localhost:8080/edit-case-studies/${editCaseStudy._id}`,
+        `http://localhost:8080/edit-case-studies/${editId}`,
         formData
       );    
       Swal.fire("Updated!", "Your data has been updated.", "success");
@@ -191,7 +191,8 @@ const HomeCaseStudies = () => {
   };
 
   /*************  ✨ Codeium Command 🌟  *************/
-  const existingValues = (caseStudy) => {
+  const existingValues = (editCaseStudy) => {
+    setEditId(editCaseStudy._id);
     setCardDatatitle(editCaseStudy.cardDatatitle);
     setCardDatasubTitle(editCaseStudy.cardDatasubTitle);
     setCardDatacoreTech(editCaseStudy.cardDatacoreTech);
@@ -296,9 +297,8 @@ const HomeCaseStudies = () => {
                       type="button"
                       className="text-white hover:bg-green-700 px-3 py-1 bg-green-500 rounded font-semibold"
                       onClick={() => {
-                        setEditPopUpShow(true);
-                        setEditCaseStudy(caseStudy);
                         existingValues(caseStudy);
+                        setEditPopUpShow(true);     
                       }}
                     >
                       Edit
