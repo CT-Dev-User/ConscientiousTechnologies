@@ -9,8 +9,8 @@ const Soluion = ({solutionImage, Soluion}) => {
                     <img src={solutionImage} alt="Case study insight" className='h-full w-full' />
                 </div>
                 <div className='w-[95%] lg:w-[48%] mt-5'>
-                    <h3 className='text-[2rem] font-bold text-[#3970F0]'>Solution</h3>
-                    <p className='text-xl font-normal w-full lg:w-[90%] '> The client came up with an idea to build a mobile application tailored to the needs of retailers, wholesalers, and aspiring entrepreneurs. Our team communicated and understood the client’s requirements. We created an app that redefines business initiation by offering a zero-capital entry, supporting small business owners, students, and even housewives. The platform seamlessly integrates buyers and sellers, fostering a dynamic ecosystem with innovative features. </p>
+                    <h3 className='text-base lg:text-[1.5rem] 2xl:text-[2rem] font-bold text-[#3970F0]'>Solution</h3>
+                    <p className='text-base 2xl:text-xl font-normal w-full lg:w-[90%]'> The client came up with an idea to build a mobile application tailored to the needs of retailers, wholesalers, and aspiring entrepreneurs. Our team communicated and understood the client’s requirements. We created an app that redefines business initiation by offering a zero-capital entry, supporting small business owners, students, and even housewives. The platform seamlessly integrates buyers and sellers, fostering a dynamic ecosystem with innovative features. </p>
 
                 </div>
 
