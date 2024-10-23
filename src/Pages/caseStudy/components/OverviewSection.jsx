@@ -27,7 +27,7 @@ const OverviewSection = () => {
                     </div>
                     <div className='mt-10 lg:mt-16 2xl:mt-24'>
                         <h3 className='lg:text-2xl 2xl:text-3xl my-4 font-semibold text-[#3970F0]'>Overview</h3>
-                        <p className='text-xl text-[#FFFFFF] font-normal'>Burger King is a global chain of hamburger fast food restaurants1. It is the second largest fast-food chain in the United States. Burger King operates in over 13,000 locations serving more than 11 million guests daily in 98 countries and territories worldwide. The company was founded in 1954 and is headquartered in Miami, Florida. Burger King offers a menu that includes whoppers, flame-grilled hamburgers, chicken and other specialty sandwiches, french fries, soft drinks, as well as other food items.</p>
+                        <p className='lg:text-base 2xl:text-xl text-[#FFFFFF] font-normal'>Burger King is a global chain of hamburger fast food restaurants1. It is the second largest fast-food chain in the United States. Burger King operates in over 13,000 locations serving more than 11 million guests daily in 98 countries and territories worldwide. The company was founded in 1954 and is headquartered in Miami, Florida. Burger King offers a menu that includes whoppers, flame-grilled hamburgers, chicken and other specialty sandwiches, french fries, soft drinks, as well as other food items.</p>
                     </div>
                 </div>
                 <div className='lg:w-[45%] w-[90%] lg:h-[90vh] mt-20 lg:mt-0 flex justify-center items-center'>

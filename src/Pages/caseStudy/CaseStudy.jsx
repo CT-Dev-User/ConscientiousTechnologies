@@ -54,7 +54,7 @@ const CaseStudy = () => {
                 <Soluion solutionImage={caseStudy.solutionImage} Soluion={caseStudy.solution} />
                 <Result resultsImg1={caseStudy.resultsImg1} resultsImg2={caseStudy.resultsImg2} resultsImg3={caseStudy.resultsImg3}/>
                 <Technologies techTools={caseStudy.techTools}/>
-                <MoreCaseStudies/>
+                <MoreCaseStudies />
                 <BookFreeConsultation/>
                 <Footer/>
             </div>
