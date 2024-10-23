@@ -18,6 +18,11 @@ const Clients = () => {
   const [rating, setRating] = useState(0)
   const [selectedClientId, setSelectedClientId] = useState(null);
   const [reviewHeading, setReviewHeading] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(3);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = clientReviewsData.slice(indexOfFirstItem, indexOfLastItem);
 
   const fetchClientReviewData = async () => {
     try {
@@ -116,6 +121,7 @@ const Clients = () => {
     setReview(client.review);
     setRating(client.rating);
     setJobProfile(client.jobProfile);
+    setReviewHeading(client.reviewHeading);
     setProfileImage(null); // Clear image upload for editing
     setShowEditModal(true);
   };
@@ -131,20 +137,20 @@ const Clients = () => {
       </div>
 
       <table className="w-full border-collapse border">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border p-2">Sr. No</th>
-            <th className="border p-2">Client name</th>
-            <th className="border p-2">Job Profile</th>
-            <th className="border p-2">Review Heading</th>
-            <th className="border p-2">Rating</th>
-            <th className="border p-2">Image</th>
-            <th className="border p-2">Review Description</th>
-            <th className="border p-2">Action</th>
+        <thead className="bg-gray-800 text-white">
+          <tr className="border-b">
+            <th className="border-r p-2">Sr. No</th>
+            <th className="border-r p-2">Client name</th>
+            <th className="border-r p-2">Job Profile</th>
+            <th className="border-r p-2">Review Heading</th>
+            <th className="border-r p-2">Rating</th>
+            <th className="border-r p-2">Image</th>
+            <th className="border-r p-2">Review Description</th>
+            <th className="border-r p-2">Action</th>
           </tr>
         </thead>
         <tbody>
-          {clientReviewsData.map((client, i) => (
+          {currentItems && currentItems.map((client, i) => (
             <tr key={i}>
               <td className="border p-2">{i + 1}</td>
               <td className="border p-2">{client.name}</td>
@@ -163,6 +169,32 @@ const Clients = () => {
           ))}
         </tbody>
       </table>
+        {/* Pagination */}
+        <ul className="flex justify-center gap-[20px] mt-[90px]">
+        <li>
+          <button
+            onClick={() =>
+              setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+            }
+            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
+          >
+            Prev
+          </button>
+        </li>
+        <li className="py-2 px-2 text-black font-semibold">{currentPage}</li>
+        <li>
+          <button
+            onClick={() =>
+              setCurrentPage((prevPage) =>
+                Math.min(prevPage + 1, Math.ceil(clientReviewsData.length / itemsPerPage))
+              )
+            }
+            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
+          >
+            Next
+          </button>
+        </li>
+      </ul>
       <Modal size="lg" show={reviewPopUp} onHide={() => setReviewPopup(false)}>
         <Modal.Header closeButton className="bg-gray-800 text-white">
           <Modal.Title>Edit Hero Section Data</Modal.Title>
@@ -180,7 +212,7 @@ const Clients = () => {
 
       {/* Add Modal */}
       <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton className='bg-gray-800 text-white'>
           <Modal.Title>Add Client Review</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -211,14 +243,14 @@ const Clients = () => {
               <Form.Control type="file" onChange={(e) => setProfileImage(e.target.files[0])} />
             </Form.Group>
 
-            <button className="bg-blue-500 text-white px-4 py-1 rounded mt-4" type="submit" >Submit</button>
+            <button className="bg-blue-500 text-white px-4 py-1 rounded mt-4 hover:bg-blue-700" type="submit" >Submit</button>
           </Form>
         </Modal.Body>
       </Modal>
 
       {/* Edit Modal */}
       <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton className='bg-gray-800 text-white'>
           <Modal.Title>Edit Client Review</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -247,7 +279,7 @@ const Clients = () => {
               <Form.Label>Profile Image</Form.Label>
               <Form.Control type="file" onChange={(e) => setProfileImage(e.target.files[0])} />
             </Form.Group>
-            <Button variant="primary" type="submit">Update</Button>
+            <button className="bg-blue-500 text-white px-4 py-1 rounded mt-4 hover:bg-blue-700" type="submit" >Update</button>
           </Form>
         </Modal.Body>
       </Modal>
