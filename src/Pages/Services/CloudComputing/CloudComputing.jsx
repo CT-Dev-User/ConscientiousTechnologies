@@ -21,7 +21,7 @@ const CloudComputing = () => {
 
     return (
         <div>
-            <AllHeader category="Cloud Computing Services"/>
+            <AllHeader category="Services" serviceName="Cloud Computing Services" />
             <OurPartener />
             <WhyChooseCTSlider category="Services" subCategory="Cloud Computing Services"/>
             <CloudServiceDev />
