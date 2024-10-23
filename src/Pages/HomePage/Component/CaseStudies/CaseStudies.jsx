@@ -9,7 +9,7 @@ const CaseStudies = () => {
   const getCaseStudiesDataFunc = async () => {
     try {
       const response = await axios.get(
-        "https://conscientious-technologies-backend.vercel.app/get-case-studies-by-cateory/Home"
+        "http://localhost:8080/get-case-studies-by-cateory/Home"
       );
       console.log(response.data)
       setCaseStudies(response.data);
@@ -17,7 +17,6 @@ const CaseStudies = () => {
       console.log(error);
     }
   };
-  console.log(CaseStudiesData)
 
   useEffect(() => {
     getCaseStudiesDataFunc();
@@ -63,9 +62,9 @@ const CaseStudies = () => {
                 <button
                   className="relative overflow-hidden border border-white px-4 py-2 w-fit text-xs group"
                   style={{ position: "relative" }}
-                  // onClick={() => {
-                  //   navigate("/case-studies/" + items._id + "/")
-                  // }}
+                  onClick={() => {
+                    navigate("/case-study/" + items._id + "/")
+                  }}
                 >
                   <span className="absolute inset-0 bg-[#33B7D4] transition-all duration-300 ease-in-out transform -translate-x-full group-hover:translate-x-0"></span>
                   <span className="relative z-10 transition-colors duration-300 ease-in-out group-hover:text-white">
