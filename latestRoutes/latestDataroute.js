@@ -5,8 +5,8 @@ import { createService, deleteService, editService, getAllServices, getServiceBy
 import { createSolution, deleteSolution, editSolution, getAllSolutions, getSolutionById, getSolutionBySolutionName } from '../latestControllers/solutionController.js';
 import { createIndustry,deleteIndustry, editIndustry, getAllIndustries, getIndustryById, getIndustryByIndustryName } from '../latestControllers/industriesController.js';
 import { createCaseStudy, deleteCaseStudy, editCaseStudy, getAllCaseStudies, getCaseStudyByCategory, getCaseStudyById, getCaseStudyBySubCategory } from '../latestControllers/caseStudyController.js';
+import { createSubServices, deleteSubServices, editSubServices, getAllSubServices, getSubServicesById, getSubServicesByServices, getSubservicesBySubServicesName } from '../latestControllers/subServicesController.js';
 import { addBlog, deleteBlog, getAllBlogs, getBlogByCategory, getBlogById, getBlogBysubCategory, updateBlog } from '../latestControllers/blogController.js';
-import { createSubServices, deleteSubServices, editSubServices, getAllSubServices, getSubServicesById, getSubservicesBySubServicesName } from '../latestControllers/subServicesController.js';
 
 const latestrouter = express.Router();
 
@@ -123,6 +123,7 @@ latestrouter.put('/edit-existing-subservice-data/:id', upload.fields([
 latestrouter.get('/get-latest-subservice-data', getAllSubServices);
 latestrouter.get('/get-subservice-data-by-id/:id', getSubServicesById);
 latestrouter.get('/get-subservice-data-by-subservice/:serviceName/:subServiceTitle', getSubservicesBySubServicesName);
+latestrouter.get('/get-subservice-data-by-service/:serviceName', getSubServicesByServices);
 latestrouter.delete('/delete-existing-subservice-data-by-id/:id', deleteSubServices);
 
 
