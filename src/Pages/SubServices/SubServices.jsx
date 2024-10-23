@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 const SubServicesCMS = () => {
+  const [services, setServices] = useState([])
   const [subServices, setSubServices] = useState([]); // Fixed the name from 'service' to 'services'
   const [serviceId, setserviceId] = useState(null);
   const [serviceName, setserviceName] = useState('');
@@ -44,7 +45,21 @@ const SubServicesCMS = () => {
   useEffect(() => {
     setPaginatedservices(paginate(subServices, currentPage, itemsPerPage));
   }, [subServices, currentPage, itemsPerPage]);
-  console.log(paginatedservices, "p")
+
+
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/get-latest-service-data');
+      console.log(response.data);
+      setServices(response.data);
+    } catch (error) {
+      console.error('Error fetching service Data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
 
   const fetchSubservices = async () => {
     try {
@@ -170,7 +185,7 @@ const SubServicesCMS = () => {
       if (serviceId) {
         // Update existing service
         const response = await axios.put(`http://localhost:8080/edit-existing-subservice-data/${serviceId}`, formData);
-        if (response.status === 200) {
+        if (response.status === 201) {
           Swal.fire('Success!', 'service updated successfully.', 'success');
         }
       } else {
@@ -261,14 +276,14 @@ const SubServicesCMS = () => {
           <Modal.Body className="w-full mx-auto">
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label className="block text-gray-700">service Name</label>
-                <input
-                  type="text"
-                  value={serviceName}
-                  onChange={(e) => setserviceName(e.target.value)}
-                  className="w-full p-2 border rounded"
-                  required
-                />
+                <label className="block text-gray-700">Service Name</label>
+                <select className="w-full mt-2 p-2 border rounded" value={serviceName} onChange={(e) => setserviceName(e.target.value)}>
+                  <option value="">Select service</option>
+                  {services.map((service) => (
+                    <option key={service._id} value={service.serviceName} className='w-full'>{service.serviceName}</option>
+                  ))}
+                </select>
+
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700">Subservice Name</label>
@@ -277,7 +292,7 @@ const SubServicesCMS = () => {
                   value={subServiceTitle}
                   onChange={(e) => setsubServiceTitle(e.target.value)}
                   className="w-full p-2 border rounded"
-                  required
+
                 />
               </div>
 
@@ -288,17 +303,17 @@ const SubServicesCMS = () => {
                   value={headerTagLine}
                   onChange={(e) => setHeaderTagLine(e.target.value)}
                   className="w-full p-2 border rounded"
-                  required
+
                 />
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700">Header Description</label>
-                <input
+                <textarea
                   type="text"
                   value={headerDescription}
                   onChange={(e) => setheaderDescription(e.target.value)}
                   className="w-full p-2 border rounded"
-                  required
+
                 />
               </div>
 
@@ -323,12 +338,16 @@ const SubServicesCMS = () => {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700">Card No</label>
-                <input
-                  type="number"
+                <select
                   value={cardNo}
                   onChange={(e) => setCardNo(e.target.value)}
                   className="w-full p-2 border rounded"
-                />
+                >
+                  {Array.from({ length: subServices.length + 1 }).map((_, i) => (
+                    <option key={i} value={i+1}>{i+1}</option>
+                  ))}
+                </select>
+
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700">Card Image</label>
@@ -343,7 +362,7 @@ const SubServicesCMS = () => {
                 <button className='py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md' type="submit">
                   {serviceId ? 'Update service' : 'Add service'}
                 </button>
-                <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={()=>{closeModal()}}>
+                <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={() => { closeModal() }}>
                   Cancel
                 </button>
               </div>
