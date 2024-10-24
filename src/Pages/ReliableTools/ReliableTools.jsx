@@ -6,6 +6,7 @@ import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const ServiceTechTools = () => {
+  const [services, setServices] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, seteditPopUpShow] = useState(false);
   const [editId, setEditId] = useState("");
@@ -23,6 +24,19 @@ const ServiceTechTools = () => {
     indexOfLastItem
   );
 
+  useEffect(() => {
+    fetchServices();
+  }, []);
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get(
+        "https://conscientious-technologies-backend.vercel.app/get-latest-service-data"
+      );
+      setServices(response.data);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    }
+  };
   const handleSubTechModalClose = () => setSubTechModalShow(false);
   const handleSubTechModalShow = (item) => {
     setSelectedItem(item);
@@ -36,8 +50,8 @@ const ServiceTechTools = () => {
   };
 
   const [addReliableData, setAddReliableData] = useState({
-    category: "Home",
-    Subcategory: "Home Tech Tools",
+    category: "Service",
+    Subcategory: "",
     technology: "",
     subTech: [{ title: "", techLogos: [{ logo: null }] }],
   });
@@ -86,7 +100,7 @@ const ServiceTechTools = () => {
   const fetchReliableData = async () => {
     try {
       const response = await axios.get(
-        `https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/Home`
+        `https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/Service`
       );
       const fetchData = response.data.data;
       setReliableToolsData(fetchData);
@@ -116,15 +130,15 @@ const ServiceTechTools = () => {
       });
 
       const response = await axios.post(
-        "https://conscientious-technologies-backend.vercel.app/add-reliable-tools-data",
+        "http://localhost:8080/add-reliable-tools-data",
         formData
       );
       if (response.status === 200) {
         fetchReliableData();
         setAddPopUpShow(false);
         setAddReliableData({
-          category: "Home",
-          Subcategory: "Home Tech Tools",
+          category: "Service",
+          Subcategory: "",
           technology: "",
           subTech: [{ title: "", techLogos: [{ logo: null }] }],
         });
@@ -147,7 +161,7 @@ const ServiceTechTools = () => {
       if (result.isConfirmed) {
         try {
           const response = await axios.delete(
-            `https://conscientious-technologies-backend.vercel.app/delete-reliable-tools-data/${id}`
+            `http://localhost:8080/delete-reliable-tools-data/${id}`
           );
           if (response.status === 200) {
             // setEditId(null);
@@ -197,7 +211,7 @@ const ServiceTechTools = () => {
       });
 
       const response = await axios.put(
-        `https://conscientious-technologies-backend.vercel.app/update-reliable-tools-data/${editId}`,
+        `http://localhost:8080/update-reliable-tools-data/${editId}`,
         formData
       );
       if (response.status === 200) {
@@ -210,7 +224,6 @@ const ServiceTechTools = () => {
       Swal.fire("Error", "Failed to update data. Please try again.", "error");
     }
   };
-
 
   const removeTechLogo = (subTechIndex, logoIndex) => {
     const updatedSubTech = [...addReliableData.subTech];
@@ -352,6 +365,23 @@ const ServiceTechTools = () => {
         </Modal.Header>
         <Modal.Body>
           <form>
+            <div className="mb-4">
+              <label className="block text-gray-700">service Name</label>
+              <select
+                name=""
+                value={addReliableData.serviceName}
+                onChange={(e) => setAddReliableData({ ...addReliableData, Subcategory: e.target.value })}
+                className="w-full p-2 border rounded"
+                id=""
+              >
+                <option value="">Select service</option>
+                {services.map((service, index) => (
+                  <option key={index} value={service.serviceName}>
+                    {service.serviceName}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div className="mb-3">
               <label htmlFor="technology" className="form-label font-semibold">
                 Tools Domain
@@ -454,6 +484,23 @@ const ServiceTechTools = () => {
         </Modal.Header>
         <Modal.Body>
           <form>
+          <div className="mb-4">
+              <label className="block text-gray-700">service Name</label>
+              <select
+                name=""
+                value={addReliableData.Subcategory}
+                onChange={(e) => setAddReliableData({ ...addReliableData, Subcategory: e.target.value })}
+                className="w-full p-2 border rounded"
+                id=""
+              >
+                <option value="">Select service</option>
+                {services.map((service, index) => (
+                  <option key={index} value={service.serviceName}>
+                    {service.serviceName}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div className="mb-3">
               <label htmlFor="technology" className="form-label font-semibold">
                 Tools Domain
@@ -498,7 +545,7 @@ const ServiceTechTools = () => {
                       <button
                         type="button"
                         onClick={() => removeTechLogo(index, logoIndex)}
-                         className="mb-2 p-2 bg-red-600 text-white rounded font-semibold mt-2"
+                        className="mb-2 p-2 bg-red-600 text-white rounded font-semibold mt-2"
                       >
                         Remove Tool {logoIndex + 1}
                       </button>
@@ -509,7 +556,7 @@ const ServiceTechTools = () => {
                       type="button"
                       className="mb-2 p-2 bg-teal-600 text-white rounded font-semibold"
                       onClick={() => addTechLogoField(index)}
-                    > 
+                    >
                       Add Tools {subTechItem.techLogos.length + 1}
                     </button>
                     <button
