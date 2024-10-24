@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-// import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ServiceTechTools = () => {
@@ -10,7 +9,6 @@ const ServiceTechTools = () => {
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, seteditPopUpShow] = useState(false);
   const [editId, setEditId] = useState("");
-  // const navigate = useNavigate();
   const [reliableToolData, setReliableToolsData] = useState([]);
   const [subTechModalShow, setSubTechModalShow] = useState(false);
   const [logoModalShow, setLogoModalShow] = useState(false);

@@ -4,10 +4,12 @@ import { Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const CaseStudies = () => {
+  const [services, setServices] = useState([]);
   const [caseStudies, setCaseStudies] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
   const [editId, setEditId] = useState(null);
+  const [Subcategory, setSubcategory] = useState("");
   // Card section
   const [cardDatatitle, setCardDatatitle] = useState("");
   const [cardDatasubTitle, setCardDatasubTitle] = useState("");
@@ -41,6 +43,8 @@ const CaseStudies = () => {
   const [executionPoint2, setExecutionPoint2] = useState("");
   const [executionHeading3, setExecutionHeading3] = useState("");
   const [executionPoint3, setExecutionPoint3] = useState("");
+  const [executionHeading4, setExecutionHeading4] = useState("");
+  const [executionPoint4, setExecutionPoint4] = useState("");
 
   const [solution, setSolution] = useState("");
   const [solutionImage, setSolutionImage] = useState(null); // file input
@@ -52,10 +56,24 @@ const CaseStudies = () => {
   const [resultsImg3, setResultsImg3] = useState(null); // file input
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(1);
+  const [itemsPerPage] = useState(2);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = caseStudies.slice(indexOfFirstItem, indexOfLastItem);
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get(
+        "https://conscientious-technologies-backend.vercel.app/get-latest-service-data"
+      );
+      setServices(response.data);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    }
+  };
   // Handlers for file input changes
   const handleFileChange = (e, setImageState) => {
     setImageState(e.target.files[0]);
@@ -64,7 +82,7 @@ const CaseStudies = () => {
   const getCaseStudiesDataFunc = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-case-studies-by-cateory/Home"
+        "http://localhost:8080/get-case-studies-by-cateory/Service"
       );
       console.log(response.data);
       setCaseStudies(response.data);
@@ -77,8 +95,8 @@ const CaseStudies = () => {
     try {
       const formData = new FormData();
 
-      formData.append("category", "Home");
-      formData.append("Subcategory", "Home Case Studies");
+      formData.append("category", "Service");
+      formData.append("Subcategory", Subcategory);
       formData.append("cardDatatitle", cardDatatitle);
       formData.append("cardDatasubTitle", cardDatasubTitle);
       formData.append("cardDatacoreTech", cardDatacoreTech);
@@ -99,6 +117,8 @@ const CaseStudies = () => {
       formData.append("executionPoint2", executionPoint2);
       formData.append("executionHeading3", executionHeading3);
       formData.append("executionPoint3", executionPoint3);
+      formData.append("executionHeading4", executionHeading4);
+      formData.append("executionPoint4", executionPoint4);
       formData.append("solution", solution);
       formData.append("techTools", techTools);
       formData.append("cardDatacardImage", cardDatacardImage);
@@ -110,10 +130,7 @@ const CaseStudies = () => {
       formData.append("resultsImg2", resultsImg2);
       formData.append("resultsImg3", resultsImg3);
 
-      await axios.post(
-        "http://localhost:8080/create-case-studies",
-        formData
-      );
+      await axios.post("http://localhost:8080/create-case-studies", formData);
 
       Swal.fire("Saved!", "Your data has been saved.", "success");
       setAddPopUpShow(false);
@@ -125,10 +142,10 @@ const CaseStudies = () => {
   };
 
   const updateCaseStudyDataFunc = async (req, res) => {
-    try {   
+    try {
       const formData = new FormData();
-      formData.append("category", "Home");
-      formData.append("Subcategory", "Home Case Studies");
+      formData.append("category", "Service");
+      formData.append("Subcategory", Subcategory);
       formData.append("cardDatatitle", cardDatatitle);
       formData.append("cardDatasubTitle", cardDatasubTitle);
       formData.append("cardDatacoreTech", cardDatacoreTech);
@@ -147,8 +164,10 @@ const CaseStudies = () => {
       formData.append("executionPoint1", executionPoint1);
       formData.append("executionHeading2", executionHeading2);
       formData.append("executionPoint2", executionPoint2);
-      formData.append("executionHeading3", executionHeading3);  
+      formData.append("executionHeading3", executionHeading3);
       formData.append("executionPoint3", executionPoint3);
+      formData.append("executionHeading4", executionHeading4);
+      formData.append("executionPoint4", executionPoint4);
       formData.append("solution", solution);
       formData.append("techTools", techTools);
       formData.append("cardDatacardImage", cardDatacardImage);
@@ -162,16 +181,15 @@ const CaseStudies = () => {
       await axios.put(
         `http://localhost:8080/edit-case-studies/${editId}`,
         formData
-      );    
+      );
       Swal.fire("Updated!", "Your data has been updated.", "success");
-      setEditPopUpShow(false);  
+      setEditPopUpShow(false);
       getCaseStudiesDataFunc();
     } catch (error) {
       console.log(error);
       res.status(400).json({ message: "Error updating case study." });
     }
-    
-  }
+  };
   useEffect(() => {
     getCaseStudiesDataFunc();
   }, []);
@@ -193,6 +211,7 @@ const CaseStudies = () => {
   /*************  ✨ Codeium Command 🌟  *************/
   const existingValues = (editCaseStudy) => {
     setEditId(editCaseStudy._id);
+    setSubcategory(editCaseStudy.Subcategory);
     setCardDatatitle(editCaseStudy.cardDatatitle);
     setCardDatasubTitle(editCaseStudy.cardDatasubTitle);
     setCardDatacoreTech(editCaseStudy.cardDatacoreTech);
@@ -213,12 +232,20 @@ const CaseStudies = () => {
     setExecutionPoint2(editCaseStudy.executionPoint2);
     setExecutionHeading3(editCaseStudy.executionHeading3);
     setExecutionPoint3(editCaseStudy.executionPoint3);
+    setExecutionHeading4(editCaseStudy.executionHeading4);
+    setExecutionPoint4(editCaseStudy.executionPoint4);
     setSolution(editCaseStudy.solution);
     setTechTools(editCaseStudy.techTools);
   };
+  const [cardData, setCardData] = useState(false);
+  const [headerData, setHeaderData] = useState(false);
+  const [overViewData, setOverViewData] = useState(false);
+  const [goalsData, setGoalsData] = useState(false);
+  const [executionData, setExecutionData] = useState(false);
+  const [solutionData, setSolutionData] = useState(false);
   return (
-    <div className="w-full bg-gray-300 h-full mx-auto p-4">
-      <div className="flex justify-between mb-5 mr-3">
+    <div className="w-full bg-gray-300 h-auto mx-auto p-4 relative">
+      <div className="flex justify-between mb-2 mr-3">
         <h1 className="text-xl font-bold text-black">Case Studies</h1>
         <button
           onClick={() => setAddPopUpShow(true)}
@@ -227,70 +254,308 @@ const CaseStudies = () => {
           +
         </button>
       </div>
-
       <div className="overflow-x-auto custom-scrollbar">
-        <table className="min-w-full border border-gray-300">
+        <table className="border border-gray-300 text-left">
           <thead className="bg-gray-800 text-white text-left">
             <tr className="border-b border-gray-300">
-              <th className="border-r px-4 py-2">Cards</th>
-              <th className="border-r px-4 py-2">Header</th>
-              <th className="border-r px-4 py-2">Overview</th>
-              <th className="border-r px-4 py-2">Additional</th>
-              <th className="border-r px-4 py-2">Execution</th>
-              <th className="border-r px-4 py-2">Solution</th>
-              <th className="border-r px-4 py-2">Result</th>
-              <th className="border-r px-4 py-2">Actions</th>
+              <th className="border-r px-4 py-2 text-xs">Subcategory</th>
+              <th className="border-r px-4 py-2 text-xs">Cards</th>
+              <th className="border-r px-4 py-2 text-xs">Header</th>
+              <th className="border-r px-4 py-2 text-xs">Overview</th>
+              <th className="border-r px-4 py-2 text-xs">Additional</th>
+              <th className="border-r px-4 py-2 text-xs">Execution</th>
+              <th className="border-r px-4 py-2 text-xs">Solution</th>
+              <th className="border-r px-4 py-2 text-xs">Result</th>
+              <th className="border-r px-4 py-2 text-xs">Actions</th>
             </tr>
           </thead>
-          <tbody className="text-left bg-white text-black">
+          <tbody className="bg-white text-black">
             {currentItems &&
-              currentItems.map((caseStudy) => (
-                <tr key={caseStudy._id} className="border-b border-gray-300">
-                  <td className="border-r px-4 py-2">
-                    {caseStudy.cardDatatitle}
-                    {caseStudy.cardDatasubTitle}
-                    {caseStudy.cardDatacoreTech}
-                    <img
-                      src={caseStudy.cardDatacardImage}
-                      alt={cardDatatitle}
-                    />
+              currentItems.map((caseStudy, index) => (
+                <tr
+                  key={caseStudy._id}
+                  className="border-b border-gray-300 hover:bg-gray-100 text-left"
+                >
+                  <td className="border-r px-4 py-2 text-xs">
+                    {caseStudy.Subcategory}
                   </td>
                   <td className="border-r px-4 py-2">
-                    {caseStudy.headerTagLine}
-                    {caseStudy.headerdesc}
-                    <img src={caseStudy.headerImage} alt={headerTagLine} />
+                    <button
+                      className="text-white px-3 py-2 rounded bg-slate-500 font-semibold"
+                      onClick={() => {
+                        setCardData(true);
+                      }}
+                    >
+                      See
+                    </button>
+                    <div
+                      className={`${
+                        cardData
+                          ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                          : "hidden"
+                      }`}
+                    >
+                      <h6 className="font-bold text-gray-700 text-xs">
+                        Card Title:{" "}
+                        <span className="font-normal text-blue-700">
+                          {caseStudy.cardDatatitle}
+                        </span>
+                      </h6>
+                      <h6 className="font-bold text-gray-700 text-xs">
+                        Sub Title:{" "}
+                        <span className="font-normal text-blue-700">
+                          {caseStudy.cardDatasubTitle}
+                        </span>
+                      </h6>
+                      <h6 className="font-bold text-gray-700 text-xs">
+                        Core Tech:{" "}
+                        {caseStudy.cardDatacoreTech
+                          .split(", ")
+                          .map((tech, index) => (
+                            <span
+                              key={index}
+                              className="font-normal text-blue-700"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                      </h6>
+                      <img
+                        src={caseStudy.cardDatacardImage}
+                        alt={cardDatatitle}
+                        className="w-32"
+                      />
+                      <button
+                        className="p-2 bg-slate-500 ml-[80%] mt-5 text-white rounded"
+                        onClick={() => setCardData(false)}
+                      >
+                        Close
+                      </button>
+                    </div>
                   </td>
                   <td className="border-r px-4 py-2">
-                    {caseStudy.overviewtitle}
-                    {caseStudy.overviewindustryType}
-                    {caseStudy.overviewbusinessType}
-                    {caseStudy.overviewservicesProvided}
-                    {caseStudy.overviewdescription}
-                    <img src={caseStudy.overviewimage} alt={overviewtitle} />
+                    <button
+                      className="text-white px-3 py-2 rounded bg-slate-500 font-semibold"
+                      onClick={() => setHeaderData(true)}
+                    >
+                      See
+                    </button>
+                    <div
+                      className={`${
+                        headerData
+                          ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                          : "hidden"
+                      }`}
+                    >
+                      <h6 className="font-bold text-gray-700 text-xs">
+                        Header Tagline:{" "}
+                        <span className="font-normal text-blue-700">
+                          {caseStudy.headerTagLine}
+                        </span>
+                      </h6>
+                      <h6 className="font-bold text-gray-700 text-xs">
+                        Description:{" "}
+                        <span className="font-normal text-blue-700">
+                          {caseStudy.headerdesc}
+                        </span>
+                      </h6>
+                      <img
+                        src={caseStudy.headerImage}
+                        alt={headerTagLine}
+                        className="w-32"
+                      />
+                      <button
+                        className="p-2 bg-slate-500 text-white rounded ml-[80%] mt-5"
+                        onClick={() => setHeaderData(false)}
+                      >
+                        Close
+                      </button>
+                    </div>
                   </td>
                   <td className="border-r px-4 py-2">
-                    {caseStudy.goals}
-                    {caseStudy.insights}
-                    {caseStudy.challenges}
+                    <button
+                      className="text-white px-3 py-2 rounded bg-slate-500 font-semibold"
+                      onClick={() => setOverViewData(true)}
+                    >
+                      See
+                    </button>
+                    <div
+                      className={`${
+                        overViewData
+                          ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                          : "hidden"
+                      }`}
+                    >
+                      <h6 className="text-xs">
+                        Overview Title:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.overviewtitle}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Industry Type:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.overviewindustryType}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Business Type:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.overviewbusinessType}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Services Provided:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.overviewservicesProvided}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Description:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.overviewdescription}
+                        </span>
+                      </h6>
+                      <img
+                        src={caseStudy.overviewimage}
+                        alt={overviewtitle}
+                        className="w-32"
+                      />
+                      <button
+                        className="p-2 bg-gray-600 text-white rounded ml-[80%] mt-5"
+                        onClick={() => setOverViewData(false)}
+                      >
+                        Close
+                      </button>
+                    </div>
                   </td>
                   <td className="border-r px-4 py-2">
-                    {caseStudy.approach}
-                    {caseStudy.executionHeading1}
-                    {caseStudy.executionPoint1}
-                    {caseStudy.executionHeading2}
-                    {caseStudy.executionPoint2}
-                    {caseStudy.executionHeading3}
-                    {caseStudy.executionPoint3}
+                    <button
+                      className="px-3 py-2 bg-slate-500 text-white rounded"
+                      onClick={() => setGoalsData(true)}
+                    >
+                      See
+                    </button>
+                    <div className={`${
+                        goalsData
+                          ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                          : "hidden"
+                      }`}>
+                      <h6 className="text-xs">
+                        Goals:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.goals}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Insights:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.insights}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Challenges:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.challenges}
+                        </span>
+                      </h6>
+                      <button className="p-2 bg-slate-500 text-white rounded" onClick={()=>setGoalsData(false)}>Close</button>
+                    </div>
                   </td>
-                  <td className="border-r px-4 py-2">
-                    {caseStudy.solution}
-                    {caseStudy.techTools}
+                  <td className="border-r px-4 py-2 text-xs">
+                    <button className="px-3 py-2 bg-slate-500 text-white rounded"
+                      onClick={() => setExecutionData(true)}>See</button>
+                    <div className={`${
+                        executionData
+                          ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                          : "hidden"
+                      }`}>
+                    <h6 className="text-xs">
+                      Approach:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.approach}
+                      </span>
+                    </h6>
+                    <h6 className="text-xs">
+                      Execution:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.executionHeading1}
+                      </span>
+                    </h6>
+                    <h6 className="text-xs">
+                      Point:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.executionPoint1}
+                      </span>
+                    </h6>
+                    <h6 className="text-xs">
+                      Execution:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.executionHeading2}
+                      </span>
+                    </h6>
+                    <h6 className="text-xs">
+                      Point:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.executionPoint2}
+                      </span>
+                    </h6>
+                    <h6 className="text-xs">
+                      Execution:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.executionHeading3}
+                      </span>
+                    </h6>
+                    <h6 className="text-xs">
+                      Point:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.executionPoint3}
+                      </span>
+                    </h6>
+                    <h6 className="text-xs">
+                      Execution:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.executionHeading4}
+                      </span>
+                    </h6>
+                    <h6 className="text-xs">
+                      Point:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.executionPoint4}
+                      </span>
+                    </h6>
+                    <button className="p-2 bg-slate-500 text-white rounded" onClick={()=>setExecutionData(false)}>Close</button>
+                    </div>
+                    
+                  </td>
+                  <td className="border-r px-4 py-2 text-xs">
+                  <button className="px-3 py-2 bg-slate-500 text-white rounded"
+                      onClick={() => setSolutionData(true)}>See</button>
+                    <div className={`${
+                        solutionData
+                          ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                          : "hidden"
+                      }`}>
+                    <h6 className="text-xs">
+                      Solution:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.solution}
+                      </span>
+                    </h6>
+                    <h6 className="text-xs">
+                      Tech Tools:{" "}
+                      <span className="font-normal text-blue-700 text-xs">
+                        {caseStudy.techTools}
+                      </span>
+                    </h6>
                     <img src={caseStudy.solutionImage} alt="solution" />
+                    <button className="p-2 bg-slate-500 text-white ml-[80%] mt-5 rounded" onClick={()=>setSolutionData(false)}>Close</button>
+                    </div>
                   </td>
-                  <td className="border-r px-4 py-2">
-                    <img src={caseStudy.resultsImg1} alt="result" />
-                    <img src={caseStudy.resultsImg2} alt="result" />
-                    <img src={caseStudy.resultsImg3} alt="result" />
+                  <td className="border-r px-4 py-2 flex flex-col gap-3">
+                    <img src={caseStudy.resultsImg1} alt="result" className="w-32"/>
+                    <img src={caseStudy.resultsImg2} alt="result" className="w-32"/>
+                    <img src={caseStudy.resultsImg3} alt="result" className="w-32"/>
                   </td>
                   <td className="border-r px-4 py-2">
                     <button
@@ -298,7 +563,7 @@ const CaseStudies = () => {
                       className="text-white hover:bg-green-700 px-3 py-1 bg-green-500 rounded font-semibold"
                       onClick={() => {
                         existingValues(caseStudy);
-                        setEditPopUpShow(true);     
+                        setEditPopUpShow(true);
                       }}
                     >
                       Edit
@@ -354,6 +619,23 @@ const CaseStudies = () => {
           <form className="space-y-6">
             {/* Card Data */}
             <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
+              <div className="mb-4">
+                <label className="block text-gray-700">service Name</label>
+                <select
+                  name=""
+                  value={Subcategory}
+                  onChange={(e) => setSubcategory(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  id=""
+                >
+                  <option value="">Select service</option>
+                  {services.map((service, index) => (
+                    <option key={index} value={service.serviceName}>
+                      {service.serviceName}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div>
                 <h1 className="text-base font-bold">Card Data</h1>
                 <label htmlFor="cardDatatitle" className="font-semibold mt-2">
@@ -677,6 +959,32 @@ const CaseStudies = () => {
                   value={executionPoint3}
                   onChange={(e) => setExecutionPoint3(e.target.value)}
                   placeholder="Execution Point 3"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionHeading3" className="font-semibold">
+                  {" "}
+                  Execution Heading 4
+                </label>
+                <input
+                  type="text"
+                  name="executionHeading4"
+                  value={executionHeading4}
+                  onChange={(e) => setExecutionHeading4(e.target.value)}
+                  placeholder="Execution Heading 4"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionPoint4" className="font-semibold">
+                  Execution Point 4
+                </label>
+                <textarea
+                  name="executionPoint4"
+                  value={executionPoint4}
+                  onChange={(e) => setExecutionPoint4(e.target.value)}
+                  placeholder="Execution Point 4"
                   className="p-2 border border-gray-300 rounded w-full"
                 />
               </div>
@@ -791,6 +1099,23 @@ const CaseStudies = () => {
           <form className="space-y-6">
             {/* Card Data */}
             <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
+              <div className="mb-4">
+                <label className="block text-gray-700">service Name</label>
+                <select
+                  name=""
+                  value={Subcategory}
+                  onChange={(e) => setSubcategory(e.target.value)}
+                  className="w-full p-2 border rounded"
+                  id=""
+                >
+                  <option value="">Select service</option>
+                  {services.map((service, index) => (
+                    <option key={index} value={service.serviceName}>
+                      {service.serviceName}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div>
                 <h1 className="text-base font-bold">Card Data</h1>
                 <label htmlFor="cardDatatitle" className="font-semibold mt-2">
@@ -1114,6 +1439,32 @@ const CaseStudies = () => {
                   value={executionPoint3}
                   onChange={(e) => setExecutionPoint3(e.target.value)}
                   placeholder="Execution Point 3"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionHeading3" className="font-semibold">
+                  {" "}
+                  Execution Heading 4
+                </label>
+                <input
+                  type="text"
+                  name="executionHeading4"
+                  value={executionHeading4}
+                  onChange={(e) => setExecutionHeading4(e.target.value)}
+                  placeholder="Execution Heading 4"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionPoint4" className="font-semibold">
+                  Execution Point 4
+                </label>
+                <textarea
+                  name="executionPoint4"
+                  value={executionPoint4}
+                  onChange={(e) => setExecutionPoint4(e.target.value)}
+                  placeholder="Execution Point 4"
                   className="p-2 border border-gray-300 rounded w-full"
                 />
               </div>
