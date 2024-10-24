@@ -404,7 +404,7 @@ const ServiceTechTools = () => {
                   <input
                     type="text"
                     className="form-control mb-2"
-                    placeholder="Sub Tech Title"
+                    placeholder="tools stack"
                     name="title"
                     value={subTechItem.title}
                     onChange={(e) => handleInputChange(e, index)}
@@ -523,7 +523,7 @@ const ServiceTechTools = () => {
                   <input
                     type="text"
                     className="form-control mb-2"
-                    placeholder="Sub Tech Title"
+                    placeholder="tools stack"
                     name="title"
                     value={subTechItem.title}
                     onChange={(e) => handleInputChange(e, index)}
