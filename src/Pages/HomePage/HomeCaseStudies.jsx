@@ -41,6 +41,8 @@ const HomeCaseStudies = () => {
   const [executionPoint2, setExecutionPoint2] = useState("");
   const [executionHeading3, setExecutionHeading3] = useState("");
   const [executionPoint3, setExecutionPoint3] = useState("");
+  const [executionHeading4, setExecutionHeading4] = useState("");
+  const [executionPoint4, setExecutionPoint4] = useState("");
 
   const [solution, setSolution] = useState("");
   const [solutionImage, setSolutionImage] = useState(null); // file input
@@ -99,6 +101,8 @@ const HomeCaseStudies = () => {
       formData.append("executionPoint2", executionPoint2);
       formData.append("executionHeading3", executionHeading3);
       formData.append("executionPoint3", executionPoint3);
+      formData.append("executionHeading4", executionHeading4);
+      formData.append("executionPoint4", executionPoint4);
       formData.append("solution", solution);
       formData.append("techTools", techTools);
       formData.append("cardDatacardImage", cardDatacardImage);
@@ -149,6 +153,8 @@ const HomeCaseStudies = () => {
       formData.append("executionPoint2", executionPoint2);
       formData.append("executionHeading3", executionHeading3);  
       formData.append("executionPoint3", executionPoint3);
+      formData.append("executionHeading4", executionHeading4);
+      formData.append("executionPoint4", executionPoint4);
       formData.append("solution", solution);
       formData.append("techTools", techTools);
       formData.append("cardDatacardImage", cardDatacardImage);
@@ -213,6 +219,8 @@ const HomeCaseStudies = () => {
     setExecutionPoint2(editCaseStudy.executionPoint2);
     setExecutionHeading3(editCaseStudy.executionHeading3);
     setExecutionPoint3(editCaseStudy.executionPoint3);
+    setExecutionHeading4(editCaseStudy.executionHeading4);
+    setExecutionPoint4(editCaseStudy.executionPoint4);
     setSolution(editCaseStudy.solution);
     setTechTools(editCaseStudy.techTools);
   };
@@ -281,6 +289,8 @@ const HomeCaseStudies = () => {
                     {caseStudy.executionPoint2}
                     {caseStudy.executionHeading3}
                     {caseStudy.executionPoint3}
+                    {caseStudy.executionHeading4}
+                    {caseStudy.executionPoint4}
                   </td>
                   <td className="border-r px-4 py-2">
                     {caseStudy.solution}
@@ -680,6 +690,33 @@ const HomeCaseStudies = () => {
                   className="p-2 border border-gray-300 rounded w-full"
                 />
               </div>
+
+              <div>
+                <label htmlFor="executionHeading3" className="font-semibold">
+                  {" "}
+                  Execution Heading 4
+                </label>
+                <input
+                  type="text"
+                  name="executionHeading4"
+                  value={executionHeading4}
+                  onChange={(e) => setExecutionHeading4(e.target.value)}
+                  placeholder="Execution Heading 4"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionPoint4" className="font-semibold">
+                  Execution Point 4
+                </label>
+                <textarea
+                  name="executionPoint4"
+                  value={executionPoint4}
+                  onChange={(e) => setExecutionPoint4(e.target.value)}
+                  placeholder="Execution Point 4"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
             </div>
 
             {/* Solution and Tech Tools */}
@@ -1055,7 +1092,7 @@ const HomeCaseStudies = () => {
               </div>
               <div>
                 <label htmlFor="executionPoint1" className="font-semibold">
-                  Execution Point 1
+                  Execution Point 1 (Saperated By Full Stop(.))
                 </label>
                 <textarea
                   name="executionPoint1"
@@ -1081,7 +1118,7 @@ const HomeCaseStudies = () => {
               </div>
               <div>
                 <label htmlFor="executionPoint2" className="font-semibold">
-                  Execution Point 2
+                  Execution Point 2 (Saperated By Full Stop(.))
                 </label>
                 <textarea
                   name="executionPoint2"
@@ -1107,13 +1144,39 @@ const HomeCaseStudies = () => {
               </div>
               <div>
                 <label htmlFor="executionPoint3" className="font-semibold">
-                  Execution Point 3
+                  Execution Point 3 (Saperated By Full Stop(.))
                 </label>
                 <textarea
                   name="executionPoint3"
                   value={executionPoint3}
                   onChange={(e) => setExecutionPoint3(e.target.value)}
                   placeholder="Execution Point 3"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionHeading3" className="font-semibold">
+                  {" "}
+                  Execution Heading 4
+                </label>
+                <input
+                  type="text"
+                  name="executionHeading4"
+                  value={executionHeading4}
+                  onChange={(e) => setExecutionHeading4(e.target.value)}
+                  placeholder="Execution Heading 4"
+                  className="p-2 border border-gray-300 rounded w-full"
+                />
+              </div>
+              <div>
+                <label htmlFor="executionPoint4" className="font-semibold">
+                  Execution Point 4 (Saperated By Full Stop(.))
+                </label>
+                <textarea
+                  name="executionPoint4"
+                  value={executionPoint4}
+                  onChange={(e) => setExecutionPoint4(e.target.value)}
+                  placeholder="Execution Point 4"
                   className="p-2 border border-gray-300 rounded w-full"
                 />
               </div>
