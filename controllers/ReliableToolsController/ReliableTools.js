@@ -3,6 +3,7 @@ import cloudinary from '../../cloudinary.js';
 import fs from 'fs';
 
 export const addReliableToolsData = async (req, res) => {
+    console.log("first")
     try {
         const { category, Subcategory, technology, subTech } = req.body;
 
@@ -90,40 +91,59 @@ export const editReliableToolsData = async (req, res) => {
 
         const updateObject = {};
 
+        // Update category, Subcategory, and technology if provided
         if (category) updateObject.category = category;
         if (Subcategory) updateObject.Subcategory = Subcategory;
         if (technology) updateObject.technology = technology;
 
-        // If subTech is provided, parse it and handle files accordingly
+        // If subTech is provided, parse and handle it
         if (subTech) {
-            const parsedSubTech = JSON.parse(subTech);
+            let parsedSubTech;
+            try {
+                parsedSubTech = JSON.parse(subTech);
+            } catch (err) {
+                return res.status(400).json({ message: "Invalid subTech format" });
+            }
 
-            // Check if files are provided for upload
+            // If files are provided, upload them and replace logos
             if (req.files && req.files.length > 0) {
                 let fileIndex = 0;
-                for (const subTechItem of parsedSubTech) {
-                    for (let logoIndex = 0; logoIndex < subTechItem.techLogos.length; logoIndex++) {
-                        if (req.files[fileIndex]) {
-                            const result = await cloudinary.v2.uploader.upload(req.files[fileIndex].path);
-                            subTechItem.techLogos[logoIndex].logo = result.secure_url;
-                            fs.unlinkSync(req.files[fileIndex].path); // Remove file from local server
-                            fileIndex++;
+
+                // Use Promise.all to handle multiple file uploads concurrently
+                await Promise.all(
+                    parsedSubTech.map(async (subTechItem) => {
+                        if (subTechItem.techLogos && subTechItem.techLogos.length > 0) {
+                            for (let logoIndex = 0; logoIndex < subTechItem.techLogos.length; logoIndex++) {
+                                if (req.files[fileIndex]) {
+                                    const result = await cloudinary.v2.uploader.upload(req.files[fileIndex].path);
+                                    subTechItem.techLogos[logoIndex].logo = result.secure_url;
+
+                                    // Remove file from local server after upload
+                                    await fs.promises.unlink(req.files[fileIndex].path);
+
+                                    fileIndex++;
+                                }
+                            }
                         }
-                    }
-                }
+                    })
+                );
             }
+
+            // Assign updated subTech data
             updateObject.subTech = parsedSubTech;
         }
 
+        // Update the database entry
         const updatedData = await reliableToolsModel.findByIdAndUpdate(
             id,
             updateObject,
             { new: true }
         );
 
+        // Send success response
         res.status(200).json({
             message: "Data updated successfully",
-            updatedData
+            updatedData,
         });
 
     } catch (error) {
