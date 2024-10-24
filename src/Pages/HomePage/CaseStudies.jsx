@@ -237,12 +237,12 @@ const CaseStudies = () => {
     setSolution(editCaseStudy.solution);
     setTechTools(editCaseStudy.techTools);
   };
-  const [cardData, setCardData] = useState(false);
-  const [headerData, setHeaderData] = useState(false);
-  const [overViewData, setOverViewData] = useState(false);
-  const [goalsData, setGoalsData] = useState(false);
-  const [executionData, setExecutionData] = useState(false);
-  const [solutionData, setSolutionData] = useState(false);
+  const [cardData, setCardData] = useState("");
+  const [headerData, setHeaderData] = useState("");
+  const [overViewData, setOverViewData] = useState("");
+  const [goalsData, setGoalsData] = useState("");
+  const [executionData, setExecutionData] = useState("");
+  const [solutionData, setSolutionData] = useState("");
   return (
     <div className="w-full bg-gray-300 h-auto mx-auto p-4 relative">
       <div className="flex justify-between mb-2 mr-3">
@@ -283,14 +283,14 @@ const CaseStudies = () => {
                     <button
                       className="text-white px-3 py-2 rounded bg-slate-500 font-semibold"
                       onClick={() => {
-                        setCardData(true);
+                        setCardData(index);
                       }}
                     >
                       See
                     </button>
                     <div
                       className={`${
-                        cardData
+                        cardData === index
                           ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                           : "hidden"
                       }`}
@@ -327,7 +327,7 @@ const CaseStudies = () => {
                       />
                       <button
                         className="p-2 bg-slate-500 ml-[80%] mt-5 text-white rounded"
-                        onClick={() => setCardData(false)}
+                        onClick={() => setCardData("")}
                       >
                         Close
                       </button>
@@ -336,13 +336,13 @@ const CaseStudies = () => {
                   <td className="border-r px-4 py-2">
                     <button
                       className="text-white px-3 py-2 rounded bg-slate-500 font-semibold"
-                      onClick={() => setHeaderData(true)}
+                      onClick={() => setHeaderData(index)}
                     >
                       See
                     </button>
                     <div
                       className={`${
-                        headerData
+                        headerData === index
                           ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                           : "hidden"
                       }`}
@@ -366,7 +366,7 @@ const CaseStudies = () => {
                       />
                       <button
                         className="p-2 bg-slate-500 text-white rounded ml-[80%] mt-5"
-                        onClick={() => setHeaderData(false)}
+                        onClick={() => setHeaderData("")}
                       >
                         Close
                       </button>
@@ -375,13 +375,13 @@ const CaseStudies = () => {
                   <td className="border-r px-4 py-2">
                     <button
                       className="text-white px-3 py-2 rounded bg-slate-500 font-semibold"
-                      onClick={() => setOverViewData(true)}
+                      onClick={() => setOverViewData(index)}
                     >
                       See
                     </button>
                     <div
                       className={`${
-                        overViewData
+                        overViewData === index
                           ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                           : "hidden"
                       }`}
@@ -423,7 +423,7 @@ const CaseStudies = () => {
                       />
                       <button
                         className="p-2 bg-gray-600 text-white rounded ml-[80%] mt-5"
-                        onClick={() => setOverViewData(false)}
+                        onClick={() => setOverViewData("")}
                       >
                         Close
                       </button>
@@ -432,12 +432,12 @@ const CaseStudies = () => {
                   <td className="border-r px-4 py-2">
                     <button
                       className="px-3 py-2 bg-slate-500 text-white rounded"
-                      onClick={() => setGoalsData(true)}
+                      onClick={() => setGoalsData(index)}
                     >
                       See
                     </button>
                     <div className={`${
-                        goalsData
+                        goalsData === index
                           ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                           : "hidden"
                       }`}>
@@ -459,14 +459,14 @@ const CaseStudies = () => {
                           {caseStudy.challenges}
                         </span>
                       </h6>
-                      <button className="p-2 bg-slate-500 text-white rounded" onClick={()=>setGoalsData(false)}>Close</button>
+                      <button className="p-2 bg-slate-500 text-white rounded" onClick={()=>setGoalsData("")}>Close</button>
                     </div>
                   </td>
                   <td className="border-r px-4 py-2 text-xs">
                     <button className="px-3 py-2 bg-slate-500 text-white rounded"
-                      onClick={() => setExecutionData(true)}>See</button>
+                      onClick={() => setExecutionData(index)}>See</button>
                     <div className={`${
-                        executionData
+                        executionData === index
                           ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                           : "hidden"
                       }`}>
@@ -524,15 +524,15 @@ const CaseStudies = () => {
                         {caseStudy.executionPoint4}
                       </span>
                     </h6>
-                    <button className="p-2 bg-slate-500 text-white rounded" onClick={()=>setExecutionData(false)}>Close</button>
+                    <button className="p-2 bg-slate-500 text-white rounded" onClick={()=>setExecutionData("")}>Close</button>
                     </div>
                     
                   </td>
                   <td className="border-r px-4 py-2 text-xs">
                   <button className="px-3 py-2 bg-slate-500 text-white rounded"
-                      onClick={() => setSolutionData(true)}>See</button>
+                      onClick={() => setSolutionData(index)}>See</button>
                     <div className={`${
-                        solutionData
+                        solutionData === index
                           ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                           : "hidden"
                       }`}>
@@ -549,7 +549,7 @@ const CaseStudies = () => {
                       </span>
                     </h6>
                     <img src={caseStudy.solutionImage} alt="solution" />
-                    <button className="p-2 bg-slate-500 text-white ml-[80%] mt-5 rounded" onClick={()=>setSolutionData(false)}>Close</button>
+                    <button className="p-2 bg-slate-500 text-white ml-[80%] mt-5 rounded" onClick={()=>setSolutionData("")}>Close</button>
                     </div>
                   </td>
                   <td className="border-r px-4 py-2 flex flex-col gap-3">
