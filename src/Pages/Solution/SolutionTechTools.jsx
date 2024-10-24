@@ -5,7 +5,7 @@ import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 // import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const ServiceTechTools = () => {
+const SolutionTechTools = () => {
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, seteditPopUpShow] = useState(false);
   const [editId, setEditId] = useState("");
@@ -553,4 +553,4 @@ const ServiceTechTools = () => {
   );
 };
 
-export default ServiceTechTools;
+export default SolutionTechTools;

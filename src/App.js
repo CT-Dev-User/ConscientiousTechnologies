@@ -13,10 +13,7 @@ import CaseStudies from "./Pages/HomePage/CaseStudies.jsx";
 import Blogs from "./Pages/HomePage/Blogs.jsx";
 import Clients from "./Pages/HomePage/Clients.jsx";
 import Consultation from "./Pages/HomePage/Consultation.jsx";
-import ServicePage from "./Pages/Services/ServicePage.jsx";
-import SolutionPage from "./Pages/Solution/SolutionPage.jsx";
 import IndustryPage from "./Pages/industries/IndustryPage.jsx";
-import BlogPage from "./Pages/Blogs/BlogPage.jsx";
 import HomeFAQ from "./Pages/HomePage/HomeFAQ.jsx";
 import FAQ from "./Pages/FAQ/Faq.jsx";
 import AllFAQ from "./Pages/FAQ/AllQuestions.jsx";
@@ -29,7 +26,6 @@ import AllSliderData from "./Pages/WhyChooseCtSliderPage/AllSliderData.jsx";
 import PartnerUp from "./Pages/partnerUp/PartnerUp.jsx";
 import CaseStudiesByCategory from "./Pages/CaseStudiesByCategory/CaseStudiesByCategory.jsx";
 import AllCaseStudies from "./Pages/CaseStudiesByCategory/AllCaseStudies.jsx";
-import ReliableTools from "./Pages/ReliableTools/ReliableTools.jsx";
 import AllCategoryReliableTools from "./Pages/ReliableTools/AllCategoryReliableTools.jsx";
 import KeyFeature from "./Pages/HomePage/KeyFeature.jsx";
 import ContactUs from "./Pages/ContactUs/ContactUs.jsx";
@@ -51,7 +47,12 @@ import SubServices from "./Pages/SubServices/SubServices.jsx";
 import HomeTechTools from "./Pages/HomePage/HomeTechTools.jsx";
 import HomeCaseStudies from "./Pages/HomePage/HomeCaseStudies.jsx";
 import SubServicesCMS from "./Pages/SubServices/SubServices.jsx";
-
+import ServiceTechTools from "./Pages/ReliableTools/ReliableTools.jsx";
+import ServiceBlogCMS from "./Pages/Services/ServiceBlogs.jsx";
+import SolutionTechTools from "./Pages/Solution/SolutionTechTools.jsx";
+import SolutionCaseStudies from "./Pages/Solution/SolutionCaseStudies.jsx";
+import SolutionBlogCMS from "./Pages/Solution/SolutionBlogs.jsx";
+import SolutionFAQ from "./Pages/Solution/SolutionFaq.jsx";
 function App() {
   return (
     <Routes>
@@ -61,6 +62,40 @@ function App() {
         element={
           <SideBar>
             <Dashboard />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-contact-us"
+        element={
+          <SideBar>
+            <ContactUs />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-social-media"
+        element={
+          <SideBar>
+            <SocialMedia />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-partner-up"
+        element={
+          <SideBar>
+            <PartnerUp />
+          </SideBar>
+        }
+      />
+      {/* home page */}
+
+      <Route
+        path="/conscientious-users-registration"
+        element={
+          <SideBar>
+            <SignUp />
           </SideBar>
         }
       />
@@ -81,34 +116,18 @@ function App() {
         }
       />
       <Route
-        path="/conscientious-services"
+        path="/conscientious-key-feature"
         element={
           <SideBar>
-            <ServiceWeOffer />
+            <KeyFeature />
           </SideBar>
         }
       />
       <Route
-        path="/conscientious-home-subservices"
+        path="/conscientious-home-reliable-tools"
         element={
           <SideBar>
-            <SubServices />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-home-solutions"
-        element={
-          <SideBar>
-            <Solution />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-home-industries"
-        element={
-          <SideBar>
-            <Industries />
+            <HomeTechTools />
           </SideBar>
         }
       />
@@ -136,14 +155,7 @@ function App() {
           </SideBar>
         }
       />
-      <Route
-        path="/conscientious-home-book-free-consultation"
-        element={
-          <SideBar>
-            <Consultation />
-          </SideBar>
-        }
-      />
+
       <Route
         path="/conscientious-home-faq"
         element={
@@ -153,23 +165,38 @@ function App() {
         }
       />
       <Route
-        path="/conscientious-users-registration"
+        path="/conscientious-home-book-free-consultation"
         element={
           <SideBar>
-            <SignUp />
+            <Consultation />
           </SideBar>
         }
       />
-      {/* services */}
+      <Route
+        path="/conscientious-home-subservices"
+        element={
+          <SideBar>
+            <SubServices />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-home-industries"
+        element={
+          <SideBar>
+            <Industries />
+          </SideBar>
+        }
+      />
+      {/* service */}
       <Route
         path="/conscientious-services"
         element={
           <SideBar>
-            <ServicePage />
+            <ServiceWeOffer />
           </SideBar>
         }
       />
-      {/*sub services */}
       <Route
         path="/conscientious-SubServices"
         element={
@@ -178,13 +205,78 @@ function App() {
           </SideBar>
         }
       />
+      <Route
+        path="/conscientious-service-reliable-tools"
+        element={
+          <SideBar>
+            <ServiceTechTools />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-service-casestudies"
+        element={
+          <SideBar>
+            <CaseStudies />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-service-blogs"
+        element={
+          <SideBar>
+            <ServiceBlogCMS />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-service-faq-category"
+        element={
+          <SideBar>
+            <FAQ />
+          </SideBar>
+        }
+      />
 
       {/* solution */}
       <Route
-        path="/conscientious-solution"
+        path="/conscientious-solutions"
         element={
           <SideBar>
-            <SolutionPage />
+            <Solution />
+          </SideBar>
+        }
+      />
+
+      <Route
+        path="/conscientious-solution-reliable-tools"
+        element={
+          <SideBar>
+            <SolutionTechTools />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-solution-casestudies"
+        element={
+          <SideBar>
+            <SolutionCaseStudies />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-solution-blogs"
+        element={
+          <SideBar>
+            <SolutionBlogCMS />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-solution-faq-category"
+        element={
+          <SideBar>
+            <SolutionFAQ />
           </SideBar>
         }
       />
@@ -199,25 +291,8 @@ function App() {
         }
       />
 
-      {/* case studies */}
-      <Route
-        path="/conscientious-case-studies"
-        element={
-          <SideBar>
-            <CaseStudies />
-          </SideBar>
-        }
-      />
-      {/* FAQ Routes */}
-      <Route
-        path="/conscientious-faq-category"
-        element={
-          <SideBar>
-            <FAQ />
-          </SideBar>
-        }
-      />
-
+      {/* need to delete below routes and respective files */}
+      {/* home category */}
       {/*All FAQ Routes */}
       <Route
         path="/conscientious/:faqCategory1"
@@ -245,8 +320,6 @@ function App() {
           </SideBar>
         }
       />
-
-      {/* home category */}
       <Route
         path="/conscientious-header/:category"
         element={
@@ -306,15 +379,6 @@ function App() {
           </SideBar>
         }
       />
-
-      <Route
-        path="/conscientious-partner-up"
-        element={
-          <SideBar>
-            <PartnerUp />
-          </SideBar>
-        }
-      />
       <Route
         path="/conscientious-case-studies-category"
         element={
@@ -328,23 +392,6 @@ function App() {
         element={
           <SideBar>
             <AllCaseStudies />
-          </SideBar>
-        }
-      />
-
-      <Route
-        path="/conscientious-home-reliable-tools"
-        element={
-          <SideBar>
-            <HomeTechTools />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-reliable-tools"
-        element={
-          <SideBar>
-            <ReliableTools />
           </SideBar>
         }
       />
@@ -365,30 +412,7 @@ function App() {
           </SideBar>
         }
       />
-      <Route
-        path="/conscientious-key-feature"
-        element={
-          <SideBar>
-            <KeyFeature />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-contact-us"
-        element={
-          <SideBar>
-            <ContactUs />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-social-media"
-        element={
-          <SideBar>
-            <SocialMedia />
-          </SideBar>
-        }
-      />
+
       <Route
         path="/conscientious-area-of-experties"
         element={
@@ -443,16 +467,6 @@ function App() {
         element={
           <SideBar>
             <OtherReliableTools />
-          </SideBar>
-        }
-      />
-
-      {/* blogs */}
-      <Route
-        path="/conscientious-blogs"
-        element={
-          <SideBar>
-            <BlogPage />
           </SideBar>
         }
       />

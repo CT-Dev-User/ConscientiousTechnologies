@@ -176,22 +176,22 @@ const SideBar = ({ children }) => {
             icon: <FaLaptop />,
           },
           {
-            path: "/conscientious-reliable-tools",
+            path: "/conscientious-service-reliable-tools",
             name: "Reliable Tools",
             icon: <FaTools />,
           },
           {
-            path: "/conscientious-home-casestudies",
+            path: "/conscientious-service-casestudies",
             name: "Case Studies",
             icon: <FaFileAlt />,
           },
           {
-            path: "/conscientious-blogs",
+            path: "/conscientious-service-blogs",
             name: "blogs",
             icon: <FaBloggerB />,
           },
           {
-            path: "/conscientious-faq-category",
+            path: "/conscientious-service-faq-category",
             name: "FAQ",
             icon: <FaBloggerB />,
           },
@@ -201,27 +201,27 @@ const SideBar = ({ children }) => {
         title: "Solutions",
         list: [
           {
-            path: "/conscientious-home-solutions",
+            path: "/conscientious-solutions",
             name: "Solutions",
             icon: <FaCogs />,
           },
           {
-            path: "/conscientious-reliable-tools",
+            path: "/conscientious-solution-reliable-tools",
             name: "Reliable Tools",
             icon: <FaTools />,
           },
           {
-            path: "/conscientious-home-casestudies",
+            path: "/conscientious-solution-casestudies",
             name: "Case Studies",
             icon: <FaFileAlt />,
           },
           {
-            path: "/conscientious-blogs",
+            path: "/conscientious-solution-blogs",
             name: "blogs",
             icon: <FaBloggerB />,
           },
           {
-            path: "/conscientious-faq-category",
+            path: "/conscientious-solution-faq-category",
             name: "FAQ",
             icon: <FaBloggerB />,
           },
@@ -358,12 +358,12 @@ const SideBar = ({ children }) => {
             icon: <FaTools />,
           },
           {
-            path: "/conscientious-home-casestudies",
+            path: "/conscientious-solution-casestudies",
             name: "Case Studies",
             icon: <FaFileAlt />,
           },
           {
-            path: "/conscientious-blogs",
+            path: "/conscientious-solution-blogs",
             name: "blogs",
             icon: <FaBloggerB />,
           },
@@ -429,10 +429,10 @@ const SideBar = ({ children }) => {
  
   return (
     <div className="w-full h-screen bg-gray-100 text-sm flex justify-between overflow-x-hidden overflow-y-auto custom-scrollbar">
-      <div className={`bg-black text-white h-full ${isOpen ? "w-52" : "w-20"} transition-all delay-50 overflow-y-auto py-5 px-2 custom-scrollbar`}>
-        <div className={`flex items-center h-auto w-full sticky top-0 pb-5 ${isOpen ? "justify-between":"justify-center"}`}>
-        <h1 className={isOpen ? 'block text-2xl' : 'hidden'}>Logo</h1>
-          <div className='text-2xl flex cursor-pointer'>
+      <div className={`bg-black text-white h-full ${isOpen ? "w-1/6" : "w-20"} transition-all delay-50 overflow-y-auto px-2 custom-scrollbar`}>
+        <div className={`bg-black text-white flex items-center h-auto w-full sticky top-0 pb-5 ${isOpen ? "justify-between":"justify-center"}`}>
+        <h1 className={isOpen ? 'block text-2xl mt-3' : 'hidden'}>Logo</h1>
+          <div className='text-2xl flex cursor-pointer mt-3'>
             <FaBars onClick={toggle} />
           </div>
         </div>
@@ -485,21 +485,21 @@ const SideBar = ({ children }) => {
 const MenuLink = ({ item, isActive, onItemClick }) => {
   return (
     <li
-      className={`p-2 hover:text-blue-500 ${
+      className={`py-2 hover:text-blue-500 ${
         isActive === item.path ? "text-white" : ""
       }`}
     >
       <NavLink
         to={item.path}
         className={({ isActive }) =>
-          `flex text-[#fff] py-2 px-3 gap-3 transition-all delay-50 ${isActive ? 'bg-[lightskyblue] text-[#000]' : 'hover:bg-[lightskyblue]'} text-[#000] cursor-pointer no-underline`
+          `text-xs flex text-[#fff] p-2 gap-3 transition-all delay-50 ${isActive ? 'bg-[lightskyblue] text-[#000]' : 'hover:bg-[lightskyblue]'} text-[#000] cursor-pointer no-underline`
         }
         style={{ textDecoration: "none" }}
         passHref
         onClick={() => onItemClick(item.path)}
       >
         {item.icon}
-        <span className="ml-2">{item.name}</span>
+        <span>{item.name}</span>
       </NavLink>
     </li>
   );

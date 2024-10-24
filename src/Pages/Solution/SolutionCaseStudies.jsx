@@ -3,7 +3,7 @@ import axios from "axios";
 import { Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
 
-const CaseStudies = () => {
+const SolutionCaseStudies = () => {
   const [caseStudies, setCaseStudies] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
@@ -1222,4 +1222,4 @@ const CaseStudies = () => {
   );
 };
 
-export default CaseStudies;
+export default SolutionCaseStudies;

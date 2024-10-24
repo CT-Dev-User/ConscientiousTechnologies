@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const OtherReliableTools = () => {
@@ -191,7 +191,7 @@ const OtherReliableTools = () => {
                                 {subTechItem.techLogos.map((logoItem, logoIndex) => (
                                     <div key={logoIndex}>
 
-                                        <img src={logoItem.logo} width="50" />
+                                        <img src={logoItem.logo} width="50" alt=''/>
                                     </div>
                                 ))}
                             </div>
