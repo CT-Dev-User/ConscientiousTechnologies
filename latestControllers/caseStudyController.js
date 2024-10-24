@@ -27,6 +27,7 @@ export const createCaseStudy = async (req, res) => {
             category, Subcategory, cardDatatitle, cardDatasubTitle, cardDatacoreTech, headerTagLine, headerdesc, 
             overviewtitle, overviewindustryType, overviewbusinessType, overviewservicesProvided, overviewdescription,
             goals, insights, challenges, approach, executionHeading1, executionPoint1, executionHeading2, executionPoint2, executionHeading3, executionPoint3,
+            executionHeading4, executionPoint4,
             solution, techTools
         } = req.body;
 
@@ -75,6 +76,8 @@ export const createCaseStudy = async (req, res) => {
             executionPoint2,
             executionHeading3,
             executionPoint3,
+            executionHeading4,
+            executionPoint4,
 
             solution,
             solutionImage,
@@ -102,6 +105,7 @@ export const editCaseStudy = async (req, res) => {
             category, Subcategory, cardDatatitle, cardDatasubTitle, cardDatacoreTech, headerTagLine, headerdesc, 
             overviewtitle, overviewindustryType, overviewbusinessType, overviewservicesProvided, overviewdescription,
             goals, insights, challenges, approach, executionHeading1, executionPoint1, executionHeading2, executionPoint2, executionHeading3, executionPoint3,
+            executionHeading4, executionPoint4,
             solution, techTools
         } = req.body;
 
@@ -150,6 +154,8 @@ export const editCaseStudy = async (req, res) => {
                 executionPoint2,
                 executionHeading3,
                 executionPoint3,
+                executionHeading4,
+                executionPoint4,
 
                 solution,
                 solutionImage,

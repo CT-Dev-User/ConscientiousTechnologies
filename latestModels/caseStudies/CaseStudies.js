@@ -37,6 +37,8 @@ const CaseStudySchema = new mongoose.Schema({
     executionPoint2: { type: String },
     executionHeading3: { type: String },
     executionPoint3: { type: String },
+    executionHeading4: { type: String },
+    executionPoint4: { type: String },
 
     // solution
     solution: { type: String },
