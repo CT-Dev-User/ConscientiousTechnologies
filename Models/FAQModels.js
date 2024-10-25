@@ -5,10 +5,8 @@ const FaqSchema = new mongoose.Schema({
     Subcategory: { type: String },
     question: { type: String },
     answer: {
-        type: {
             answerText: { type: String },
-            answerImg: { type: String }
-        },
+            answerImg: { type: String },
     }
 }, { timestamps: true });
 
