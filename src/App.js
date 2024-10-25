@@ -55,6 +55,7 @@ import SolutionBlogCMS from "./Pages/Solution/SolutionBlogs.jsx";
 import SolutionFAQ from "./Pages/Solution/SolutionFaq.jsx";
 import IndustryCaseStudies from "./Pages/industries/IndustriesCaseStudy.jsx";
 import IndutryBlogCMS from "./Pages/industries/IndustryBlogs.jsx";
+import IndustryFAQ from "./Pages/industries/IndustryFaq.jsx";
 function App() {
   return (
     <Routes>
@@ -298,6 +299,14 @@ function App() {
         element={
           <SideBar>
             <IndutryBlogCMS />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-industry-faq-category"
+        element={
+          <SideBar>
+            <IndustryFAQ />
           </SideBar>
         }
       />

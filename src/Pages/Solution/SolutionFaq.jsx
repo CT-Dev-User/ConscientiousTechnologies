@@ -7,14 +7,19 @@ import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 
 const SolutionFAQ = () => {
+  const [industries, setIndustries] = useState([]);
   const [homeFaqs, setHomeFaqs] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
   const [addHomeFAQ, setAddHomeFAQ] = useState({
+    category: "Solution",
+    Subcategory: "",
     question: "",
     answer: { answerText: "", answerImg: "" },
   });
   const [editHomeFAQ, seteditHomeFAQ] = useState({
+    category: "Solution",
+    Subcategory: "",
     question: "",
     answer: { answerText: "", answerImg: "" },
   });
@@ -27,10 +32,6 @@ const SolutionFAQ = () => {
   const editEditor = useRef(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = homeFaqs.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleAddfileChange = (e) => {
     setAddSelectedFile(e.target.files[0]);
@@ -51,12 +52,14 @@ const SolutionFAQ = () => {
   const addHomeFaqDataFunc = async () => {
     try {
       const formData = new FormData();
+      formData.append("category", addHomeFAQ.category);
+      formData.append("Subcategory", addHomeFAQ.Subcategory);
       formData.append("question", addHomeFAQ.question);
       formData.append("answerText", addHomeFAQ.answer.answerText);
       formData.append("images", addHomeFAQ.answer.answerImg);
 
       const response = await axios.post(
-        "http://localhost:8080/add-home-faq",
+        "http://localhost:8080/add-faq",
         formData
       );
 
@@ -66,8 +69,10 @@ const SolutionFAQ = () => {
         setAddPopUpShow(false);
         setAddSelectedFile(null);
         setAddHomeFAQ({
+          category: "Solution",
+          Subcategory: "",
           question: "",
-          answer: { answerText: "", answerImg: null },
+          answer: { answerText: "", answerImg: "" },
         }); // Reset form fields
       }
     } catch (error) {
@@ -78,23 +83,27 @@ const SolutionFAQ = () => {
   const editHomeFAQFunc = async () => {
     try {
       const formData = new FormData();
+      formData.append("category", editHomeFAQ.category);
+      formData.append("Subcategory", editHomeFAQ.Subcategory);
       formData.append("question", editHomeFAQ.question);
       formData.append("answerText", editHomeFAQ.answer.answerText);
       formData.append("images", editHomeFAQ.answer.answerImg);
 
       const response = await axios.put(
-        `http://localhost:8080/edit-home-faq/${editId}`,
+        `http://localhost:8080/update-faq/${editId}`,
         formData
       );
       console.log(response.status);
       if (response.status === 200) {
         Swal.fire("Saved!", "Your changes have been saved.", "success");
-        setEditPopUpShow(false);
-        seteditHomeFAQ({
-          question: "",
-          answer: { answerText: "", answerImg: null },
-        });
         fetchHomeFaqs();
+        seteditHomeFAQ({
+          category: "Solution",
+          Subcategory: "",
+          question: "",
+          answer: { answerText: "", answerImg: "" },
+        });
+        setEditPopUpShow(false);
       }
     } catch (error) {
       console.log(error);
@@ -108,8 +117,8 @@ const SolutionFAQ = () => {
 
   const fetchHomeFaqs = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/get-home-faq");
-      setHomeFaqs(response.data.getData);
+      const response = await axios.get("http://localhost:8080/get-faq-bycategory/Solution");
+      setHomeFaqs(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -118,7 +127,22 @@ const SolutionFAQ = () => {
   useEffect(() => {
     fetchHomeFaqs();
   }, []);
-
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = homeFaqs ? homeFaqs.slice(indexOfFirstItem, indexOfLastItem) : [];
+  useEffect(() => {
+    fetchIndustry();
+  }, []);
+  const fetchIndustry = async () => {
+    try {
+      const response = await axios.get(
+        "https://conscientious-technologies-backend.vercel.app/get-latest-solution-data"
+      );
+      setIndustries(response.data);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    }
+  };
   const deleteHomeFAQData = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -132,7 +156,7 @@ const SolutionFAQ = () => {
       if (result.isConfirmed) {
         try {
           const response = await axios.delete(
-            `http://localhost:8080/delete-home-faq/${id}`
+            `http://localhost:8080/delete-faq/${id}`
           );
           if (response.status === 200) {
             setEditId(null);
@@ -154,7 +178,7 @@ const SolutionFAQ = () => {
   return (
     <div className="w-full bg-gray-300 h-full mx-auto p-4">
       <div className="flex justify-between mb-5 mr-3">
-        <h1 className="text-2xl font-bold">Home FAQ's</h1>
+        <h1 className="text-2xl font-bold">FAQ's for Solutions</h1>
         <Button
           onClick={() => setAddPopUpShow(true)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -169,6 +193,23 @@ const SolutionFAQ = () => {
         </Modal.Header>
         <Modal.Body className="bg-white">
           <form className="mx-auto max-w-lg">
+          <fieldset className="mb-4">
+              <label className="block text-gray-700">Solution Name</label>
+              <select
+                name=""
+                value={addHomeFAQ.Subcategory}
+                onChange={(e) => setAddHomeFAQ({...addHomeFAQ, Subcategory:e.target.value})}
+                className="w-full p-2 border rounded"
+                id=""
+              >
+                 <option value="">Select solution</option>
+                {industries.map((solution, index) => (
+                  <option key={index} value={solution.solutionName}>
+                    {solution.solutionName}
+                  </option>
+                ))}
+              </select>
+            </fieldset>
             <fieldset className="mb-4">
               <label htmlFor="title" className="block text-gray-700 font-bold">
                 Question
@@ -261,6 +302,23 @@ const SolutionFAQ = () => {
         </Modal.Header>
         <Modal.Body className="bg-white">
           <form className="mx-auto max-w-lg">
+          <fieldset className="mb-4">
+              <label className="block text-gray-700">Solution Name</label>
+              <select
+                name=""
+                value={editHomeFAQ.Subcategory}
+                onChange={(e) => seteditHomeFAQ({...editHomeFAQ, Subcategory:e.target.value})}
+                className="w-full p-2 border rounded"
+                id=""
+              >
+                <option value="">Select Solution</option>
+                {industries.map((solution, index) => (
+                  <option key={index} value={solution.solutionName}>
+                    {solution.solutionName}
+                  </option>
+                ))}
+              </select>
+            </fieldset>
             <fieldset className="mb-4">
               <label htmlFor="title" className="block text-gray-700 font-bold">
                 Title
@@ -341,8 +399,8 @@ const SolutionFAQ = () => {
           <Button
             variant="primary"
             onClick={() => {
-              setEditPopUpShow(false);
               editHomeFAQFunc();
+              setEditPopUpShow(false);
             }}
             className="bg-blue-500 hover:bg-blue-600 text-white"
           >
@@ -373,6 +431,7 @@ const SolutionFAQ = () => {
         <thead className="bg-gray-800 text-white">
           <tr className="border-b">
             <th className="border-r p-2">Sr. No</th>
+            <th className="border-r p-2">Subcategory / Industry</th>
             <th className="border-r p-2">Question</th>
             <th className="border-r p-2">Answer</th>
             <th className="border-r p-2">Answer Image</th>
@@ -380,9 +439,10 @@ const SolutionFAQ = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((faq, i) => (
+          {currentItems && currentItems.map((faq, i) => (
             <tr key={faq._id} className="border-b">
               <td className="border-r p-2">{i + indexOfFirstItem + 1}</td>
+              <td className="border-r p-2">{faq.Subcategory}</td>
               <td className="border-r p-2">{faq.question}</td>
               <td className="border-r p-2">
                 <FaEye
@@ -407,6 +467,8 @@ const SolutionFAQ = () => {
                     setEditPopUpShow(true);
                     setEditId(faq._id);
                     seteditHomeFAQ({
+                      category:"Solution",
+                      Subcategory:faq.Subcategory,
                       question: faq.question,
                       answer: {
                         answerText: faq.answer.answerText,
@@ -460,5 +522,4 @@ const SolutionFAQ = () => {
     </div>
   );
 };
-
 export default SolutionFAQ;

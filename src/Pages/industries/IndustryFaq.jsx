@@ -6,19 +6,19 @@ import JoditEditor from "jodit-react";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 
-const ServiceFAQ = () => {
+const IndustryFAQ = () => {
   const [industries, setIndustries] = useState([]);
   const [homeFaqs, setHomeFaqs] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
   const [addHomeFAQ, setAddHomeFAQ] = useState({
-    category: "Service",
+    category: "Industry",
     Subcategory: "",
     question: "",
     answer: { answerText: "", answerImg: "" },
   });
   const [editHomeFAQ, seteditHomeFAQ] = useState({
-    category: "Service",
+    category: "Industry",
     Subcategory: "",
     question: "",
     answer: { answerText: "", answerImg: "" },
@@ -69,7 +69,7 @@ const ServiceFAQ = () => {
         setAddPopUpShow(false);
         setAddSelectedFile(null);
         setAddHomeFAQ({
-          category: "Service",
+          category: "Industry",
           Subcategory: "",
           question: "",
           answer: { answerText: "", answerImg: "" },
@@ -98,7 +98,7 @@ const ServiceFAQ = () => {
         Swal.fire("Saved!", "Your changes have been saved.", "success");
         fetchHomeFaqs();
         seteditHomeFAQ({
-          category: "Service",
+          category: "Industry",
           Subcategory: "",
           question: "",
           answer: { answerText: "", answerImg: "" },
@@ -117,9 +117,7 @@ const ServiceFAQ = () => {
 
   const fetchHomeFaqs = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8080/get-faq-bycategory/Service"
-      );
+      const response = await axios.get("http://localhost:8080/get-faq-bycategory/Industry");
       setHomeFaqs(response.data.data);
     } catch (error) {
       console.log(error);
@@ -131,16 +129,14 @@ const ServiceFAQ = () => {
   }, []);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = homeFaqs
-    ? homeFaqs.slice(indexOfFirstItem, indexOfLastItem)
-    : [];
+  const currentItems = homeFaqs ? homeFaqs.slice(indexOfFirstItem, indexOfLastItem) : [];
   useEffect(() => {
     fetchIndustry();
   }, []);
   const fetchIndustry = async () => {
     try {
       const response = await axios.get(
-        "https://conscientious-technologies-backend.vercel.app/get-latest-service-data"
+        "https://conscientious-technologies-backend.vercel.app/get-latest-industry-data"
       );
       setIndustries(response.data);
     } catch (error) {
@@ -182,7 +178,7 @@ const ServiceFAQ = () => {
   return (
     <div className="w-full bg-gray-300 h-full mx-auto p-4">
       <div className="flex justify-between mb-5 mr-3">
-        <h1 className="text-2xl font-bold">FAQ's for Services</h1>
+        <h1 className="text-2xl font-bold">FAQ's for Industries</h1>
         <Button
           onClick={() => setAddPopUpShow(true)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -197,21 +193,19 @@ const ServiceFAQ = () => {
         </Modal.Header>
         <Modal.Body className="bg-white">
           <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label className="block text-gray-700">Service Name</label>
+          <fieldset className="mb-4">
+              <label className="block text-gray-700">industry Name</label>
               <select
                 name=""
                 value={addHomeFAQ.Subcategory}
-                onChange={(e) =>
-                  setAddHomeFAQ({ ...addHomeFAQ, Subcategory: e.target.value })
-                }
+                onChange={(e) => setAddHomeFAQ({...addHomeFAQ, Subcategory:e.target.value})}
                 className="w-full p-2 border rounded"
                 id=""
               >
-                <option value="">Select service</option>
-                {industries.map((service, index) => (
-                  <option key={index} value={service.serviceName}>
-                    {service.serviceName}
+                <option value="">Select Industry</option>
+                {industries.map((industry, index) => (
+                  <option key={index} value={industry.industryName}>
+                    {industry.industryName}
                   </option>
                 ))}
               </select>
@@ -308,24 +302,19 @@ const ServiceFAQ = () => {
         </Modal.Header>
         <Modal.Body className="bg-white">
           <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label className="block text-gray-700">Service Name</label>
+          <fieldset className="mb-4">
+              <label className="block text-gray-700">industry Name</label>
               <select
                 name=""
                 value={editHomeFAQ.Subcategory}
-                onChange={(e) =>
-                  seteditHomeFAQ({
-                    ...editHomeFAQ,
-                    Subcategory: e.target.value,
-                  })
-                }
+                onChange={(e) => seteditHomeFAQ({...editHomeFAQ, Subcategory:e.target.value})}
                 className="w-full p-2 border rounded"
                 id=""
               >
-                <option value="">Select service</option>
-                {industries.map((service, index) => (
-                  <option key={index} value={service.serviceName}>
-                    {service.serviceName}
+                <option value="">Select Industry</option>
+                {industries.map((industry, index) => (
+                  <option key={index} value={industry.industryName}>
+                    {industry.industryName}
                   </option>
                 ))}
               </select>
@@ -442,7 +431,7 @@ const ServiceFAQ = () => {
         <thead className="bg-gray-800 text-white">
           <tr className="border-b">
             <th className="border-r p-2">Sr. No</th>
-            <th className="border-r p-2">Subcategory / Service</th>
+            <th className="border-r p-2">Subcategory / Industry</th>
             <th className="border-r p-2">Question</th>
             <th className="border-r p-2">Answer</th>
             <th className="border-r p-2">Answer Image</th>
@@ -450,56 +439,55 @@ const ServiceFAQ = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems &&
-            currentItems.map((faq, i) => (
-              <tr key={faq._id} className="border-b">
-                <td className="border-r p-2">{i + indexOfFirstItem + 1}</td>
-                <td className="border-r p-2">{faq.Subcategory}</td>
-                <td className="border-r p-2">{faq.question}</td>
-                <td className="border-r p-2">
-                  <FaEye
-                    onClick={() => {
-                      setFaqAnswer(faq.answer && faq.answer.answerText);
-                      setAnswerPopUp(true);
-                    }}
-                    className="cursor-pointer"
-                  />
-                </td>
-                <td className="border-r p-2">
-                  <img
-                    src={faq.answer && faq.answer.answerImg}
-                    alt={faq.question}
-                    className="w-[60px] h-[60px]"
-                  />
-                </td>
-                <td className="border-r flex items-center justify-start gap-[20px] p-2">
-                  <button
-                    className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded"
-                    onClick={() => {
-                      setEditPopUpShow(true);
-                      setEditId(faq._id);
-                      seteditHomeFAQ({
-                        category: "Service",
-                        Subcategory: faq.Subcategory,
-                        question: faq.question,
-                        answer: {
-                          answerText: faq.answer.answerText,
-                          answerImg: null,
-                        },
-                      });
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="hover:bg-red-700 h-[37px] bg-[red] py-2 px-4 rounded text-white shadow-md"
-                    onClick={() => deleteHomeFAQData(faq._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
+          {currentItems && currentItems.map((faq, i) => (
+            <tr key={faq._id} className="border-b">
+              <td className="border-r p-2">{i + indexOfFirstItem + 1}</td>
+              <td className="border-r p-2">{faq.Subcategory}</td>
+              <td className="border-r p-2">{faq.question}</td>
+              <td className="border-r p-2">
+                <FaEye
+                  onClick={() => {
+                    setFaqAnswer(faq.answer && faq.answer.answerText);
+                    setAnswerPopUp(true);
+                  }}
+                  className="cursor-pointer"
+                />
+              </td>
+              <td className="border-r p-2">
+                <img
+                  src={faq.answer && faq.answer.answerImg}
+                  alt={faq.question}
+                  className="w-[60px] h-[60px]"
+                />
+              </td>
+              <td className="border-r flex items-center justify-start gap-[20px] p-2">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded"
+                  onClick={() => {
+                    setEditPopUpShow(true);
+                    setEditId(faq._id);
+                    seteditHomeFAQ({
+                      category:"Industry",
+                      Subcategory:faq.Subcategory,
+                      question: faq.question,
+                      answer: {
+                        answerText: faq.answer.answerText,
+                        answerImg: null,
+                      },
+                    });
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="hover:bg-red-700 h-[37px] bg-[red] py-2 px-4 rounded text-white shadow-md"
+                  onClick={() => deleteHomeFAQData(faq._id)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
       {/* Pagination */}
@@ -535,4 +523,4 @@ const ServiceFAQ = () => {
   );
 };
 
-export default ServiceFAQ;
+export default IndustryFAQ;

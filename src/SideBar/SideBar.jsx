@@ -246,7 +246,7 @@ const SideBar = ({ children }) => {
             icon: <FaBloggerB />,
           },
           {
-            path: "/conscientious-faq-category",
+            path: "/conscientious-industry-faq-category",
             name: "FAQ",
             icon: <FaBloggerB />,
           },

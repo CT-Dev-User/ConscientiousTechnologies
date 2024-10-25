@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 
 const IndutryBlogCMS = () => {
-  const [solutions, setSolutions] = useState([]);
+    const [industries, setIndustries] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
@@ -19,7 +19,7 @@ const IndutryBlogCMS = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = blogs.slice(indexOfFirstItem, indexOfLastItem);
   const [formData, setFormData] = useState({
-    category: "Solution",
+    category: "Industry",
     subCategory: "",
     cardHeading: "",
     cardSubHeading: "",
@@ -39,7 +39,7 @@ const IndutryBlogCMS = () => {
   const fetchBlogs = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-latest-blog-data-by-category/Solution"
+        "http://localhost:8080/get-latest-blog-data-by-category/Industry"
       );
       setBlogs(response.data.blog);
     } catch (error) {
@@ -53,9 +53,9 @@ const IndutryBlogCMS = () => {
   const fetchSolutions = async () => {
     try {
       const response = await axios.get(
-        "https://conscientious-technologies-backend.vercel.app/get-latest-solution-data"
+        "https://conscientious-technologies-backend.vercel.app/get-latest-industry-data"
       );
-      setSolutions(response.data);
+      setIndustries(response.data);
     } catch (error) {
       console.error("Error fetching services:", error);
     }
@@ -109,7 +109,7 @@ const IndutryBlogCMS = () => {
     } else {
       setCurrentBlog(null);
       setFormData({
-        category: "Solution",
+        category: "Industry",
         subCategory: "",
         cardHeading: "",
         cardSubHeading: "",
@@ -319,7 +319,7 @@ const IndutryBlogCMS = () => {
           <Modal.Body>
             <div className="space-y-4">
             <div className="mb-4">
-              <label className="block text-gray-700">solution Name</label>
+              <label className="block text-gray-700">industry Name</label>
               <select
                 name=""
                 value={formData.subCategory}
@@ -327,10 +327,10 @@ const IndutryBlogCMS = () => {
                 className="w-full p-2 border rounded"
                 id=""
               >
-                <option value="">Select solution</option>
-                {solutions.map((solution, index) => (
-                  <option key={index} value={solution.solutionName}>
-                    {solution.solutionName}
+              <option value="">Select Industry</option>
+                {industries.map((industry, index) => (
+                  <option key={index} value={industry.industryName}>
+                    {industry.industryName}
                   </option>
                 ))}
               </select>
