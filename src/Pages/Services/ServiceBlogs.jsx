@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 
 const ServiceBlogCMS = () => {
+  const [services, setServices] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
@@ -18,8 +19,8 @@ const ServiceBlogCMS = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = blogs.slice(indexOfFirstItem, indexOfLastItem);
   const [formData, setFormData] = useState({
-    category: "Home",
-    subCategory: "Home Blogs",
+    category: "Service",
+    subCategory: "",
     cardHeading: "",
     cardSubHeading: "",
     articleData: [{ Title: "", Desc: "" }], // Initialize as array of objects
@@ -38,7 +39,7 @@ const ServiceBlogCMS = () => {
   const fetchBlogs = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-latest-blog-data-by-category/Home"
+        "http://localhost:8080/get-latest-blog-data-by-category/Service"
       );
       setBlogs(response.data.blog);
     } catch (error) {
@@ -46,6 +47,19 @@ const ServiceBlogCMS = () => {
     }
   };
 
+  useEffect(() => {
+    fetchServices();
+  }, []);
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get(
+        "https://conscientious-technologies-backend.vercel.app/get-latest-service-data"
+      );
+      setServices(response.data);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    }
+  };
   // Handle form input changes
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -95,8 +109,8 @@ const ServiceBlogCMS = () => {
     } else {
       setCurrentBlog(null);
       setFormData({
-        category: "Home",
-        subCategory: "Home Blogs",
+        category: "Service",
+        subCategory: "",
         cardHeading: "",
         cardSubHeading: "",
         articleData: [{ Title: "", Desc: "" }], // Reset articleData to one empty item
@@ -193,7 +207,7 @@ const ServiceBlogCMS = () => {
   return (
     <div className="container mx-auto mt-5 bg-white p-4">
       <div className="flex justify-between mb-4">
-        <h1 className="text-xl font-bold">Manage Blogs</h1>
+        <h1 className="text-xl font-bold">Manage Blogs for Services</h1>
         <Button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => toggleModal()}
@@ -304,6 +318,23 @@ const ServiceBlogCMS = () => {
           </Modal.Header>
           <Modal.Body>
             <div className="space-y-4">
+            <div className="mb-4">
+                <label className="block text-gray-700">service Name</label>
+                <select
+                  name=""
+                  value={formData.subCategory}
+                  onChange={(e) => setFormData({...formData, subCategory: e.target.value})}
+                  className="w-full p-2 border rounded"
+                  id=""
+                >
+                  <option value="">Select service</option>
+                  {services.map((service, index) => (
+                    <option key={index} value={service.serviceName}>
+                      {service.serviceName}
+                    </option>
+                  ))}
+                </select>
+              </div>
               {/* Header Title Field */}
               <div className="mb-4">
                 <label className="font-semibold">Header Heading</label>

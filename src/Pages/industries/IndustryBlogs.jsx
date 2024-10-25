@@ -4,7 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 
-const SolutionBlogCMS = () => {
+const IndutryBlogCMS = () => {
   const [solutions, setSolutions] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -207,7 +207,7 @@ const SolutionBlogCMS = () => {
   return (
     <div className="container mx-auto mt-5 bg-white p-4">
       <div className="flex justify-between mb-4">
-        <h1 className="text-xl font-bold">Manage Blogs for Services</h1>
+        <h1 className="text-xl font-bold">Manage Blogs for Industries</h1>
         <Button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => toggleModal()}
@@ -689,4 +689,4 @@ const SolutionBlogCMS = () => {
   );
 };
 
-export default SolutionBlogCMS;
+export default IndutryBlogCMS;

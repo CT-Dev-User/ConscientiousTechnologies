@@ -53,6 +53,8 @@ import SolutionTechTools from "./Pages/Solution/SolutionTechTools.jsx";
 import SolutionCaseStudies from "./Pages/Solution/SolutionCaseStudies.jsx";
 import SolutionBlogCMS from "./Pages/Solution/SolutionBlogs.jsx";
 import SolutionFAQ from "./Pages/Solution/SolutionFaq.jsx";
+import IndustryCaseStudies from "./Pages/industries/IndustriesCaseStudy.jsx";
+import IndutryBlogCMS from "./Pages/industries/IndustryBlogs.jsx";
 function App() {
   return (
     <Routes>
@@ -180,14 +182,7 @@ function App() {
           </SideBar>
         }
       />
-      <Route
-        path="/conscientious-home-industries"
-        element={
-          <SideBar>
-            <Industries />
-          </SideBar>
-        }
-      />
+
       {/* service */}
       <Route
         path="/conscientious-services"
@@ -283,6 +278,32 @@ function App() {
 
       {/* industries */}
       <Route
+        path="/conscientious-home-industries"
+        element={
+          <SideBar>
+            <Industries />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-industry-casestudies"
+        element={
+          <SideBar>
+            <IndustryCaseStudies />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-industry-blogs"
+        element={
+          <SideBar>
+            <IndutryBlogCMS />
+          </SideBar>
+        }
+      />
+
+      {/* need to delete below routes and respective files */}
+      <Route
         path="/conscientious-industries"
         element={
           <SideBar>
@@ -290,10 +311,6 @@ function App() {
           </SideBar>
         }
       />
-
-      {/* need to delete below routes and respective files */}
-      {/* home category */}
-      {/*All FAQ Routes */}
       <Route
         path="/conscientious/:faqCategory1"
         element={

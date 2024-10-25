@@ -179,8 +179,8 @@ const SolutionCMS = () => {
       </div>
 
       <div className="mt-4">
-        <table className="w-full border-collapse ">
-          <thead className='bg-gray-500 text-white'>
+        <table className="w-full border-collapse bg-white">
+          <thead className='bg-gray-800 text-white'>
             <tr>
               <th className="border p-2">Sr No</th>
               <th className="border p-2">Solution Name</th>

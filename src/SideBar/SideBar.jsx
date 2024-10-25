@@ -236,12 +236,12 @@ const SideBar = ({ children }) => {
             icon: <FaIndustry />,
           },
           {
-            path: "/conscientious-home-casestudies",
+            path: "/conscientious-industry-casestudies",
             name: "Case Studies",
             icon: <FaFileAlt />,
           },
           {
-            path: "/conscientious-blogs",
+            path: "/conscientious-industry-blogs",
             name: "blogs",
             icon: <FaBloggerB />,
           },
@@ -250,6 +250,12 @@ const SideBar = ({ children }) => {
             name: "FAQ",
             icon: <FaBloggerB />,
           },
+         
+        ],
+      },
+      {
+        title: "Important deatails",
+        list: [
           {
             path: "/conscientious-contact-us",
             name: "Contact Us",
@@ -265,8 +271,8 @@ const SideBar = ({ children }) => {
             name: "Navbar",
             icon: <FaBloggerB />,
           },
-        ],
-      },
+        ]
+      }
     ],
     2: [
       {

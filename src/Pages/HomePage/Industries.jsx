@@ -7,7 +7,6 @@ const IndustryCMS = () => {
   const [Industrys, setIndustrys] = useState([]); // Fixed the name from 'Industry' to 'Industrys'
   const [IndustryId, setIndustryId] = useState(null);
   const [IndustryName, setIndustryName] = useState('');
-  const [cardNo, setCardNo] = useState(0);
   const [cardTitle, setCardTitle] = useState('');
   const [cardImage, setCardImage] = useState(null);
   const [cardDescription, setCardDescription] = useState('');
@@ -184,8 +183,8 @@ const IndustryCMS = () => {
       </div>
 
       <div className="mt-4">
-        <table className="w-full border-collapse ">
-          <thead className='bg-gray-500 text-white'>
+        <table className="w-full border-collapse bg-white">
+          <thead className='bg-gray-800 text-white'>
             <tr>
               <th className="border p-2">Sr No.</th>
               <th className="border p-2">Industry Name</th>

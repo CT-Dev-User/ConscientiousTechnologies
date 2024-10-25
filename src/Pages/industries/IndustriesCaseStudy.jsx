@@ -3,8 +3,8 @@ import axios from "axios";
 import { Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
 
-const SolutionCaseStudies = () => {
-  const [solutions, setSolutions] = useState([]);
+const IndustryCaseStudies = () => {
+  const [industries, setIndustries] = useState([]);
   const [caseStudies, setCaseStudies] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
@@ -62,14 +62,14 @@ const SolutionCaseStudies = () => {
   const currentItems = caseStudies.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
-    fetchSolutions();
+    fetchIndustry();
   }, []);
-  const fetchSolutions = async () => {
+  const fetchIndustry = async () => {
     try {
       const response = await axios.get(
-        "https://conscientious-technologies-backend.vercel.app/get-latest-solution-data"
+        "https://conscientious-technologies-backend.vercel.app/get-latest-industry-data"
       );
-      setSolutions(response.data);
+      setIndustries(response.data);
     } catch (error) {
       console.error("Error fetching services:", error);
     }
@@ -82,7 +82,7 @@ const SolutionCaseStudies = () => {
   const getCaseStudiesDataFunc = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-case-studies-by-cateory/Solution"
+        "http://localhost:8080/get-case-studies-by-cateory/Industry"
       );
       console.log(response.data);
       setCaseStudies(response.data);
@@ -95,7 +95,7 @@ const SolutionCaseStudies = () => {
     try {
       const formData = new FormData();
 
-      formData.append("category", "Solution");
+      formData.append("category", "Industry");
       formData.append("Subcategory", Subcategory);
       formData.append("cardDatatitle", cardDatatitle);
       formData.append("cardDatasubTitle", cardDatasubTitle);
@@ -143,7 +143,7 @@ const SolutionCaseStudies = () => {
   const updateCaseStudyDataFunc = async (req, res) => {
     try {
       const formData = new FormData();
-      formData.append("category", "Solution");
+      formData.append("category", "Industry");
       formData.append("Subcategory", Subcategory);
       formData.append("cardDatatitle", cardDatatitle);
       formData.append("cardDatasubTitle", cardDatasubTitle);
@@ -245,7 +245,7 @@ const SolutionCaseStudies = () => {
   return (
     <div className="w-full bg-gray-300 h-auto mx-auto p-4 relative">
       <div className="flex justify-between mb-2 mr-3">
-        <h1 className="text-xl font-bold text-black">Solution Pages Case Studies</h1>
+        <h1 className="text-xl font-bold text-black">Industry Pages Case Studies</h1>
         <button
           onClick={() => setAddPopUpShow(true)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-base"
@@ -257,7 +257,7 @@ const SolutionCaseStudies = () => {
         <table className="border border-gray-300 text-left">
           <thead className="bg-gray-800 text-white text-left">
             <tr className="border-b border-gray-300">
-              <th className="border-r px-4 py-2 text-xs">Subcategory</th>
+              <th className="border-r px-4 py-2 text-xs">Subcategory / Industry</th>
               <th className="border-r px-4 py-2 text-xs">Cards</th>
               <th className="border-r px-4 py-2 text-xs">Header</th>
               <th className="border-r px-4 py-2 text-xs">Overview</th>
@@ -619,7 +619,7 @@ const SolutionCaseStudies = () => {
             {/* Card Data */}
             <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
             <div className="mb-4">
-              <label className="block text-gray-700">solution Name</label>
+              <label className="block text-gray-700">industry Name</label>
               <select
                 name=""
                 value={Subcategory}
@@ -627,10 +627,10 @@ const SolutionCaseStudies = () => {
                 className="w-full p-2 border rounded"
                 id=""
               >
-                <option value="">Select solution</option>
-                {solutions.map((solution, index) => (
-                  <option key={index} value={solution.solutionName}>
-                    {solution.solutionName}
+                <option value="">Select Industry</option>
+                {industries.map((industry, index) => (
+                  <option key={index} value={industry.industryName}>
+                    {industry.industryName}
                   </option>
                 ))}
               </select>
@@ -1099,7 +1099,7 @@ const SolutionCaseStudies = () => {
             {/* Card Data */}
             <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
               <div className="mb-4">
-                <label className="block text-gray-700">Solution Name</label>
+                <label className="block text-gray-700">Industry Name</label>
                 <select
                   name=""
                   value={Subcategory}
@@ -1107,10 +1107,10 @@ const SolutionCaseStudies = () => {
                   className="w-full p-2 border rounded"
                   id=""
                 >
-                  <option value="">Select service</option>
-                  {solutions.map((solution, index) => (
-                    <option key={index} value={solution.solutionName}>
-                      {solution.solutionName}
+                  <option value="">Select Industry</option>
+                  {industries.map((industry, index) => (
+                    <option key={index} value={industry.industryName}>
+                      {industry.industryName}
                     </option>
                   ))}
                 </select>
@@ -1572,4 +1572,4 @@ const SolutionCaseStudies = () => {
   );
 };
 
-export default SolutionCaseStudies;
+export default IndustryCaseStudies;

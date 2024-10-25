@@ -246,7 +246,7 @@ const CaseStudies = () => {
   return (
     <div className="w-full bg-gray-300 h-auto mx-auto p-4 relative">
       <div className="flex justify-between mb-2 mr-3">
-        <h1 className="text-xl font-bold text-black">Case Studies</h1>
+        <h1 className="text-xl font-bold text-black">Service Pages Case Studies</h1>
         <button
           onClick={() => setAddPopUpShow(true)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-base"
