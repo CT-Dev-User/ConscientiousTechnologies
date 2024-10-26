@@ -20,17 +20,17 @@ const KioskSoftware = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" solutionName="Kiosk Software"/>
+            <AllHeader category="Solution" solutionName="Kiosk Software"/>
             <OurPartener />
-            <WhyChooseCTSlider category="Solutions" subCategory="Kiosk Software"/>
+            <WhyChooseCTSlider category="Solution" subCategory="Kiosk Software"/>
             <Architecture />
             <KeyFeatureOfKiskok />
             <KioskSoftService />
             <SecurityMaintainance />
             <SuccessFactor />
-            <CaseStudies category="Solutions" subCategory="Kiosk Software"/>
+            <CaseStudies category="Solution" subCategory="Kiosk Software"/>
             <MeetOurClient />
-            <AllFaq category="Solutions" subCategory="Kiosk Software"/>
+            <AllFaq category="Solution" subCategory="Kiosk Software"/>
             <BookFreeConsultation />
             <Footer />
         </div>

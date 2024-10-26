@@ -20,17 +20,17 @@ const CRMSoftware = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="CRM Services"/>
+      <AllHeader category="Solution" solutionName="CRM Services"/>
       <OurPartener />
-      <WhyChooseCTSlider category="Solutions" subCategory="CRM Services"/>
+      <WhyChooseCTSlider category="Solution" solutionName="CRM Services"/>
       <MeetingAll />
       <AdvancedCRM />
       <ExpectAfterTailored />
       <TechHeader />
-      <ReliableTools category="Solutions" subCategory="CRM Services"/>
-      <CaseStudies category="Solutions" subCategory="CRM Services"/>
+      <ReliableTools category="Solution" subCategory="CRM Services"/>
+      <CaseStudies category="Solution" subCategory="CRM Services"/>
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="CRM Services"/>
+      <AllFaq category="Solution" subCategory="CRM Services"/>
       <BookFreeConsultation />
       <Footer />
     </div>

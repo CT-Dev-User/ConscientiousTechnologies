@@ -21,17 +21,17 @@ const SoftSupportMaintainence = () => {
   return (
     <div>
       <AllHeader
-        category="SubServices" serviceName="Software Development Services" subServiceName="Software support"
+        category="SubService" serviceName="Software Development Services" subServiceName="Software support"
       />
       <OurPartener />
-      <WhyChooseCTSlider category="Software Development Services" subCategory="Software support" />
+      <WhyChooseCTSlider category="Service" subCategory="Software Development Services"/>
       <AppWeSupport />
       <ApplicationMaintainace />
       <ReliableToolsHeading />
-      <ReliableTools category="Software Development Services" subCategory="Software support" />
-      <CaseStudies category="Software Development Services" subCategory="Software support" />
+      <ReliableTools category="Service" subCategory="Software Development Services"/>
+      <CaseStudies category="Service" subCategory="Software Development Services" />
       <MeetOurClient />
-      <AllFaq category="Software Development Services" subCategory="Software support" />
+      <AllFaq category="Service" subCategory="Software Development Services"/>
       <BookFreeConsultation />
       <Footer />
     </div>

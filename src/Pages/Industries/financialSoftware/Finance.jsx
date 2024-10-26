@@ -17,18 +17,18 @@ import ReliableToolsHeading from './ReliableTools/ReliableToolsHeading'
 const Finance = () => {
     return (
         <div>
-            <AllHeader category="Industries" industryName="Financial Services"/>
+            <AllHeader category="Industry" industryName="Financial Services"/>
             <OurPartener/>
-            <WhyChooseCTSlider category="Industries" subCategory="Financial Services"/>
+            <WhyChooseCTSlider category="Industry" subCategory="Financial Services"/>
             <FinancialSerDomain />
             <CustomerExperience />
             <SuccessDrivenApproach />
             <ReliableToolsHeading />
-            <ReliableTools category="Industries" subCategory="Financial Services"/>
-            <CaseStudies category="Industries" subCategory="Financial Services"/>
-            <Blog />
+            <ReliableTools category="Industry" subCategory="Financial Services"/>
+            <CaseStudies category="Industry" subCategory="Financial Services"/>
+            <Blog category="Industry" subCategory="Financial Services"/>
             <MeetOurClient />
-            <AllFaq category="Industries" subCategory="Financial Services"/>
+            <AllFaq category="Industry" subCategory="Financial Services"/>
             <BookFreeConsultation />
             <Footer />
         </div>

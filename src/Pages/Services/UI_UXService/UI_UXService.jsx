@@ -18,14 +18,14 @@ const UI_UXService = () => {
 
     return (
         <div>
-            <AllHeader category="UI UX Design"/>
+            <AllHeader category="Service" subCategory="UI UX Design"/>
             <OurPartener />
-            <WhyChooseCTSlider category="Services" subCategory="UI-UX Design"/>
+            <WhyChooseCTSlider category="Service" subCategory="UI UX Design"/>
             <PerkOfWebDesign />
             <UI_UX_Option />
-            <CaseStudies category="Services" subCategory="UI-UX Design"/>
+            <CaseStudies category="Service" subCategory="UI UX Design"/>
             <MeetOurClient />
-            <AllFaq category="Services" subCategory="UI-UX Design"/>
+            <AllFaq  category="Service" subCategory="UI UX Design"/>
             <BookFreeConsultation />
             <Footer />
         </div>

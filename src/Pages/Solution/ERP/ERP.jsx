@@ -21,18 +21,18 @@ const ERP = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" solutionName="ERP"/>
+            <AllHeader category="Solution" solutionName="ERP"/>
             <OurPartener />
-            <WhyChooseCTSlider category="Solutions" subCategory="ERP"/>
+            <WhyChooseCTSlider category="Solution" subCategory="ERP"/>
             <FunctionalERPModule />
             <ERPDevService />
             <ERPDevSteps />
             <PerkOfERP />
             <TechnologyHeading />
-            <ReliableTools category="Solutions" subCategory="ERP"/>
-            <CaseStudies category="Solutions" subCategory="ERP"/>
+            <ReliableTools category="Solution" subCategory="ERP"/>
+            <CaseStudies category="Solution" subCategory="ERP"/>
             <MeetOurClient />
-            <AllFaq category="Solutions" subCategory="ERP"/>
+            <AllFaq category="Solution" subCategory="ERP"/>
             <BookFreeConsultation />
             <Footer />
         </div>

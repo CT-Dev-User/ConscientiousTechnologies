@@ -39,7 +39,7 @@ const HomePage = ({ setHideNavbar, setActiveSubNav }) => { // Receive setHideNav
       <WhoWorkWithUs />
       <IndustriesWeServe />
       <CaseStudies category="HomePage"/>
-      <Blog />
+      <Blog category="HomePage" />
       <MeetOurClient />
       <AllFaq category="HomePage" />
       <BookFreeConsultation />

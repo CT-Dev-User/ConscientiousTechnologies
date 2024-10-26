@@ -20,17 +20,17 @@ const CloudeApplication = () => {
     return (
         <div>
             <AllHeader 
-             category="SubServices"  serviceName="Software Development Services" subServiceName="Cloud application"
+             category="SubService"  serviceName="Software Development Services" subServiceName="Cloud application"
             />
             <OurPartener />
-            <WhyChooseCTSlider category="Software Development Services" subCategory="Cloud application"/>
+            <WhyChooseCTSlider category="Service" subCategory="Software Development Services"/>
             <ScopeOfCloudeApp />
             <AttributeOfOurApp />
             <ReliableToolsHeading />
-            <ReliableTools category="Software Development Services" subCategory="Cloud application" />
-            <CaseStudies />
+            <ReliableTools category="Service" subCategory="Software Development Services" />
+            <CaseStudies category="Service" subCategory="Software Development Services"/>
             <MeetOurClient />
-            <AllFaq category="Software Development Services" subCategory="Cloud application"/>
+            <AllFaq category="Service" subCategory="Software Development Services"/>
             <BookFreeConsultation />
             <Footer />
         </div>

@@ -20,16 +20,16 @@ const Enterprise = () => {
   return (
     <div>
       <AllHeader 
-      category="SubServices"  serviceName="Software Development Services" subServiceName="Enterprise software"
+      category="SubService"  serviceName="Software Development Services" subServiceName="Enterprise software"
       />
       <OurPartener />
       <ScopeEnterprise />
       <PartnerUpWithCity />
       <ReliableToolsHeading />
-      <ReliableTools category="Software Development Services" subCategory="Enterprise Software"/>
-      <CaseStudies category="Software Development Services" subCategory="Enterprise Software"/>
+      <ReliableTools category="Service" subCategory="Software Development Services"/>
+      <CaseStudies category="Service" subCategory="Software Development Services"/>
       <MeetOurClient />
-      <AllFaq category="Software Development Services" subCategory="Enterprise Software"/>
+      <AllFaq category="Service" subCategory="Software Development Services"/>
       <BookFreeConsultation />
       <Footer />
     </div>

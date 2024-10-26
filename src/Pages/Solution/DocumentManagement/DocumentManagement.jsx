@@ -16,13 +16,13 @@ const DocumentManagement = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="Document Management"/>
+      <AllHeader category="Solution" solutionName="Document Management"/>
       <OurPartener/>
       <AutomationSoftware/>
       <IntegrationsDocumentation/>
       <DocumentationAutomation/>
       <SoftwareImplementation/>
-      <AllFaq category="Solutions" subCategory="Document Management"/>
+      <AllFaq category="Solution" subCategory="Document Management"/>
       <BookFreeConsultation/>
       <Footer/>
     </div>

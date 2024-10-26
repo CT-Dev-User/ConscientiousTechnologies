@@ -17,14 +17,14 @@ const HelpDesk = () => {
 
   return (
     <div>
-      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Help Desk" />
+      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Help Desk" />
       <OurPartener />
-      <WhyChooseCTSlider category="Dedicated Software Team" subCategory="Help Desk" />
+      <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams"/>
       <ITHelpDesk />
       <OurOutSource />
-      <CaseStudies category="Dedicated Software Team" subCategory="Help Desk"/>
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
       <MeetOurClient />
-      <AllFaq category="Dedicated Software Team" subCategory="Help Desk" />
+      <AllFaq category="Dedicated Software Teams" subCategory="Help Desk" />
       <BookFreeConsultation />
       <Footer />
     </div>

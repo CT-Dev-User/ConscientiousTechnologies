@@ -19,16 +19,16 @@ const CustomConsService = () => {
     return (
         <div>
             <AllHeader 
-            category="SubServices"  serviceName="Software Development Services" subServiceName="Custom software development"
+            category="SubService"  serviceName="Software Development Services" subServiceName="Custom software development"
             />
             <OurPartener />
             <PartnerUpWithCity/>
             <DiverseSkills />
             <ReliableToolsHeading />
-            <ReliableTools category="Software Development Services" subCategory="Custom software development" />
-            <CaseStudies category="Software Development Services" subCategory="Custom software development"/>
+            <ReliableTools category="Service" subCategory="Software Development Services" />
+            <CaseStudies category="Service" subCategory="Software Development Services"/>
             <MeetOurClient />
-            <AllFaq category="Software Development Services" subCategory="Custom software development"/>
+            <AllFaq category="Service" subCategory="Software Development Services"/>
             <BookFreeConsultation />
             <Footer />
         </div>

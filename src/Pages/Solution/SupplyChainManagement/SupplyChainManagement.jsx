@@ -19,16 +19,16 @@ const SupplyChainManagement = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="Supply Chain Management"/>
+      <AllHeader category="Solution" solutionName="Supply Chain Management"/>
       <OurPartener/>
       <SupplyChainSolutions />
-      <WhyChooseCTSlider category="Solutions" subCategory="Supply Chain Management"/>
+      <WhyChooseCTSlider category="Solution" subCategory="Supply Chain Management"/>
       <HowToDevSupplySoft />
       <TechnologyHeading />
-      <ReliableTools category="Solutions" subCategory="Supply Chain Management"/>
-      <CaseStudies category="Solutions" subCategory="Supply Chain Management"/>
+      <ReliableTools category="Solution" subCategory="Supply Chain Management"/>
+      <CaseStudies category="Solution" subCategory="Supply Chain Management"/>
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="Supply Chain Management"/>
+      <AllFaq category="Solution" subCategory="Supply Chain Management"/>
       <BookFreeConsultation />
       <Footer />
     </div>

@@ -12,14 +12,14 @@ import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 const Telicommunication = () => {
     return (
         <div>
-            <AllHeader category="Industries" industryName="Telecommunications" />
+            <AllHeader category="Industry" industryName="Telecommunications" />
             <OurPartener />
-            <WhyChooseCTSlider category="Industries" subCategory="Telecommunications" />
+            <WhyChooseCTSlider category="Industry" subCategory="Telecommunications" />
             <OperationSupportSystem />
             <BussinessSupportSystem />
-            <CaseStudies category="Industries" subCategory="Telecommunications" />
+            <CaseStudies category="Industry" subCategory="Telecommunications" />
             <MeetOurClient />
-            <AllFaq category="Industries" subCategory="Telecommunications" />
+            <AllFaq category="Industry" subCategory="Telecommunications" />
             <BookFreeConsultation />
             <Footer />
         </div>

@@ -18,15 +18,15 @@ const FleetManagement = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" solutionName="Fleet Management"/>
+            <AllHeader category="Solution" solutionName="Fleet Management"/>
             <OurPartener />
             <ChallengesFleet />
             <Solution/>
-            <WhyChooseCTSlider category="Solutions" subCategory="Fleet Management"/>
+            <WhyChooseCTSlider category="Solution" subCategory="Fleet Management"/>
             <ServiceOptions />
-            <CaseStudies category="Solutions" subCategory="Fleet Management"/>
+            <CaseStudies category="Solution" subCategory="Fleet Management"/>
             <MeetOurClient />
-            <AllFaq category="Solutions" subCategory="Fleet Management"/>
+            <AllFaq category="Solution" subCategory="Fleet Management"/>
             <BookFreeConsultation />
             <Footer />
         </div>

@@ -19,17 +19,17 @@ import Footer from '../../HomePage/Component/Footer/Footer'
 const ArtificialIntelligence = () => {
   return (
     <div>
-      <AllHeader category="Services" serviceName="Artificial Intelligence (AI)"  />
+      <AllHeader category="Service" serviceName="Artificial Intelligence (AI) Services"  />
       <OurPartener />
-      <WhyChooseCTSlider category="Services" subCategory="Artificial Intelligence (AI) Services" />
+      <WhyChooseCTSlider category="Service" subCategory="Artificial Intelligence (AI) Services" />
       <SoftWareAdvBussiness />
       <AISolutionWeCreate />
       <EndtoEndAIConsulting />
       <ChooseYourAiService />
       <MLMethods />
       <AiToolsHeader />
-      <ReliableTools category="Services" subCategory="Artificial Intelligence (AI) Services" />
-      <CaseStudies category="Services" subCategory="Artificial Intelligence (AI) Services" />
+      <ReliableTools category="Service" subCategory="Artificial Intelligence (AI) Services" />
+      <CaseStudies category="Service" subCategory="Artificial Intelligence (AI) Services" />
       <MeetOurClient />
       <AllFaq category="Services" subCategory="Artificial Intelligence (AI) Services" />
       <BookFreeConsultation />

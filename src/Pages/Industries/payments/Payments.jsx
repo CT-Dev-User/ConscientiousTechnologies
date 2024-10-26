@@ -16,18 +16,18 @@ import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTe
 const Payments = () => {
     return (
         <div>
-            <AllHeader category="Industries" industryName="Payments"/>
+            <AllHeader category="Industry" industryName="Payments"/>
             <OurPartener />
-            <WhyChooseCTSlider ategory="Industries" subCategory="Payments"/>
+            <WhyChooseCTSlider ategory="Industry" subCategory="Payments"/>
             <WhoWeServe />
             <FieldofExpertise />
             <FeatureWeRecomded />
             <ValueDrivenApproach />
             <TechnologyHeader />
-            <ReliableTools ategory="Industries" subCategory="Payments"/>
-            <CaseStudies ategory="Industries" subCategory="Payments"/>
+            <ReliableTools category="Industry" subCategory="Payments"/>
+            <CaseStudies category="Industry" subCategory="Payments"/>
             <MeetOurClient />
-            <AllFaq ategory="Industries" subCategory="Payments"/>
+            <AllFaq category="Industry" subCategory="Payments"/>
             <BookFreeConsultation />
             <Footer />
         </div>

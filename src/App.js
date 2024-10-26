@@ -144,14 +144,14 @@ function App() {
 
         {/* Dedicated Development Team */}
         <Route path='Services/Dedicated Software Teams' element={<MainDedicatedDevService />} />
-        <Route path='/Dedicated Software Team/Software Development' element={<SoftwareDevelopment />} />
-        <Route path='/Dedicated Software Team/Web Development' element={<SoftDevWebDevelopment />} />
-        <Route path='/Dedicated Software Team/Mobile Development' element={<MobileDevelopment />} />
-        <Route path='/Dedicated Software Team/Data Analytics' element={<DataAnalytics />} />
-        <Route path='/Dedicated Software Team/QA & Testing' element={<Qa_Service />} />
-        <Route path='/Dedicated Software Team/IT support' element={<ItSupport />} />
-        <Route path='/Dedicated Software Team/Cyber Security' element={<CyberSecurity />} />
-        <Route path='/Dedicated Software Team/Help desk' element={<HelpDesk />} />
+        <Route path='/Dedicated Software Teams/Software Development' element={<SoftwareDevelopment />} />
+        <Route path='/Dedicated Software Teams/Web Development' element={<SoftDevWebDevelopment />} />
+        <Route path='/Dedicated Software Teams/Mobile Development' element={<MobileDevelopment />} />
+        <Route path='/Dedicated Software Teams/Data Analytics' element={<DataAnalytics />} />
+        <Route path='/Dedicated Software Teams/QA & Testing' element={<Qa_Service />} />
+        <Route path='/Dedicated Software Teams/IT support' element={<ItSupport />} />
+        <Route path='/Dedicated Software Teams/Cyber Security' element={<CyberSecurity />} />
+        <Route path='/Dedicated Software Teams/Help desk' element={<HelpDesk />} />
 
         {/* Solution Routes */}
         {/* <Route path='/Solutions/:subCategory' element={<Solution />} /> */}

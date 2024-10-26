@@ -7,20 +7,20 @@ const AllHeader = ({ category, serviceName, solutionName, industryName, subServi
 
     const fetchHeader = async () => {
         try {
-            if (category === "Services") {
+            if (category === "Service") {
                 console.log("ok")
                 const response = await axios.get(`http://localhost:8080/get-service-data-by-serviceName/${serviceName}`);
                 setHeaderData(response.data);
                 // console.log(response.data)
-            } else if (category === "Solutions") {
+            } else if (category === "Solution") {
                 const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-solution-data-by-solutionName/${solutionName}`);
                 console.log(response.data)
                 setHeaderData(response.data);
-            }else if(category === "Industries"){
+            }else if(category === "Industry"){
                 const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-latest-industry-data-by-industryName/${industryName}`);
                 console.log(response.data)
                 setHeaderData(response.data);
-            }else if(category === "SubServices" ){
+            }else if(category === "SubService" ){
                 console.log("sub services")
               const response = await axios.get(`http://localhost:8080/get-subservice-data-by-subservice/${serviceName}/${subServiceName}`); 
               console.log("response",response.data) 

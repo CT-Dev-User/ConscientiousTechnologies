@@ -18,15 +18,15 @@ const ItSupport = () => {
 
   return (
     <div>
-      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="IT Support"/>
+      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="IT Support"/>
       <OurPartener />
       <Scope />
-      <WhyChooseCTSlider category="Dedicated Software Team" subCategory="IT Support"/>
+      <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams"/>
       <GetWithITSupport />
       <CompitativeTraits />
-      <CaseStudies category="Dedicated Software Team" subCategory="IT Support"/>
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
       <MeetOurClient />
-      <AllFaq category="Dedicated Software Team" subCategory="IT Support"/>
+      <AllFaq category="Dedicated Software Teams" subCategory="IT Support"/>
       <BookFreeConsultation />
       <Footer />
     </div>

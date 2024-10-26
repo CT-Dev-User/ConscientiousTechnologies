@@ -22,18 +22,18 @@ const EcommerceServices = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="Ecommerce Services"/>
+      <AllHeader category="Solution" solutionName="Ecommerce Services"/>
       <OurPartener />
-      <WhyChooseCTSlider category="Solutions" subCategory="Ecommerce Services"/>
+      <WhyChooseCTSlider category="Solution" subCategory="Ecommerce Services"/>
       <ConsultingService />
       <ECommerseDevService />
       <SupportMaintainance />
       <GrowthOptimization />
       <TechStackHeader />
-      <ReliableTools category="Solutions" subCategory="Ecommerce Services"/>
-      <CaseStudies category="Solutions" subCategory="Ecommerce Services"/>
+      <ReliableTools category="Solution" subCategory="Ecommerce Services"/>
+      <CaseStudies category="Solution" subCategory="Ecommerce Services"/>
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="Ecommerce Services"/>
+      <AllFaq category="Solution" subCategory="Ecommerce Services"/>
       <BookFreeConsultation />
       <Footer />
     </div>

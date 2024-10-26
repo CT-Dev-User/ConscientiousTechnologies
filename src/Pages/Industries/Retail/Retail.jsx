@@ -11,13 +11,13 @@ import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 const Retail = () => {
     return (
         <div>
-            <AllHeader category="Industries" industryName="Retail"/>
+            <AllHeader category="Industry" subCategory="Retail"/>
             <OurPartener />
-            <WhyChooseCTSlider category="Industries" subCategory="Retail"/>
+            <WhyChooseCTSlider category="Industry" subCategory="Retail"/>
             <SoftwareSolution />
-            <CaseStudies category="Industries" subCategory="Retail"/>
+            <CaseStudies category="Industry" subCategory="Retail"/>
             <MeetOurClient />
-            <AllFaq category="Industries" subCategory="Retail"/>
+            <AllFaq category="Industry" subCategory="Retail"/>
             <BookFreeConsultation />
             <Footer />
         </div>

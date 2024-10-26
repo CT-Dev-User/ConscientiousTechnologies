@@ -3,15 +3,23 @@ import Slider from "react-slick";
 import "./blog.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const Blog = () => {
+const Blog = ({ category, subCategory }) => {
   const sliderRef1 = useRef(null);
   const [blogData, setBlogData] = useState([]);
   const navigate = useNavigate();
   const fetchBlogsData = async () => {
     try {
-      const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-latest-blog-data");
-      setBlogData(response.data.blogs);
-      console.log(blogData)
+      if (category === "HomePage") {
+        const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-latest-blog-data");
+        console.log(response.data);
+        setBlogData(response.data.data);
+        // console.log(blogData)
+      } else {
+        const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-blogs-data-by-CategoryandSubCategory/${category}/${subCategory}`);
+        // console.log(response.data);
+        setBlogData(response.data.data);
+        // console.log(blogData)
+      }
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +68,7 @@ const Blog = () => {
           Customized Solutions for Maximum Impact."
         </p>
       </div>
-      <div className="lg:flex text-white w-[85%] gap-9 flex-wrap mx-auto justify-center mt-7 hidden">
+      <div className="lg:flex text-white w-[85%] gap-9 flex-wrap mx-auto justify-between mt-7 hidden">
         {blogData.map((items, i) => {
           return (
             <div
@@ -70,8 +78,8 @@ const Blog = () => {
                 backgroundPosition: "cover",
               }}
               className={`${i > 3
-                  ? "hidden"
-                  : "w-[35rem] h-96 bg-black relative blog-main-div"
+                ? "hidden"
+                : "w-[48%] h-96 bg-black relative blog-main-div"
                 }`}
               key={i}
             >

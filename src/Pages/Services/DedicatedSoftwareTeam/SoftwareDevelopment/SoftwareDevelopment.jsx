@@ -24,20 +24,20 @@ const SoftwareDevelopment = () => {
 
   return (
     <div>
-      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Software Development"/>
+      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Software Development"/>
       <OurPartener />
       <ExploreOurConsulting/>
-      <AreaOfExperties category="Dedicated Software Team" subCategory="Software Development" navCategory="Services" navSubCategory="Software Development Services"/>
-      <WhyChooseCTSlider category="Dedicated Software Team" subCategory="Software Development" />
+      <AreaOfExperties category="Dedicated Software Teams" subCategory="Software Development" navCategory="Services" navSubCategory="Software Development Services"/>
+      <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams" />
       <PartnerUpWithCity/>
       <DiffCollabration />
       <SoftAdvance />
       <SoftDevSteps />
       <ReliableToolsHeading />
-      <ReliableTools category="Dedicated Software Team" subCategory="Software Development" />
-      <CaseStudies category="Dedicated Software Team" subCategory="Software Development"/>
+      <ReliableTools category="Service" subCategory="Dedicated Software Teams" />
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
       <MeetOurClient />
-      <AllFaq category="Dedicated Software Team" subCategory="Software Development"/>
+      <AllFaq category="Service" subCategory="Dedicated Software Teams"/>
       <BookFreeConsultation />
       <Footer />
     </div>

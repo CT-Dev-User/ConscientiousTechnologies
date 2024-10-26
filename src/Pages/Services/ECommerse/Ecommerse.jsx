@@ -21,16 +21,16 @@ const Ecommerse = () => {
 
   return (
     <div>
-      <AllHeader category="Services" subServiceName="Ecommerce Services" />
+      <AllHeader category="Service" subServiceName="Ecommerce Services" />
       <OurPartener />
       <ExploreConsuting />
-      <WhyChooseCTSlider category="Services" subCategory="Ecommerce Services"/>
+      <WhyChooseCTSlider category="Service" subCategory="Ecommerce Services"/>
       <EcommerseDevService />
       <OurTechHeader />
-      <ReliableTools category="Services" subCategory="Ecommerce Services"/>
-      <CaseStudies category="Services" subCategory="Ecommerce Services"/>
+      <ReliableTools category="Service" subCategory="Ecommerce Services"/>
+      <CaseStudies category="Service" subCategory="Ecommerce Services"/>
       <MeetOurClient />
-      <AllFaq category="Services" subCategory="Ecommerce Services"/>
+      <AllFaq category="Service" subCategory="Ecommerce Services"/>
       <BookFreeConsultation />
       <Footer />
 

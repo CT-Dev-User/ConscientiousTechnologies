@@ -31,7 +31,7 @@ const ReasonForDedicatedTeam = () => {
       </div>
       <div className='lg:hidden flex text-[white] w-[90%] mx-auto justify-center flex-wrap mt-7'>
         {processWeFollowData.map((data, i) => (
-          <div key={i} className={`w-[49%] h-56 text-[black] border-[#737373] border-dashed flex flex-col justify-around px-2 ${i === 0 || i === 2 || i === 4 ? 'border-r' : ''} ${i === 0 || i == 1 || i == 2 || i == 3 ? 'border-b' : ''}`} >
+          <div key={i} className={`w-[49%] h-64 text-[black] border-[#737373] border-dashed flex flex-col justify-around px-2 ${i === 0 || i === 2 || i === 4 ? 'border-r' : ''} ${i === 0 || i == 1 || i == 2 || i == 3 ? 'border-b' : ''}`} >
             <h1 className='font-bold self-end mr-2 text-xl' style={{ color: data.srColor }}>{data.srNo}</h1>
             <div>
               <h3 className='text-base font-bold'>{data.title}</h3>

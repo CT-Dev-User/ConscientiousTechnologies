@@ -15,17 +15,16 @@ import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTe
 
 const Banking = () => {
     return (
-        <div>
-            
-            <AllHeader category="Industries" industryName="Banking"/>
+        <div>    
+            <AllHeader category="Industry" industryName="Banking"/>
             <OurPartener />
-            <WhyChooseCTSlider category="Industries" subCategory="Banking"/>
+            <WhyChooseCTSlider category="Industry" subCategory="Banking"/>
             <BankingSoftSolution />
             <BankingServiceOffer />
             <ReliableToolsHeading />
-            <ReliableTools category="Industries" subCategory="Banking"/>
-            <CaseStudies category="Industries" subCategory="Banking"/>
-            <Blog />
+            <ReliableTools category="Industry" subCategory="Banking"/>
+            <CaseStudies category="Industry" subCategory="Banking"/>
+            <Blog category="Industry" subCategory="Banking"/>
             <MeetOurClient />
             <AllFaq category="Industries" subCategory="Banking"/>
             <BookFreeConsultation />

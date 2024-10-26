@@ -27,19 +27,19 @@ const MainDedicatedDevService = () => {
 
   return (
     <div>
-      <AllHeader category="Services" serviceName="Dedicated Software Teams" />
+      <AllHeader category="Service" serviceName="Dedicated Software Teams" />
       <OurPartener />
       <WhyChooseCTSlider category="Services" subCategory="Dedicated Software Teams" />
       <PartnerUpWithCity />
       <AreaOfExpertiesHeading />
-      <AreaOfExperties category="Services" serviceName="Dedicated Software Teams" navCategory="Services" navSubCategory="Dedicated Software Team" />
+      <AreaOfExperties category="Service" serviceName="Dedicated Software Teams" navCategory="Services" navSubCategory="Dedicated Software Teams" />
       <ReasonForDedicatedTeam />
       <TechnologyHeader />
-      <ReliableTools category="Services" subCategory="Dedicated Software Team" />
-      <CaseStudies category="Services" subCategory="Dedicated Software Team" />
-      <Blog />
+      <ReliableTools category="Service" Subcategory="Dedicated Software Teams" />
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams" />
+      <Blog category="Service" subCategory="Dedicated Software Teams" />
       <MeetOurClient />
-      <AllFaq category="Services" subCategory="Dedicated Software Team" />
+      <AllFaq category="Service" subCategory="Dedicated Software Teams" />
       <BookFreeConsultation />
       <Footer />
     </div>

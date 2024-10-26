@@ -14,15 +14,15 @@ import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 const Insurance = () => {
     return (
         <div>
-            <AllHeader category="Industries" industryName="Insurance" />
+            <AllHeader category="Industry" industryName="Insurance" />
             <OurPartener />
-            <WhyChooseCTSlider category="Industries" subCategory="Insurance" />
+            <WhyChooseCTSlider category="Industry" subCategory="Insurance" />
             <ITSolutions />
             <ITServices />
-            <CaseStudies category="Industries" subCategory="Insurance" />
-            <Blog />
+            <CaseStudies category="Industry" subCategory="Insurance" />
+            <Blog category="Industry" subCategory="Insurance" />
             <MeetOurClient />
-            <AllFaq category="Industries" subCategory="Insurance" />
+            <AllFaq category="Industry" subCategory="Insurance"  />
             <BookFreeConsultation />
             <Footer />
         </div>

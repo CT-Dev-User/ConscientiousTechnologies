@@ -21,18 +21,18 @@ const DataAnalystSolution = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="Data Analytics"/>
+      <AllHeader category="Solution" solutionName="Data Analytics"/>
       <OurPartener />
       <BuildingDataAnalyst />
-      <WhyChooseCTSlider category="Solutions" subCategory="Data Analytics"/>
+      <WhyChooseCTSlider category="Solution" solutionName="Data Analytics"/>
       <BenefitsFromCt />
       <FlexibleServiceApp />
       <CTSolution />
       <ReliableToolsHeading />
-      <ReliableTools category="Solutions" subCategory="Data Analytics"/>
-      <CaseStudies category="Solutions" subCategory="Data Analytics"/>
+      <ReliableTools category="Solution" subCategory="Data Analytics"/>
+      <CaseStudies category="Solution" subCategory="Data Analytics"/>
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="Data Analytics"/>
+      <AllFaq category="Solution" subCategory="Data Analytics"/>
       <BookFreeConsultation />
       <Footer />
     </div>

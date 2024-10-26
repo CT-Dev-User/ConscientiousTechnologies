@@ -20,17 +20,17 @@ const PaymentManageMent = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="Payment Management" />
+      <AllHeader category="Solution" solutionName="Payment Management" />
       <OurPartener />
       <WhomWeServe />
       <PaymentSolution />
-      <WhyChooseCTSlider category="Solutions" subCategory="Payment Management"/>
+      <WhyChooseCTSlider category="Solution" subCategory="Payment Management"/>
       <ValueDrivenApproach />
       <TechnologyHeading />
-      <ReliableTools category="Solutions" subCategory="Payment Management"/>
-      <CaseStudies category="Solutions" subCategory="Payment Management"/>
+      <ReliableTools category="Solution" subCategory="Payment Management"/>
+      <CaseStudies category="Solution" subCategory="Payment Management"/>
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="Payment Management"/>
+      <AllFaq category="Solution" subCategory="Payment Management"/>
       <BookFreeConsultation />
       <Footer />
     </div>

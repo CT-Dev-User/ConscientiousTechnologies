@@ -18,15 +18,15 @@ const ProjectMang = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" solutionName="Project Management"/>
+            <AllHeader category="Solution" solutionName="Project Management"/>
             <OurPartener />
             <KeyFeaturesPM />
             <ExtendedFeature />
             <PMSoftMang/>
             <SuccessFactors/>
-            <CaseStudies category="Solutions" subCategory="Project Management"/>
+            <CaseStudies category="Solution" subCategory="Project Management"/>
             <MeetOurClient />
-            <AllFaq category="Solutions" subCategory="Project Management"/>
+            <AllFaq category="Solution" subCategory="Project Management"/>
             <BookFreeConsultation />
             <Footer/>
         </div>

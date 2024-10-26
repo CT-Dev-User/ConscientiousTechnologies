@@ -16,17 +16,17 @@ import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 const Lending = () => {
     return (
         <div>
-            <AllHeader category="Industries" industryName="Lending" />
+            <AllHeader category="Industry" industryName="Lending" />
             <OurPartener />
-            <WhyChooseCTSlider category="Industries" subCategory="Lending" />
+            <WhyChooseCTSlider category="Industry" subCategory="Lending" />
             <LendingUSeCases />
             <LendingSolutions />
             <LendingIntegration />
             <BenefitsOfLending />
-            <CaseStudies category="Industries" subCategory="Lending" />
-            <Blog />
+            <CaseStudies category="Industry" subCategory="Lending" />
+            <Blog category="Industry" subCategory="Lending"/>
             <MeetOurClient />
-            <AllFaq category="Industries" subCategory="Lending" />
+            <AllFaq category="Industry" subCategory="Lending" />
             <BookFreeConsultation />
             <Footer />
         </div>

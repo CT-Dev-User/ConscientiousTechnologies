@@ -19,17 +19,17 @@ const ContentManagement = () => {
   }, [])
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="Content Management"/>
+      <AllHeader category="Solution" solutionName="Content Management"/>
       <OurPartener />
-      <WhyChooseCTSlider category="Solutions" subCategory="Content Management"/>
+      <WhyChooseCTSlider category="Solution" solutionName="Asset Management"/>
       <CMSKeyFeatures />
       <WhatYouWillGet />
       <MeetYouWhere />
       <TechPlatformHeader />
-      <ReliableTools category="Solutions" subCategory="Content Management"/>
-      <CaseStudies category="Solutions" subCategory="Content Management"/>
+      <ReliableTools category="Solution" subCategory="Content Management"/>
+      <CaseStudies category="Solution" subCategory="Content Management"/>
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="Content Management"/>
+      <AllFaq category="Solution" subCategory="Content Management"/>
       <BookFreeConsultation />
       <Footer />
     </div>

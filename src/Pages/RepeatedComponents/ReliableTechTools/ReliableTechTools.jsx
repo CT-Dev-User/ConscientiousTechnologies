@@ -4,7 +4,8 @@ import axios from "axios";
 import TechLogosPopup from "./TechLogosPopup";
 import aboutUs from "../../../assets/AboutUs/aboutUs.png";
 
-const ReliableTools = ({ category, subCategory }) => {
+const ReliableTools = ({ category, Subcategory }) => {
+  console.log(category, Subcategory)
   const [reliableToolData, setReliableToolsData] = useState([]);
   const [allTechLogos, setAllTechLogos] = useState([]);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
@@ -17,11 +18,13 @@ const ReliableTools = ({ category, subCategory }) => {
           "https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data"
         );
         setReliableToolsData(response.data.data);
-      } else {
+      }
+       else {
         const response = await axios.get(
-          `https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/${category}/${subCategory}`
+          `https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/${category}/${Subcategory}`
         );
         setReliableToolsData(response.data.data);
+        console.log(response.data.data)
       }
     } catch (error) {
       console.error(error);

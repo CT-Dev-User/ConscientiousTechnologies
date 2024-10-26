@@ -19,15 +19,15 @@ const SoftwareProduct = () => {
   return (
     <div>
       <AllHeader 
-      category="SubServices"  serviceName="Software Development Services" subServiceName="Software product"
+      category="SubService"  serviceName="Software Development Services" subServiceName="Software product"
       />
       <OurPartener />
       <FullScale />
       <PartnerUpWithCity />
       <ProductDevOutSourcing />
       <ReliableToolsHeading />
-      <ReliableTools category="Software Development Services" subCategory="Software product" />
-      <AllFaq category="Software Development Services" subCategory="Software product" />
+      <ReliableTools category="Service" subCategory="Software Development Services" />
+      <AllFaq category="Service" subCategory="Software Development Services" />
       <BookFreeConsultation />
       <Footer />
     </div>

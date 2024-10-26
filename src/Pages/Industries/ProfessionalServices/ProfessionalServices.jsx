@@ -8,11 +8,11 @@ import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 const ProfessionalServices = () => {
   return (
     <div>
-      <AllHeader category="Industries" industryName="Professional Services"/>
+      <AllHeader category="Industry" subCategory="Payments"/>
       <OurPartener />
-      <WhyChooseCTSlider category="Industries" subCategory="Professional Services"/>
+      <WhyChooseCTSlider category="Industry" subCategory="Professional Services"/>
       <StreamlineOperations />
-      <AllFaq category="Industries" subCategory="Professional Services"/>
+      <AllFaq category="Industry" subCategory="Payments"/>
       <Footer />
     </div>
   )

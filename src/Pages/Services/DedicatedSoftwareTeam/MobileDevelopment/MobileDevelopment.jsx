@@ -21,17 +21,17 @@ const MobileDevelopment = () => {
 
   return (
     <div>
-      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Mobile Development"/>
+      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Mobile Development"/>
       <OurPartener/>
       <MobileAppSolution/>
       <PartnerUpWithCity/>
       <MobileAppWeDeveloped/>
-      <AreaOfExperties category="Dedicated Software Team" subCategory="Mobile Development"/>
+      <AreaOfExperties category="Dedicated Software Teams" subCategory="Mobile Development"/>
       <ReliableToolsHeading/>
-      <ReliableTools category="Dedicated Software Team" subCategory="Mobile Development"/>
-      <CaseStudies category="Dedicated Software Team" subCategory="Mobile Development"/>
+      <ReliableTools category="Service" subCategory="Dedicated Software Teams"/>
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
       <MeetOurClient/>
-      <AllFaq category="Dedicated Software Team" subCategory="Mobile Development"/>
+      <AllFaq category="Service" subCategory="Dedicated Software Teams"/>
       <BookFreeConsultation/>
       <Footer/>
     </div>

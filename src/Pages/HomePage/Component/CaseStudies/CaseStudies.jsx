@@ -2,17 +2,26 @@ import React, { useEffect, useState } from "react";
 import "./caseStudies.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const CaseStudies = () => {
+const CaseStudies = ({ category, Subcategory }) => {
   const [CaseStudiesData, setCaseStudies] = useState([]);
   const navigate = useNavigate()
 
   const getCaseStudiesDataFunc = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8080/get-case-studies-by-cateory/Home"
-      );
-      console.log(response.data)
-      setCaseStudies(response.data);
+      if (category === "HomePage") {
+        const response = await axios.get(
+          "http://localhost:8080/get-case-studies-by-cateory/Home"
+        );
+        console.log(response.data)
+        setCaseStudies(response.data);
+      } else {
+        const response = await axios.get(
+          `http://localhost:8080/get-case-study-bycategorysubcategory/${category}/${Subcategory}`
+        );
+        console.log(response.data)
+        setCaseStudies(response.data.data);
+      }
+
     } catch (error) {
       console.log(error);
     }

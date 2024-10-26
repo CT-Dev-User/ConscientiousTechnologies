@@ -20,16 +20,16 @@ const LagencySoftModerization = () => {
     return (
         <div>
             <AllHeader  
-            category="SubServices"  serviceName="Software Development Services" subServiceName="Legacy Software" 
+            category="SubService"  serviceName="Software Development Services" subServiceName="Legacy Software" 
             />
             <OurPartener />
-            <WhyChooseCTSlider category="Software Development Services" subCategory="Legacy Software" />
+            <WhyChooseCTSlider category="Service" subCategory="Software Development Services"/>
             <AttributeOfOurApp />
             <ReliableToolsHeading />
-            <ReliableTools category="Software Development Services" subCategory="Legacy Software" />
-            <CaseStudies category="Software Development Services" subCategory="Legacy Software"/>
+            <ReliableTools category="Service" subCategory="Software Development Services"/>
+            <CaseStudies category="Service" subCategory="Software Development Services"/>
             <MeetOurClient />
-            <AllFaq category="Software Development Services" subCategory="Legacy Software"/>
+            <AllFaq category="Service" subCategory="Software Development Services"/>
             <BookFreeConsultation />
             <Footer />
         </div>

@@ -12,14 +12,14 @@ import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 const TransportationandLogistics = () => {
   return (
     <div>
-     <AllHeader category="Industries" industryName="Transportation and Logistics"/>
+      <AllHeader category="Industry" industryName="Transportation and Logistics" />
       <OurPartener />
       <ITSolution />
-      <WhyChooseCTSlider category="Industries" subCategory="Transportation and Logistics"/>
+      <WhyChooseCTSlider category="Industry" subCategory="Transportation and Logistics" />
       <ServiceOption />
-      <CaseStudies category="Industries" subCategory="Transportation and Logistics"/>
+      <CaseStudies category="Industry" subCategory="Transportation and Logistics" />
       <MeetOurClient />
-      <AllFaq category="Industries" subCategory="Transportation and Logistics"/>
+      <AllFaq category="Industry" subCategory="Transportation and Logistics" />
       <BookFreeConsultation />
       <Footer />
     </div>

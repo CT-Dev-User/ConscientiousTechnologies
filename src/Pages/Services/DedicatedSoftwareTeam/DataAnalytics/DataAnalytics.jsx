@@ -22,18 +22,18 @@ const DataAnalytics = () => {
 
   return (
     <div>
-      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Data Analytics" />
+      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Data Analytics" />
       <OurPartener />
       <BuildingDataAnalytics />
-      <WhyChooseCTSlider category="Dedicated Software Team" subCategory="Data Analyst" />
+      <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams" />
       <BenefitsFromCT />
       <FlexibleService />
       <CTSolutions />
       <ReliableToolsHeading />
-      <ReliableTools category="Dedicated Software Team" subCategory="Data Analyst" />
-      <CaseStudies category="Dedicated Software Team" subCategory="Data Analyst" />
+      <ReliableTools category="Services" subCategory="Dedicated Software Teams"/>
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams" />
       <MeetOurClient />
-      <AllFaq category="Dedicated Software Team" subCategory="Data Analyst" />
+      <AllFaq category="Dedicated Software Teams" subCategory="Data Analyst" />
       <BookFreeConsultation />
       <Footer />
     </div>

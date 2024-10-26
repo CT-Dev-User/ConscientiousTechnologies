@@ -16,13 +16,13 @@ const MarketingAdvertising = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" solutionName="Marketing & advertising"/>
+            <AllHeader category="Solution" solutionName="Marketing & advertising"/>
             <OurPartener />
             <SoftwareThatDrives />
-            <WhyChooseCTSlider category="Solutions" subCategory="Marketing & advertising"/>
-            <CaseStudies category="Solutions" subCategory="Marketing & advertising"/>
+            <WhyChooseCTSlider category="Solution" subCategory="Marketing & advertising"/>
+            <CaseStudies category="Solution" subCategory="Marketing & advertising"/>
             <MeetOurClient />
-            <AllFaq category="Solutions" subCategory="Marketing & advertising"/>
+            <AllFaq category="Solution" subCategory="Marketing & advertising"/>
             <BookFreeConsultation />
             <Footer />
         </div>

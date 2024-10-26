@@ -21,17 +21,17 @@ const SoftDevWebDevelopment = () => {
 
     return (
         <div>
-            <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Web Development"/>
+            <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Web Development"/>
             <OurPartener />
             <WebSolutionWeNeed />
             <PartnerUpWithCity />
             <FullScale />
             <WebDevprocess />
             <ReliableToolsHeading />
-            <ReliableTools category="Dedicated Software Team" subCategory="Web Development" />
-            <CaseStudies category="Dedicated Software Team" subCategory="Web Development"/>
+            <ReliableTools category="Service" subCategory="Dedicated Software Teams" />
+            <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
             <MeetOurClient />
-            <AllFaq category="Dedicated Software Team" subCategory="Web Development"/>
+            <AllFaq category="Service" subCategory="Dedicated Software Teams"/>
             <BookFreeConsultation />
             <Footer />
         </div>

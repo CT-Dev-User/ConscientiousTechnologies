@@ -17,14 +17,14 @@ const CyberSecurity = () => {
 
   return (
     <div>
-      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="Cyber Security" />
+      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Cyber Security" />
       <OurPartener />
-      <WhyChooseCTSlider category="Dedicated Software Team" subCategory="Cyber Security"/>
+      <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams"/>
       <CyberSecService />
       <CompitativeTraits />
-      <CaseStudies category="Dedicated Software Team" subCategory="Cyber Security"/>
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
       <MeetOurClient />
-      <AllFaq category="Dedicated Software Team" subCategory="Cyber Security"/>
+      <AllFaq category="Dedicated Software Teams" subCategory="Cyber Security"/>
       <BookFreeConsultation />
       <Footer />
     </div>

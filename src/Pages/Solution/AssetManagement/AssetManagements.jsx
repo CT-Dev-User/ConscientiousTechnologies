@@ -20,16 +20,16 @@ const AssetManagements = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="Asset Management"/>
+      <AllHeader category="Solution" solutionName="Asset Management"/>
       <OurPartener />
       <FunctionalityModule />
-      <WhyChooseCTSlider category="Solutions" subCategory="Asset Management"/>
+      <WhyChooseCTSlider category="Solution" solutionName="Asset Management"/>
       <EAMServices />
       <TechnologyHeading />
-      <ReliableTools category="Solutions" subCategory="Asset Management"/>
-      <CaseStudies category="Solutions" subCategory="Asset Management"/>
+      <ReliableTools category="Solution" subCategory="Asset Management"/>
+      <CaseStudies category="Solution" subCategory="Asset Management"/>
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="Asset Management"/>
+      <AllFaq category="Solution" subCategory="Asset Management"/>
       <BookFreeConsultation />
       <Footer />
     </div>

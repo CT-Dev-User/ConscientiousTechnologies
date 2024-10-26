@@ -20,17 +20,17 @@ const HRSoftwareDevelopment = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="HR Software Development Services"/>
+      <AllHeader category="Solution" solutionName="HR Software Development Services"/>
       <OurPartener />
       <FunctionalModule />
-      <WhyChooseCTSlider category="Solutions" subCategory="HR Software Development Services"/>
+      <WhyChooseCTSlider category="Solution" subCategory="HR Software Development Services"/>
       <KeyCooperation />
       <HRSoftService />
       <TechnologyHeader />
-      <ReliableTools category="Solutions" subCategory="HR Software Development Services"/>
-      <CaseStudies category="Solutions" subCategory="HR Software Development Services"/>
+      <ReliableTools category="Solution" subCategory="HR Software Development Services"/>
+      <CaseStudies category="Solution" subCategory="HR Software Development Services"/>
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="HR Software Development Services"/>
+      <AllFaq category="Solution" subCategory="HR Software Development Services"/>
       <BookFreeConsultation />
       <Footer />
     </div>

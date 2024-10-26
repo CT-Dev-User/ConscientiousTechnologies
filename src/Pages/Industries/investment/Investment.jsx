@@ -17,18 +17,18 @@ import ReliableToolsHeading from '../financialSoftware/ReliableTools/ReliableToo
 const Investment = () => {
     return (
         <div>
-            <AllHeader category="Industries" industryName="Investment"/>
+            <AllHeader category="Industry" industryName="Investment"/>
             <OurPartener />
-            <WhyChooseCTSlider category="Industries" subCategory="Investment"/>
+            <WhyChooseCTSlider category="Industry" subCategory="Investment"/>
             <MeetWhereWe />
             <InvestmentSoftware />
             <InvestmentAspects />
             <ReliableToolsHeading />
-            <ReliableTools category="Industries" subCategory="Investment"/>
-            <CaseStudies category="Industries" subCategory="Investment"/>
-            <Blog />
+            <ReliableTools category="Industry" subCategory="Investment"/>
+            <CaseStudies category="Industry" subCategory="Investment"/>
+            <Blog category="Industry" subCategory="Investment"/>
             <MeetOurClient />
-            <AllFaq category="Industries" subCategory="Investment"/>
+            <AllFaq category="Industry" subCategory="Investment"/>
             <BookFreeConsultation />
             <Footer />
         </div>

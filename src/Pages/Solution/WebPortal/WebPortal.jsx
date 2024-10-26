@@ -21,18 +21,18 @@ const WebPortal = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="Web Portal"/>
+      <AllHeader category="Solution" solutionName="Web Portal"/>
       <OurPartener />
-      <WhyChooseCTSlider category="Solutions" subCategory="Web Portal"/>
+      <WhyChooseCTSlider category="Solution" subCategory="Web Portal"/>
       <WebPortalWeCreated />
       <BringingInnovation />
       <LayingtheFoundation />
       <WebDevSteps />
       <TechPlatformHeader />
-      <ReliableTools category="Solutions" subCategory="Web Portal"/>
-      <CaseStudies category="Solutions" subCategory="Web Portal"/>
+      <ReliableTools category="Solution" subCategory="Web Portal"/>
+      <CaseStudies category="Solution" subCategory="Web Portal"/>
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="Web Portal"/>
+      <AllFaq category="Solution" subCategory="Web Portal"/>
       <BookFreeConsultation />
       <Footer />
     </div>

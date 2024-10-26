@@ -14,16 +14,16 @@ import ReliableToolsHeading from '../../HomePage/Component/ReliableTools/Reliabl
 const Healthcare = () => {
     return (
         <div>
-            <AllHeader category="Industries" industryName="Healthcare"/>
+            <AllHeader category="Industry" industryName="Healthcare"/>
             <OurPartener />
             <MeetAllHealthcare />
-            <WhyChooseCTSlider category="Industries" subCategory="Healthcare"/>
+            <WhyChooseCTSlider category="Industry" subCategory="Healthcare"/>
             <ITSolution />
             <ReliableToolsHeading/>
-            <ReliableTools category="Industries" subCategory="Healthcare"/>
-            <CaseStudies category="Industries" subCategory="Healthcare"/>
+            <ReliableTools category="Industry" subCategory="Healthcare"/>
+            <CaseStudies category="Industry" subCategory="Healthcare"/>
             <MeetOurClient />
-            <AllFaq category="Industries" subCategory="Healthcare"/>
+            <AllFaq category="Industry" subCategory="Healthcare"/>
             <BookFreeConsultation />
             <Footer />
         </div>

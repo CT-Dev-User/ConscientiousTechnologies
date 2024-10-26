@@ -22,18 +22,18 @@ const Qa_Service = () => {
 
   return (
     <div>
-      <AllHeader category="SubServices"  serviceName="Dedicated Software Teams" subServiceName="QA & Testing"/>
+      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="QA & Testing"/>
       <OurPartener />
       <TypeOfSoft />
-      <AreaOfExperties category="Dedicated Software Team" subCategory="QA & Testing"/>
+      <AreaOfExperties category="Dedicated Software Teams" subCategory="QA & Testing"/>
       <TestingType /> 
-      <WhyChooseCTSlider category="Dedicated Software Team" subCategory="QA & Testing"/>
+      <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams"/>
       <QASoftTesingService />
       <TechToolsHeader />
-      <ReliableTools category="Dedicated Software Team" subCategory="QA & Testing"/>
-      <CaseStudies category="Dedicated Software Team" subCategory="QA & Testing"/>
+      <ReliableTools category="Service" subCategory="Dedicated Software Teams"/>
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
       <MeetOurClient />
-      <AllFaq category="Dedicated Software Team" subCategory="QA & Testing"/>
+      <AllFaq category="Dedicated Software Teams" subCategory="QA & Testing"/>
       <BookFreeConsultation />
       <Footer />
 

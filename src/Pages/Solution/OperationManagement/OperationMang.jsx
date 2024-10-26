@@ -22,18 +22,18 @@ const OperationMang = () => {
 
     return (
         <div>
-            <AllHeader category="Solutions" solutionName="Operations Management"/>
+            <AllHeader category="Solution" solutionName="Operations Management"/>
             <OurPartener />
             <OpManFeature />
             <ServiceOpMang />
-            <WhyChooseCTSlider category="Solutions" subCategory="Operations Management"/>
+            <WhyChooseCTSlider category="Solution" subCategory="Operations Management"/>
             <OpManCons />
             <SoftImplementation />
             <TechnologyHeading />
-            <ReliableTools category="Solutions" subCategory="Operations Management"/>
-            <CaseStudies category="Solutions" subCategory="Operations Management"/>
+            <ReliableTools category="Solution" subCategory="Operations Management"/>
+            <CaseStudies category="Solution" subCategory="Operations Management"/>
             <MeetOurClient />
-            <AllFaq category="Solutions" subCategory="Operations Management"/>
+            <AllFaq category="Solution" subCategory="Operations Management"/>
             <BookFreeConsultation />
             <Footer />
         </div>

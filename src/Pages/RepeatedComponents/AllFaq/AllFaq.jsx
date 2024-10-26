@@ -8,9 +8,9 @@ const AllFaq = ({ category, subCategory }) => {
 
   // Fetch FAQs based on category and subcategory
   const fetchHomeFaqs = async () => {
-    if (category === "All") {
+    if (category === "Homepage") {
       try {
-        const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-faq");
+        const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-faq/Home");
         setHomeFaqs(response.data.getData);
       } catch (error) {
         console.log(error);

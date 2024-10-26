@@ -22,18 +22,18 @@ const FinancialManagement = () => {
 
   return (
     <div>
-      <AllHeader category="Solutions" solutionName="Financial Management"/>
+      <AllHeader category="Solution" solutionName="Financial Management"/>
       <OurPartener />
       <CTService />
       <SolutionSpecilization />
-      <WhyChooseCTSlider category="Solutions" subCategory="Financial Management"/>
+      <WhyChooseCTSlider category="Solution" subCategory="Financial Management"/>
       <FinancialSoftCons />
       <YourServiceOption />
       <TechnologyHeading />
-      <ReliableTools category="Solutions" subCategory="Financial Management"/>
-      <CaseStudies category="Solutions" subCategory="Financial Management"/>
+      <ReliableTools category="Solution" subCategory="Financial Management"/>
+      <CaseStudies category="Solution" subCategory="Financial Management"/>
       <MeetOurClient />
-      <AllFaq category="Solutions" subCategory="Financial Management"/>
+      <AllFaq category="Solution" subCategory="Financial Management"/>
       <BookFreeConsultation />
       <Footer />
     </div>

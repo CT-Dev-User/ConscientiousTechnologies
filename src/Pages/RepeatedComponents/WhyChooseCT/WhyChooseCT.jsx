@@ -4,8 +4,8 @@ import axios from "axios";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
-const WhyChooseCTSlider = () => {
-  const { subCategory } = useParams();
+const WhyChooseCTSlider = ({category, subCategory}) => {
+  // const { subCategory } = useParams();
   const sliderRef = useRef(null);
   const [sliderData, setSliderData] = useState([]);
 
@@ -103,7 +103,7 @@ const WhyChooseCTSlider = () => {
   const fetchSliderData = async () => {
     try {
       const response = await axios.get(
-        `https://conscientious-technologies-backend.vercel.app/get-choose-ct-slider-data-byCategorySubCategory/Solutions/${subCategory}`
+        `https://conscientious-technologies-backend.vercel.app/get-choose-ct-slider-data-byCategorySubCategory/${category}/${subCategory}`
       );
       setSliderData(response.data.data);
     } catch (error) {
@@ -126,7 +126,7 @@ const WhyChooseCTSlider = () => {
           <div key={i} className="w-screen h-auto py-4 lg:py-8">
             <div className="lg:w-[85%] mx-auto h-auto w-[95%]">
               <div className="mx-auto w-full lg:p-0 p-2">
-                <h1 className="font-bold mt-10 mb-5 lg:text-3xl text-xl 2xl:text-[2.2rem]">
+                <h1 className="mt-10 mb-5 lg:text-3xl font-bold text-2xl ">
                   {slider.heading}
                 </h1>
                 <p className="lg:text-base text-sm">
@@ -135,7 +135,7 @@ const WhyChooseCTSlider = () => {
               </div>
 
               <div className="w-full">
-                <h1 className=" font-bold mt-10 mb-5 lg:text-3xl text-xl 2xl:text-[2.2rem]">
+                <h1 className="mt-10 mb-5 lg:text-3xl font-bold text-2xl">
                   {slider.logoHeading}
                 </h1>
               </div>

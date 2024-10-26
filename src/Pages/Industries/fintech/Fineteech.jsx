@@ -17,18 +17,18 @@ import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTe
 const Fineteech = () => {
     return (
         <div>
-            <AllHeader category="Industries" industryName="Fintech"/>
+            <AllHeader category="Industry" industryName="Fintech"/>
             <OurPartener />
             <Solutions />
-            <WhyChooseCTSlider category="Industries" subCategory="Fintech"/>
+            <WhyChooseCTSlider category="Industry" subCategory="Fintech"/>
             <Benefits />
             <Specialised />
             <ReliableToolsHeading />
-            <ReliableTools category="Industries" subCategory="Fintech"/>
-            <CaseStudies category="Industries" subCategory="Fintech"/>
-            <Blog />
+            <ReliableTools category="Industry" subCategory="Fintech"/>
+            <CaseStudies category="Industry" subCategory="Fintech"/>
+            <Blog category="Industry" subCategory="Fintech"/>
             <MeetOurClient />
-            <AllFaq category="Industries" subCategory="Fintech"/>
+            <AllFaq category="Industry" subCategory="Fintech"/>
             <BookFreeConsultation />
             <Footer />
         </div>
