@@ -15,8 +15,6 @@ const ServiceWhyChooseCT = () => {
     const [editPopupShow, setEditPopUpShow] = useState(false);
     const [addSliderData, setAddSliderData] = useState({ category: "", Subcategory: "", heading: "", subtitle: "", logoHeading: "", images: [], points: [] });
     const [editSliderData, seteditSliderData] = useState({ category: "", Subcategory: "", heading: "", subtitle: "", logoHeading: "", images: [], points: [] });
-    const [headerSubtitle, setHeadersubtitle] = useState(null)
-    const [subtitlePopUp, setSubtitlePopUp] = useState(false)
     const [logosPopUp, setLogosPopUp] = useState(false)
     const [pointsPopUp, setPointsPopUp] = useState(false)
     const [editId, setEditId] = useState(null);
@@ -279,23 +277,6 @@ const ServiceWhyChooseCT = () => {
                     </form>
                 </Modal.Body>
             </Modal>
-
-            <Modal size="lg" show={subtitlePopUp} onHide={() => setSubtitlePopUp(false)}>
-                <Modal.Header closeButton className="bg-gray-800 text-white">
-                    <Modal.Title>Edit Head Section Data</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="bg-white">
-                    <div dangerouslySetInnerHTML={{ __html: headerSubtitle }} />
-
-                </Modal.Body>
-                <Modal.Footer className="bg-gray-100">
-                    <Button variant="secondary" onClick={() => setSubtitlePopUp(false)} className="text-gray-700 hover:text-gray-900">
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
-
             <Modal size="lg" show={logosPopUp} onHide={() => setLogosPopUp(false)}>
                 <Modal.Header closeButton className="bg-gray-800 text-white">
                     <Modal.Title>Slider Logos</Modal.Title>
