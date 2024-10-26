@@ -10,6 +10,7 @@ const ServiceTechTools = () => {
   const [editPopupShow, seteditPopUpShow] = useState(false);
   const [editId, setEditId] = useState("");
   const [reliableToolData, setReliableToolsData] = useState([]);
+  const [filterreliableToolData, setFilterReliableToolsData] = useState([]);
   const [subTechModalShow, setSubTechModalShow] = useState(false);
   const [logoModalShow, setLogoModalShow] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -17,10 +18,9 @@ const ServiceTechTools = () => {
   const [itemsPerPage] = useState(3);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = reliableToolData.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  const currentItems = filterreliableToolData
+    ? filterreliableToolData.slice(indexOfFirstItem, indexOfLastItem)
+    : [];
 
   useEffect(() => {
     fetchServices();
@@ -102,6 +102,7 @@ const ServiceTechTools = () => {
       );
       const fetchData = response.data.data;
       setReliableToolsData(fetchData);
+      setFilterReliableToolsData(fetchData);
     } catch (error) {
       console.error(error);
     }
@@ -239,6 +240,29 @@ const ServiceTechTools = () => {
     <div className="w-full bg-gray-300 h-full mx-auto p-4">
       <div className="flex justify-between mb-5 mr-3 gap-x-3">
         <h1 className="text-xl font-bold">Home Reliable Technology Tools</h1>
+        <select
+          name=""
+          onChange={(e) => {
+            if (e.target.value === "All services") {
+              setFilterReliableToolsData(reliableToolData); // Show all FAQs
+            } else {
+              setFilterReliableToolsData(
+                reliableToolData.filter(
+                  (item) => item.Subcategory === e.target.value
+                )
+              );
+            }
+          }}
+          className="p-2 border rounded"
+          id=""
+        >
+          <option value="All services">All services</option>
+          {services.map((service, index) => (
+            <option key={index} value={service.serviceName}>
+              {service.serviceName}
+            </option>
+          ))}
+        </select>
         <Button
           onClick={() => setAddPopUpShow(true)}
           className="bg-blue-500 hover:bg-blue-800 text-white px-2 py-0 rounded text-base font-bold"
@@ -367,8 +391,13 @@ const ServiceTechTools = () => {
               <label className="block text-gray-700">service Name</label>
               <select
                 name=""
-                value={addReliableData.serviceName}
-                onChange={(e) => setAddReliableData({ ...addReliableData, Subcategory: e.target.value })}
+                value={addReliableData.Subcategory}
+                onChange={(e) =>
+                  setAddReliableData({
+                    ...addReliableData,
+                    Subcategory: e.target.value,
+                  })
+                }
                 className="w-full p-2 border rounded"
                 id=""
               >
@@ -482,12 +511,17 @@ const ServiceTechTools = () => {
         </Modal.Header>
         <Modal.Body>
           <form>
-          <div className="mb-4">
+            <div className="mb-4">
               <label className="block text-gray-700">service Name</label>
               <select
                 name=""
                 value={addReliableData.Subcategory}
-                onChange={(e) => setAddReliableData({ ...addReliableData, Subcategory: e.target.value })}
+                onChange={(e) =>
+                  setAddReliableData({
+                    ...addReliableData,
+                    Subcategory: e.target.value,
+                  })
+                }
                 className="w-full p-2 border rounded"
                 id=""
               >

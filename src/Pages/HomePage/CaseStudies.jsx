@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 const CaseStudies = () => {
   const [services, setServices] = useState([]);
   const [caseStudies, setCaseStudies] = useState([]);
+  const [filteredcaseStudies, setFilteredCaseStudies] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
   const [editId, setEditId] = useState(null);
@@ -59,7 +60,7 @@ const CaseStudies = () => {
   const [itemsPerPage] = useState(2);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = caseStudies.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredcaseStudies ? filteredcaseStudies.slice(indexOfFirstItem, indexOfLastItem) : [];
 
   useEffect(() => {
     fetchServices();
@@ -86,6 +87,7 @@ const CaseStudies = () => {
       );
       console.log(response.data);
       setCaseStudies(response.data);
+      setFilteredCaseStudies(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -247,6 +249,27 @@ const CaseStudies = () => {
     <div className="w-full bg-gray-300 h-auto mx-auto p-4 relative">
       <div className="flex justify-between mb-2 mr-3">
         <h1 className="text-xl font-bold text-black">Service Pages Case Studies</h1>
+        <select
+          name=""
+          onChange={(e) => {
+            if (e.target.value === "All services") {
+              setFilteredCaseStudies(caseStudies); // Show all FAQs
+            } else {
+              setFilteredCaseStudies(
+                caseStudies.filter((item) => item.Subcategory === e.target.value)
+              );
+            }
+          }}
+          className="p-2 border rounded"
+          id=""
+        >
+          <option value="All services">All services</option>
+          {services.map((service, index) => (
+            <option key={index} value={service.serviceName}>
+              {service.serviceName}
+            </option>
+          ))}
+        </select>
         <button
           onClick={() => setAddPopUpShow(true)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-base"

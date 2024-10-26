@@ -7,6 +7,7 @@ import { FaEye } from "react-icons/fa";
 const ServiceBlogCMS = () => {
   const [services, setServices] = useState([]);
   const [blogs, setBlogs] = useState([]);
+  const [filteredblogs, setFilteredBlogs] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
   const [viewCardData, setViewCardData] = useState(null);
@@ -17,7 +18,9 @@ const ServiceBlogCMS = () => {
   const [itemsPerPage] = useState(3);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = blogs.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredblogs
+    ? filteredblogs.slice(indexOfFirstItem, indexOfLastItem)
+    : [];
   const [formData, setFormData] = useState({
     category: "Service",
     subCategory: "",
@@ -42,6 +45,7 @@ const ServiceBlogCMS = () => {
         "http://localhost:8080/get-latest-blog-data-by-category/Service"
       );
       setBlogs(response.data.blog);
+      setFilteredBlogs(response.data.blog);
     } catch (error) {
       console.error("Error fetching blogs:", error);
     }
@@ -208,6 +212,27 @@ const ServiceBlogCMS = () => {
     <div className="container mx-auto mt-5 bg-white p-4">
       <div className="flex justify-between mb-4">
         <h1 className="text-xl font-bold">Manage Blogs for Services</h1>
+        <select
+          name=""
+          onChange={(e) => {
+            if (e.target.value === "All services") {
+              setFilteredBlogs(blogs); // Show all FAQs
+            } else {
+              setFilteredBlogs(
+                blogs.filter((item) => item.subCategory === e.target.value)
+              );
+            }
+          }}
+          className="p-2 border rounded"
+          id=""
+        >
+          <option value="All services">All services</option>
+          {services.map((service, index) => (
+            <option key={index} value={service.serviceName}>
+              {service.serviceName}
+            </option>
+          ))}
+        </select>
         <Button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => toggleModal()}
@@ -318,12 +343,14 @@ const ServiceBlogCMS = () => {
           </Modal.Header>
           <Modal.Body>
             <div className="space-y-4">
-            <div className="mb-4">
+              <div className="mb-4">
                 <label className="block text-gray-700">service Name</label>
                 <select
                   name=""
                   value={formData.subCategory}
-                  onChange={(e) => setFormData({...formData, subCategory: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, subCategory: e.target.value })
+                  }
                   className="w-full p-2 border rounded"
                   id=""
                 >

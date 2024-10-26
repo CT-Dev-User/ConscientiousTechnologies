@@ -9,6 +9,7 @@ import { FaEye } from "react-icons/fa";
 const ServiceFAQ = () => {
   const [industries, setIndustries] = useState([]);
   const [homeFaqs, setHomeFaqs] = useState([]);
+  const [filterHomeFaqs, setFilterHomeFaqs] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
   const [addHomeFAQ, setAddHomeFAQ] = useState({
@@ -121,6 +122,7 @@ const ServiceFAQ = () => {
         "http://localhost:8080/get-faq-bycategory/Service"
       );
       setHomeFaqs(response.data.data);
+      setFilterHomeFaqs(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -131,8 +133,8 @@ const ServiceFAQ = () => {
   }, []);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = homeFaqs
-    ? homeFaqs.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = filterHomeFaqs
+    ? filterHomeFaqs.slice(indexOfFirstItem, indexOfLastItem)
     : [];
   useEffect(() => {
     fetchIndustry();
@@ -183,6 +185,24 @@ const ServiceFAQ = () => {
     <div className="w-full bg-gray-300 h-full mx-auto p-4">
       <div className="flex justify-between mb-5 mr-3">
         <h1 className="text-2xl font-bold">FAQ's for Services</h1>
+        <select
+                name=""
+                onChange={(e) => {
+                  if (e.target.value === "All services") {
+                    setFilterHomeFaqs(homeFaqs); // Show all FAQs
+                  } else {
+                    setFilterHomeFaqs(homeFaqs.filter((item) => item.Subcategory === e.target.value));
+                  }}}
+                className="p-2 border rounded"
+                id=""
+              >
+                <option value="All services">All services</option>
+                {industries.map((service, index) => (
+                  <option key={index} value={service.serviceName}>
+                    {service.serviceName}
+                  </option>
+                ))}
+              </select>
         <Button
           onClick={() => setAddPopUpShow(true)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

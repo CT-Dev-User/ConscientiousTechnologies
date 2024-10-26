@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 const SubServicesCMS = () => {
   const [services, setServices] = useState([]);
   const [subServices, setSubServices] = useState([]); // Fixed the name from 'service' to 'services'
+  const [filteredsubServices, setfilteredsubservices] = useState([]); // Fixed the name from 'service' to 'services'
   const [serviceId, setserviceId] = useState(null);
   const [serviceName, setserviceName] = useState('');
   const [subServiceTitle, setsubServiceTitle] = useState('')
@@ -46,8 +47,8 @@ const SubServicesCMS = () => {
   }, []);
 
   useEffect(() => {
-    setPaginatedservices(paginate(subServices, currentPage, itemsPerPage));
-  }, [subServices, currentPage, itemsPerPage]);
+    setPaginatedservices(paginate(filteredsubServices, currentPage, itemsPerPage));
+  }, [filteredsubServices, currentPage, itemsPerPage]);
   console.log(paginatedservices, "p")
 
   const fetchServices = async () => {
@@ -64,6 +65,7 @@ const SubServicesCMS = () => {
     try {
       const response = await axios.get('http://localhost:8080/get-latest-subservice-data');
       setSubServices(response.data);
+      setfilteredsubservices(response.data);
     } catch (error) {
       console.error('Error fetching service Data:', error);
     }
@@ -83,7 +85,7 @@ const SubServicesCMS = () => {
   };
 
   const goToNextPage = () => {
-    if (currentPage < Math.ceil(subServices.length / itemsPerPage)) setCurrentPage(currentPage + 1);
+    if (currentPage < Math.ceil(filteredsubServices.length / itemsPerPage)) setCurrentPage(currentPage + 1);
   };
 
   const handleDelete = async (id) => {
@@ -205,6 +207,29 @@ const SubServicesCMS = () => {
     <div className="p-4 bg-gray-200">
       <div className='flex justify-between'>
         <h1 className="text-xl font-bold mb-4">Subservice Management</h1>
+        <select
+          name=""
+          onChange={(e) => {
+            if (e.target.value === "All services") {
+              setfilteredsubservices(subServices); // Show all FAQs
+            } else {
+              setfilteredsubservices(
+                subServices.filter(
+                  (item) => item.serviceName === e.target.value
+                )
+              );
+            }
+          }}
+          className="p-2 border rounded"
+          id=""
+        >
+          <option value="All services">All services</option>
+          {services.map((service, index) => (
+            <option key={index} value={service.serviceName}>
+              {service.serviceName}
+            </option>
+          ))}
+        </select>
         <button onClick={() => openModal()} className="bg-blue-500 text-white px-4 py-2 rounded">
           Add New SubService
         </button>
@@ -252,12 +277,12 @@ const SubServicesCMS = () => {
             Previous
           </button>
           <span className="mx-2">
-            Page {currentPage} of {subServices ? Math.ceil(subServices.length / itemsPerPage) : 0}
+            Page {currentPage} of {filteredsubServices ? Math.ceil(filteredsubServices.length / itemsPerPage) : 0}
           </span>
           <button
             onClick={goToNextPage}
-            className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === (subServices ? Math.ceil(subServices.length / itemsPerPage) : 0) ? 'opacity-50 cursor-not-allowed' : ''}`}
-            disabled={currentPage === (subServices ? Math.ceil(subServices.length / itemsPerPage) : 0)}
+            className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === (filteredsubServices ? Math.ceil(filteredsubServices.length / itemsPerPage) : 0) ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={currentPage === (filteredsubServices ? Math.ceil(filteredsubServices.length / itemsPerPage) : 0)}
           >
             Next
           </button>
