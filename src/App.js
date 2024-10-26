@@ -56,6 +56,9 @@ import SolutionFAQ from "./Pages/Solution/SolutionFaq.jsx";
 import IndustryCaseStudies from "./Pages/industries/IndustriesCaseStudy.jsx";
 import IndutryBlogCMS from "./Pages/industries/IndustryBlogs.jsx";
 import IndustryFAQ from "./Pages/industries/IndustryFaq.jsx";
+import ServiceWhyChooseCT from "./Pages/Services/ServiceWhyChooseCT.jsx";
+import SolutionWhyChooseCT from "./Pages/Solution/SolutionWhyChooseCT.jsx";
+import IndustryWhyChooseCT from "./Pages/industries/IndustryWhyChooseCTSlider.jsx";
 function App() {
   return (
     <Routes>
@@ -194,6 +197,14 @@ function App() {
         }
       />
       <Route
+        path="/conscientious-service-why-choose-ct-slider"
+        element={
+          <SideBar>
+            < ServiceWhyChooseCT />
+          </SideBar>
+        } />
+
+      <Route
         path="/conscientious-SubServices"
         element={
           <SideBar>
@@ -243,7 +254,13 @@ function App() {
           </SideBar>
         }
       />
-
+      <Route
+        path="/conscientious-solution-why-choose-ct-slider"
+        element={
+          <SideBar>
+            < SolutionWhyChooseCT />
+          </SideBar>
+        } />
       <Route
         path="/conscientious-solution-reliable-tools"
         element={
@@ -286,6 +303,13 @@ function App() {
           </SideBar>
         }
       />
+         <Route
+        path="/conscientious-industry-why-choose-ct-slider"
+        element={
+          <SideBar>
+            < IndustryWhyChooseCT />
+          </SideBar>
+        } />
       <Route
         path="/conscientious-industry-casestudies"
         element={

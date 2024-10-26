@@ -32,8 +32,8 @@ const SideBar = ({ children }) => {
   const [userauth, setuserauth] = useAuth();
   const userRole = getUserRole(userauth);
   const [isOpen, setIsOpen] = useState(true);
-  const toggle = () => setIsOpen(!isOpen); 
- 
+  const toggle = () => setIsOpen(!isOpen);
+
 
   const [activeItem, setActiveItem] = useState("");
   const [openMenu, setOpenMenu] = useState(null);
@@ -137,7 +137,7 @@ const SideBar = ({ children }) => {
           },
           {
             path: "/conscientious-key-feature",
-            name: "Key Features", 
+            name: "Key Features",
             icon: <FaFileAlt />,
           },
           {
@@ -176,6 +176,11 @@ const SideBar = ({ children }) => {
             icon: <FaLaptop />,
           },
           {
+            path: "/conscientious-service-why-choose-ct-slider",
+            name: "Why Choose C.T.",
+            icon: <FaFileAlt />,
+          },
+          {
             path: "/conscientious-service-reliable-tools",
             name: "Reliable Tools",
             icon: <FaTools />,
@@ -204,6 +209,11 @@ const SideBar = ({ children }) => {
             path: "/conscientious-solutions",
             name: "Solutions",
             icon: <FaCogs />,
+          },
+          {
+            path: "/conscientious-solution-why-choose-ct-slider",
+            name: "Why Choose C.T.",
+            icon: <FaFileAlt />,
           },
           {
             path: "/conscientious-solution-reliable-tools",
@@ -236,6 +246,11 @@ const SideBar = ({ children }) => {
             icon: <FaIndustry />,
           },
           {
+            path: "/conscientious-industry-why-choose-ct-slider",
+            name: "Why Choose C.T.",
+            icon: <FaFileAlt />,
+          },
+          {
             path: "/conscientious-industry-casestudies",
             name: "Case Studies",
             icon: <FaFileAlt />,
@@ -250,7 +265,7 @@ const SideBar = ({ children }) => {
             name: "FAQ",
             icon: <FaBloggerB />,
           },
-         
+
         ],
       },
       {
@@ -329,6 +344,11 @@ const SideBar = ({ children }) => {
             icon: <FaLaptop />,
           },
           {
+            path: "/conscientious-service-why-choose-ct-slider",
+            name: "Why Choose C.T.",
+            icon: <FaFileAlt />,
+          },
+          {
             path: "/conscientious-reliable-tools",
             name: "Reliable Tools",
             icon: <FaTools />,
@@ -359,6 +379,11 @@ const SideBar = ({ children }) => {
             icon: <FaCogs />,
           },
           {
+            path: "/conscientious-solution-why-choose-ct-slider",
+            name: "Why Choose C.T.",
+            icon: <FaFileAlt />,
+          },
+          {
             path: "/conscientious-reliable-tools",
             name: "Reliable Tools",
             icon: <FaTools />,
@@ -387,6 +412,11 @@ const SideBar = ({ children }) => {
             path: "/conscientious-home-industries",
             name: "Industries",
             icon: <FaIndustry />,
+          },
+          {
+            path: "/conscientious-industry-why-choose-ct-slider",
+            name: "Why Choose C.T.",
+            icon: <FaFileAlt />,
           },
           {
             path: "/conscientious-home-casestudies",
@@ -423,7 +453,7 @@ const SideBar = ({ children }) => {
     ],
   };
 
-  
+
   const handleItemClick = (path) => {
     setActiveItem(path);
   };
@@ -432,56 +462,55 @@ const SideBar = ({ children }) => {
     setOpenMenu(openMenu === title ? null : title);
   };
 
- 
+
   return (
     <div className="w-full h-screen bg-gray-100 text-sm flex justify-between overflow-x-hidden overflow-y-auto custom-scrollbar">
       <div className={`bg-black text-white h-full ${isOpen ? "w-1/6" : "w-20"} transition-all delay-50 overflow-y-auto px-2 custom-scrollbar`}>
-        <div className={`bg-black text-white flex items-center h-auto w-full sticky top-0 pb-5 ${isOpen ? "justify-between":"justify-center"}`}>
-        <h1 className={isOpen ? 'block text-2xl mt-3' : 'hidden'}>Logo</h1>
+        <div className={`bg-black text-white flex items-center h-auto w-full sticky top-0 pb-5 ${isOpen ? "justify-between" : "justify-center"}`}>
+          <h1 className={isOpen ? 'block text-2xl mt-3' : 'hidden'}>Logo</h1>
           <div className='text-2xl flex cursor-pointer mt-3'>
             <FaBars onClick={toggle} />
           </div>
         </div>
-      <ul className={`${isOpen ? "block":"hidden"}`}>
-        {roleBasedMenuItems[userRole]?.map((item) => (
-          <li key={item.title} className="mb-2">
+        <ul className={`${isOpen ? "block" : "hidden"}`}>
+          {roleBasedMenuItems[userRole]?.map((item) => (
+            <li key={item.title} className="mb-2">
+              <div
+                className={`p-2 flex justify-between items-center text-md font-semibold cursor-pointer ${openMenu === item.title ? "bg-gray-300" : ""
+                  }`}
+                onClick={() => handleMenuClick(item.title)}
+              >
+                <span >{item.title}</span>
+                {openMenu === item.title ? <FaAngleUp /> : <FaAngleDown />}
+              </div>
+              {openMenu === item.title && (
+                <ul className="mt-2">
+                  {item.list.map((subItem) => (
+                    <MenuLink
+                      item={subItem}
+                      key={subItem.name}
+                      isActive={activeItem}
+                      onItemClick={handleItemClick}
+                    />
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+          <li>
             <div
-              className={`p-2 flex justify-between items-center text-md font-semibold cursor-pointer ${
-                openMenu === item.title ? "bg-gray-300" : ""
-              }`}
-              onClick={() => handleMenuClick(item.title)}
+              className="text-red-800 hover:text-green-600 flex gap-2 items-center text-md font-semibold cursor-pointer"
+              onClick={handleLogout}
             >
-              <span >{item.title}</span>
-              {openMenu === item.title ? <FaAngleUp /> : <FaAngleDown/>}
+              <FaSignOutAlt />
+              <span>LogOut</span>
             </div>
-            {openMenu === item.title && (
-              <ul className="mt-2">
-                {item.list.map((subItem) => (
-                  <MenuLink
-                    item={subItem}
-                    key={subItem.name}
-                    isActive={activeItem}
-                    onItemClick={handleItemClick}
-                  />
-                ))}
-              </ul>
-            )}
           </li>
-        ))}
-        <li>
-          <div
-            className="text-red-800 hover:text-green-600 flex gap-2 items-center text-md font-semibold cursor-pointer"
-            onClick={handleLogout}
-          >
-            <FaSignOutAlt />
-            <span>LogOut</span>
-          </div>
-        </li>
-      </ul>
-      </div> 
-      <div className={`${isOpen ? "w-5/6":"w-11/12"}`}>
-      <NavBar />
-      <main className="w-11/12 h-4/5 mx-auto">{children}</main>
+        </ul>
+      </div>
+      <div className={`${isOpen ? "w-5/6" : "w-11/12"}`}>
+        <NavBar />
+        <main className="w-11/12 h-4/5 mx-auto">{children}</main>
       </div>
     </div>
   );
@@ -491,9 +520,8 @@ const SideBar = ({ children }) => {
 const MenuLink = ({ item, isActive, onItemClick }) => {
   return (
     <li
-      className={`py-2 hover:text-blue-500 ${
-        isActive === item.path ? "text-white" : ""
-      }`}
+      className={`py-2 hover:text-blue-500 ${isActive === item.path ? "text-white" : ""
+        }`}
     >
       <NavLink
         to={item.path}
