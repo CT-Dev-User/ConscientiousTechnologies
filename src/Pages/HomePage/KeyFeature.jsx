@@ -5,8 +5,40 @@ import Modal from "react-bootstrap/Modal";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contextAPI/UserContext";
+
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          </div>
+          <div class="h-2 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const KeyFeature = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchKeyFeatureData();
+    }
+  }, [userauth, router]);
   const [KeyFeatureData, setKeyFeatureData] = useState([]);
   const [addKeyFeatureData, setAddKeyFeatureData] = useState({
     keyFeatureTitle: "",
@@ -129,20 +161,20 @@ const KeyFeature = () => {
   };
 
   const fetchKeyFeatureData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-key-feature-data"
       );
       setKeyFeatureData(response.data.getdata);
+      setLoading(false);
       console.log(response.data.getdata);
     } catch (error) {
+      setError("Error fetching user data");
+      setLoading(false);
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    fetchKeyFeatureData();
-  }, []);
 
   const editKeyFeaturefunc = async () => {
     console.log(editKeyFeatureShow);
@@ -241,668 +273,694 @@ const KeyFeature = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = KeyFeatureData.slice(indexOfFirstItem, indexOfLastItem);
 
-
   return (
-    <div className="w-full h-auto bg-gray-200 p-2">
-      <div className="flex justify-between mb-2 mt-2">
-        <h1 className="text-3xl font-bold">Key Feature</h1>
-        <button
-          onClick={setAddKeyFeatureShow}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-lg hover:scale-[1.1]"
-        >
-          +
-        </button>
-      </div>
-      {/* add hero section modal */}
-      <Modal show={addKeyFeatureshow} onHide={handleKeyFeatureDataShow}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Add Key Feature Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">
-                Key Feature Title
-              </label>
-              <input
-                type="text"
-                name="keyFeatureTitle"
-                id="title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) => {
-                  setAddKeyFeatureData({
-                    ...addKeyFeatureData,
-                    keyFeatureTitle: e.target.value,
-                  });
-                }}
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-one-title"
-                className="block text-gray-700 font-bold"
-              >
-                Point One Title
-              </label>
-              <input
-                type="text"
-                name="point_one_Title"
-                id="point-one-title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) => {
-                  setAddKeyFeatureData({
-                    ...addKeyFeatureData,
-                    point_one_Title: e.target.value,
-                  });
-                }}
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-one-desc"
-                className="block text-gray-700 font-bold"
-              >
-                Point One Description
-              </label>
-              <textarea
-                name="point_one_Desc"
-                id="point-one-desc"
-                cols="30"
-                rows="2"
-                className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) => {
-                  setAddKeyFeatureData({
-                    ...addKeyFeatureData,
-                    point_one_Desc: e.target.value,
-                  });
-                }}
-              ></textarea>
-            </fieldset>
-
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-two-title"
-                className="block text-gray-700 font-bold"
-              >
-                Point two Title
-              </label>
-              <input
-                type="text"
-                name="point_two_Title"
-                id="point-two-title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) => {
-                  setAddKeyFeatureData({
-                    ...addKeyFeatureData,
-                    point_two_Title: e.target.value,
-                  });
-                }}
-              />
-            </fieldset>
-
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-two-desc"
-                className="block text-gray-700 font-bold"
-              >
-                Point two Description
-              </label>
-              <textarea
-                name="point_two_Desc"
-                id="point-two-desc"
-                cols="30"
-                rows="2"
-                className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) => {
-                  setAddKeyFeatureData({
-                    ...addKeyFeatureData,
-                    point_two_Desc: e.target.value,
-                  });
-                }}
-              ></textarea>
-            </fieldset>
-
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-three-title"
-                className="block text-gray-700 font-bold"
-              >
-                Point three Title
-              </label>
-              <input
-                type="text"
-                name="point_three_Title"
-                id="point-three-title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) => {
-                  setAddKeyFeatureData({
-                    ...addKeyFeatureData,
-                    point_three_Title: e.target.value,
-                  });
-                }}
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-three-desc"
-                className="block text-gray-700 font-bold"
-              >
-                Point Three Description
-              </label>
-              <textarea
-                name="point_three_Desc"
-                id="point-three-desc"
-                cols="30"
-                rows="2"
-                className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) => {
-                  setAddKeyFeatureData({
-                    ...addKeyFeatureData,
-                    point_three_Desc: e.target.value,
-                  });
-                }}
-              ></textarea>
-            </fieldset>
-
-            {/* Add similar fields for other key feature points */}
-            <fieldset className="mb-4">
-              <label htmlFor="key-feature-image" className="block font-bold">
-                Key Feature Image
-              </label>
-              <div className="relative">
-                <div>
+    <>
+      {loading ? (
+        <Spinner />
+      ) : error ? (
+        <p className="text-red-500">{error}</p>
+      ) : (
+        <div className="w-full h-auto bg-gray-200 p-2">
+          <div className="flex justify-between mb-2 mt-2">
+            <h1 className="text-3xl font-bold">Key Feature</h1>
+            <button
+              onClick={setAddKeyFeatureShow}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-lg hover:scale-[1.1]"
+            >
+              +
+            </button>
+          </div>
+          {/* add hero section modal */}
+          <Modal show={addKeyFeatureshow} onHide={handleKeyFeatureDataShow}>
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>Add Key Feature Data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="bg-white">
+              <form className="mx-auto max-w-lg">
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="title"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Key Feature Title
+                  </label>
                   <input
-                    type="file"
-                    name="keyFeatureImage"
-                    id="key-feature-image"
-                    className="form-input w-full rounded-md hidden overflow-hidden"
-                    aria-describedby="file-upload-label"
-                    onChange={handleFileChange}
+                    type="text"
+                    name="keyFeatureTitle"
+                    id="title"
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    onChange={(e) => {
+                      setAddKeyFeatureData({
+                        ...addKeyFeatureData,
+                        keyFeatureTitle: e.target.value,
+                      });
+                    }}
                   />
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-one-title"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Point One Title
+                  </label>
+                  <input
+                    type="text"
+                    name="point_one_Title"
+                    id="point-one-title"
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    onChange={(e) => {
+                      setAddKeyFeatureData({
+                        ...addKeyFeatureData,
+                        point_one_Title: e.target.value,
+                      });
+                    }}
+                  />
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-one-desc"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Point One Description
+                  </label>
+                  <textarea
+                    name="point_one_Desc"
+                    id="point-one-desc"
+                    cols="30"
+                    rows="2"
+                    className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    onChange={(e) => {
+                      setAddKeyFeatureData({
+                        ...addKeyFeatureData,
+                        point_one_Desc: e.target.value,
+                      });
+                    }}
+                  ></textarea>
+                </fieldset>
+
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-two-title"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Point two Title
+                  </label>
+                  <input
+                    type="text"
+                    name="point_two_Title"
+                    id="point-two-title"
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    onChange={(e) => {
+                      setAddKeyFeatureData({
+                        ...addKeyFeatureData,
+                        point_two_Title: e.target.value,
+                      });
+                    }}
+                  />
+                </fieldset>
+
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-two-desc"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Point two Description
+                  </label>
+                  <textarea
+                    name="point_two_Desc"
+                    id="point-two-desc"
+                    cols="30"
+                    rows="2"
+                    className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    onChange={(e) => {
+                      setAddKeyFeatureData({
+                        ...addKeyFeatureData,
+                        point_two_Desc: e.target.value,
+                      });
+                    }}
+                  ></textarea>
+                </fieldset>
+
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-three-title"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Point three Title
+                  </label>
+                  <input
+                    type="text"
+                    name="point_three_Title"
+                    id="point-three-title"
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    onChange={(e) => {
+                      setAddKeyFeatureData({
+                        ...addKeyFeatureData,
+                        point_three_Title: e.target.value,
+                      });
+                    }}
+                  />
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-three-desc"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Point Three Description
+                  </label>
+                  <textarea
+                    name="point_three_Desc"
+                    id="point-three-desc"
+                    cols="30"
+                    rows="2"
+                    className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    onChange={(e) => {
+                      setAddKeyFeatureData({
+                        ...addKeyFeatureData,
+                        point_three_Desc: e.target.value,
+                      });
+                    }}
+                  ></textarea>
+                </fieldset>
+
+                {/* Add similar fields for other key feature points */}
+                <fieldset className="mb-4">
                   <label
                     htmlFor="key-feature-image"
-                    id="file-upload-label"
-                    className="cursor-pointer  hover:bg-blue-700 font-bold py-2 px-4 rounded-md border"
+                    className="block font-bold"
                   >
-                    Upload File
+                    Key Feature Image
                   </label>
-                </div>
-                {selectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button
-                      className="text-red-500 hover:text-red-700  mt-1 ms-[110px] "
-                      onClick={() => setSelectedFile(null)}
-                    >
-                      <AiOutlineClose />
-                    </button>
-                    <img
-                      src={URL.createObjectURL(selectedFile)}
-                      alt="Selected File"
-                      className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2"
-                    />
-                    <p className="text-gray-700">{selectedFile.name}</p>
+                  <div className="relative">
+                    <div>
+                      <input
+                        type="file"
+                        name="keyFeatureImage"
+                        id="key-feature-image"
+                        className="form-input w-full rounded-md hidden overflow-hidden"
+                        aria-describedby="file-upload-label"
+                        onChange={handleFileChange}
+                      />
+                      <label
+                        htmlFor="key-feature-image"
+                        id="file-upload-label"
+                        className="cursor-pointer  hover:bg-blue-700 font-bold py-2 px-4 rounded-md border"
+                      >
+                        Upload File
+                      </label>
+                    </div>
+                    {selectedFile && (
+                      <div className="ml-2 mt-4">
+                        <button
+                          className="text-red-500 hover:text-red-700  mt-1 ms-[110px] "
+                          onClick={() => setSelectedFile(null)}
+                        >
+                          <AiOutlineClose />
+                        </button>
+                        <img
+                          src={URL.createObjectURL(selectedFile)}
+                          alt="Selected File"
+                          className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2"
+                        />
+                        <p className="text-gray-700">{selectedFile.name}</p>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={handleKeyFeatureDataClose}
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              handleKeyFeatureDataClose();
-              addHomeKeyFeatureDatafunc();
-            }}
-            className="bg-blue-500 hover:bg-blue-600 text-white"
-          >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+                </fieldset>
+              </form>
+            </Modal.Body>
+            <Modal.Footer className="bg-gray-100">
+              <Button
+                variant="secondary"
+                onClick={handleKeyFeatureDataClose}
+                className="text-gray-700 hover:text-gray-900"
+              >
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  handleKeyFeatureDataClose();
+                  addHomeKeyFeatureDatafunc();
+                }}
+                className="bg-blue-500 hover:bg-blue-600 text-white"
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
-      {/* Point One modal */}
-      <Modal show={pointOneShow} onHide={() => setPointOneShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Point One Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <h4>Title : {pointOneData.title}</h4>
-          <p>Desc : {pointOneData.description}</p>{" "}
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={() => setPointOneShow(false)}
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => setPointOneShow(false)}
-            className="bg-blue-500 hover:bg-blue-600 text-white"
-          >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          {/* Point One modal */}
+          <Modal show={pointOneShow} onHide={() => setPointOneShow(false)}>
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>Point One Data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="bg-white">
+              <h4>Title : {pointOneData.title}</h4>
+              <p>Desc : {pointOneData.description}</p>{" "}
+            </Modal.Body>
+            <Modal.Footer className="bg-gray-100">
+              <Button
+                variant="secondary"
+                onClick={() => setPointOneShow(false)}
+                className="text-gray-700 hover:text-gray-900"
+              >
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => setPointOneShow(false)}
+                className="bg-blue-500 hover:bg-blue-600 text-white"
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
-      {/* Point Two modal */}
-      <Modal show={pointTwoShow} onHide={() => setPointTwoShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Point Two Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <h4>{pointTwoData.title}</h4>
-          <p>{pointTwoData.description}</p>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={() => setPointTwoShow(false)}
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => setPointTwoShow(false)}
-            className="bg-blue-500 hover:bg-blue-600 text-white"
-          >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          {/* Point Two modal */}
+          <Modal show={pointTwoShow} onHide={() => setPointTwoShow(false)}>
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>Point Two Data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="bg-white">
+              <h4>{pointTwoData.title}</h4>
+              <p>{pointTwoData.description}</p>
+            </Modal.Body>
+            <Modal.Footer className="bg-gray-100">
+              <Button
+                variant="secondary"
+                onClick={() => setPointTwoShow(false)}
+                className="text-gray-700 hover:text-gray-900"
+              >
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => setPointTwoShow(false)}
+                className="bg-blue-500 hover:bg-blue-600 text-white"
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
-      {/* Point Three modal */}
-      <Modal show={pointThreeShow} onHide={() => setPointThreeShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Point Three Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <h5>
-            {" "}
-            <span className="text-underline"> Title : </span>{" "}
-            {pointThreeData.title}
-          </h5>
-          <p>
-            {" "}
-            <span className="text-underline">
-              Description : {pointThreeData.description}{" "}
-            </span>
-          </p>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={() => setPointThreeShow(false)}
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => setPointThreeShow(false)}
-            className="bg-blue-500 hover:bg-blue-600 text-white"
-          >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          {/* Point Three modal */}
+          <Modal show={pointThreeShow} onHide={() => setPointThreeShow(false)}>
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>Point Three Data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="bg-white">
+              <h5>
+                {" "}
+                <span className="text-underline"> Title : </span>{" "}
+                {pointThreeData.title}
+              </h5>
+              <p>
+                {" "}
+                <span className="text-underline">
+                  Description : {pointThreeData.description}{" "}
+                </span>
+              </p>
+            </Modal.Body>
+            <Modal.Footer className="bg-gray-100">
+              <Button
+                variant="secondary"
+                onClick={() => setPointThreeShow(false)}
+                className="text-gray-700 hover:text-gray-900"
+              >
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => setPointThreeShow(false)}
+                className="bg-blue-500 hover:bg-blue-600 text-white"
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
-      {/* edit hero section modal */}
-      <Modal show={editKeyFeatureShow} onHide={handleEditKeyFeatureDataClose}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit Key Feature Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">
-                Key Feature Title
-              </label>
-              <input
-                type="text"
-                name="keyFeatureTitle"
-                placeholder="Key Feature Title"
-                id="title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                value={editKeyFeatureData.keyFeatureTitle}
-                onChange={(e) =>
-                  setEditKeyFeatureData({
-                    ...editKeyFeatureData,
-                    keyFeatureTitle: e.target.value,
-                  })
-                }
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-one-title"
-                className="block text-gray-700 font-bold"
-              >
-                Point One Title
-              </label>
-              <input
-                type="text"
-                name="point_one_Title"
-                id="point-one-title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                value={editKeyFeatureData.point_one_Title}
-                onChange={(e) =>
-                  setEditKeyFeatureData({
-                    ...editKeyFeatureData,
-                    point_one_Title: e.target.value,
-                  })
-                }
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-one-desc"
-                className="block text-gray-700 font-bold"
-              >
-                Point One Description
-              </label>
-              <textarea
-                name="point_one_Desc"
-                id="point-one-desc"
-                cols="30"
-                rows="2"
-                className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                value={editKeyFeatureData.point_one_Desc}
-                onChange={(e) =>
-                  setEditKeyFeatureData({
-                    ...editKeyFeatureData,
-                    point_one_Desc: e.target.value,
-                  })
-                }
-              ></textarea>
-            </fieldset>
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-two-title"
-                className="block text-gray-700 font-bold"
-              >
-                Point Two Title
-              </label>
-              <input
-                type="text"
-                name="point_one_Title"
-                id="point-two-title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                value={editKeyFeatureData.point_two_Title}
-                onChange={(e) =>
-                  setEditKeyFeatureData({
-                    ...editKeyFeatureData,
-                    point_two_Title: e.target.value,
-                  })
-                }
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-two-desc"
-                className="block text-gray-700 font-bold"
-              >
-                Point two Description
-              </label>
-              <textarea
-                name="point_two_Desc"
-                id="point-two-desc"
-                cols="30"
-                rows="2"
-                className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                value={editKeyFeatureData.point_two_Desc}
-                onChange={(e) =>
-                  setEditKeyFeatureData({
-                    ...editKeyFeatureData,
-                    point_two_Desc: e.target.value,
-                  })
-                }
-              ></textarea>
-            </fieldset>
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-three-title"
-                className="block text-gray-700 font-bold"
-              >
-                Point three Title
-              </label>
-              <input
-                type="text"
-                name="point_three_Title"
-                id="point-three-title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                value={editKeyFeatureData.point_three_Title}
-                onChange={(e) =>
-                  setEditKeyFeatureData({
-                    ...editKeyFeatureData,
-                    point_three_Title: e.target.value,
-                  })
-                }
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label
-                htmlFor="point-three-desc"
-                className="block text-gray-700 font-bold"
-              >
-                Point three Description
-              </label>
-              <textarea
-                name="point_three_Desc"
-                id="point-three-desc"
-                cols="30"
-                rows="2"
-                className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                value={editKeyFeatureData.point_three_Desc}
-                onChange={(e) =>
-                  setEditKeyFeatureData({
-                    ...editKeyFeatureData,
-                    point_three_Desc: e.target.value,
-                  })
-                }
-              ></textarea>
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="key-feature-image" className="block font-bold">
-                Key Feature Image
-              </label>
-              <div className="relative">
-                <div>
-                  <input
-                    type="file"
-                    name="keyFeatureImage"
-                    id="key-feature-image"
-                    className="form-input w-full rounded-md hidden overflow-hidden"
-                    aria-describedby="file-upload-label"
-                    onChange={handleEditFileChange}
-                  />
+          {/* edit hero section modal */}
+          <Modal
+            show={editKeyFeatureShow}
+            onHide={handleEditKeyFeatureDataClose}
+          >
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>Edit Key Feature Data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="bg-white">
+              <form className="mx-auto max-w-lg">
+                <fieldset className="mb-4">
                   <label
-                    htmlFor="key-feature-image"
-                    id="file-upload-label"
-                    className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md"
+                    htmlFor="title"
+                    className="block text-gray-700 font-bold"
                   >
-                    Upload File
+                    Key Feature Title
                   </label>
-                </div>
-                {editSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button
-                      className="text-red-500 hover:text-red-700  mt-1 ms-[110px] "
-                      onClick={() => setEditSelectedFile(null)}
-                    >
-                      <AiOutlineClose />
-                    </button>
-                    <img
-                      src={URL.createObjectURL(editSelectedFile)}
-                      alt="Selected File"
-                      className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2"
-                    />
-                    <p className="text-gray-700">{editSelectedFile.name}</p>
-                  </div>
-                )}
-              </div>
-            </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={handleEditKeyFeatureDataClose}
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              handleEditKeyFeatureDataClose();
-              editKeyFeaturefunc();
-            }}
-            className="bg-blue-500 hover:bg-blue-600 text-white"
-          >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <div className="w-[100%] bg-white p-2">
-        <table className="w-full z-10 border border-collapse">
-          <thead className="z-10 bg-gray-800 text-white">
-            <tr>
-              <th className="border-r p-2 ">Sr. No</th>
-              <th className="border-r p-2 ">Key Feature Title</th>
-              <th className="border-r p-2">Key Feature Image</th>
-              <th className="border-r p-2 ">Point One</th>
-              <th className="border-r p-2">Point Two</th>
-              <th className="border-r p-2">Point Three</th>
-              <th className="border-r p-2 ">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems.map((item, index) => (
-              <tr key={index} className="border">
-                <td className="border-r p-1 w-16">
-                  {index + indexOfFirstItem + 1}
-                </td>
-                <td className="border-r p-1 w-72">{item.keyFeatureTitle}</td>
-                {/* <td className="border p-1 w-[500px]">{item.point_one_Desc}</td> */}
-                <td className="border-r p-1 w-24">
-                  <img
-                    src={item.keyFeatureImag}
-                    alt={item.keyFeatureTitle}
-                    className="w-[70px] h-[70px]"
-                  />
-                </td>
-                <td className="border-r p-1">
-                  <FaEye
-                    onClick={() => {
-                      handlePointOneShow();
-                      setPointOneData({
-                        title: item.point_one_Title,
-                        description: item.point_one_Desc,
-                      });
-                    }}
-                  />
-                </td>
-
-                <td className="border-r p-1">
-                  <FaEye
-                    onClick={() => {
-                      handlePointTwoShow();
-                      setPointTwoData({
-                        title: item.point_two_Title,
-                        description: item.point_two_Desc,
-                      });
-                    }}
-                  />
-                </td>
-                <td className="border-r p-1">
-                  <FaEye
-                    onClick={() => {
-                      handlePointThreeShow();
-                      setPointThreeData({
-                        title: item.point_three_Title,
-                        description: item.point_three_Desc,
-                      });
-                    }}
-                  />
-                </td>
-
-                <td className="p-1 flex gap-x-2 w-50">
-                  <button
-                    onClick={() => {
-                      handleEditKeyFeatureDataShow();
-                      setEditId(item._id);
+                  <input
+                    type="text"
+                    name="keyFeatureTitle"
+                    placeholder="Key Feature Title"
+                    id="title"
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    value={editKeyFeatureData.keyFeatureTitle}
+                    onChange={(e) =>
                       setEditKeyFeatureData({
-                        keyFeatureTitle: item.keyFeatureTitle,
-                        keyFeatureImag: item.keyFeatureImag,
-                        point_one_Title: item.point_one_Title,
-                        point_one_Desc: item.point_one_Desc,
-                        point_two_Title: item.point_two_Title,
-                        point_two_Desc: item.point_two_Desc,
-                        point_three_Title: item.point_three_Title,
-                        point_three_Desc: item.point_three_Desc,
+                        ...editKeyFeatureData,
+                        keyFeatureTitle: e.target.value,
                       })
-                    }}
-                    className="px-2 py-1 bg-blue-500 hover:bg-blue-800 text-white rounded"
+                    }
+                  />
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-one-title"
+                    className="block text-gray-700 font-bold"
                   >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => deleteKeyfeatureData(item._id)}
-                    className="bg-red-500 hover:bg-red-800 px-2 py-1 text-white rounded"
+                    Point One Title
+                  </label>
+                  <input
+                    type="text"
+                    name="point_one_Title"
+                    id="point-one-title"
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    value={editKeyFeatureData.point_one_Title}
+                    onChange={(e) =>
+                      setEditKeyFeatureData({
+                        ...editKeyFeatureData,
+                        point_one_Title: e.target.value,
+                      })
+                    }
+                  />
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-one-desc"
+                    className="block text-gray-700 font-bold"
                   >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-     
-        {/* Pagination */}
-          {/* Pagination */}
-      <ul className="flex justify-center gap-[20px] mt-[90px]">
-        <li>
-          <button
-            onClick={() =>
-              setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
-            }
-            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
-          >
-            Prev
-          </button>
-        </li>
-        <li className="py-2 px-2 text-black font-semibold">{currentPage}</li>
-        <li>
-          <button
-            onClick={() =>
-              setCurrentPage((prevPage) =>
-                Math.min(
-                  prevPage + 1,
-                  Math.ceil(KeyFeatureData.length / itemsPerPage)
-                )
-              )
-            }
-            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
-          >
-            Next
-          </button>
-        </li>
-      </ul>
-      </div>
-    </div>
+                    Point One Description
+                  </label>
+                  <textarea
+                    name="point_one_Desc"
+                    id="point-one-desc"
+                    cols="30"
+                    rows="2"
+                    className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    value={editKeyFeatureData.point_one_Desc}
+                    onChange={(e) =>
+                      setEditKeyFeatureData({
+                        ...editKeyFeatureData,
+                        point_one_Desc: e.target.value,
+                      })
+                    }
+                  ></textarea>
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-two-title"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Point Two Title
+                  </label>
+                  <input
+                    type="text"
+                    name="point_one_Title"
+                    id="point-two-title"
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    value={editKeyFeatureData.point_two_Title}
+                    onChange={(e) =>
+                      setEditKeyFeatureData({
+                        ...editKeyFeatureData,
+                        point_two_Title: e.target.value,
+                      })
+                    }
+                  />
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-two-desc"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Point two Description
+                  </label>
+                  <textarea
+                    name="point_two_Desc"
+                    id="point-two-desc"
+                    cols="30"
+                    rows="2"
+                    className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    value={editKeyFeatureData.point_two_Desc}
+                    onChange={(e) =>
+                      setEditKeyFeatureData({
+                        ...editKeyFeatureData,
+                        point_two_Desc: e.target.value,
+                      })
+                    }
+                  ></textarea>
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-three-title"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Point three Title
+                  </label>
+                  <input
+                    type="text"
+                    name="point_three_Title"
+                    id="point-three-title"
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    value={editKeyFeatureData.point_three_Title}
+                    onChange={(e) =>
+                      setEditKeyFeatureData({
+                        ...editKeyFeatureData,
+                        point_three_Title: e.target.value,
+                      })
+                    }
+                  />
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="point-three-desc"
+                    className="block text-gray-700 font-bold"
+                  >
+                    Point three Description
+                  </label>
+                  <textarea
+                    name="point_three_Desc"
+                    id="point-three-desc"
+                    cols="30"
+                    rows="2"
+                    className="form-textarea mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    value={editKeyFeatureData.point_three_Desc}
+                    onChange={(e) =>
+                      setEditKeyFeatureData({
+                        ...editKeyFeatureData,
+                        point_three_Desc: e.target.value,
+                      })
+                    }
+                  ></textarea>
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label
+                    htmlFor="key-feature-image"
+                    className="block font-bold"
+                  >
+                    Key Feature Image
+                  </label>
+                  <div className="relative">
+                    <div>
+                      <input
+                        type="file"
+                        name="keyFeatureImage"
+                        id="key-feature-image"
+                        className="form-input w-full rounded-md hidden overflow-hidden"
+                        aria-describedby="file-upload-label"
+                        onChange={handleEditFileChange}
+                      />
+                      <label
+                        htmlFor="key-feature-image"
+                        id="file-upload-label"
+                        className="cursor-pointer border hover:bg-blue-700 font-bold py-2 px-4 rounded-md"
+                      >
+                        Upload File
+                      </label>
+                    </div>
+                    {editSelectedFile && (
+                      <div className="ml-2 mt-4">
+                        <button
+                          className="text-red-500 hover:text-red-700  mt-1 ms-[110px] "
+                          onClick={() => setEditSelectedFile(null)}
+                        >
+                          <AiOutlineClose />
+                        </button>
+                        <img
+                          src={URL.createObjectURL(editSelectedFile)}
+                          alt="Selected File"
+                          className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2"
+                        />
+                        <p className="text-gray-700">{editSelectedFile.name}</p>
+                      </div>
+                    )}
+                  </div>
+                </fieldset>
+              </form>
+            </Modal.Body>
+            <Modal.Footer className="bg-gray-100">
+              <Button
+                variant="secondary"
+                onClick={handleEditKeyFeatureDataClose}
+                className="text-gray-700 hover:text-gray-900"
+              >
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  handleEditKeyFeatureDataClose();
+                  editKeyFeaturefunc();
+                }}
+                className="bg-blue-500 hover:bg-blue-600 text-white"
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+          <div className="w-[100%] p-2">
+            <table className="w-full z-10 border border-collapse bg-white">
+              <thead className="z-10 bg-gray-800 text-white">
+                <tr>
+                  <th className="border-r p-2 ">Sr. No</th>
+                  <th className="border-r p-2 ">Key Feature Title</th>
+                  <th className="border-r p-2">Key Feature Image</th>
+                  <th className="border-r p-2 ">Point One</th>
+                  <th className="border-r p-2">Point Two</th>
+                  <th className="border-r p-2">Point Three</th>
+                  <th className="border-r p-2 ">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentItems.map((item, index) => (
+                  <tr key={index} className="border">
+                    <td className="border-r p-1 w-16">
+                      {index + indexOfFirstItem + 1}
+                    </td>
+                    <td className="border-r p-1 w-72">
+                      {item.keyFeatureTitle}
+                    </td>
+                    {/* <td className="border p-1 w-[500px]">{item.point_one_Desc}</td> */}
+                    <td className="border-r p-1 w-24">
+                      <img
+                        src={item.keyFeatureImag}
+                        alt={item.keyFeatureTitle}
+                        className="w-[70px] h-[70px]"
+                      />
+                    </td>
+                    <td className="border-r p-1">
+                      <FaEye
+                        onClick={() => {
+                          handlePointOneShow();
+                          setPointOneData({
+                            title: item.point_one_Title,
+                            description: item.point_one_Desc,
+                          });
+                        }}
+                      />
+                    </td>
+
+                    <td className="border-r p-1">
+                      <FaEye
+                        onClick={() => {
+                          handlePointTwoShow();
+                          setPointTwoData({
+                            title: item.point_two_Title,
+                            description: item.point_two_Desc,
+                          });
+                        }}
+                      />
+                    </td>
+                    <td className="border-r p-1">
+                      <FaEye
+                        onClick={() => {
+                          handlePointThreeShow();
+                          setPointThreeData({
+                            title: item.point_three_Title,
+                            description: item.point_three_Desc,
+                          });
+                        }}
+                      />
+                    </td>
+
+                    <td className="p-1 flex gap-x-2 w-50">
+                      <button
+                        onClick={() => {
+                          handleEditKeyFeatureDataShow();
+                          setEditId(item._id);
+                          setEditKeyFeatureData({
+                            keyFeatureTitle: item.keyFeatureTitle,
+                            keyFeatureImag: item.keyFeatureImag,
+                            point_one_Title: item.point_one_Title,
+                            point_one_Desc: item.point_one_Desc,
+                            point_two_Title: item.point_two_Title,
+                            point_two_Desc: item.point_two_Desc,
+                            point_three_Title: item.point_three_Title,
+                            point_three_Desc: item.point_three_Desc,
+                          });
+                        }}
+                        className="px-2 py-1 bg-blue-500 hover:bg-blue-800 text-white rounded"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => deleteKeyfeatureData(item._id)}
+                        className="bg-red-500 hover:bg-red-800 px-2 py-1 text-white rounded"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            {/* Pagination */}
+            {/* Pagination */}
+            <ul className="flex justify-center gap-[20px] mt-5">
+              <li>
+                <button
+                  onClick={() =>
+                    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+                  }
+                  className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
+                >
+                  Prev
+                </button>
+              </li>
+              <li className="py-2 px-2 text-black font-semibold">
+                {currentPage}
+              </li>
+              <li>
+                <button
+                  onClick={() =>
+                    setCurrentPage((prevPage) =>
+                      Math.min(
+                        prevPage + 1,
+                        Math.ceil(KeyFeatureData.length / itemsPerPage)
+                      )
+                    )
+                  }
+                  className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

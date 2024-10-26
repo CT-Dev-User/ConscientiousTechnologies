@@ -3,8 +3,40 @@ import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contextAPI/UserContext";
+
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+  <div class="animate-pulse flex space-x-4">
+    <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+    <div class="flex-1 space-y-6 py-1">
+      <div class="h-2 bg-slate-700 rounded"></div>
+      <div class="space-y-3">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+          <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+        </div>
+        <div class="h-2 bg-slate-700 rounded"></div>
+      </div>
+    </div>
+  </div>
+</div>
+);
 
 const BlogCMS = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchBlogs();
+    }
+  }, [userauth, router]);
   const [blogs, setBlogs] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
@@ -30,18 +62,18 @@ const BlogCMS = () => {
     HeaderDesc: "",
   });
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
-
   // Fetch all blogs
   const fetchBlogs = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         "http://localhost:8080/get-latest-blog-data-by-category/Home"
       );
       setBlogs(response.data.blog);
+      setLoading(false);
     } catch (error) {
+      setError("Error fetching blogs");
+      setLoading(false);
       console.error("Error fetching blogs:", error);
     }
   };
@@ -191,7 +223,13 @@ const BlogCMS = () => {
   };
 
   return (
-    <div className="container mx-auto mt-5 bg-white p-4">
+    <>
+    {loading ? (
+       <Spinner />
+     ) : error ? (
+       <p className="text-red-500">{error}</p>
+     ) : (
+    <div className="container mx-auto mt-5 p-4 bg-gray-200">
       <div className="flex justify-between mb-4">
         <h1 className="text-xl font-bold">Manage Blogs</h1>
         <Button
@@ -202,7 +240,7 @@ const BlogCMS = () => {
         </Button>
       </div>
 
-      <table className="w-full border-collapse border mt-4">
+      <table className="w-full border-collapse border mt-4 bg-white">
         <thead className="bg-gray-800 text-white">
           <tr className="border border-gray-700 py-2">
             <th className="border-r px-2 py-2">Category</th>
@@ -269,7 +307,7 @@ const BlogCMS = () => {
         </tbody>
       </table>
       {/* Pagination */}
-      <ul className="flex justify-center gap-[20px] mt-[90px]">
+      <ul className="flex justify-center gap-5 mt-5">
         <li>
           <button
             onClick={() =>
@@ -655,6 +693,9 @@ const BlogCMS = () => {
         </Modal.Footer>
       </Modal>
     </div>
+     )
+    }
+    </>
   );
 };
 

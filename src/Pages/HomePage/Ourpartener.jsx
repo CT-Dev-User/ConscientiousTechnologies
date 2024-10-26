@@ -3,8 +3,41 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contextAPI/UserContext";
+
+
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+  <div class="animate-pulse flex space-x-4">
+    <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+    <div class="flex-1 space-y-6 py-1">
+      <div class="h-2 bg-slate-700 rounded"></div>
+      <div class="space-y-3">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+          <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+        </div>
+        <div class="h-2 bg-slate-700 rounded"></div>
+      </div>
+    </div>
+  </div>
+</div>
+);
 
 const OurPartener = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchOurPartenerData();
+    }
+  }, [userauth, router]);
   const [OurPartenerData, setOurPartenerData] = useState([]);
   const [addOurPartenerData, setAddOurPartenerData] = useState({
     title: "",
@@ -55,19 +88,19 @@ const OurPartener = () => {
   };
 
   const fetchOurPartenerData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-partener-data"
       );
       setOurPartenerData(response.data.getdata);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setError("Error fetching user data");
+      setLoading(false);
     }
   };
-
-  useEffect(() => {
-    fetchOurPartenerData();
-  }, []);
 
   //edit our partener data
 
@@ -151,7 +184,13 @@ const OurPartener = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="w-full bg-gray-300 h-full mx-auto p-4">
+    <>
+    {loading ? (
+        <Spinner />
+      ) : error ? (
+        <p className="text-red-500">{error}</p>
+      ) : (
+        <div className="w-full bg-gray-300 h-full mx-auto p-4">
       <div className="flex justify-between">
         <h1 className="text-xl text-black font-bold">Our Parteners</h1>
         <div className="text-white mb-5 mr-5 hover:scale-[1.1] bg-blue-500 hover:bg-blue-700 rounded-sm">
@@ -337,7 +376,7 @@ const OurPartener = () => {
         </Modal.Footer>
       </Modal>
 
-      <table className="w-full border-collapse border">
+      <table className="w-full border-collapse border bg-white">
         <thead className="bg-gray-800 text-white">
           <tr >
             <th className="border p-2">Sr. No</th>
@@ -348,7 +387,7 @@ const OurPartener = () => {
         </thead>
         <tbody>
           {currentItems.map((item, index) => (
-            <tr key={index}>
+            <tr key={index} className="text-left border-b">
               <td className="border p-1">{index + indexOfFirstItem + 1}</td>
               <td className="border p-1">{item.title}</td>
               {/* <td className="border p-1">{item.heroHomedesc}</td> */}
@@ -402,6 +441,9 @@ const OurPartener = () => {
         ))}
       </ul>
     </div>
+      )}
+    </>
+    
   );
 };
 
