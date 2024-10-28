@@ -103,7 +103,7 @@ const ContactUs = () => {
 
         <div className="w-[65%] flex justify-center items-center">
           <form className="w-[65%] bg-white px-8 pt-6 pb-8 mb-4 h-[100%] flex flex-wrap gap-[20px]" onSubmit={handleSubmit}>
-            <div className="text-black mb-2 w-[100%] flex border border-2 border-[#ccc]">
+            <div className="text-black mb-2 w-[100%] flex border-2 border-[#ccc]">
               <div className='w-[30%]'>
                 <img
                   src={ctSolution}
@@ -124,7 +124,7 @@ const ContactUs = () => {
             </div>
             <div className="mb-1 w-[100%]">
               <textarea
-                className="border border-[1px] w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#1df0d4]"
+                className="border-[1px] w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#1df0d4]"
                 id="message_request"
                 placeholder="Kindly describe your request"
                 rows="5"

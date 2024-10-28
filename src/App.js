@@ -109,6 +109,7 @@ import MainPage from './Pages/contactUs/MainPage';
 import Blogs from './Pages/blogs/Blogs';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import CaseStudy from './Pages/caseStudy/CaseStudy';
+import ContactUsPage from './Pages/contactUsPage/ContactUsPage';
 // import Solution from './Pages/Solution/solutionPage/Solution';
 
 function App() {
@@ -237,6 +238,7 @@ function App() {
         <Route path='/blog/:id' element={<Blogs />} />
         <Route path='/case-study/:id' element={<CaseStudy/>} />
         <Route path='/about-us' element={<AboutUs setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav} />} />
+        <Route path='/contact-us' element={<ContactUsPage />}/>
       </Routes>
     </div>
   );

@@ -11,8 +11,8 @@ const Blog = ({ category, subCategory }) => {
     try {
       if (category === "HomePage") {
         const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-latest-blog-data");
-        console.log(response.data);
-        setBlogData(response.data.data);
+        // console.log(response.data);
+        setBlogData(response.data.blogs);
         // console.log(blogData)
       } else {
         const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-blogs-data-by-CategoryandSubCategory/${category}/${subCategory}`);
@@ -69,7 +69,7 @@ const Blog = ({ category, subCategory }) => {
         </p>
       </div>
       <div className="lg:flex text-white w-[85%] gap-9 flex-wrap mx-auto justify-between mt-7 hidden">
-        {blogData.map((items, i) => {
+        {blogData && blogData.map((items, i) => {
           return (
             <div
               style={{
