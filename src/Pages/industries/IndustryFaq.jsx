@@ -5,9 +5,42 @@ import { AiOutlineClose } from "react-icons/ai";
 import JoditEditor from "jodit-react";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contextAPI/UserContext";
+
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          </div>
+          <div class="h-2 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const IndustryFAQ = () => {
+ 
+  const router = useNavigate();
   const [industries, setIndustries] = useState([]);
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchHomeFaqs();
+    }
+  }, [userauth, router]);
   const [homeFaqs, setHomeFaqs] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
@@ -30,8 +63,13 @@ const IndustryFAQ = () => {
   const [editId, setEditId] = useState(null);
   const addEditor = useRef(null);
   const editEditor = useRef(null);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
+  const [filterFaq, setfilterFaq] = useState([]);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filterFaq ? filterFaq.slice(indexOfFirstItem, indexOfLastItem) : [];
 
   const handleAddfileChange = (e) => {
     setAddSelectedFile(e.target.files[0]);
@@ -93,7 +131,7 @@ const IndustryFAQ = () => {
         `http://localhost:8080/update-faq/${editId}`,
         formData
       );
-      console.log(response.status);
+      // console.log(response.status);
       if (response.status === 200) {
         Swal.fire("Saved!", "Your changes have been saved.", "success");
         fetchHomeFaqs();
@@ -116,31 +154,37 @@ const IndustryFAQ = () => {
   };
 
   const fetchHomeFaqs = async () => {
+    setLoading(true);
     try {
       const response = await axios.get("http://localhost:8080/get-faq-bycategory/Industry");
       setHomeFaqs(response.data.data);
+      console.log(response.data.data);
+      setfilterFaq(response.data.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchHomeFaqs();
   }, []);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = homeFaqs ? homeFaqs.slice(indexOfFirstItem, indexOfLastItem) : [];
+
   useEffect(() => {
     fetchIndustry();
   }, []);
   const fetchIndustry = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-latest-industry-data"
       );
       setIndustries(response.data);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching services:", error);
+      setLoading(false);
     }
   };
   const deleteHomeFAQData = async (id) => {
@@ -176,350 +220,381 @@ const IndustryFAQ = () => {
   };
 
   return (
-    <div className="w-full bg-gray-300 h-full mx-auto p-4">
-      <div className="flex justify-between mb-5 mr-3">
-        <h1 className="text-2xl font-bold">FAQ's for Industries</h1>
-        <Button
-          onClick={() => setAddPopUpShow(true)}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Add FAQ's
-        </Button>
-      </div>
+    <>
+      {loading ? (
+        <Spinner />
+      ) : error ? (
+        <p className="text-red-500">{error}</p>
+      ) : (
+        <div className="w-full bg-gray-300 h-full mx-auto p-4">
+          <div className="flex justify-between mb-5 mr-3">
+            <h1 className="text-2xl font-bold">FAQ's for Industries</h1>
 
-      <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Add Home FAQ Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-          <fieldset className="mb-4">
-              <label className="block text-gray-700">industry Name</label>
-              <select
-                name=""
-                value={addHomeFAQ.Subcategory}
-                onChange={(e) => setAddHomeFAQ({...addHomeFAQ, Subcategory:e.target.value})}
-                className="w-full p-2 border rounded"
-                id=""
-              >
-                <option value="">Select Industry</option>
-                {industries.map((industry, index) => (
-                  <option key={index} value={industry.industryName}>
-                    {industry.industryName}
-                  </option>
-                ))}
-              </select>
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">
-                Question
-              </label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-                onChange={(e) =>
-                  setAddHomeFAQ({ ...addHomeFAQ, question: e.target.value })
+            <select
+              name=""
+              onChange={(e) => {
+                if (e.target.value === "All Industries") {
+                  setfilterFaq(homeFaqs); // Show all FAQs
+                } else {
+                  setfilterFaq(
+                    homeFaqs.filter((item) => item.Subcategory === e.target.value)
+                  );
                 }
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="desc" className="block text-gray-700 font-bold">
-                Answer
-              </label>
-              <JoditEditor
-                ref={addEditor}
-                value={addHomeFAQ.answer.answerText}
-                onChange={(value) =>
-                  setAddHomeFAQ({
-                    ...addHomeFAQ,
-                    answer: { ...addHomeFAQ.answer, answerText: value },
-                  })
-                }
-              />
-            </fieldset>
+              }}
+              className="p-2 border rounded"
+              id=""
+            >
+              <option value="All Industries">All Industries</option>
+              {homeFaqs.map((industry, index) => (
+                <option key={index} value={industry.Subcategory}>
+                  {industry.Subcategory}
+                </option>
+              ))}
+            </select>
+            <Button
+              onClick={() => setAddPopUpShow(true)}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Add FAQ's
+            </Button>
+          </div>
 
-            <fieldset className="mb-4">
-              <label htmlFor="ServiceHomePageimage" className="block font-bold">
-                Image
-              </label>
-              <div className="relative">
-                <input
-                  type="file"
-                  name="ServiceHomePageimage"
-                  id="ServiceHomePageimage"
-                  className="form-input block w-full rounded-md overflow-hidden file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                  aria-describedby="file-upload-label"
-                  onChange={handleAddfileChange}
-                />
-                {addselectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button
-                      className="text-red-500 hover:text-red-700 mt-1 ms-[110px] "
-                      onClick={() => setAddSelectedFile(null)}
-                    >
-                      <AiOutlineClose />
-                    </button>
-                    <img
-                      src={URL.createObjectURL(addselectedFile)}
-                      alt="Selected File"
-                      className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2"
+          <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>Add Home FAQ Data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="bg-white">
+              <form className="mx-auto max-w-lg">
+                <fieldset className="mb-4">
+                  <label className="block text-gray-700">industry Name</label>
+                  <select
+                    name=""
+                    value={addHomeFAQ.Subcategory}
+                    onChange={(e) => setAddHomeFAQ({ ...addHomeFAQ, Subcategory: e.target.value })}
+                    className="w-full p-2 border rounded"
+                    id=""
+                  >
+                    <option value="">Select Industry</option>
+                    {industries.map((industry, index) => (
+                      <option key={index} value={industry.industryName}>
+                        {industry.industryName}
+                      </option>
+                    ))}
+                  </select>
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label htmlFor="title" className="block text-gray-700 font-bold">
+                    Question
+                  </label>
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                    onChange={(e) =>
+                      setAddHomeFAQ({ ...addHomeFAQ, question: e.target.value })
+                    }
+                  />
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label htmlFor="desc" className="block text-gray-700 font-bold">
+                    Answer
+                  </label>
+                  <JoditEditor
+                    ref={addEditor}
+                    value={addHomeFAQ.answer.answerText}
+                    onChange={(value) =>
+                      setAddHomeFAQ({
+                        ...addHomeFAQ,
+                        answer: { ...addHomeFAQ.answer, answerText: value },
+                      })
+                    }
+                  />
+                </fieldset>
+
+                <fieldset className="mb-4">
+                  <label htmlFor="ServiceHomePageimage" className="block font-bold">
+                    Image
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="file"
+                      name="ServiceHomePageimage"
+                      id="ServiceHomePageimage"
+                      className="form-input block w-full rounded-md overflow-hidden file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      aria-describedby="file-upload-label"
+                      onChange={handleAddfileChange}
                     />
-                    <p className="text-gray-700">{addselectedFile.name}</p>
+                    {addselectedFile && (
+                      <div className="ml-2 mt-4">
+                        <button
+                          className="text-red-500 hover:text-red-700 mt-1 ms-[110px] "
+                          onClick={() => setAddSelectedFile(null)}
+                        >
+                          <AiOutlineClose />
+                        </button>
+                        <img
+                          src={URL.createObjectURL(addselectedFile)}
+                          alt="Selected File"
+                          className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2"
+                        />
+                        <p className="text-gray-700">{addselectedFile.name}</p>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={() => {
-              setAddPopUpShow(false);
-            }}
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              setAddPopUpShow(false);
-              addHomeFaqDataFunc();
-            }}
-            className="bg-blue-500 hover:bg-blue-600 text-white"
-          >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal show={editPopupShow} onHide={() => setEditPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit FAQ's</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <form className="mx-auto max-w-lg">
-          <fieldset className="mb-4">
-              <label className="block text-gray-700">industry Name</label>
-              <select
-                name=""
-                value={editHomeFAQ.Subcategory}
-                onChange={(e) => seteditHomeFAQ({...editHomeFAQ, Subcategory:e.target.value})}
-                className="w-full p-2 border rounded"
-                id=""
+                </fieldset>
+              </form>
+            </Modal.Body>
+            <Modal.Footer className="bg-gray-100">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setAddPopUpShow(false);
+                }}
+                className="text-gray-700 hover:text-gray-900"
               >
-                <option value="">Select Industry</option>
-                {industries.map((industry, index) => (
-                  <option key={index} value={industry.industryName}>
-                    {industry.industryName}
-                  </option>
-                ))}
-              </select>
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="title" className="block text-gray-700 font-bold">
-                Title
-              </label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                className="form-input mt-1 block w-full 
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  setAddPopUpShow(false);
+                  addHomeFaqDataFunc();
+                }}
+                className="bg-blue-500 hover:bg-blue-600 text-white"
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+          <Modal show={editPopupShow} onHide={() => setEditPopUpShow(false)}>
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>Edit FAQ's</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="bg-white">
+              <form className="mx-auto max-w-lg">
+                <fieldset className="mb-4">
+                  <label className="block text-gray-700">industry Name</label>
+                  <select
+                    name=""
+                    value={editHomeFAQ.Subcategory}
+                    onChange={(e) => seteditHomeFAQ({ ...editHomeFAQ, Subcategory: e.target.value })}
+                    className="w-full p-2 border rounded"
+                    id=""
+                  >
+                    <option value="">Select Industry</option>
+                    {industries.map((industry, index) => (
+                      <option key={index} value={industry.industryName}>
+                        {industry.industryName}
+                      </option>
+                    ))}
+                  </select>
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label htmlFor="title" className="block text-gray-700 font-bold">
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    className="form-input mt-1 block w-full 
                             rounded-md border border-gray-300 focus:border-blue-500"
-                value={editHomeFAQ.question}
-                onChange={(e) =>
-                  seteditHomeFAQ({ ...editHomeFAQ, question: e.target.value })
-                }
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="desc" className="block text-gray-700 font-bold">
-                Description
-              </label>
-              <JoditEditor
-                ref={editEditor}
-                value={editHomeFAQ.answer?.answerText || ""} // Use optional chaining to avoid errors if editHomeFAQ.answer is null or undefined
-                onChange={(value) =>
-                  seteditHomeFAQ({
-                    ...editHomeFAQ,
-                    answer: {
-                      ...(editHomeFAQ.answer || {}), // Ensure that editHomeFAQ.answer is an object before spreading its properties
-                      answerText: value,
-                    },
-                  })
-                }
-              />
-            </fieldset>
-            <fieldset className="mb-4">
-              <label htmlFor="ServiceHomePageimage" className="block font-bold">
-                Image
-              </label>
-              <div className="relative">
-                <input
-                  type="file"
-                  name="ServiceHomePageimage"
-                  id="ServiceHomePageimage"
-                  className="form-input block w-full rounded-md overflow-hidden file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                  aria-describedby="file-upload-label"
-                  onChange={handleEditFileChange}
-                />
-                {editSelectedFile && (
-                  <div className="ml-2 mt-4">
-                    <button
-                      className="text-red-500 hover:text-red-700  mt-1 ms-[110px] "
-                      onClick={() => setEditSelectedFile(null)}
-                    >
-                      <AiOutlineClose />
-                    </button>
-                    <img
-                      src={URL.createObjectURL(editSelectedFile)}
-                      alt="Selected File"
-                      className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2"
+                    value={editHomeFAQ.question}
+                    onChange={(e) =>
+                      seteditHomeFAQ({ ...editHomeFAQ, question: e.target.value })
+                    }
+                  />
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label htmlFor="desc" className="block text-gray-700 font-bold">
+                    Description
+                  </label>
+                  <JoditEditor
+                    ref={editEditor}
+                    value={editHomeFAQ.answer?.answerText || ""} // Use optional chaining to avoid errors if editHomeFAQ.answer is null or undefined
+                    onChange={(value) =>
+                      seteditHomeFAQ({
+                        ...editHomeFAQ,
+                        answer: {
+                          ...(editHomeFAQ.answer || {}), // Ensure that editHomeFAQ.answer is an object before spreading its properties
+                          answerText: value,
+                        },
+                      })
+                    }
+                  />
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label htmlFor="ServiceHomePageimage" className="block font-bold">
+                    Image
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="file"
+                      name="ServiceHomePageimage"
+                      id="ServiceHomePageimage"
+                      className="form-input block w-full rounded-md overflow-hidden file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      aria-describedby="file-upload-label"
+                      onChange={handleEditFileChange}
                     />
-                    <p className="text-gray-700">{editSelectedFile.name}</p>
+                    {editSelectedFile && (
+                      <div className="ml-2 mt-4">
+                        <button
+                          className="text-red-500 hover:text-red-700  mt-1 ms-[110px] "
+                          onClick={() => setEditSelectedFile(null)}
+                        >
+                          <AiOutlineClose />
+                        </button>
+                        <img
+                          src={URL.createObjectURL(editSelectedFile)}
+                          alt="Selected File"
+                          className="w-24 h-14 object-cover rounded-md border border-gray-300 mt-2"
+                        />
+                        <p className="text-gray-700">{editSelectedFile.name}</p>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </fieldset>
-          </form>
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={() => {
-              setEditPopUpShow(false);
-            }}
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              editHomeFAQFunc();
-              setEditPopUpShow(false);
-            }}
-            className="bg-blue-500 hover:bg-blue-600 text-white"
-          >
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+                </fieldset>
+              </form>
+            </Modal.Body>
+            <Modal.Footer className="bg-gray-100">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setEditPopUpShow(false);
+                }}
+                className="text-gray-700 hover:text-gray-900"
+              >
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  editHomeFAQFunc();
+                  setEditPopUpShow(false);
+                }}
+                className="bg-blue-500 hover:bg-blue-600 text-white"
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
-      <Modal size="lg" show={answerPopUp} onHide={() => setAnswerPopUp(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit Hero Section Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <div dangerouslySetInnerHTML={{ __html: faqAnswer }} />
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={() => setAnswerPopUp(false)}
-            className="text-gray-700 hover:text-gray-900"
-          >
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          <Modal size="lg" show={answerPopUp} onHide={() => setAnswerPopUp(false)}>
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>Edit Hero Section Data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="bg-white">
+              <div dangerouslySetInnerHTML={{ __html: faqAnswer }} />
+            </Modal.Body>
+            <Modal.Footer className="bg-gray-100">
+              <Button
+                variant="secondary"
+                onClick={() => setAnswerPopUp(false)}
+                className="text-gray-700 hover:text-gray-900"
+              >
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
-      <table className="w-full border-collapse border bg-white">
-        <thead className="bg-gray-800 text-white">
-          <tr className="border-b">
-            <th className="border-r p-2">Sr. No</th>
-            <th className="border-r p-2">Subcategory / Industry</th>
-            <th className="border-r p-2">Question</th>
-            <th className="border-r p-2">Answer</th>
-            <th className="border-r p-2">Answer Image</th>
-            <th className="border-r p-2">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems && currentItems.map((faq, i) => (
-            <tr key={faq._id} className="border-b">
-              <td className="border-r p-2">{i + indexOfFirstItem + 1}</td>
-              <td className="border-r p-2">{faq.Subcategory}</td>
-              <td className="border-r p-2">{faq.question}</td>
-              <td className="border-r p-2">
-                <FaEye
-                  onClick={() => {
-                    setFaqAnswer(faq.answer && faq.answer.answerText);
-                    setAnswerPopUp(true);
-                  }}
-                  className="cursor-pointer"
-                />
-              </td>
-              <td className="border-r p-2">
-                <img
-                  src={faq.answer && faq.answer.answerImg}
-                  alt={faq.question}
-                  className="w-[60px] h-[60px]"
-                />
-              </td>
-              <td className="border-r flex items-center justify-start gap-[20px] p-2">
-                <button
-                  className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded"
-                  onClick={() => {
-                    setEditPopUpShow(true);
-                    setEditId(faq._id);
-                    seteditHomeFAQ({
-                      category:"Industry",
-                      Subcategory:faq.Subcategory,
-                      question: faq.question,
-                      answer: {
-                        answerText: faq.answer.answerText,
-                        answerImg: null,
-                      },
-                    });
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="hover:bg-red-700 h-[37px] bg-[red] py-2 px-4 rounded text-white shadow-md"
-                  onClick={() => deleteHomeFAQData(faq._id)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {/* Pagination */}
-      <ul className="flex justify-center mt-5">
-        <li>
-          <button
-            onClick={() =>
-              setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
-            }
-            className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white"
-          >
-            Previous
-          </button>
-        </li>
-        <li className="py-1 px-2">{currentPage}</li>
-        <li>
-          <button
-            onClick={() =>
-              setCurrentPage((prevPage) =>
-                Math.min(
-                  prevPage + 1,
-                  Math.ceil(homeFaqs.length / itemsPerPage)
-                )
-              )
-            }
-            className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white"
-          >
-            Next
-          </button>
-        </li>
-      </ul>
-    </div>
+          <table className="w-full border-collapse border bg-white">
+            <thead className="bg-gray-800 text-white">
+              <tr className="border-b">
+                <th className="border-r p-2">Sr. No</th>
+                <th className="border-r p-2">Subcategory / Industry</th>
+                <th className="border-r p-2">Question</th>
+                <th className="border-r p-2">Answer</th>
+                <th className="border-r p-2">Answer Image</th>
+                <th className="border-r p-2">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentItems && currentItems.map((faq, i) => (
+                <tr key={faq._id} className="border-b">
+                  <td className="border-r p-2">{i + indexOfFirstItem + 1}</td>
+                  <td className="border-r p-2">{faq.Subcategory}</td>
+                  <td className="border-r p-2">{faq.question}</td>
+                  <td className="border-r p-2">
+                    <FaEye
+                      onClick={() => {
+                        setFaqAnswer(faq.answer && faq.answer.answerText);
+                        setAnswerPopUp(true);
+                      }}
+                      className="cursor-pointer"
+                    />
+                  </td>
+                  <td className="border-r p-2">
+                    <img
+                      src={faq.answer && faq.answer.answerImg}
+                      alt={faq.question}
+                      className="w-[60px] h-[60px]"
+                    />
+                  </td>
+                  <td className="border-r flex items-center justify-start gap-[20px] p-2">
+                    <button
+                      className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded"
+                      onClick={() => {
+                        setEditPopUpShow(true);
+                        setEditId(faq._id);
+                        seteditHomeFAQ({
+                          category: "Industry",
+                          Subcategory: faq.Subcategory,
+                          question: faq.question,
+                          answer: {
+                            answerText: faq.answer.answerText,
+                            answerImg: null,
+                          },
+                        });
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="hover:bg-red-700 h-[37px] bg-[red] py-2 px-4 rounded text-white shadow-md"
+                      onClick={() => deleteHomeFAQData(faq._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {/* Pagination */}
+          <ul className="flex justify-center mt-5">
+            <li>
+              <button
+                onClick={() =>
+                  setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+                }
+                className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white"
+              >
+                Previous
+              </button>
+            </li>
+            <li className="py-1 px-2">{currentPage}</li>
+            <li>
+              <button
+                onClick={() =>
+                  setCurrentPage((prevPage) =>
+                    Math.min(
+                      prevPage + 1,
+                      Math.ceil(homeFaqs.length / itemsPerPage)
+                    )
+                  )
+                }
+                className="border border-black hover:bg-blue-700 py-1 px-2 rounded hover:text-white"
+              >
+                Next
+              </button>
+            </li>
+          </ul>
+        </div>
+      )}
+    </>
+
   );
 };
 

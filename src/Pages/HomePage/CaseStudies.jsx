@@ -350,11 +350,10 @@ const CaseStudies = () => {
                       See
                     </button>
                     <div
-                      className={`${
-                        cardData === index
+                      className={`${cardData === index
                           ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                           : "hidden"
-                      }`}
+                        }`}
                     >
                       <h6 className="font-bold text-gray-700 text-xs">
                         Card Title:{" "}
@@ -402,11 +401,10 @@ const CaseStudies = () => {
                       See
                     </button>
                     <div
-                      className={`${
-                        headerData === index
+                      className={`${headerData === index
                           ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                           : "hidden"
-                      }`}
+                        }`}
                     >
                       <h6 className="font-bold text-gray-700 text-xs">
                         Header Tagline:{" "}
@@ -441,11 +439,10 @@ const CaseStudies = () => {
                       See
                     </button>
                     <div
-                      className={`${
-                        overViewData === index
+                      className={`${overViewData === index
                           ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                           : "hidden"
-                      }`}
+                        }`}
                     >
                       <h6 className="text-xs">
                         Overview Title:{" "}
@@ -497,10 +494,9 @@ const CaseStudies = () => {
                     >
                       See
                     </button>
-                    <div className={`${
-                        goalsData === index
-                          ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
-                          : "hidden"
+                    <div className={`${goalsData === index
+                        ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                        : "hidden"
                       }`}>
                       <h6 className="text-xs">
                         Goals:{" "}
@@ -520,103 +516,101 @@ const CaseStudies = () => {
                           {caseStudy.challenges}
                         </span>
                       </h6>
-                      <button className="p-2 bg-slate-500 text-white rounded" onClick={()=>setGoalsData("")}>Close</button>
+                      <button className="p-2 bg-slate-500 text-white rounded" onClick={() => setGoalsData("")}>Close</button>
                     </div>
                   </td>
                   <td className="border-r px-4 py-2 text-xs">
                     <button className="px-3 py-2 bg-slate-500 text-white rounded"
                       onClick={() => setExecutionData(index)}>See</button>
-                    <div className={`${
-                        executionData === index
-                          ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
-                          : "hidden"
+                    <div className={`${executionData === index
+                        ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                        : "hidden"
                       }`}>
-                    <h6 className="text-xs">
-                      Approach:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.approach}
-                      </span>
-                    </h6>
-                    <h6 className="text-xs">
-                      Execution:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.executionHeading1}
-                      </span>
-                    </h6>
-                    <h6 className="text-xs">
-                      Point:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.executionPoint1}
-                      </span>
-                    </h6>
-                    <h6 className="text-xs">
-                      Execution:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.executionHeading2}
-                      </span>
-                    </h6>
-                    <h6 className="text-xs">
-                      Point:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.executionPoint2}
-                      </span>
-                    </h6>
-                    <h6 className="text-xs">
-                      Execution:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.executionHeading3}
-                      </span>
-                    </h6>
-                    <h6 className="text-xs">
-                      Point:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.executionPoint3}
-                      </span>
-                    </h6>
-                    <h6 className="text-xs">
-                      Execution:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.executionHeading4}
-                      </span>
-                    </h6>
-                    <h6 className="text-xs">
-                      Point:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.executionPoint4}
-                      </span>
-                    </h6>
-                    <button className="p-2 bg-slate-500 text-white rounded" onClick={()=>setExecutionData("")}>Close</button>
+                      <h6 className="text-xs">
+                        Approach:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.approach}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Execution:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.executionHeading1}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Point:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.executionPoint1}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Execution:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.executionHeading2}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Point:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.executionPoint2}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Execution:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.executionHeading3}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Point:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.executionPoint3}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Execution:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.executionHeading4}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Point:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.executionPoint4}
+                        </span>
+                      </h6>
+                      <button className="p-2 bg-slate-500 text-white rounded" onClick={() => setExecutionData("")}>Close</button>
                     </div>
-                    
+
                   </td>
                   <td className="border-r px-4 py-2 text-xs">
-                  <button className="px-3 py-2 bg-slate-500 text-white rounded"
+                    <button className="px-3 py-2 bg-slate-500 text-white rounded"
                       onClick={() => setSolutionData(index)}>See</button>
-                    <div className={`${
-                        solutionData === index
-                          ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
-                          : "hidden"
+                    <div className={`${solutionData === index
+                        ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                        : "hidden"
                       }`}>
-                    <h6 className="text-xs">
-                      Solution:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.solution}
-                      </span>
-                    </h6>
-                    <h6 className="text-xs">
-                      Tech Tools:{" "}
-                      <span className="font-normal text-blue-700 text-xs">
-                        {caseStudy.techTools}
-                      </span>
-                    </h6>
-                    <img src={caseStudy.solutionImage} alt="solution" />
-                    <button className="p-2 bg-slate-500 text-white ml-[80%] mt-5 rounded" onClick={()=>setSolutionData("")}>Close</button>
+                      <h6 className="text-xs">
+                        Solution:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.solution}
+                        </span>
+                      </h6>
+                      <h6 className="text-xs">
+                        Tech Tools:{" "}
+                        <span className="font-normal text-blue-700 text-xs">
+                          {caseStudy.techTools}
+                        </span>
+                      </h6>
+                      <img src={caseStudy.solutionImage} alt="solution" />
+                      <button className="p-2 bg-slate-500 text-white ml-[80%] mt-5 rounded" onClick={() => setSolutionData("")}>Close</button>
                     </div>
                   </td>
                   <td className="border-r px-4 py-2 flex flex-col gap-3">
-                    <img src={caseStudy.resultsImg1} alt="result" className="w-32"/>
-                    <img src={caseStudy.resultsImg2} alt="result" className="w-32"/>
-                    <img src={caseStudy.resultsImg3} alt="result" className="w-32"/>
+                    <img src={caseStudy.resultsImg1} alt="result" className="w-32" />
+                    <img src={caseStudy.resultsImg2} alt="result" className="w-32" />
+                    <img src={caseStudy.resultsImg3} alt="result" className="w-32" />
                   </td>
                   <td className="border-r px-4 py-2">
                     <button

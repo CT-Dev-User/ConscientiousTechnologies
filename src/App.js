@@ -8,7 +8,6 @@ import HeroSection from "./Pages/HomePage/HeroSection.jsx";
 import Ourpartener from "./Pages/HomePage/Ourpartener.jsx";
 import ServiceWeOffer from "./Pages/HomePage/ServiceWeOffer.jsx";
 import Solution from "./Pages/HomePage/Solution.jsx";
-import Industries from "./Pages/HomePage/Industries.jsx";
 import CaseStudies from "./Pages/HomePage/CaseStudies.jsx";
 import Blogs from "./Pages/HomePage/Blogs.jsx";
 import Clients from "./Pages/HomePage/Clients.jsx";
@@ -58,6 +57,7 @@ import IndustryFAQ from "./Pages/industries/IndustryFaq.jsx";
 import ServiceWhyChooseCT from "./Pages/Services/ServiceWhyChooseCT.jsx";
 import SolutionWhyChooseCT from "./Pages/Solution/SolutionWhyChooseCT.jsx";
 import IndustryWhyChooseCT from "./Pages/industries/IndustryWhyChooseCTSlider.jsx";
+import IndustryCMS from "./Pages/industries/IndustryPage.jsx";
 function App() {
   return (
     <Routes>
@@ -290,7 +290,7 @@ function App() {
         path="/conscientious-home-industries"
         element={
           <SideBar>
-            <Industries />
+            <IndustryCMS />
           </SideBar>
         }
       />
