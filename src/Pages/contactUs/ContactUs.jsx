@@ -48,8 +48,9 @@ const ContactUs = () => {
       }
 
       const response = await axios.post('http://localhost:8080/add-contact-us-data', form);
+      console.log(response.status)
       if (response.status === 200) {
-        alert('Form submitted successfully!');
+        Swal.fire("Success", res.data.message, "success");
         setFormData({
           fullName: '',
           companyName: '',
@@ -60,10 +61,10 @@ const ContactUs = () => {
           nda: false,
         })
       } else {
-        alert(`Error: ${response.data.message}`);
+        Swal.fire("Error", "Something went wrong Please try again.", "error");
       }
     } catch (error) {
-      alert(`Error: ${error.message}`);
+      Swal.fire("Error", "Something went wrong Please try again.", "error");
     }
   };
 

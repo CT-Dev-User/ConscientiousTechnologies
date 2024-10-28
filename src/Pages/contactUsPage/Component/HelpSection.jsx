@@ -1,39 +1,38 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { IoLocationOutline } from 'react-icons/io5';
+import Swal from 'sweetalert2';
 
 const HelpSection = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
+    const [fullName, setfullName] = useState("");
+    const [workEmail, setworkEmail] = useState("");
     const [phoneNo, setPhoneNo] = useState("");
+    const [companyName, setCompanyName] = useState("");
+    const [message_request, setMessage_request] = useState("");
+
     const [currentlyPursing, setCurrentlyPursuing] = useState("");
     const [year, setYear] = useState("");
     const [courseChooseWithTM, setCourseChooseWithTM] = useState("");
 
-    // Create an array with the contact details objects
-    const contactDetails = [
-        { key: "Enquire Now", value: { email: "email@gmail.com", contactNo: "0987654321" } },
-        { key: "for grievance", value: { email: "email@gmail.com", contactNo: "0987654321" } },
-        { key: "For Corporate", value: { email: "email@gmail.com", contactNo: "0987654321" } },
-    ];
-    const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
+   
+    const isValidEmail = (workEmail) => /\S+@\S+\.\S+/.test(workEmail);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (
-            !name ||
-            !email ||
+            !fullName ||
+            !workEmail ||
             !phoneNo ||
-            !currentlyPursing ||
-            !year ||
-            !courseChooseWithTM
+            !companyName||
+            !message_request
+
         ) {
             Swal.fire("Error", "Please fill out all fields.", "error");
             return;
         }
 
-        if (!isValidEmail(email)) {
+        if (!isValidEmail(workEmail)) {
             Swal.fire("Error", "Please enter a valid email address.", "error");
             return;
         }
@@ -41,22 +40,24 @@ const HelpSection = () => {
         // Proceed with form submission
         axios
             .post(
-                "https://ot676akte0.execute-api.ap-south-1.amazonaws.com/dev/add-new-contact-us-form-data",
+                "http://localhost:8080/post-contact-us-form-data",
                 {
-                    name,
-                    email,
+                    fullName,
+                    workEmail,
                     phoneNo,
-                    currentlyPursing,
-                    year,
-                    courseChooseWithTM,
+                    companyName,
+                    message_request
+                  
                 }
             )
             .then((res) => {
                 Swal.fire("Success", res.data.message, "success");
                 // Clear form fields after successful submission
-                setName("");
-                setEmail("");
+                setfullName("");
+                setworkEmail("");
                 setPhoneNo("");
+                setCompanyName("");
+                setMessage_request("");
                 setCurrentlyPursuing("");
                 setYear("");
                 setCourseChooseWithTM("");
@@ -133,16 +134,16 @@ const HelpSection = () => {
                                 <input
                                     type="text"
                                     name="name"
-                                    onChange={(e) => setName(e.target.value)}
-                                    value={name}
+                                    onChange={(e) => setfullName(e.target.value)}
+                                    value={fullName}
                                     className="rounded-lg border-[1px] border-black p-2 lg:p-3 lg:my-2 2xl:my-3 w-full my-2"
                                     placeholder="Your full name"
                                 />
                                 <input
                                     type="email"
-                                    name="email"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    value={email}
+                                    name="workEmail"
+                                    onChange={(e) => setworkEmail(e.target.value)}
+                                    value={workEmail}
                                     className="rounded-lg border-[1px] border-black p-2 lg:p-3 lg:my-2 2xl:my-3 w-full my-2"
                                     placeholder="Email"
                                 />
@@ -156,28 +157,44 @@ const HelpSection = () => {
                                 />
                                 <input
                                     type="text"
+                                    name="companyName"
+                                    onChange={(e) => setCompanyName(e.target.value)}
+                                    value={companyName}
+                                    className="rounded-lg border-[1px] border-black p-2 lg:p-3 lg:my-2 2xl:my-3 w-full my-2"
+                                    placeholder="company name"
+                                />
+                                <textarea
+                                    type="text"
+                                    name="message_request"
+                                    onChange={(e) => setMessage_request(e.target.value)}
+                                    value={message_request}
+                                    className="rounded-lg border-[1px] border-black p-2 lg:p-3 lg:my-2 2xl:my-3 w-full my-2"
+                                    placeholder="message request"
+                                />
+                                {/* <input
+                                    type="text"
                                     name="currentlyPursing"
                                     onChange={(e) => setCurrentlyPursuing(e.target.value)}
                                     value={currentlyPursing}
                                     className="rounded-lg border-[1px] border-black p-2 lg:p-3 lg:my-2 2xl:my-3 w-full my-2"
                                     placeholder="Currently Pursuing"
-                                />
-                                <input
+                                /> */}
+                                {/* <input
                                     type="text"
                                     name="year"
                                     onChange={(e) => setYear(e.target.value)}
                                     value={year}
                                     className="rounded-lg border-[1px] border-black p-2 lg:p-3 lg:my-2 2xl:my-3 w-full my-2"
                                     placeholder="Year"
-                                />
-                                <input
+                                /> */}
+                                {/* <input
                                     type="text"
                                     name="courseChooseWithTM"
                                     onChange={(e) => setCourseChooseWithTM(e.target.value)}
                                     value={courseChooseWithTM}
                                     className="rounded-lg border-[1px] border-black p-2 lg:p-3 lg:my-2 2xl:my-3 w-full my-2"
                                     placeholder="Course choose with TechMomentum"
-                                />
+                                /> */}
                                 <div className="flex justify-center items-center mt-6 2xl:mt-8 mb-3">
                                     <button
                                         type="submit"
