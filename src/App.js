@@ -43,7 +43,6 @@ import SubPageRelibleTech from "./Pages/ReliableTools/SubPageRelibleTech.jsx";
 import ExpertiesSubPage from "./Pages/AreaOfExperties/ExpertiesSubPage.jsx";
 import OtherExpertise from "./Pages/AreaOfExperties/OtherExpertise.jsx";
 import SignIn from "./Pages/LogIn/SignIn.jsx";
-import SubServices from "./Pages/SubServices/SubServices.jsx";
 import HomeTechTools from "./Pages/HomePage/HomeTechTools.jsx";
 import HomeCaseStudies from "./Pages/HomePage/HomeCaseStudies.jsx";
 import SubServicesCMS from "./Pages/SubServices/SubServices.jsx";
@@ -175,14 +174,6 @@ function App() {
         element={
           <SideBar>
             <Consultation />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-home-subservices"
-        element={
-          <SideBar>
-            <SubServices />
           </SideBar>
         }
       />

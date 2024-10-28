@@ -5,8 +5,41 @@ import { AiOutlineClose } from "react-icons/ai";
 import JoditEditor from "jodit-react";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contextAPI/UserContext";
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          </div>
+          <div class="h-2 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 
 const ServiceFAQ = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchIndustry();
+      fetchHomeFaqs();
+    }
+  }, [userauth, router]);
   const [industries, setIndustries] = useState([]);
   const [homeFaqs, setHomeFaqs] = useState([]);
   const [filterHomeFaqs, setFilterHomeFaqs] = useState([]);
@@ -117,28 +150,27 @@ const ServiceFAQ = () => {
   };
 
   const fetchHomeFaqs = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         "http://localhost:8080/get-faq-bycategory/Service"
       );
       setHomeFaqs(response.data.data);
       setFilterHomeFaqs(response.data.data);
+      setLoading(false);
     } catch (error) {
+      setError("Error fetching data");
+      setLoading(false);
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    fetchHomeFaqs();
-  }, []);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filterHomeFaqs
     ? filterHomeFaqs.slice(indexOfFirstItem, indexOfLastItem)
     : [];
-  useEffect(() => {
-    fetchIndustry();
-  }, []);
+ 
   const fetchIndustry = async () => {
     try {
       const response = await axios.get(
@@ -182,6 +214,12 @@ const ServiceFAQ = () => {
   };
 
   return (
+    <>
+    {loading ? (
+      <Spinner />
+    ) : error ? (
+      <p className="text-red-500">{error}</p>
+    ) : (
     <div className="w-full bg-gray-300 h-full mx-auto p-4">
       <div className="flex justify-between mb-5 mr-3">
         <h1 className="text-2xl font-bold">FAQ's for Services</h1>
@@ -552,6 +590,9 @@ const ServiceFAQ = () => {
         </li>
       </ul>
     </div>
+    )
+  }
+  </>
   );
 };
 

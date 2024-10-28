@@ -2,8 +2,42 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contextAPI/UserContext";
+
+
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+  <div class="animate-pulse flex space-x-4">
+    <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+    <div class="flex-1 space-y-6 py-1">
+      <div class="h-2 bg-slate-700 rounded"></div>
+      <div class="space-y-3">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+          <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+        </div>
+        <div class="h-2 bg-slate-700 rounded"></div>
+      </div>
+    </div>
+  </div>
+</div>
+);
+
 
 const ServicesCMS = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchServices();
+    }
+  }, [userauth, router]);
   // State for handling services data
   const [services, setServices] = useState([]);
   const [serviceId, setServiceId] = useState(null); // For editing
@@ -74,11 +108,15 @@ const ServicesCMS = () => {
   };
 
   const fetchServices = async () => {
+    setLoading(true);
     try {
       const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-service-data');
       console.log(response.data);
       setServices(response.data);
+      setLoading(false);
     } catch (error) {
+      setError('Error fetching data');
+      setLoading(false);
       console.error('Error fetching services:', error);
     }
   };
@@ -226,6 +264,12 @@ const ServicesCMS = () => {
     });
   };
   return (
+    <>
+    {loading ? (
+       <Spinner />
+     ) : error ? (
+       <p className="text-red-500">{error}</p>
+     ) : (
     <div className="p-4 bg-gray-200">
       <div className='flex justify-between'>
         <h1 className="text-xl font-bold mb-4">Services Management</h1>
@@ -516,6 +560,9 @@ const ServicesCMS = () => {
       </Modal>
 
     </div>
+     )
+    }
+    </>
   );
 };
 

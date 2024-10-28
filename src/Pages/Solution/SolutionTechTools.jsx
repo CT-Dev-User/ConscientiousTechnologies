@@ -2,10 +2,40 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-// import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contextAPI/UserContext";
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          </div>
+          <div class="h-2 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+)
 const SolutionTechTools = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchSolutions();
+      fetchReliableData();
+    }
+  }, [userauth, router]);
   const [solutions, setSolutions] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, seteditPopUpShow] = useState(false);
@@ -24,9 +54,6 @@ const SolutionTechTools = () => {
     indexOfLastItem
   );
 
-  useEffect(() => {
-    fetchSolutions();
-  }, []);
   const fetchSolutions = async () => {
     try {
       const response = await axios.get(
@@ -98,20 +125,21 @@ const SolutionTechTools = () => {
   };
 
   const fetchReliableData = async () => {
+    setLoading(true)
     try {
       const response = await axios.get(
         `http://localhost:8080/get-reliable-tools-data/Solution`
       );
       const fetchData = response.data.data;
       setReliableToolsData(fetchData);
+      setLoading(false)
     } catch (error) {
+      setLoading(false);
+      setError("Error fetching data")
       console.error(error);
     }
   };
 
-  useEffect(() => {
-    fetchReliableData();
-  }, []);
 
   const addReliableDataFunc = async () => {
     try {
@@ -238,6 +266,12 @@ const SolutionTechTools = () => {
   };
 
   return (
+    <>
+    {loading ? (
+      <Spinner />
+    ) : error ? (
+      <p className="text-red-500">{error}</p>
+    ) : (
     <div className="w-full bg-gray-300 h-full mx-auto p-4">
       <div className="flex justify-between mb-5 mr-3 gap-x-3">
         <h1 className="text-xl font-bold">Home Reliable Technology Tools</h1>
@@ -330,7 +364,7 @@ const SolutionTechTools = () => {
         </tbody>
       </table>
       {/* Pagination */}
-      <ul className="flex justify-center gap-[20px] mt-[90px]">
+      <ul className="flex justify-center gap-5 mt-5">
         <li>
           <button
             onClick={() =>
@@ -597,6 +631,9 @@ const SolutionTechTools = () => {
         </Modal.Footer>
       </Modal>
     </div>
+    )
+  }
+  </>
   );
 };
 
