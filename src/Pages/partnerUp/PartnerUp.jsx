@@ -142,7 +142,7 @@ const PartnerUp = () => {
         <div className='w-full bg-gray-300 h-full mx-auto p-4'>
             <div className="flex justify-end mb-5 mr-3 gap-x-3">
                 <Button onClick={() => navigate('/')} className='bg-blue-100 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded'>Back</Button>
-                <Button onClick={() => setAddPopUpShow(true)} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-0 px-2 rounded'>Add Header Data</Button>
+                <Button onClick={() => setAddPopUpShow(true)} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-0 px-2 rounded'>Add PartnerUp Tools</Button>
             </div>
             <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
                 <Modal.Header closeButton className="bg-gray-800 text-white">
