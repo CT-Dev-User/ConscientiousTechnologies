@@ -287,6 +287,16 @@ const SideBar = ({ children }) => {
             icon: <FaBloggerB />,
           },
         ]
+      },
+      {
+        title: "Common Components",
+        list: [
+          {
+            path: "/conscientious-partner-up",
+            name: "Partner Up",
+            icon: <FaBloggerB />,
+          },
+        ]
       }
     ],
     2: [
