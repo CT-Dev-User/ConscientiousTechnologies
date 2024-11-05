@@ -29,8 +29,6 @@ import AllCategoryReliableTools from "./Pages/ReliableTools/AllCategoryReliableT
 import KeyFeature from "./Pages/HomePage/KeyFeature.jsx";
 import ContactUs from "./Pages/ContactUs/ContactUs.jsx";
 import SocialMedia from "./Pages/About/SocialMedia.jsx";
-import ExpertiesCategory from "./Pages/AreaOfExperties/ExpertiesCategory.js";
-import AllExperties from "./Pages/AreaOfExperties/AllExperties.jsx";
 import SubPageHeader from "./Pages/Header/SubPageHeader.jsx";
 import OtherHeader from "./Pages/Header/OtherHeader.jsx";
 import SubPagesFaq from "./Pages/FAQ/SubPagesFaq.jsx";
@@ -39,8 +37,6 @@ import OtherWhyChooseCT from "./Pages/WhyChooseCtSliderPage/OtherWhyChooseCT.jsx
 import OtherReliableTools from "./Pages/ReliableTools/OtherReliableTools.jsx";
 import SubPageSlider from "./Pages/WhyChooseCtSliderPage/SubPageSlider.jsx";
 import SubPageRelibleTech from "./Pages/ReliableTools/SubPageRelibleTech.jsx";
-import ExpertiesSubPage from "./Pages/AreaOfExperties/ExpertiesSubPage.jsx";
-import OtherExpertise from "./Pages/AreaOfExperties/OtherExpertise.jsx";
 import SignIn from "./Pages/LogIn/SignIn.jsx";
 import HomeTechTools from "./Pages/HomePage/HomeTechTools.jsx";
 import HomeCaseStudies from "./Pages/HomePage/HomeCaseStudies.jsx";
@@ -462,32 +458,6 @@ function App() {
           </SideBar>
         }
       />
-
-      <Route
-        path="/conscientious-area-of-experties"
-        element={
-          <SideBar>
-            <ExpertiesCategory />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-area-of-experties/:category"
-        element={
-          <SideBar>
-            <AllExperties />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-area-of-experties-subpage/:SubCategory"
-        element={
-          <SideBar>
-            <ExpertiesSubPage />
-          </SideBar>
-        }
-      />
-
       <Route
         path="/other-header-data"
         element={
@@ -517,14 +487,6 @@ function App() {
         element={
           <SideBar>
             <OtherReliableTools />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/other-expertise-data"
-        element={
-          <SideBar>
-            <OtherExpertise />
           </SideBar>
         }
       />
