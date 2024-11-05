@@ -59,6 +59,7 @@ import ServiceWhyChooseCT from "./Pages/Services/ServiceWhyChooseCT.jsx";
 import SolutionWhyChooseCT from "./Pages/Solution/SolutionWhyChooseCT.jsx";
 import IndustryWhyChooseCT from "./Pages/industries/IndustryWhyChooseCTSlider.jsx";
 import IndustryCMS from "./Pages/industries/IndustryPage.jsx";
+import ContactUsForm from "./Pages/ContactUs/ContactUsFormData.jsx";
 function App() {
   return (
     <Routes>
@@ -76,6 +77,14 @@ function App() {
         element={
           <SideBar>
             <ContactUs />
+          </SideBar>
+        }
+      />
+      <Route
+        path="/conscientious-contact-us-form"
+        element={
+          <SideBar>
+            <ContactUsForm />
           </SideBar>
         }
       />

@@ -271,9 +271,16 @@ const SideBar = ({ children }) => {
       {
         title: "Important deatails",
         list: [
+          
           {
             path: "/conscientious-contact-us",
-            name: "Contact Us",
+            name: "Get Started",
+            icon: <FaAddressBook />,
+          },
+
+          {
+            path: "/conscientious-contact-us-form",
+            name: "Contact Us Form Data",
             icon: <FaAddressBook />,
           },
           {
