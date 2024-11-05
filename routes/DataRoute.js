@@ -29,12 +29,6 @@ import { addBlogData, deleteBlogsData, getBlogDataByCategory, getBlogDataByCateg
 import { authlogin, Super_Admin } from "../middleware/userauth.js";
 
 
-//case Studies Routes // should be deleted
-dataroute.post("/add-case-studies-data", authlogin, Super_Admin, MultiImageupload.array('images', 1), addCaseStudiesData)
-dataroute.get("/get-case-studies-data", getCaseStudiesData)
-dataroute.put("/edit-case-studies-data/:id", authlogin, Super_Admin, MultiImageupload.array('images', 1), editCaseStudiesData)
-dataroute.delete("/delete-case-studies-data/:id", authlogin, Super_Admin, deleteCaseStudiesData)
-
 //blog data Routes // should be deleted
 dataroute.post("/add-blog-data", authlogin, Super_Admin, MultiImageupload.array('images', 1), addBlogsData)
 dataroute.get("/get-blog-data", getBlogData)
