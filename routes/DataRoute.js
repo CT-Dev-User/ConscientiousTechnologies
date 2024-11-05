@@ -3,7 +3,6 @@ import MultiImageupload from "../middleware/multiImageMulter.js";
 import express from "express";
 export const dataroute = express.Router();
 
-// import { Admin, authlogin } from "../middlwares/userauth.js";
 import { addSliderData, deleteheroslliderdata, editherosliderdata, getherosliderdata } from "../controllers/HomePage/heroSectionsController.js";
 import { addPartener, deletePartenerData, editPartenerData, getPartenarData } from "../controllers/HomePage/OurPartenerController.js";
 
@@ -22,9 +21,6 @@ import { addSocialMediaData, deleteSocialMediadata, editSocialMediadata, getSoci
 import { addAddress, deleteAddress, editAddress, getAddress } from "../controllers/About/Address.js";
 import { authlogin, Super_Admin } from "../middleware/userauth.js";
 
-
-
-//
 //heroslider routes // no need to be deleted
 dataroute.post('/add-heroslider-data', authlogin, Super_Admin, upload.single('herosliderImage'), addSliderData)
 dataroute.get('/get-heroslider-data', getherosliderdata)
@@ -108,7 +104,7 @@ dataroute.get('/get-choose-ct-slider-by-sub-data/:Subcategory', getChooseCtSlide
 dataroute.put('/edit-choose-ct-slider-data/:id', authlogin, Super_Admin, MultiImageupload.array('images'), editChooseCtSliderData)
 dataroute.delete('/delete-choose-ct-slider-data/:id', authlogin, Super_Admin, deleteChooseCtSliderdata)
 
-// partner up data // should be deleted
+// partner up data
 dataroute.post('/add-partner-up-data', authlogin, Super_Admin, MultiImageupload.fields([{ name: 'images1' }, { name: 'images2' }]), addPartnerUpData);
 dataroute.get('/get-partner-up-data', getPartnerupdata);
 dataroute.put('/edit-partner-up-data/:id', authlogin, Super_Admin, MultiImageupload.fields([{ name: 'images1' }, { name: 'images2' }]), editPartnerUpdata);
