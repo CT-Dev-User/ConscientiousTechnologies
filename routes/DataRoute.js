@@ -13,7 +13,7 @@ import { addbookFreeConData, deletebookFreeConData, editbookFreeConData, getbook
 import { addFaq, deleteFaq, getFaq, getFaqByCategory, getFaqByCategorySubCategory, getFaqBySubCategory, updateFaqById } from "../controllers/FAQ's/FaqControllers.js";
 import { addCategory, deleteCategory, getCategory } from "../controllers/FAQ's/categoryController.js";
 import { addHeadersData, deleteHeadersdata, editHeadersdata, getHeaderByCategory, getHeaderByCategorySubCategory, getHeaderBySubCategory, getHeadersdata } from "../controllers/Headers/headersController.js";
-import { addNavbarData, deleteNavbardata, editNavbardata, getNavbarByCategory, getNavbardata } from "../controllers/NavBar/NavBarController.js";
+
 import { addChooseCtSliderData, deleteChooseCtSliderdata, editChooseCtSliderData, getChooseCtSliderByCategory, getChooseCtSliderByCategorySubCategory, getChooseCtSliderBySubCategory, getChooseCtSliderdata } from "../controllers/WhyChooseCtSlider/WhyChooseCtSliderController.js";
 import { addPartnerUpData, deletePartnerUpdata, editPartnerUpdata, getPartnerupdata } from "../controllers/partnerUpController/PartnerUpController.js";
 import { addCaseStudy, deleteCaseStudy, getCSByCategorySubCategory, getCaseStudies, getCaseStudiesByCategory, getCaseStudyBySubCategory, updateCaseStudyById } from "../controllers/caseStudyController/CaseStudyController.js";
@@ -37,12 +37,7 @@ dataroute.get('/get-header-by-headerCategoryandSubCategory/:headerCategory/:head
 dataroute.put('/edit-header-by-id/:id', authlogin, Super_Admin, upload.single('image'), editHeadersdata)
 dataroute.delete('/delete-header-by-id/:id', authlogin, Super_Admin, deleteHeadersdata)
 
-//navigations and dropdown // should be deleted
-dataroute.post('/add-navigation', authlogin, Super_Admin, addNavbarData)
-dataroute.get('/get-navigation', getNavbardata)
-dataroute.get('/get-navigation-by-navCategory/:navCategory', getNavbarByCategory)
-dataroute.put('/edit-navigation-by-id/:id', authlogin, Super_Admin, editNavbardata)
-dataroute.delete('/delete-navigation-by-id/:id', authlogin, Super_Admin, deleteNavbardata)
+
 
 // why choose ct routes // should be deleted
 dataroute.post('/add-choose-ct-slider-data', authlogin, Super_Admin, MultiImageupload.array('images'), addChooseCtSliderData)
