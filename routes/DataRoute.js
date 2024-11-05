@@ -12,7 +12,6 @@ import { addHomeFaq, deleteHomeFaq, getHomeFaq, updateHomeFaqById } from "../con
 import { addbookFreeConData, deletebookFreeConData, editbookFreeConData, getbookFreeConData } from "../controllers/HomePage/bookFreeConController.js";
 import { addFaq, deleteFaq, getFaq, getFaqByCategory, getFaqByCategorySubCategory, getFaqBySubCategory, updateFaqById } from "../controllers/FAQ's/FaqControllers.js";
 import { addCategory, deleteCategory, getCategory } from "../controllers/FAQ's/categoryController.js";
-import { addHeadersData, deleteHeadersdata, editHeadersdata, getHeaderByCategory, getHeaderByCategorySubCategory, getHeaderBySubCategory, getHeadersdata } from "../controllers/Headers/headersController.js";
 
 import { addChooseCtSliderData, deleteChooseCtSliderdata, editChooseCtSliderData, getChooseCtSliderByCategory, getChooseCtSliderByCategorySubCategory, getChooseCtSliderBySubCategory, getChooseCtSliderdata } from "../controllers/WhyChooseCtSlider/WhyChooseCtSliderController.js";
 import { addPartnerUpData, deletePartnerUpdata, editPartnerUpdata, getPartnerupdata } from "../controllers/partnerUpController/PartnerUpController.js";
@@ -27,15 +26,6 @@ import { addBlogData, deleteBlogsData, getBlogDataByCategory, getBlogDataByCateg
 import { authlogin, Super_Admin } from "../middleware/userauth.js";
 
 
-
-// header for all pages // should be deleted
-dataroute.post('/add-header', authlogin, Super_Admin, upload.single('image'), addHeadersData)
-dataroute.get('/get-header', getHeadersdata)
-dataroute.get('/get-header-by-headerCategory/:headerCategory', getHeaderByCategory)
-dataroute.get('/get-header-by-headerSubCategory/:headerSubCategory', getHeaderBySubCategory)
-dataroute.get('/get-header-by-headerCategoryandSubCategory/:headerCategory/:headerSubCategory', getHeaderByCategorySubCategory)
-dataroute.put('/edit-header-by-id/:id', authlogin, Super_Admin, upload.single('image'), editHeadersdata)
-dataroute.delete('/delete-header-by-id/:id', authlogin, Super_Admin, deleteHeadersdata)
 
 
 
