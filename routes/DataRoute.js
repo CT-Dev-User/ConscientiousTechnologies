@@ -15,7 +15,7 @@ import { addCategory, deleteCategory, getCategory } from "../controllers/FAQ's/c
 
 import { addChooseCtSliderData, deleteChooseCtSliderdata, editChooseCtSliderData, getChooseCtSliderByCategory, getChooseCtSliderByCategorySubCategory, getChooseCtSliderBySubCategory, getChooseCtSliderdata } from "../controllers/WhyChooseCtSlider/WhyChooseCtSliderController.js";
 import { addPartnerUpData, deletePartnerUpdata, editPartnerUpdata, getPartnerupdata } from "../controllers/partnerUpController/PartnerUpController.js";
-import { addCaseStudy, deleteCaseStudy, getCSByCategorySubCategory, getCaseStudies, getCaseStudiesByCategory, getCaseStudyBySubCategory, updateCaseStudyById } from "../controllers/caseStudyController/CaseStudyController.js";
+
 import { addReliableToolsData, deleteReliableToolsData, editReliableToolsData, getReliableToolsByCategory, getReliableToolsBySubCategory, getReliableToolsData } from "../controllers/ReliableToolsController/ReliableTools.js";
 import { addKeyFeatureData, deleteKeyFeatureData, editKeyFeatureData, getKeyFeaturedata } from "../controllers/HomePage/keyFeatureController.js";
 import { addContactUsData, deleteContactUsData, editContactUsData, getContactUsData } from "../controllers/contactUsController/ContactUsController.js";
@@ -24,36 +24,6 @@ import { addAddress, deleteAddress, editAddress, getAddress } from "../controlle
 import { addAreaOfExpertiesData, deleteAreaOfExpertiesdata, editAreaOfExpertiessdata, getAreaOfExpertiesByCategory, getAreaOfExpertiesByCategorySubCategory, getAreaOfExpertiesSubCategory, getAreaOfExpertiesdata } from "../controllers/AreaOfExperies/AreaOfExperiesController.js";
 import { addBlogData, deleteBlogsData, getBlogDataByCategory, getBlogDataByCategorySubCategory, getBlogDataBySubCategory, getBlogsData, updateBlogsDataById } from "../controllers/BlogController/BlogController.js";
 import { authlogin, Super_Admin } from "../middleware/userauth.js";
-
-
-
-
-
-// why choose ct routes // should be deleted
-dataroute.post('/add-choose-ct-slider-data', authlogin, Super_Admin, MultiImageupload.array('images'), addChooseCtSliderData)
-dataroute.get('/get-choose-ct-slider-data', getChooseCtSliderdata)
-dataroute.get('/get-choose-ct-slider-data/:category', getChooseCtSliderByCategory)
-dataroute.get('/get-choose-ct-slider-data/:subcategory', getChooseCtSliderBySubCategory)
-dataroute.get('/get-choose-ct-slider-data-byCategorySubCategory/:category/:subcategory', getChooseCtSliderByCategorySubCategory)
-dataroute.get('/get-choose-ct-slider-data/:category', getChooseCtSliderByCategory)
-dataroute.get('/get-choose-ct-slider-by-sub-data/:Subcategory', getChooseCtSliderBySubCategory)
-dataroute.put('/edit-choose-ct-slider-data/:id', authlogin, Super_Admin, MultiImageupload.array('images'), editChooseCtSliderData)
-dataroute.delete('/delete-choose-ct-slider-data/:id', authlogin, Super_Admin, deleteChooseCtSliderdata)
-
-// partner up data // should be deleted
-dataroute.post('/add-partner-up-data', authlogin, Super_Admin, MultiImageupload.fields([{ name: 'images1' }, { name: 'images2' }]), addPartnerUpData);
-dataroute.get('/get-partner-up-data', getPartnerupdata);
-dataroute.put('/edit-partner-up-data/:id', authlogin, Super_Admin, MultiImageupload.fields([{ name: 'images1' }, { name: 'images2' }]), editPartnerUpdata);
-dataroute.delete('/delete-partner-up-data/:id', authlogin, Super_Admin, deletePartnerUpdata);
-
-// case studies routes // should be deleted
-dataroute.post('/add-case-study', authlogin, Super_Admin, MultiImageupload.array('images', 1), addCaseStudy)
-dataroute.get('/get-case-studies', getCaseStudies)
-dataroute.delete('/delete-case-study/:id', authlogin, Super_Admin, deleteCaseStudy)
-dataroute.put('/update-case-study/:id', authlogin, Super_Admin, updateCaseStudyById)
-dataroute.get('/get-case-study-bycategory/:category', getCaseStudiesByCategory)
-dataroute.get('/get-case-study-bycategory/:Subcategory', getCaseStudyBySubCategory)
-dataroute.get('/get-case-study-bycategorysubcategory/:category/:Subcategory', getCSByCategorySubCategory)
 
 // experties data for all pages // should be deleted
 dataroute.post('/add-experies-data', authlogin, Super_Admin, upload.single('image'), addAreaOfExpertiesData)
@@ -154,3 +124,21 @@ dataroute.post('/add-address', authlogin, Super_Admin, addAddress);
 dataroute.get('/get-address', getAddress);
 dataroute.put('/update-address/:id', authlogin, Super_Admin, editAddress)
 dataroute.delete('/delete-address/:id', authlogin, Super_Admin, deleteAddress)
+
+
+// why choose ct routes 
+dataroute.post('/add-choose-ct-slider-data', authlogin, Super_Admin, MultiImageupload.array('images'), addChooseCtSliderData)
+dataroute.get('/get-choose-ct-slider-data', getChooseCtSliderdata)
+dataroute.get('/get-choose-ct-slider-data/:category', getChooseCtSliderByCategory)
+dataroute.get('/get-choose-ct-slider-data/:subcategory', getChooseCtSliderBySubCategory)
+dataroute.get('/get-choose-ct-slider-data-byCategorySubCategory/:category/:subcategory', getChooseCtSliderByCategorySubCategory)
+dataroute.get('/get-choose-ct-slider-data/:category', getChooseCtSliderByCategory)
+dataroute.get('/get-choose-ct-slider-by-sub-data/:Subcategory', getChooseCtSliderBySubCategory)
+dataroute.put('/edit-choose-ct-slider-data/:id', authlogin, Super_Admin, MultiImageupload.array('images'), editChooseCtSliderData)
+dataroute.delete('/delete-choose-ct-slider-data/:id', authlogin, Super_Admin, deleteChooseCtSliderdata)
+
+// partner up data // should be deleted
+dataroute.post('/add-partner-up-data', authlogin, Super_Admin, MultiImageupload.fields([{ name: 'images1' }, { name: 'images2' }]), addPartnerUpData);
+dataroute.get('/get-partner-up-data', getPartnerupdata);
+dataroute.put('/edit-partner-up-data/:id', authlogin, Super_Admin, MultiImageupload.fields([{ name: 'images1' }, { name: 'images2' }]), editPartnerUpdata);
+dataroute.delete('/delete-partner-up-data/:id', authlogin, Super_Admin, deletePartnerUpdata);
