@@ -21,18 +21,11 @@ import { addKeyFeatureData, deleteKeyFeatureData, editKeyFeatureData, getKeyFeat
 import { addContactUsData, deleteContactUsData, editContactUsData, getContactUsData } from "../controllers/contactUsController/ContactUsController.js";
 import { addSocialMediaData, deleteSocialMediadata, editSocialMediadata, getSocialMediadata } from "../controllers/About/socialMedia.js";
 import { addAddress, deleteAddress, editAddress, getAddress } from "../controllers/About/Address.js";
-import { addAreaOfExpertiesData, deleteAreaOfExpertiesdata, editAreaOfExpertiessdata, getAreaOfExpertiesByCategory, getAreaOfExpertiesByCategorySubCategory, getAreaOfExpertiesSubCategory, getAreaOfExpertiesdata } from "../controllers/AreaOfExperies/AreaOfExperiesController.js";
+
 import { addBlogData, deleteBlogsData, getBlogDataByCategory, getBlogDataByCategorySubCategory, getBlogDataBySubCategory, getBlogsData, updateBlogsDataById } from "../controllers/BlogController/BlogController.js";
 import { authlogin, Super_Admin } from "../middleware/userauth.js";
 
-// experties data for all pages // should be deleted
-dataroute.post('/add-experies-data', authlogin, Super_Admin, upload.single('image'), addAreaOfExpertiesData)
-dataroute.get('/get-experies-data', getAreaOfExpertiesdata)
-dataroute.get('/get-experies-by-category/:Category', getAreaOfExpertiesByCategory)
-dataroute.get('/get-experies-by-SubCategory/:SubCategory', getAreaOfExpertiesSubCategory)
-dataroute.get('/get-experties-by-CategoryandSubCategory/:Category/:SubCategory', getAreaOfExpertiesByCategorySubCategory)
-dataroute.put('/edit-experties-by-id/:id', authlogin, Super_Admin, upload.single('image'), editAreaOfExpertiessdata)
-dataroute.delete('/delete-experties-by-id/:id', authlogin, Super_Admin, deleteAreaOfExpertiesdata)
+
 
 // blogData for all pages // should be deleted
 dataroute.post('/add-blogs-data', authlogin, Super_Admin, MultiImageupload.array('images', 2), addBlogData)
