@@ -14,24 +14,15 @@ import Clients from "./Pages/HomePage/Clients.jsx";
 import Consultation from "./Pages/HomePage/Consultation.jsx";
 import IndustryPage from "./Pages/industries/IndustryPage.jsx";
 import HomeFAQ from "./Pages/HomePage/HomeFAQ.jsx";
-import NavbarPage from "./Pages/NavbarPage/NavbarPage.jsx";
-import NavbarandDropFields from "./Pages/NavbarPage/NavbarandDropFields.jsx";
-import WhyChooseCtSliderPage from "./Pages/WhyChooseCtSliderPage/WhyChooseCtSliderPage.jsx";
-import AllSliderData from "./Pages/WhyChooseCtSliderPage/AllSliderData.jsx";
 import PartnerUp from "./Pages/partnerUp/PartnerUp.jsx";
-import AllCategoryReliableTools from "./Pages/ReliableTools/AllCategoryReliableTools.jsx";
 import KeyFeature from "./Pages/HomePage/KeyFeature.jsx";
 import ContactUs from "./Pages/ContactUs/ContactUs.jsx";
 import SocialMedia from "./Pages/About/SocialMedia.jsx";
-import OtherWhyChooseCT from "./Pages/WhyChooseCtSliderPage/OtherWhyChooseCT.jsx";
-import OtherReliableTools from "./Pages/ReliableTools/OtherReliableTools.jsx";
-import SubPageSlider from "./Pages/WhyChooseCtSliderPage/SubPageSlider.jsx";
-import SubPageRelibleTech from "./Pages/ReliableTools/SubPageRelibleTech.jsx";
 import SignIn from "./Pages/LogIn/SignIn.jsx";
 import HomeTechTools from "./Pages/HomePage/HomeTechTools.jsx";
 import HomeCaseStudies from "./Pages/HomePage/HomeCaseStudies.jsx";
 import SubServicesCMS from "./Pages/SubServices/SubServices.jsx";
-import ServiceTechTools from "./Pages/ReliableTools/ReliableTools.jsx";
+import ServiceTechTools from "./Pages/Services/ReliableTools.jsx";
 import ServiceBlogCMS from "./Pages/Services/ServiceBlogs.jsx";
 import SolutionTechTools from "./Pages/Solution/SolutionTechTools.jsx";
 import SolutionCaseStudies from "./Pages/Solution/SolutionCaseStudies.jsx";
@@ -321,87 +312,11 @@ function App() {
           </SideBar>
         }
       />
-
-      {/* need to delete below routes and respective files */}
       <Route
         path="/conscientious-industries"
         element={
           <SideBar>
             <IndustryPage />
-          </SideBar>
-        }
-      />
-      {/* navbar category */}
-      <Route
-        path="/conscientious-navbar"
-        element={
-          <SideBar>
-            <NavbarPage />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientioustech-navbar/:navcategory"
-        element={
-          <SideBar>
-            <NavbarandDropFields />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-choosect-slider"
-        element={
-          <SideBar>
-            <WhyChooseCtSliderPage />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-choose-ct/:slidercategory"
-        element={
-          <SideBar>
-            <AllSliderData />
-          </SideBar>
-        }
-      />
-
-      <Route
-        path="/conscientious-why-choose-subpage/:subcategory"
-        element={
-          <SideBar>
-            <SubPageSlider />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-reliable-tools/:category"
-        element={
-          <SideBar>
-            <AllCategoryReliableTools />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-reliable-tool-subpage/:subcategory"
-        element={
-          <SideBar>
-            <SubPageRelibleTech />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/other-whychoosect-data"
-        element={
-          <SideBar>
-            <OtherWhyChooseCT />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/other-reliabletools-data"
-        element={
-          <SideBar>
-            <OtherReliableTools />
           </SideBar>
         }
       />
