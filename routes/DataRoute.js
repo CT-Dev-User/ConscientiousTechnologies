@@ -7,7 +7,6 @@ export const dataroute = express.Router();
 import { addSliderData, deleteheroslliderdata, editherosliderdata, getherosliderdata } from "../controllers/HomePage/heroSectionsController.js";
 import { addPartener, deletePartenerData, editPartenerData, getPartenarData } from "../controllers/HomePage/OurPartenerController.js";
 
-import { addBlogsData, deleteBlogData, editBlogData, getBlogData } from "../controllers/HomePage/BlogController.js";
 import { addClientReviewData, deleteClientReviewData, editClientReviewData, getClientReviewData } from "../controllers/HomePage/meetOurClientController.js";
 import { addHomeFaq, deleteHomeFaq, getHomeFaq, updateHomeFaqById } from "../controllers/FAQ's/HomePageFaqController.js";
 import { addbookFreeConData, deletebookFreeConData, editbookFreeConData, getbookFreeConData } from "../controllers/HomePage/bookFreeConController.js";
@@ -28,11 +27,6 @@ import { addBlogData, deleteBlogsData, getBlogDataByCategory, getBlogDataByCateg
 import { authlogin, Super_Admin } from "../middleware/userauth.js";
 
 
-//blog data Routes // should be deleted
-dataroute.post("/add-blog-data", authlogin, Super_Admin, MultiImageupload.array('images', 1), addBlogsData)
-dataroute.get("/get-blog-data", getBlogData)
-dataroute.put("/edit-blog-data/:id", authlogin, Super_Admin, MultiImageupload.array('images', 1), editBlogData)
-dataroute.delete("/delete-blog-data/:id", authlogin, Super_Admin, deleteBlogData)
 
 // header for all pages // should be deleted
 dataroute.post('/add-header', authlogin, Super_Admin, upload.single('image'), addHeadersData)
