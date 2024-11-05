@@ -14,8 +14,6 @@ import Clients from "./Pages/HomePage/Clients.jsx";
 import Consultation from "./Pages/HomePage/Consultation.jsx";
 import IndustryPage from "./Pages/industries/IndustryPage.jsx";
 import HomeFAQ from "./Pages/HomePage/HomeFAQ.jsx";
-import FAQ from "./Pages/FAQ/Faq.jsx";
-import AllFAQ from "./Pages/FAQ/AllQuestions.jsx";
 import Header from "./Pages/Header/Header.jsx";
 import AllHeader from "./Pages/Header/AllHeader.jsx";
 import NavbarPage from "./Pages/NavbarPage/NavbarPage.jsx";
@@ -23,16 +21,12 @@ import NavbarandDropFields from "./Pages/NavbarPage/NavbarandDropFields.jsx";
 import WhyChooseCtSliderPage from "./Pages/WhyChooseCtSliderPage/WhyChooseCtSliderPage.jsx";
 import AllSliderData from "./Pages/WhyChooseCtSliderPage/AllSliderData.jsx";
 import PartnerUp from "./Pages/partnerUp/PartnerUp.jsx";
-import CaseStudiesByCategory from "./Pages/CaseStudiesByCategory/CaseStudiesByCategory.jsx";
-import AllCaseStudies from "./Pages/CaseStudiesByCategory/AllCaseStudies.jsx";
 import AllCategoryReliableTools from "./Pages/ReliableTools/AllCategoryReliableTools.jsx";
 import KeyFeature from "./Pages/HomePage/KeyFeature.jsx";
 import ContactUs from "./Pages/ContactUs/ContactUs.jsx";
 import SocialMedia from "./Pages/About/SocialMedia.jsx";
 import SubPageHeader from "./Pages/Header/SubPageHeader.jsx";
 import OtherHeader from "./Pages/Header/OtherHeader.jsx";
-import SubPagesFaq from "./Pages/FAQ/SubPagesFaq.jsx";
-import OtherFaqs from "./Pages/FAQ/OtherFaqs.jsx";
 import OtherWhyChooseCT from "./Pages/WhyChooseCtSliderPage/OtherWhyChooseCT.jsx";
 import OtherReliableTools from "./Pages/ReliableTools/OtherReliableTools.jsx";
 import SubPageSlider from "./Pages/WhyChooseCtSliderPage/SubPageSlider.jsx";
@@ -55,6 +49,7 @@ import SolutionWhyChooseCT from "./Pages/Solution/SolutionWhyChooseCT.jsx";
 import IndustryWhyChooseCT from "./Pages/industries/IndustryWhyChooseCTSlider.jsx";
 import IndustryCMS from "./Pages/industries/IndustryPage.jsx";
 import ContactUsForm from "./Pages/ContactUs/ContactUsFormData.jsx";
+import ServiceFAQ from "./Pages/Services/Faq.jsx";
 function App() {
   return (
     <Routes>
@@ -236,7 +231,7 @@ function App() {
         path="/conscientious-service-faq-category"
         element={
           <SideBar>
-            <FAQ />
+            <ServiceFAQ />
           </SideBar>
         }
       />
@@ -340,23 +335,6 @@ function App() {
           </SideBar>
         }
       />
-      <Route
-        path="/conscientious/:faqCategory1"
-        element={
-          <SideBar>
-            <AllFAQ />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-faq/:faqSubCategory"
-        element={
-          <SideBar>
-            <SubPagesFaq />
-          </SideBar>
-        }
-      />
-
       {/* home category */}
       <Route
         path="/conscientious-header"
@@ -426,23 +404,6 @@ function App() {
         }
       />
       <Route
-        path="/conscientious-case-studies-category"
-        element={
-          <SideBar>
-            <CaseStudiesByCategory />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-case-studies-bycategory/:category"
-        element={
-          <SideBar>
-            <AllCaseStudies />
-          </SideBar>
-        }
-      />
-
-      <Route
         path="/conscientious-reliable-tools/:category"
         element={
           <SideBar>
@@ -463,14 +424,6 @@ function App() {
         element={
           <SideBar>
             <OtherHeader />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/other-faq-data"
-        element={
-          <SideBar>
-            <OtherFaqs />
           </SideBar>
         }
       />
