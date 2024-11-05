@@ -120,6 +120,12 @@ dataroute.get('/get-blogs-data-by-id/:id', getBlogDataByCategory)
 dataroute.get('/get-blogs-data-by-SubCategory/:SubCategory', getBlogDataBySubCategory)
 dataroute.get('/get-blogs-data-by-CategoryandSubCategory/:Category/:SubCategory', getBlogDataByCategorySubCategory)
 
+
+// category for FAQ's // should be delete
+dataroute.post('/add-category',authlogin, Super_Admin, addCategory)
+dataroute.get('/get-category', getCategory)
+dataroute.delete('/delete-category/:id',authlogin, Super_Admin, deleteCategory)
+
 //heroslider routes // no need to be deleted
 dataroute.post('/add-heroslider-data', authlogin, Super_Admin, upload.single('herosliderImage'), addSliderData)
 dataroute.get('/get-heroslider-data', getherosliderdata)
