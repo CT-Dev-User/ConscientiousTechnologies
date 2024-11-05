@@ -21,20 +21,8 @@ import { addKeyFeatureData, deleteKeyFeatureData, editKeyFeatureData, getKeyFeat
 import { addContactUsData, deleteContactUsData, editContactUsData, getContactUsData } from "../controllers/contactUsController/ContactUsController.js";
 import { addSocialMediaData, deleteSocialMediadata, editSocialMediadata, getSocialMediadata } from "../controllers/About/socialMedia.js";
 import { addAddress, deleteAddress, editAddress, getAddress } from "../controllers/About/Address.js";
-
-import { addBlogData, deleteBlogsData, getBlogDataByCategory, getBlogDataByCategorySubCategory, getBlogDataBySubCategory, getBlogsData, updateBlogsDataById } from "../controllers/BlogController/BlogController.js";
 import { authlogin, Super_Admin } from "../middleware/userauth.js";
 
-
-
-// blogData for all pages // should be deleted
-dataroute.post('/add-blogs-data', authlogin, Super_Admin, MultiImageupload.array('images', 2), addBlogData)
-dataroute.get('/get-blogs-data', getBlogsData)
-dataroute.put('/edit-blogs-data-by-id/:id', authlogin, Super_Admin, MultiImageupload.array('images', 2), updateBlogsDataById)
-dataroute.delete('/delete-blogs-data-by-id/:id', authlogin, Super_Admin, deleteBlogsData)
-dataroute.get('/get-blogs-data-by-id/:id', getBlogDataByCategory)
-dataroute.get('/get-blogs-data-by-SubCategory/:SubCategory', getBlogDataBySubCategory)
-dataroute.get('/get-blogs-data-by-CategoryandSubCategory/:Category/:SubCategory', getBlogDataByCategorySubCategory)
 
 
 // category for FAQ's // should be delete
