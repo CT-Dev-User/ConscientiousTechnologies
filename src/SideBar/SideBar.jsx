@@ -311,18 +311,33 @@ const SideBar = ({ children }) => {
         title: "Home",
         list: [
           {
+            path: "/conscientious-users-registration",
+            name: "Add Users",
+            icon: <FaUser />,
+          },
+          {
+            path: "/conscientious-home-heroslider",
+            name: "Hero Slider",
+            icon: <FaLaptop />,
+          },
+          {
             path: "/conscientious-home-partners",
             name: "Our Partners",
             icon: <FaHandshake />,
           },
           {
-            path: "/conscientious-reliable-tools",
+            path: "/conscientious-home-reliable-tools",
             name: "Reliable Tools",
             icon: <FaTools />,
           },
           {
             path: "/conscientious-home-casestudies",
             name: "Case Studies",
+            icon: <FaFileAlt />,
+          },
+          {
+            path: "/conscientious-key-feature",
+            name: "Key Features",
             icon: <FaFileAlt />,
           },
           {
@@ -351,12 +366,12 @@ const SideBar = ({ children }) => {
         title: "Services",
         list: [
           {
-            path: "/conscientious-home-services",
+            path: "/conscientious-services",
             name: "Services",
             icon: <FaLaptop />,
           },
           {
-            path: "/conscientious-home-services",
+            path: "/conscientious-SubServices",
             name: "Sub Services",
             icon: <FaLaptop />,
           },
@@ -366,22 +381,22 @@ const SideBar = ({ children }) => {
             icon: <FaFileAlt />,
           },
           {
-            path: "/conscientious-reliable-tools",
+            path: "/conscientious-service-reliable-tools",
             name: "Reliable Tools",
             icon: <FaTools />,
           },
           {
-            path: "/conscientious-home-casestudies",
+            path: "/conscientious-service-casestudies",
             name: "Case Studies",
             icon: <FaFileAlt />,
           },
           {
-            path: "/conscientious-blogs",
+            path: "/conscientious-service-blogs",
             name: "blogs",
             icon: <FaBloggerB />,
           },
           {
-            path: "/conscientious-faq-category",
+            path: "/conscientious-service-faq-category",
             name: "FAQ",
             icon: <FaBloggerB />,
           },
@@ -391,7 +406,7 @@ const SideBar = ({ children }) => {
         title: "Solutions",
         list: [
           {
-            path: "/conscientious-home-solutions",
+            path: "/conscientious-solutions",
             name: "Solutions",
             icon: <FaCogs />,
           },
@@ -401,7 +416,7 @@ const SideBar = ({ children }) => {
             icon: <FaFileAlt />,
           },
           {
-            path: "/conscientious-reliable-tools",
+            path: "/conscientious-solution-reliable-tools",
             name: "Reliable Tools",
             icon: <FaTools />,
           },
@@ -416,7 +431,7 @@ const SideBar = ({ children }) => {
             icon: <FaBloggerB />,
           },
           {
-            path: "/conscientious-faq-category",
+            path: "/conscientious-solution-faq-category",
             name: "FAQ",
             icon: <FaBloggerB />,
           },
@@ -436,23 +451,36 @@ const SideBar = ({ children }) => {
             icon: <FaFileAlt />,
           },
           {
-            path: "/conscientious-home-casestudies",
+            path: "/conscientious-industry-casestudies",
             name: "Case Studies",
             icon: <FaFileAlt />,
           },
           {
-            path: "/conscientious-blogs",
+            path: "/conscientious-industry-blogs",
             name: "blogs",
             icon: <FaBloggerB />,
           },
           {
-            path: "/conscientious-faq-category",
+            path: "/conscientious-industry-faq-category",
             name: "FAQ",
             icon: <FaBloggerB />,
           },
+
+        ],
+      },
+      {
+        title: "Important deatails",
+        list: [
+          
           {
             path: "/conscientious-contact-us",
-            name: "Contact Us",
+            name: "Get Started",
+            icon: <FaAddressBook />,
+          },
+
+          {
+            path: "/conscientious-contact-us-form",
+            name: "Contact Us Form Data",
             icon: <FaAddressBook />,
           },
           {
@@ -465,8 +493,18 @@ const SideBar = ({ children }) => {
             name: "Navbar",
             icon: <FaBloggerB />,
           },
-        ],
+        ]
       },
+      {
+        title: "Common Components",
+        list: [
+          {
+            path: "/conscientious-partner-up",
+            name: "Partner Up",
+            icon: <FaBloggerB />,
+          },
+        ]
+      }
     ],
   };
 
