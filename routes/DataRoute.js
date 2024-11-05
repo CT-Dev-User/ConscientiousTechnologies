@@ -6,7 +6,7 @@ export const dataroute = express.Router();
 // import { Admin, authlogin } from "../middlwares/userauth.js";
 import { addSliderData, deleteheroslliderdata, editherosliderdata, getherosliderdata } from "../controllers/HomePage/heroSectionsController.js";
 import { addPartener, deletePartenerData, editPartenerData, getPartenarData } from "../controllers/HomePage/OurPartenerController.js";
-import { addSolutionData, deleteSolutionData, editSolutionWeOffer, getSolutionData } from "../controllers/HomePage/SolutionWeOfferController.js";
+
 
 import { addIndustriesData, deleteIndustriesData, editIndustriesData, getIndustriesData } from "../controllers/HomePage/industriesController.js";
 import { addCaseStudiesData, deleteCaseStudiesData, editCaseStudiesData, getCaseStudiesData } from "../controllers/HomePage/CaseStudiesController.js";
@@ -31,11 +31,6 @@ import { addBlogData, deleteBlogsData, getBlogDataByCategory, getBlogDataByCateg
 import { authlogin, Super_Admin } from "../middleware/userauth.js";
 
 
-//solution we offer routes // should be deleted
-dataroute.post('/add-solution-we-offer-data', authlogin, Super_Admin, MultiImageupload.array('images', 1), addSolutionData)
-dataroute.get('/get-solution-we-offer-data', getSolutionData)
-dataroute.put('/edit-solution-we-offer-data/:id', authlogin, Super_Admin, MultiImageupload.array('images', 2), editSolutionWeOffer)
-dataroute.delete('/delete-solution-we-offer-data/:id', authlogin, Super_Admin, deleteSolutionData)
 
 //industries we offer routes // should be deleted
 dataroute.post('/add-industries-data', authlogin, Super_Admin, MultiImageupload.array('images', 1), addIndustriesData)
