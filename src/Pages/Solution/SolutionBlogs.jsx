@@ -3,8 +3,39 @@ import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contextAPI/UserContext";
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          </div>
+          <div class="h-2 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+)
 const SolutionBlogCMS = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchSolutions();
+      fetchBlogs();
+    }
+  }, [userauth, router]);
   const [solutions, setSolutions] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,18 +62,18 @@ const SolutionBlogCMS = () => {
     HeaderDesc: "",
   });
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
-
   // Fetch all blogs
   const fetchBlogs = async () => {
+    setLoading(true)
     try {
       const response = await axios.get(
         "http://localhost:8080/get-latest-blog-data-by-category/Solution"
       );
       setBlogs(response.data.blog);
+      setLoading(false)
     } catch (error) {
+      setLoading(false);
+      setError("error fetching Data")
       console.error("Error fetching blogs:", error);
     }
   };
@@ -205,6 +236,12 @@ const SolutionBlogCMS = () => {
   };
 
   return (
+    <>
+    {loading ? (
+      <Spinner />
+    ) : error ? (
+      <p className="text-red-500">{error}</p>
+    ) : (
     <div className="container mx-auto mt-5 bg-white p-4">
       <div className="flex justify-between mb-4">
         <h1 className="text-xl font-bold">Manage Blogs for Services</h1>
@@ -686,6 +723,9 @@ const SolutionBlogCMS = () => {
         </Modal.Footer>
       </Modal>
     </div>
+    )
+  }
+  </>
   );
 };
 

@@ -2,8 +2,39 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contextAPI/UserContext";
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          </div>
+          <div class="h-2 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 const SolutionCaseStudies = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchSolutions();
+      getCaseStudiesDataFunc();
+    }
+  }, [userauth, router]);
   const [solutions, setSolutions] = useState([]);
   const [caseStudies, setCaseStudies] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
@@ -61,9 +92,6 @@ const SolutionCaseStudies = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = caseStudies.slice(indexOfFirstItem, indexOfLastItem);
 
-  useEffect(() => {
-    fetchSolutions();
-  }, []);
   const fetchSolutions = async () => {
     try {
       const response = await axios.get(
@@ -80,13 +108,17 @@ const SolutionCaseStudies = () => {
   };
 
   const getCaseStudiesDataFunc = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         "http://localhost:8080/get-case-studies-by-cateory/Solution"
       );
       console.log(response.data);
       setCaseStudies(response.data);
+      setLoading(false);
     } catch (error) {
+      setError("Error fetching user data");
+      setLoading(false);
       console.log(error);
     }
   };
@@ -243,6 +275,12 @@ const SolutionCaseStudies = () => {
   const [executionData, setExecutionData] = useState("");
   const [solutionData, setSolutionData] = useState("");
   return (
+    <>
+    {loading ? (
+      <Spinner />
+    ) : error ? (
+      <p className="text-red-500">{error}</p>
+    ) : (
     <div className="w-full bg-gray-300 h-auto mx-auto p-4 relative">
       <div className="flex justify-between mb-2 mr-3">
         <h1 className="text-xl font-bold text-black">Solution Pages Case Studies</h1>
@@ -1569,6 +1607,9 @@ const SolutionCaseStudies = () => {
         </Modal.Footer>
       </Modal>
     </div>
+    )
+  }
+  </>
   );
 };
 
