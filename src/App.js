@@ -6,16 +6,14 @@ import SideBar from "./SideBar/SideBar.jsx";
 import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
 import HeroSection from "./Pages/HomePage/HeroSection.jsx";
 import Ourpartener from "./Pages/HomePage/Ourpartener.jsx";
-import ServiceWeOffer from "./Pages/HomePage/ServiceWeOffer.jsx";
-import Solution from "./Pages/HomePage/Solution.jsx";
-import CaseStudies from "./Pages/HomePage/CaseStudies.jsx";
+import ServiceWeOffer from "./Pages/Services/ServiceWeOffer.jsx";
+import Solution from "./Pages/Solution/Solution.jsx";
+import CaseStudies from "./Pages/Services/CaseStudies.jsx";
 import Blogs from "./Pages/HomePage/Blogs.jsx";
 import Clients from "./Pages/HomePage/Clients.jsx";
 import Consultation from "./Pages/HomePage/Consultation.jsx";
 import IndustryPage from "./Pages/industries/IndustryPage.jsx";
 import HomeFAQ from "./Pages/HomePage/HomeFAQ.jsx";
-import Header from "./Pages/Header/Header.jsx";
-import AllHeader from "./Pages/Header/AllHeader.jsx";
 import NavbarPage from "./Pages/NavbarPage/NavbarPage.jsx";
 import NavbarandDropFields from "./Pages/NavbarPage/NavbarandDropFields.jsx";
 import WhyChooseCtSliderPage from "./Pages/WhyChooseCtSliderPage/WhyChooseCtSliderPage.jsx";
@@ -25,8 +23,6 @@ import AllCategoryReliableTools from "./Pages/ReliableTools/AllCategoryReliableT
 import KeyFeature from "./Pages/HomePage/KeyFeature.jsx";
 import ContactUs from "./Pages/ContactUs/ContactUs.jsx";
 import SocialMedia from "./Pages/About/SocialMedia.jsx";
-import SubPageHeader from "./Pages/Header/SubPageHeader.jsx";
-import OtherHeader from "./Pages/Header/OtherHeader.jsx";
 import OtherWhyChooseCT from "./Pages/WhyChooseCtSliderPage/OtherWhyChooseCT.jsx";
 import OtherReliableTools from "./Pages/ReliableTools/OtherReliableTools.jsx";
 import SubPageSlider from "./Pages/WhyChooseCtSliderPage/SubPageSlider.jsx";
@@ -335,32 +331,6 @@ function App() {
           </SideBar>
         }
       />
-      {/* home category */}
-      <Route
-        path="/conscientious-header"
-        element={
-          <SideBar>
-            <Header />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-header/:category"
-        element={
-          <SideBar>
-            <AllHeader />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/conscientious-header-subpage/:subcategory"
-        element={
-          <SideBar>
-            <SubPageHeader />
-          </SideBar>
-        }
-      />
-
       {/* navbar category */}
       <Route
         path="/conscientious-navbar"
@@ -416,14 +386,6 @@ function App() {
         element={
           <SideBar>
             <SubPageRelibleTech />
-          </SideBar>
-        }
-      />
-      <Route
-        path="/other-header-data"
-        element={
-          <SideBar>
-            <OtherHeader />
           </SideBar>
         }
       />
