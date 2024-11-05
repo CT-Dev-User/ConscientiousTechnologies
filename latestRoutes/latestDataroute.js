@@ -3,10 +3,11 @@ import express from 'express';
 import upload from "../multer.js"; // assuming multer is set up for file uploads
 import { createService, deleteService, editService, getAllServices, getServiceById, getServiceByserviceName } from '../latestControllers/servicesController.js';
 import { createSolution, deleteSolution, editSolution, getAllSolutions, getSolutionById, getSolutionBySolutionName } from '../latestControllers/solutionController.js';
-import { createIndustry,deleteIndustry, editIndustry, getAllIndustries, getIndustryById, getIndustryByIndustryName } from '../latestControllers/industriesController.js';
+import { createIndustry, deleteIndustry, editIndustry, getAllIndustries, getIndustryById, getIndustryByIndustryName } from '../latestControllers/industriesController.js';
 import { createCaseStudy, deleteCaseStudy, editCaseStudy, getAllCaseStudies, getCaseStudyByCategory, getCaseStudyById, getCaseStudyBySubCategory } from '../latestControllers/caseStudyController.js';
 import { createSubServices, deleteSubServices, editSubServices, getAllSubServices, getSubServicesById, getSubServicesByServices, getSubservicesBySubServicesName } from '../latestControllers/subServicesController.js';
 import { addBlog, deleteBlog, getAllBlogs, getBlogByCategory, getBlogById, getBlogBysubCategory, updateBlog } from '../latestControllers/blogController.js';
+import { addContactUsFormData, deleteContactUsFormData, getContactUsFormData } from '../latestControllers/contactUs/ContactUsForm.js';
 
 const latestrouter = express.Router();
 
@@ -125,6 +126,10 @@ latestrouter.get('/get-subservice-data-by-id/:id', getSubServicesById);
 latestrouter.get('/get-subservice-data-by-subservice/:serviceName/:subServiceTitle', getSubservicesBySubServicesName);
 latestrouter.get('/get-subservice-data-by-service/:serviceName', getSubServicesByServices);
 latestrouter.delete('/delete-existing-subservice-data-by-id/:id', deleteSubServices);
+
+latestrouter.get('/get-contact-us-form-data', getContactUsFormData);
+latestrouter.post('/post-contact-us-form-data', addContactUsFormData);
+latestrouter.delete('/delete-contact-us-form-data/:id', deleteContactUsFormData);
 
 
 export default latestrouter;
