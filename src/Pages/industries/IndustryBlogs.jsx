@@ -251,10 +251,9 @@ const IndutryBlogCMS = () => {
           <p className="text-red-500">{error}</p>
         ) :
           (
-            <div className="container mx-auto mt-5 bg-white p-4">
+            <div className="container mx-auto mt-5 bg-gray-200 p-4">
               <div className="flex justify-between mb-4">
                 <h1 className="text-xl font-bold">Manage Blogs for Industries</h1>
-
                 <select
                   name=""
                   onChange={(e) => {
@@ -284,7 +283,7 @@ const IndutryBlogCMS = () => {
                 </Button>
               </div>
 
-              <table className="w-full border-collapse border mt-4">
+              <table className="w-full border-collapse border mt-4 bg-white">
                 <thead className="bg-gray-800 text-white">
                   <tr className="border border-gray-700 py-2">
                     <th className="border-r px-2 py-2">Category</th>
@@ -299,7 +298,7 @@ const IndutryBlogCMS = () => {
                 <tbody>
                   {currentItems &&
                     currentItems.map((blog) => (
-                      <tr key={blog._id} className="border border-gray-700 py-2">
+                      <tr key={blog._id} className="border-b py-2">
                         <td className="border-r px-2 py-2">{blog.category}</td>
                         <td className="border-r px-2 py-2">{blog.subCategory}</td>
                         <td
@@ -351,7 +350,7 @@ const IndutryBlogCMS = () => {
                 </tbody>
               </table>
               {/* Pagination */}
-              <ul className="flex justify-center gap-[20px] mt-[90px]">
+              <ul className="flex justify-center gap-[20px] mt-5">
                 <li>
                   <button
                     onClick={() =>

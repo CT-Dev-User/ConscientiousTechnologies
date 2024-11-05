@@ -33,11 +33,13 @@ const SolutionWhyChooseCT = () => {
     if (!userauth || !userauth.token) {
       router("/"); // Redirect to login page if not authenticated
     } else {
+      fetchSolutions();
       fetchSliderDataByCategory();
     }
   }, [userauth, router]);
 
   const [sliderDataByCaregory, setsliderDataByCaregory] = useState([]);
+  const [filtersliderDataByCaregory, setfiltersliderDataByCaregory] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
   const [addSliderData, setAddSliderData] = useState({
@@ -58,6 +60,7 @@ const SolutionWhyChooseCT = () => {
     images: [],
     points: [],
   });
+  const [solutions, setSolutions] = useState([]);
   const [headerSubtitle, setHeadersubtitle] = useState(null);
   const [subtitlePopUp, setSubtitlePopUp] = useState(false);
   const [logosPopUp, setLogosPopUp] = useState(false);
@@ -69,11 +72,22 @@ const SolutionWhyChooseCT = () => {
   const [sliderPoints, setSliderPoints] = useState([]);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = sliderDataByCaregory.slice(
+  const currentItems = filtersliderDataByCaregory ? filtersliderDataByCaregory.slice(
     indexOfFirstItem,
     indexOfLastItem
-  );
+  ):[];
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const fetchSolutions = async () => {
+    try {
+      const response = await axios.get(
+        "https://conscientious-technologies-backend.vercel.app/get-latest-solution-data"
+      );
+      setSolutions(response.data);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    }
+  };
 
   const fetchSliderDataByCategory = async () => {
     setLoading(true);
@@ -83,6 +97,7 @@ const SolutionWhyChooseCT = () => {
       );
       console.log(response.data.data);
       setsliderDataByCaregory(response.data.data);
+      setfiltersliderDataByCaregory(response.data.data);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -274,6 +289,26 @@ const SolutionWhyChooseCT = () => {
         <div className="w-full h-full mx-auto p-4 bg-gray-200">
           <div className="flex justify-between mb-5 mr-3 gap-x-3">
             <h4>Reliable tech tools for solutions</h4>
+            <select name="" id=""
+             onChange={(e) => {
+              if (e.target.value === "All") {
+                setfiltersliderDataByCaregory(sliderDataByCaregory)
+              } else {
+                setfiltersliderDataByCaregory(
+                  sliderDataByCaregory.filter(
+                    (item) => item.Subcategory === e.target.value
+                  )
+                );
+              }
+            }}
+            >
+              <option value="All">All</option>
+              {
+                sliderDataByCaregory && sliderDataByCaregory.map((data) => (
+                  <option value={data.Subcategory}>{data.Subcategory}</option>
+                ))
+              }
+            </select>
             <Button
               onClick={() => setAddPopUpShow(true)}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0 px-2 rounded"
@@ -289,14 +324,11 @@ const SolutionWhyChooseCT = () => {
             <Modal.Body>
               <form onSubmit={addSliderDataFunc} className="mx-auto max-w-lg">
                 <fieldset className="mb-4">
-                  <label className="block text-gray-700 font-bold">
-                    SubCategory
+                  <label className="block text-gray-700">
+                    solution Name / SubCategory
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="Subcategory"
-                    name="Subcategory"
+                  <select
+                    name=""
                     value={addSliderData.Subcategory}
                     onChange={(e) => {
                       setAddSliderData({
@@ -304,7 +336,16 @@ const SolutionWhyChooseCT = () => {
                         Subcategory: e.target.value,
                       });
                     }}
-                  />
+                    className="w-full p-2 border rounded"
+                    id=""
+                  >
+                    <option value="">Select solution</option>
+                    {solutions.map((solution, index) => (
+                      <option key={index} value={solution.solutionName}>
+                        {solution.solutionName}
+                      </option>
+                    ))}
+                  </select>
                 </fieldset>
                 <fieldset className="mb-4">
                   <label className="block text-gray-700 font-bold">
@@ -487,21 +528,26 @@ const SolutionWhyChooseCT = () => {
             </Modal.Header>
             <Modal.Body>
               <form onSubmit={editSliderDataFunc} className="mx-auto max-w-lg">
-                <fieldset className="mb-4">
-                  <label className="block text-gray-700 font-bold">
-                    SubCategory
+              <fieldset className="mb-4">
+                  <label className="block text-gray-700">
+                    solution Name / SubCategory
                   </label>
-
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="Subcategory"
+                  <select
                     name="Subcategory"
                     value={editSliderData.Subcategory}
                     onChange={(e) =>
                       handleEditSliderDataChange("Subcategory", e.target.value)
                     }
-                  />
+                    className="w-full p-2 border rounded"
+                    id=""
+                  >
+                    <option value="">Select solution</option>
+                    {solutions.map((solution, index) => (
+                      <option key={index} value={solution.solutionName}>
+                        {solution.solutionName}
+                      </option>
+                    ))}
+                  </select>
                 </fieldset>
                 <fieldset className="mb-4">
                   <label className="block text-gray-700 font-bold">

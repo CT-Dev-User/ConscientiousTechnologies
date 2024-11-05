@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Modal, Button } from 'react-bootstrap';
-import Swal from 'sweetalert2';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Modal, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contextAPI/UserContext";
 
@@ -38,12 +38,12 @@ const IndustryCMS = () => {
   }, [userauth, router]);
   const [Industrys, setIndustrys] = useState([]); // Fixed the name from 'Industry' to 'Industrys'
   const [IndustryId, setIndustryId] = useState(null);
-  const [IndustryName, setIndustryName] = useState('');
-  const [cardTitle, setCardTitle] = useState('');
+  const [IndustryName, setIndustryName] = useState("");
+  const [cardTitle, setCardTitle] = useState("");
   const [cardImage, setCardImage] = useState(null);
-  const [cardDescription, setCardDescription] = useState('');
-  const [headerTagLine, setHeaderTagLine] = useState('');
-  const [headerDescription, setheaderDescription] = useState('')
+  const [cardDescription, setCardDescription] = useState("");
+  const [headerTagLine, setHeaderTagLine] = useState("");
+  const [headerDescription, setheaderDescription] = useState("");
   const [headerImage, setHeaderImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showHeaderModal, setShowHeaderModal] = useState(false);
@@ -56,7 +56,6 @@ const IndustryCMS = () => {
   const currentItems = filteredIndustry
     ? filteredIndustry.slice(indexOfFirstItem, indexOfLastItem)
     : [];
-  // console.log(cur/rentItems)
 
   const openHeaderModal = (Industry) => {
     setHeaderTagLine(Industry.headerTagLine);
@@ -71,19 +70,12 @@ const IndustryCMS = () => {
     setShowHeaderModal(false);
   };
 
-  // Fetch all Industry data on mount
-  useEffect(() => {
-    fetchIndustrys();
-  }, []);
-
-  // useEffect(() => {
-  //   setPaginatedIndustrys(paginate(Industrys, currentPage, itemsPerPage));
-  // }, [Industrys, currentPage, itemsPerPage]);
-
   const fetchIndustrys = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-industry-data');
+      const response = await axios.get(
+        "https://conscientious-technologies-backend.vercel.app/get-latest-industry-data"
+      );
       console.log(response.data);
       setIndustrys(response.data);
       setfilteredIndustry(response.data);
@@ -94,41 +86,41 @@ const IndustryCMS = () => {
     }
   };
 
-
-  // const paginate = (Industrys, currentPage, itemsPerPage) => {
-  //   const startIndex = (currentPage - 1) * itemsPerPage;
-  //   const endIndex = startIndex + itemsPerPage;
-  //   return Industrys.slice(startIndex, endIndex);
-  // };
-
   const goToPreviousPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
   const goToNextPage = () => {
-    if (currentPage < Math.ceil(Industrys.length / itemsPerPage)) setCurrentPage(currentPage + 1);
+    if (currentPage < Math.ceil(Industrys.length / itemsPerPage))
+      setCurrentPage(currentPage + 1);
   };
 
   const handleDelete = async (id) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this data!',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "You will not be able to recover this data!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-existing-industry-data-by-id/${id}`);
+          const response = await axios.delete(
+            `https://conscientious-technologies-backend.vercel.app/delete-existing-industry-data-by-id/${id}`
+          );
           if (response.status === 200) {
             fetchIndustrys(); // Refresh the Industry list
-            Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
+            Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
           console.log(error);
-          Swal.fire('Error!', 'Failed to delete data. Please try again later.', 'error');
+          Swal.fire(
+            "Error!",
+            "Failed to delete data. Please try again later.",
+            "error"
+          );
         }
       }
     });
@@ -146,11 +138,11 @@ const IndustryCMS = () => {
       setHeaderImage(null); // Reset headerImage for editing
     } else {
       setIndustryId(null); // Reset ID for adding a new Industry
-      setIndustryName('');
-      setHeaderTagLine('');
-      setCardDescription('');
-      setCardTitle('');
-      setheaderDescription('');
+      setIndustryName("");
+      setHeaderTagLine("");
+      setCardDescription("");
+      setCardTitle("");
+      setheaderDescription("");
     }
     setShowModal(true);
   };
@@ -159,12 +151,12 @@ const IndustryCMS = () => {
     setShowModal(false);
     // Reset form fields
     setIndustryId(null);
-    setIndustryName('');
-    setHeaderTagLine('');
-    setCardDescription('');
+    setIndustryName("");
+    setHeaderTagLine("");
+    setCardDescription("");
     setCardImage(null);
     setHeaderImage(null);
-    setCardTitle('');
+    setCardTitle("");
   };
 
   const openCardDataModal = (Industry) => {
@@ -184,33 +176,43 @@ const IndustryCMS = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('industryName', IndustryName);
-    formData.append('headerTagLine', headerTagLine);
-    formData.append('headerDescription', headerDescription);
-    formData.append('cardTitle', cardTitle);
-    formData.append('cardDescription', cardDescription);
-    if (headerImage) formData.append('headerImage', headerImage);
-    if (cardImage) formData.append('cardImage', cardImage);
+    formData.append("industryName", IndustryName);
+    formData.append("headerTagLine", headerTagLine);
+    formData.append("headerDescription", headerDescription);
+    formData.append("cardTitle", cardTitle);
+    formData.append("cardDescription", cardDescription);
+    if (headerImage) formData.append("headerImage", headerImage);
+    if (cardImage) formData.append("cardImage", cardImage);
 
     try {
       if (IndustryId) {
         // Update existing Industry
-        const response = await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-existing-industry-data/${IndustryId}`, formData);
+        const response = await axios.put(
+          `https://conscientious-technologies-backend.vercel.app/edit-existing-industry-data/${IndustryId}`,
+          formData
+        );
         if (response.status === 200) {
-          Swal.fire('Success!', 'Industry updated successfully.', 'success');
+          Swal.fire("Success!", "Industry updated successfully.", "success");
         }
       } else {
         // Create new Industry
-        const response = await axios.post('https://conscientious-technologies-backend.vercel.app/create-new-industry-data', formData);
+        const response = await axios.post(
+          "https://conscientious-technologies-backend.vercel.app/create-new-industry-data",
+          formData
+        );
         if (response.status === 200) {
-          Swal.fire('Success!', 'New Industry added successfully.', 'success');
+          Swal.fire("Success!", "New Industry added successfully.", "success");
         }
       }
       fetchIndustrys(); // Refresh the Industrys list
       closeModal(); // Close the modal after submission
     } catch (error) {
-      console.error('Error submitting form:', error);
-      Swal.fire('Error!', 'Failed to save data. Please try again later.', 'error');
+      console.error("Error submitting form:", error);
+      Swal.fire(
+        "Error!",
+        "Failed to save data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -221,9 +223,9 @@ const IndustryCMS = () => {
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : (
-        <div className="p-4">
-          <div className='flex justify-between'>
-            <h1 className="text-xl font-bold mb-4">Industry Management</h1>
+        <div className="p-4 bg-gray-200">
+          <div className="flex justify-between">
+            <h1 className="text-xl font-bold">Industry Management</h1>
 
             <select
               name=""
@@ -232,7 +234,9 @@ const IndustryCMS = () => {
                   setfilteredIndustry(Industrys); // Show all FAQs
                 } else {
                   setfilteredIndustry(
-                    Industrys.filter((item) => item.industryName === e.target.value)
+                    Industrys.filter(
+                      (item) => item.industryName === e.target.value
+                    )
                   );
                 }
               }}
@@ -246,14 +250,17 @@ const IndustryCMS = () => {
                 </option>
               ))}
             </select>
-            <button onClick={() => openModal()} className="bg-blue-500 text-white px-4 py-2 rounded">
+            <button
+              onClick={() => openModal()}
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
               Add New Industry
             </button>
           </div>
 
           <div className="mt-4">
             <table className="w-full border-collapse bg-white">
-              <thead className='bg-gray-800 text-white'>
+              <thead className="bg-gray-800 text-white">
                 <tr>
                   <th className="border p-2">Sr No.</th>
                   <th className="border p-2">Industry Name</th>
@@ -266,17 +273,39 @@ const IndustryCMS = () => {
                 {currentItems &&
                   currentItems.map((Industry, index) => (
                     <tr key={Industry._id}>
-                      <td className="border p-2">{(currentPage - 1) * itemsPerPage + index + 1}</td>
+                      <td className="border p-2">
+                        {(currentPage - 1) * itemsPerPage + index + 1}
+                      </td>
                       <td className="border p-2">{Industry.industryName}</td>
                       <td className="border p-2">
-                        <button onClick={() => openHeaderModal(Industry)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
+                        <button
+                          onClick={() => openHeaderModal(Industry)}
+                          className="bg-blue-950 text-white px-2 py-1 rounded mr-2"
+                        >
+                          View
+                        </button>
                       </td>
                       <td className="border p-2">
-                        <button onClick={() => openCardDataModal(Industry)} className="bg-blue-950 text-white px-2 py-1 rounded mr-2">View</button>
+                        <button
+                          onClick={() => openCardDataModal(Industry)}
+                          className="bg-blue-950 text-white px-2 py-1 rounded mr-2"
+                        >
+                          View
+                        </button>
                       </td>
                       <td className="border p-2">
-                        <button onClick={() => openModal(Industry)} className="bg-green-500 text-white px-2 py-1 rounded mr-2">Edit</button>
-                        <button onClick={() => handleDelete(Industry._id)} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                        <button
+                          onClick={() => openModal(Industry)}
+                          className="bg-green-500 text-white px-2 py-1 rounded mr-2"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDelete(Industry._id)}
+                          className="bg-red-500 text-white px-2 py-1 rounded"
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -286,30 +315,39 @@ const IndustryCMS = () => {
             <div className="flex justify-center gap-x-6 items-center mt-4">
               <button
                 onClick={goToPreviousPage}
-                className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`bg-blue-500 text-white px-4 py-2 rounded ${
+                  currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                }`}
                 disabled={currentPage === 1}
               >
                 Previous
               </button>
               <span className="mx-2">
-                Page {currentPage} of {Math.ceil(Industrys.length / itemsPerPage)}
+                Page {currentPage} of{" "}
+                {Math.ceil(Industrys.length / itemsPerPage)}
               </span>
               <button
                 onClick={goToNextPage}
-                className={`bg-blue-500 text-white px-4 py-2 rounded ${currentPage === Math.ceil(Industrys.length / itemsPerPage) ? 'opacity-50 cursor-not-allowed' : ''}`}
-                disabled={currentPage === Math.ceil(Industrys.length / itemsPerPage)}
+                className={`bg-blue-500 text-white px-4 py-2 rounded ${
+                  currentPage === Math.ceil(Industrys.length / itemsPerPage)
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
+                disabled={
+                  currentPage === Math.ceil(Industrys.length / itemsPerPage)
+                }
               >
                 Next
               </button>
             </div>
-
-
           </div>
 
           <Modal show={showModal} onHide={closeModal}>
-            <div className='w-[50vw] mx-auto bg-white'>
+            <div className="w-[50vw] mx-auto bg-white">
               <Modal.Header closeButton className="bg-gray-100">
-                <Modal.Title>{IndustryId ? 'Edit Industry' : 'Add New Industry'}</Modal.Title>
+                <Modal.Title>
+                  {IndustryId ? "Edit Industry" : "Add New Industry"}
+                </Modal.Title>
               </Modal.Header>
               <Modal.Body className="w-full mx-auto">
                 <form onSubmit={handleSubmit}>
@@ -325,7 +363,9 @@ const IndustryCMS = () => {
                   </div>
 
                   <div className="mb-4">
-                    <label className="block text-gray-700">Header Tagline</label>
+                    <label className="block text-gray-700">
+                      Header Tagline
+                    </label>
                     <input
                       type="text"
                       value={headerTagLine}
@@ -335,7 +375,9 @@ const IndustryCMS = () => {
                     />
                   </div>
                   <div className="mb-4">
-                    <label className="block text-gray-700">Header Description</label>
+                    <label className="block text-gray-700">
+                      Header Description
+                    </label>
                     <input
                       type="text"
                       value={headerDescription}
@@ -354,7 +396,9 @@ const IndustryCMS = () => {
                     />
                   </div>
 
-                  <h1 className='text-lg font-semibold text-black'>Card Data</h1>
+                  <h1 className="text-lg font-semibold text-black">
+                    Card Data
+                  </h1>
                   <div className="mb-4">
                     <label className="block text-gray-700">Card Title</label>
                     <input
@@ -375,7 +419,9 @@ const IndustryCMS = () => {
                   </div>
 
                   <div className="mb-4">
-                    <label className="block text-gray-700">Card Description</label>
+                    <label className="block text-gray-700">
+                      Card Description
+                    </label>
                     <textarea
                       value={cardDescription}
                       onChange={(e) => setCardDescription(e.target.value)}
@@ -383,11 +429,17 @@ const IndustryCMS = () => {
                       required
                     />
                   </div>
-                  <div className='flex justify-start gap-4'>
-                    <button className='py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md' type="submit">
-                      {IndustryId ? 'Update Industry' : 'Add Industry'}
+                  <div className="flex justify-start gap-4">
+                    <button
+                      className="py-2 px-4 bg-blue-500 text-white hover:bg-blue-700 rounded-md"
+                      type="submit"
+                    >
+                      {IndustryId ? "Update Industry" : "Add Industry"}
                     </button>
-                    <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeModal}>
+                    <button
+                      className="py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md"
+                      onClick={closeModal}
+                    >
                       Cancel
                     </button>
                   </div>
@@ -402,23 +454,36 @@ const IndustryCMS = () => {
             </Modal.Header>
             <Modal.Body>
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold font-serif">Header Tagline</label>
+                <label className="block text-gray-700 font-bold font-serif">
+                  Header Tagline
+                </label>
                 <p>{headerTagLine}</p>
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold font-serif">Header Description</label>
+                <label className="block text-gray-700 font-bold font-serif">
+                  Header Description
+                </label>
                 <p>{headerDescription}</p>
               </div>
 
               <div className="mb-4">
-                <label className="lock text-gray-700 font-bold font-serif">Header Image</label>
+                <label className="lock text-gray-700 font-bold font-serif">
+                  Header Image
+                </label>
                 {headerImage && (
-                  <img src={headerImage} alt="Header" className="w-full h-auto rounded" />
+                  <img
+                    src={headerImage}
+                    alt="Header"
+                    className="w-full h-auto rounded"
+                  />
                 )}
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <button className='py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md' onClick={closeHeaderModal}>
+              <button
+                className="py-2 px-4 border border-blue-500 text-blue-500 hover:bg-gray-500 hover:text-white rounded-md"
+                onClick={closeHeaderModal}
+              >
                 Close
               </button>
             </Modal.Footer>
@@ -431,18 +496,28 @@ const IndustryCMS = () => {
             </Modal.Header>
             <Modal.Body>
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold font-serif">Card Title</label>
+                <label className="block text-gray-700 font-bold font-serif">
+                  Card Title
+                </label>
                 <p>{cardTitle}</p>
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold font-serif">Card Description</label>
+                <label className="block text-gray-700 font-bold font-serif">
+                  Card Description
+                </label>
                 <p>{cardDescription}</p>
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 font-bold font-serif">Card Image</label>
+                <label className="block text-gray-700 font-bold font-serif">
+                  Card Image
+                </label>
                 {cardImage && (
-                  <img src={cardImage} alt="Card" className="w-[150px] h-[150px] rounded" />
+                  <img
+                    src={cardImage}
+                    alt="Card"
+                    className="w-[150px] h-[150px] rounded"
+                  />
                 )}
               </div>
             </Modal.Body>
@@ -452,13 +527,9 @@ const IndustryCMS = () => {
               </Button>
             </Modal.Footer>
           </Modal>
-
-
         </div>
-      )
-      }
+      )}
     </>
-
   );
 };
 

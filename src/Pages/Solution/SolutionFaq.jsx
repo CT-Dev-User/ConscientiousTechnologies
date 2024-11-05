@@ -41,6 +41,7 @@ const SolutionFAQ = () => {
   }, [userauth, router]);
   const [industries, setIndustries] = useState([]);
   const [homeFaqs, setHomeFaqs] = useState([]);
+  const [filterHomeFaqs, setFilterHomeFaqs] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
   const [addHomeFAQ, setAddHomeFAQ] = useState({
@@ -152,6 +153,7 @@ const SolutionFAQ = () => {
     try {
       const response = await axios.get("http://localhost:8080/get-faq-bycategory/Solution");
       setHomeFaqs(response.data.data);
+      setFilterHomeFaqs(response.data.data);
       setLoading(false)
     } catch (error) {
       setLoading(false);
@@ -162,7 +164,7 @@ const SolutionFAQ = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = homeFaqs ? homeFaqs.slice(indexOfFirstItem, indexOfLastItem) : [];
+  const currentItems = filterHomeFaqs ? filterHomeFaqs.slice(indexOfFirstItem, indexOfLastItem) : [];
 
   const fetchIndustry = async () => {
     try {
@@ -216,6 +218,26 @@ const SolutionFAQ = () => {
     <div className="w-full bg-gray-300 h-full mx-auto p-4">
       <div className="flex justify-between mb-5 mr-3">
         <h1 className="text-2xl font-bold">FAQ's for Solutions</h1>
+        <select name="" id=""
+             onChange={(e) => {
+              if (e.target.value === "All") {
+                setFilterHomeFaqs(homeFaqs);
+              } else {
+                setFilterHomeFaqs(
+                  homeFaqs.filter(
+                    (item) => item.Subcategory === e.target.value
+                  )
+                );
+              }
+            }}
+            >
+              <option value="All">All</option>
+              {
+                homeFaqs && homeFaqs.map((data) => (
+                  <option value={data.Subcategory}>{data.Subcategory}</option>
+                ))
+              }
+            </select>
         <Button
           onClick={() => setAddPopUpShow(true)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

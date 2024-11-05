@@ -36,6 +36,7 @@ const SolutionCMS = () => {
     }
   }, [userauth, router]);
   const [solutions, setSolutions] = useState([]); // Fixed the name from 'solution' to 'solutions'
+  const [solutionData, setSolutionData] = useState([]);
   const [solutionId, setSolutionId] = useState(null);
   const [solutionName, setSolutionName] = useState('');
   const [cardTitle, setCardTitle] = useState('');
@@ -64,8 +65,8 @@ const SolutionCMS = () => {
   };
 
   useEffect(() => {
-    setPaginatedSolutions(paginate(solutions, currentPage, itemsPerPage));
-  }, [solutions, currentPage, itemsPerPage]);
+    setPaginatedSolutions(paginate(solutionData, currentPage, itemsPerPage));
+  }, [solutionData, currentPage, itemsPerPage]);
 
   const fetchSolutions = async () => {
     setLoading(true);
@@ -73,6 +74,7 @@ const SolutionCMS = () => {
       const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-solution-data');
       console.log(response.data);
       setSolutions(response.data);
+      setSolutionData(response.data);
       setLoading(false);
     } catch (error) {
       setError('Error fetching data');
@@ -93,7 +95,7 @@ const SolutionCMS = () => {
   };
 
   const goToNextPage = () => {
-    if (currentPage < Math.ceil(solutions.length / itemsPerPage)) setCurrentPage(currentPage + 1);
+    if (currentPage < Math.ceil(solutionData.length / itemsPerPage)) setCurrentPage(currentPage + 1);
   };
 
   const handleDelete = async (id) => {
@@ -208,7 +210,20 @@ const SolutionCMS = () => {
     ) : (
     <div className="p-4 bg-gray-200">
       <div className='flex justify-between'>
-        <h1 className="text-xl font-bold mb-4">Solutions Management</h1>
+        <h1 className="text-xl font-bold">Solutions Management</h1>
+        <select name="" id=""
+        onChange={(e)=>{
+          if(e.target.value === "All"){setSolutionData(solutions)}
+          else {setSolutionData(solutions.filter((solution) => solution.solutionName === e.target.value))}
+        }}
+        >
+          <option value="All">All</option>
+          {solutions &&
+            solutions.map((solution) => (
+              <option value={solution.solutionName}>{solution.solutionName}</option>
+            ))
+          }
+        </select>
         <button onClick={() => openModal()} className="bg-blue-500 text-white px-4 py-2 rounded">
           Add New Solution
         </button>

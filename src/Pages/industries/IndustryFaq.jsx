@@ -224,7 +224,7 @@ const IndustryFAQ = () => {
         <p className="text-red-500">{error}</p>
       ) : (
         <div className="w-full bg-gray-300 h-full mx-auto p-4">
-          <div className="flex justify-between mb-5 mr-3">
+          <div className="flex justify-between mb-4 mr-3">
             <h1 className="text-2xl font-bold">FAQ's for Industries</h1>
 
             <select

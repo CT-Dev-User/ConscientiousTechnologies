@@ -37,6 +37,7 @@ const SolutionCaseStudies = () => {
   }, [userauth, router]);
   const [solutions, setSolutions] = useState([]);
   const [caseStudies, setCaseStudies] = useState([]);
+  const [filteredcaseStudies, setFilteredCaseStudies] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
   const [editId, setEditId] = useState(null);
@@ -90,7 +91,7 @@ const SolutionCaseStudies = () => {
   const [itemsPerPage] = useState(2);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = caseStudies.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredcaseStudies ? filteredcaseStudies.slice(indexOfFirstItem, indexOfLastItem):[];
 
   const fetchSolutions = async () => {
     try {
@@ -115,6 +116,7 @@ const SolutionCaseStudies = () => {
       );
       console.log(response.data);
       setCaseStudies(response.data);
+      setFilteredCaseStudies(response.data);
       setLoading(false);
     } catch (error) {
       setError("Error fetching user data");
@@ -284,6 +286,23 @@ const SolutionCaseStudies = () => {
     <div className="w-full bg-gray-300 h-auto mx-auto p-4 relative">
       <div className="flex justify-between mb-2 mr-3">
         <h1 className="text-xl font-bold text-black">Solution Pages Case Studies</h1>
+        <select name="" id=""
+        onChange={(e) => {
+          if(e.target.value === "All"){
+            setFilteredCaseStudies(caseStudies);
+          }else{
+            setFilteredCaseStudies(caseStudies.filter((caseStudy) => caseStudy.Subcategory === e.target.value));
+          }
+        }}
+        >
+          <option value="All">All</option>
+          {
+            caseStudies &&
+            caseStudies.map((caseStudy) => (
+              <option value={caseStudy.Subcategory}>{caseStudy.Subcategory}</option>
+            ))
+          }
+        </select>
         <button
           onClick={() => setAddPopUpShow(true)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-base"

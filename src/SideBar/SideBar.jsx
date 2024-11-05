@@ -287,12 +287,7 @@ const SideBar = ({ children }) => {
             path: "/conscientious-social-media",
             name: "Social Media",
             icon: <FaGlobe />,
-          },
-          {
-            path: "/conscientious-navbar",
-            name: "Navbar",
-            icon: <FaBloggerB />,
-          },
+          }
         ]
       },
       {
@@ -487,12 +482,7 @@ const SideBar = ({ children }) => {
             path: "/conscientious-social-media",
             name: "Social Media",
             icon: <FaGlobe />,
-          },
-          {
-            path: "/conscientious-navbar",
-            name: "Navbar",
-            icon: <FaBloggerB />,
-          },
+          }
         ]
       },
       {

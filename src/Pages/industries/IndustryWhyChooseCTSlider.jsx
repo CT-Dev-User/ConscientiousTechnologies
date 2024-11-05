@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contextAPI/UserContext";
 
 const Spinner = () => (
@@ -39,7 +39,6 @@ const IndustryWhyChooseCT = () => {
     }
   }, [userauth, router]);
 
-  const { subcategory } = useParams();
   const [sliderDataByCaregory, setsliderDataByCaregory] = useState([]);
   const [industries, setIndustries] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
@@ -68,7 +67,7 @@ const IndustryWhyChooseCT = () => {
   const [pointsPopUp, setPointsPopUp] = useState(false);
   const [editId, setEditId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(3);
+  const [itemsPerPage] = useState(5);
   const [sliderImages, setSliderImages] = useState([]);
   const [sliderPoints, setSliderPoints] = useState([]);
   const [filterwhyChooseCt, setFilterwhyChooseCt] = useState([]);
@@ -297,8 +296,9 @@ const IndustryWhyChooseCT = () => {
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : (
-        <div className="w-full h-full mx-auto p-4">
-          <div className="flex justify-end mb-5 mr-3 gap-x-3">
+        <div className="w-full h-full bg-gray-200 p-4">
+          <div className="flex justify-between gap-x-3">    
+          <h4 className="text-2xl mb-2">Why Choose CT Slider</h4>
             <select
               name=""
               onChange={(e) => {
@@ -312,7 +312,7 @@ const IndustryWhyChooseCT = () => {
                   );
                 }
               }}
-              className="p-2 border rounded"
+              className="p-2 border rounded mb-2"
               id=""
             >
               <option value="All Industries">All Industries</option>
@@ -325,7 +325,7 @@ const IndustryWhyChooseCT = () => {
 
             <Button
               onClick={() => setAddPopUpShow(true)}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0 px-2 rounded"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0 px-2 rounded mb-2"
             >
               Add Slider Data
             </Button>
@@ -657,28 +657,26 @@ const IndustryWhyChooseCT = () => {
               </form>
             </Modal.Body>
           </Modal>
-
-          <h4>{subcategory} data</h4>
-          <table className="w-full border-collapse border h-auto py-5">
-            <thead>
-              <tr className="bg-gray-200">
-                <th className="border p-2">Sr. No</th>
-                <th className="border p-2">SubCategory</th>
-                <th className="border p-2">Title</th>
-                <th className="border p-2">Why Choose CT brief desc</th>
-                <th className="border p-2">LogoHeading</th>
-                <th className="border p-2">Why Choose Logos</th>
-                <th className="border p-2">Why Choose Points</th>
-                <th className="border p-2">Action</th>
+          <table className="w-full border-collapse border h-auto py-5 bg-white">
+            <thead className="bg-gray-800 text-white">
+              <tr className="border-b">
+                <th className="border-r p-2">Sr. No</th>
+                <th className="border-r p-2">SubCategory</th>
+                <th className="border-r p-2">Title</th>
+                <th className="border-r p-2">brief desc</th>
+                <th className="border-r p-2">LogoHeading</th>
+                <th className="border-r p-2">Why Choose Logos</th>
+                <th className="border-r p-2">Why Choose Points</th>
+                <th className="border-r p-2">Action</th>
               </tr>
             </thead>
             <tbody>
               {currentItems.map((slider, i) => (
-                <tr key={slider._id}>
-                  <td className="border p-2">{i + indexOfFirstItem + 1}</td>
-                  <td className="border p-2">{slider.Subcategory}</td>
-                  <td className="border p-2">{slider.heading}</td>
-                  <td className="border p-2">
+                <tr key={slider._id} className="border-b">
+                  <td className="border-r p-2">{i + indexOfFirstItem + 1}</td>
+                  <td className="border-r p-2">{slider.Subcategory}</td>
+                  <td className="border-r p-2">{slider.heading}</td>
+                  <td className="border-r p-2">
                     <FaEye
                       onClick={() => {
                         setHeadersubtitle(slider.subTitle);
@@ -687,9 +685,9 @@ const IndustryWhyChooseCT = () => {
                       className="cursor-pointer"
                     />
                   </td>
-                  <td className="border p-2">{slider.logoHeading}</td>
+                  <td className="border-r p-2">{slider.logoHeading}</td>
 
-                  <td className="border p-2">
+                  <td className="border-r p-2">
                     <FaEye
                       onClick={() => {
                         setSliderImages(slider.logos);
@@ -699,7 +697,7 @@ const IndustryWhyChooseCT = () => {
                     />
                   </td>
 
-                  <td className="border p-2">
+                  <td className="border-r p-2">
                     <FaEye
                       onClick={() => {
                         setSliderPoints(slider.points);
@@ -709,7 +707,7 @@ const IndustryWhyChooseCT = () => {
                     />
                   </td>
 
-                  <td className="border flex items-center justify-start gap-[20px] p-2">
+                  <td className="border-r flex items-center justify-start gap-[20px] p-2">
                     <button
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                       onClick={() => {
@@ -731,7 +729,7 @@ const IndustryWhyChooseCT = () => {
             </tbody>
           </table>
           {/* Pagination */}
-          <ul className="flex justify-center mt-[90px]">
+          <ul className="flex justify-center mt-5">
             <li>
               <button
                 onClick={() =>
