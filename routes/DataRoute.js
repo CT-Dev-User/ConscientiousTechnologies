@@ -11,7 +11,6 @@ import { addClientReviewData, deleteClientReviewData, editClientReviewData, getC
 import { addHomeFaq, deleteHomeFaq, getHomeFaq, updateHomeFaqById } from "../controllers/FAQ's/HomePageFaqController.js";
 import { addbookFreeConData, deletebookFreeConData, editbookFreeConData, getbookFreeConData } from "../controllers/HomePage/bookFreeConController.js";
 import { addFaq, deleteFaq, getFaq, getFaqByCategory, getFaqByCategorySubCategory, getFaqBySubCategory, updateFaqById } from "../controllers/FAQ's/FaqControllers.js";
-import { addCategory, deleteCategory, getCategory } from "../controllers/FAQ's/categoryController.js";
 
 import { addChooseCtSliderData, deleteChooseCtSliderdata, editChooseCtSliderData, getChooseCtSliderByCategory, getChooseCtSliderByCategorySubCategory, getChooseCtSliderBySubCategory, getChooseCtSliderdata } from "../controllers/WhyChooseCtSlider/WhyChooseCtSliderController.js";
 import { addPartnerUpData, deletePartnerUpdata, editPartnerUpdata, getPartnerupdata } from "../controllers/partnerUpController/PartnerUpController.js";
@@ -24,11 +23,6 @@ import { addAddress, deleteAddress, editAddress, getAddress } from "../controlle
 import { authlogin, Super_Admin } from "../middleware/userauth.js";
 
 
-
-// category for FAQ's // should be delete
-dataroute.post('/add-category',authlogin, Super_Admin, addCategory)
-dataroute.get('/get-category', getCategory)
-dataroute.delete('/delete-category/:id',authlogin, Super_Admin, deleteCategory)
 
 //heroslider routes // no need to be deleted
 dataroute.post('/add-heroslider-data', authlogin, Super_Admin, upload.single('herosliderImage'), addSliderData)
