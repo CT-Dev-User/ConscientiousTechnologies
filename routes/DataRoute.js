@@ -7,7 +7,7 @@ export const dataroute = express.Router();
 import { addSliderData, deleteheroslliderdata, editherosliderdata, getherosliderdata } from "../controllers/HomePage/heroSectionsController.js";
 import { addPartener, deletePartenerData, editPartenerData, getPartenarData } from "../controllers/HomePage/OurPartenerController.js";
 import { addSolutionData, deleteSolutionData, editSolutionWeOffer, getSolutionData } from "../controllers/HomePage/SolutionWeOfferController.js";
-import { addServiceData, deleteServiceData, editServiceData, getServiceData } from "../controllers/HomePage/serviceWeOfferController.js";
+
 import { addIndustriesData, deleteIndustriesData, editIndustriesData, getIndustriesData } from "../controllers/HomePage/industriesController.js";
 import { addCaseStudiesData, deleteCaseStudiesData, editCaseStudiesData, getCaseStudiesData } from "../controllers/HomePage/CaseStudiesController.js";
 import { addBlogsData, deleteBlogData, editBlogData, getBlogData } from "../controllers/HomePage/BlogController.js";
@@ -30,11 +30,6 @@ import { addAreaOfExpertiesData, deleteAreaOfExpertiesdata, editAreaOfExpertiess
 import { addBlogData, deleteBlogsData, getBlogDataByCategory, getBlogDataByCategorySubCategory, getBlogDataBySubCategory, getBlogsData, updateBlogsDataById } from "../controllers/BlogController/BlogController.js";
 import { authlogin, Super_Admin } from "../middleware/userauth.js";
 
-//service data routes // should be deleted
-dataroute.get("/get-service-data", getServiceData);
-dataroute.post("/add-service-data", authlogin, Super_Admin, MultiImageupload.array("images", 2), addServiceData);
-dataroute.put("/edit-service-data/:id", authlogin, Super_Admin, MultiImageupload.array("images", 2), editServiceData);
-dataroute.delete("/delete-service-data/:id", authlogin, Super_Admin, deleteServiceData);
 
 //solution we offer routes // should be deleted
 dataroute.post('/add-solution-we-offer-data', authlogin, Super_Admin, MultiImageupload.array('images', 1), addSolutionData)
