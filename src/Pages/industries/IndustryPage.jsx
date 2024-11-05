@@ -89,7 +89,7 @@ const IndustryCMS = () => {
       setfilteredIndustry(response.data);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching Industry Data:', error);
+      setError("Error fetching:");
       setLoading(false);
     }
   };

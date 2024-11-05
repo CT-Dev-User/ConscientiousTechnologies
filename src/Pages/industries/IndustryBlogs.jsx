@@ -79,7 +79,7 @@ const IndutryBlogCMS = () => {
       setFilterBlogs(response.data.blog);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching blogs:", error);
+      setError("Error fetching blogs:");
       setLoading(false);
     }
   };

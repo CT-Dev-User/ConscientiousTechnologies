@@ -124,6 +124,7 @@ const IndustryCaseStudies = () => {
       setLoading(false);
     } catch (error) {
       console.log(error);
+      setError("Error fetching data")
       setLoading(false);
     }
   };

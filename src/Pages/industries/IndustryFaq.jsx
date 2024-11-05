@@ -27,7 +27,6 @@ const Spinner = () => (
 );
 
 const IndustryFAQ = () => {
- 
   const router = useNavigate();
   const [industries, setIndustries] = useState([]);
   const [userauth] = useAuth();
@@ -38,6 +37,7 @@ const IndustryFAQ = () => {
     if (!userauth || !userauth.token) {
       router("/"); // Redirect to login page if not authenticated
     } else {
+      fetchIndustry();
       fetchHomeFaqs();
     }
   }, [userauth, router]);
@@ -69,7 +69,9 @@ const IndustryFAQ = () => {
   const [filterFaq, setfilterFaq] = useState([]);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filterFaq ? filterFaq.slice(indexOfFirstItem, indexOfLastItem) : [];
+  const currentItems = filterFaq
+    ? filterFaq.slice(indexOfFirstItem, indexOfLastItem)
+    : [];
 
   const handleAddfileChange = (e) => {
     setAddSelectedFile(e.target.files[0]);
@@ -156,24 +158,19 @@ const IndustryFAQ = () => {
   const fetchHomeFaqs = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8080/get-faq-bycategory/Industry");
+      const response = await axios.get(
+        "http://localhost:8080/get-faq-bycategory/Industry"
+      );
       setHomeFaqs(response.data.data);
       console.log(response.data.data);
       setfilterFaq(response.data.data);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      setError("Error fetching:");
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    fetchHomeFaqs();
-  }, []);
-
-  useEffect(() => {
-    fetchIndustry();
-  }, []);
   const fetchIndustry = async () => {
     setLoading(true);
     try {
@@ -183,7 +180,7 @@ const IndustryFAQ = () => {
       setIndustries(response.data);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching services:", error);
+      setError("Error fetching:");
       setLoading(false);
     }
   };
@@ -237,7 +234,9 @@ const IndustryFAQ = () => {
                   setfilterFaq(homeFaqs); // Show all FAQs
                 } else {
                   setfilterFaq(
-                    homeFaqs.filter((item) => item.Subcategory === e.target.value)
+                    homeFaqs.filter(
+                      (item) => item.Subcategory === e.target.value
+                    )
                   );
                 }
               }}
@@ -270,7 +269,12 @@ const IndustryFAQ = () => {
                   <select
                     name=""
                     value={addHomeFAQ.Subcategory}
-                    onChange={(e) => setAddHomeFAQ({ ...addHomeFAQ, Subcategory: e.target.value })}
+                    onChange={(e) =>
+                      setAddHomeFAQ({
+                        ...addHomeFAQ,
+                        Subcategory: e.target.value,
+                      })
+                    }
                     className="w-full p-2 border rounded"
                     id=""
                   >
@@ -283,7 +287,10 @@ const IndustryFAQ = () => {
                   </select>
                 </fieldset>
                 <fieldset className="mb-4">
-                  <label htmlFor="title" className="block text-gray-700 font-bold">
+                  <label
+                    htmlFor="title"
+                    className="block text-gray-700 font-bold"
+                  >
                     Question
                   </label>
                   <input
@@ -297,7 +304,10 @@ const IndustryFAQ = () => {
                   />
                 </fieldset>
                 <fieldset className="mb-4">
-                  <label htmlFor="desc" className="block text-gray-700 font-bold">
+                  <label
+                    htmlFor="desc"
+                    className="block text-gray-700 font-bold"
+                  >
                     Answer
                   </label>
                   <JoditEditor
@@ -313,7 +323,10 @@ const IndustryFAQ = () => {
                 </fieldset>
 
                 <fieldset className="mb-4">
-                  <label htmlFor="ServiceHomePageimage" className="block font-bold">
+                  <label
+                    htmlFor="ServiceHomePageimage"
+                    className="block font-bold"
+                  >
                     Image
                   </label>
                   <div className="relative">
@@ -379,7 +392,12 @@ const IndustryFAQ = () => {
                   <select
                     name=""
                     value={editHomeFAQ.Subcategory}
-                    onChange={(e) => seteditHomeFAQ({ ...editHomeFAQ, Subcategory: e.target.value })}
+                    onChange={(e) =>
+                      seteditHomeFAQ({
+                        ...editHomeFAQ,
+                        Subcategory: e.target.value,
+                      })
+                    }
                     className="w-full p-2 border rounded"
                     id=""
                   >
@@ -392,7 +410,10 @@ const IndustryFAQ = () => {
                   </select>
                 </fieldset>
                 <fieldset className="mb-4">
-                  <label htmlFor="title" className="block text-gray-700 font-bold">
+                  <label
+                    htmlFor="title"
+                    className="block text-gray-700 font-bold"
+                  >
                     Title
                   </label>
                   <input
@@ -403,12 +424,18 @@ const IndustryFAQ = () => {
                             rounded-md border border-gray-300 focus:border-blue-500"
                     value={editHomeFAQ.question}
                     onChange={(e) =>
-                      seteditHomeFAQ({ ...editHomeFAQ, question: e.target.value })
+                      seteditHomeFAQ({
+                        ...editHomeFAQ,
+                        question: e.target.value,
+                      })
                     }
                   />
                 </fieldset>
                 <fieldset className="mb-4">
-                  <label htmlFor="desc" className="block text-gray-700 font-bold">
+                  <label
+                    htmlFor="desc"
+                    className="block text-gray-700 font-bold"
+                  >
                     Description
                   </label>
                   <JoditEditor
@@ -426,7 +453,10 @@ const IndustryFAQ = () => {
                   />
                 </fieldset>
                 <fieldset className="mb-4">
-                  <label htmlFor="ServiceHomePageimage" className="block font-bold">
+                  <label
+                    htmlFor="ServiceHomePageimage"
+                    className="block font-bold"
+                  >
                     Image
                   </label>
                   <div className="relative">
@@ -481,7 +511,11 @@ const IndustryFAQ = () => {
             </Modal.Footer>
           </Modal>
 
-          <Modal size="lg" show={answerPopUp} onHide={() => setAnswerPopUp(false)}>
+          <Modal
+            size="lg"
+            show={answerPopUp}
+            onHide={() => setAnswerPopUp(false)}
+          >
             <Modal.Header closeButton className="bg-gray-800 text-white">
               <Modal.Title>Edit Hero Section Data</Modal.Title>
             </Modal.Header>
@@ -511,55 +545,56 @@ const IndustryFAQ = () => {
               </tr>
             </thead>
             <tbody>
-              {currentItems && currentItems.map((faq, i) => (
-                <tr key={faq._id} className="border-b">
-                  <td className="border-r p-2">{i + indexOfFirstItem + 1}</td>
-                  <td className="border-r p-2">{faq.Subcategory}</td>
-                  <td className="border-r p-2">{faq.question}</td>
-                  <td className="border-r p-2">
-                    <FaEye
-                      onClick={() => {
-                        setFaqAnswer(faq.answer && faq.answer.answerText);
-                        setAnswerPopUp(true);
-                      }}
-                      className="cursor-pointer"
-                    />
-                  </td>
-                  <td className="border-r p-2">
-                    <img
-                      src={faq.answer && faq.answer.answerImg}
-                      alt={faq.question}
-                      className="w-[60px] h-[60px]"
-                    />
-                  </td>
-                  <td className="border-r flex items-center justify-start gap-[20px] p-2">
-                    <button
-                      className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded"
-                      onClick={() => {
-                        setEditPopUpShow(true);
-                        setEditId(faq._id);
-                        seteditHomeFAQ({
-                          category: "Industry",
-                          Subcategory: faq.Subcategory,
-                          question: faq.question,
-                          answer: {
-                            answerText: faq.answer.answerText,
-                            answerImg: null,
-                          },
-                        });
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="hover:bg-red-700 h-[37px] bg-[red] py-2 px-4 rounded text-white shadow-md"
-                      onClick={() => deleteHomeFAQData(faq._id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {currentItems &&
+                currentItems.map((faq, i) => (
+                  <tr key={faq._id} className="border-b">
+                    <td className="border-r p-2">{i + indexOfFirstItem + 1}</td>
+                    <td className="border-r p-2">{faq.Subcategory}</td>
+                    <td className="border-r p-2">{faq.question}</td>
+                    <td className="border-r p-2">
+                      <FaEye
+                        onClick={() => {
+                          setFaqAnswer(faq.answer && faq.answer.answerText);
+                          setAnswerPopUp(true);
+                        }}
+                        className="cursor-pointer"
+                      />
+                    </td>
+                    <td className="border-r p-2">
+                      <img
+                        src={faq.answer && faq.answer.answerImg}
+                        alt={faq.question}
+                        className="w-[60px] h-[60px]"
+                      />
+                    </td>
+                    <td className="border-r flex items-center justify-start gap-[20px] p-2">
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded"
+                        onClick={() => {
+                          setEditPopUpShow(true);
+                          setEditId(faq._id);
+                          seteditHomeFAQ({
+                            category: "Industry",
+                            Subcategory: faq.Subcategory,
+                            question: faq.question,
+                            answer: {
+                              answerText: faq.answer.answerText,
+                              answerImg: null,
+                            },
+                          });
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="hover:bg-red-700 h-[37px] bg-[red] py-2 px-4 rounded text-white shadow-md"
+                        onClick={() => deleteHomeFAQData(faq._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
           {/* Pagination */}
@@ -594,7 +629,6 @@ const IndustryFAQ = () => {
         </div>
       )}
     </>
-
   );
 };
 
