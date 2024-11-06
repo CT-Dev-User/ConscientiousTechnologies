@@ -12,7 +12,7 @@ const CareerPage = () => {
     <div>
       <Header />
       <OurPartener />
-      <WhyChooseCTSlider />
+      <WhyChooseCTSlider />                                         
       <CareerAtCt />
       <Footer />
     </div>

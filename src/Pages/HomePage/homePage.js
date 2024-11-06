@@ -17,6 +17,8 @@ import Footer from './Component/Footer/Footer';
 import ReliableToolsHeading from './Component/ReliableTools/ReliableToolsHeading';
 import ReliableTools from '../RepeatedComponents/ReliableTechTools/ReliableTechTools';
 import AllFaq from '../RepeatedComponents/AllFaq/AllFaq';
+import { Helmet } from "react-helmet";
+
 
 const HomePage = ({ setHideNavbar, setActiveSubNav }) => { // Receive setHideNavbar and setActiveSubNav as props
 
@@ -26,6 +28,17 @@ const HomePage = ({ setHideNavbar, setActiveSubNav }) => { // Receive setHideNav
 
   return (
     <>
+          {/* Helmet for managing document head */}
+          <Helmet>
+        <title>Conscientious Technology</title>
+        <meta
+          name="description"
+          content={`Explore why CT is the right choice for. Check out our unique offerings, benefits, and more.`}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Why Choose CT" />
+      </Helmet>
+
+
       <HeroSection />
       <OurPartener />
       <SubNav setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav} />

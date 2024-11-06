@@ -13,6 +13,7 @@ import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
 import AreaOfExperties from '../../../RepeatedComponents/AreaOfExperties/AreaOfExperties'
+import { Helmet } from 'react-helmet'
 
 const Qa_Service = () => {
 
@@ -22,18 +23,26 @@ const Qa_Service = () => {
 
   return (
     <div>
-      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="QA & Testing"/>
+      <Helmet>
+        <title>Dedicated Software Teams | QA & Testing</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Dedicated Software Teams, QA & Testing" />
+      </Helmet>
+      <AllHeader category="SubService" serviceName="Dedicated Software Teams" subServiceName="QA & Testing" />
       <OurPartener />
       <TypeOfSoft />
-      <AreaOfExperties category="Dedicated Software Teams" subCategory="QA & Testing"/>
-      <TestingType /> 
-      <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams"/>
+      <AreaOfExperties category="Dedicated Software Teams" subCategory="QA & Testing" />
+      <TestingType />
+      <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams" />
       <QASoftTesingService />
       <TechToolsHeader />
-      <ReliableTools category="Service" subCategory="Dedicated Software Teams"/>
-      <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
+      <ReliableTools category="Service" subCategory="Dedicated Software Teams" />
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams" />
       <MeetOurClient />
-      <AllFaq category="Dedicated Software Teams" subCategory="QA & Testing"/>
+      <AllFaq category="Dedicated Software Teams" subCategory="QA & Testing" />
       <BookFreeConsultation />
       <Footer />
 

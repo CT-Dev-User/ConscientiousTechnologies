@@ -9,6 +9,7 @@ import Footer from '../../../HomePage/Component/Footer/Footer'
 import AllFaq from '../../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
+import { Helmet } from 'react-helmet'
 const CyberSecurity = () => {
 
   useEffect(() => {
@@ -17,6 +18,15 @@ const CyberSecurity = () => {
 
   return (
     <div>
+      {/* Helmet for managing document head */}
+      <Helmet>
+        <title>Dedicated Software Teams | Cyber Security</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits,  Dedicated Software Teams, Cyber Security" />
+      </Helmet>
       <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Cyber Security" />
       <OurPartener />
       <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams"/>

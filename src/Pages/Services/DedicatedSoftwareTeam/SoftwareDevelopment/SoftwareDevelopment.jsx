@@ -15,6 +15,7 @@ import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/Reliabl
 import AllFaq from '../../../RepeatedComponents/AllFaq/AllFaq'
 import ExploreOurConsulting from './Components/ExploreOurConsulting'
 import AreaOfExperties from '../../../RepeatedComponents/AreaOfExperties/AreaOfExperties'
+import { Helmet } from 'react-helmet'
 
 const SoftwareDevelopment = () => {
   
@@ -24,6 +25,14 @@ const SoftwareDevelopment = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Dedicated Software Teams | Software Development</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Dedicated Software Teams, Software Development" />
+      </Helmet>
       <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Software Development"/>
       <OurPartener />
       <ExploreOurConsulting/>

@@ -10,30 +10,39 @@ import AllFaq from '../../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const LagencySoftModerization = () => {
-      
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
-  
-    return (
-        <div>
-            <AllHeader  
-            category="SubService"  serviceName="Software Development Services" subServiceName="Legacy Software" 
-            />
-            <OurPartener />
-            <WhyChooseCTSlider category="Service" subCategory="Software Development Services"/>
-            <AttributeOfOurApp />
-            <ReliableToolsHeading />
-            <ReliableTools category="Service" subCategory="Software Development Services"/>
-            <CaseStudies category="Service" subCategory="Software Development Services"/>
-            <MeetOurClient />
-            <AllFaq category="Service" subCategory="Software Development Services"/>
-            <BookFreeConsultation />
-            <Footer />
-        </div>
-    )
+
+  return (
+    <div>
+      <Helmet>
+        <title>Software Development Services | Legacy Software</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Software Development Services, Legacy Software" />
+      </Helmet>
+      <AllHeader
+        category="SubService" serviceName="Software Development Services" subServiceName="Legacy Software"
+      />
+      <OurPartener />
+      <WhyChooseCTSlider category="Service" subCategory="Software Development Services" />
+      <AttributeOfOurApp />
+      <ReliableToolsHeading />
+      <ReliableTools category="Service" subCategory="Software Development Services" />
+      <CaseStudies category="Service" subCategory="Software Development Services" />
+      <MeetOurClient />
+      <AllFaq category="Service" subCategory="Software Development Services" />
+      <BookFreeConsultation />
+      <Footer />
+    </div>
+  )
 }
 
 export default LagencySoftModerization

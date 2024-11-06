@@ -12,30 +12,40 @@ import GoForCloud from './Component/GoForCloud'
 import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
+import { Helmet } from 'react-helmet'
 
 const CloudComputing = () => {
-      
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
-    return (
-        <div>
-            <AllHeader category="Service" serviceName="Cloud Computing Services" />
-            <OurPartener />
-            <WhyChooseCTSlider category="Services" subCategory="Cloud Computing Services"/>
-            <CloudServiceDev />
-            <Deployment />
-            <BenefitsFromCloud />
-            <GoForCloud />
-            <WhatGetFromCloud />
-            <CaseStudies category="Service" subCategory="Cloud Computing Services"/>
-            <MeetOurClient />
-            <AllFaq category="Services" subCategory="Cloud Computing Services"/>
-            <BookFreeConsultation />
-            <Footer />
-        </div>
-    )
+  return (
+    <div>
+      {/* Helmet for managing document head */}
+      <Helmet>
+        <title>Cloud Computing Services</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits Cloud Computing Services" />
+      </Helmet>
+      <AllHeader category="Service" serviceName="Cloud Computing Services" />
+      <OurPartener />
+      <WhyChooseCTSlider category="Services" subCategory="Cloud Computing Services" />
+      <CloudServiceDev />
+      <Deployment />
+      <BenefitsFromCloud />
+      <GoForCloud />
+      <WhatGetFromCloud />
+      <CaseStudies category="Service" subCategory="Cloud Computing Services" />
+      <MeetOurClient />
+      <AllFaq category="Services" subCategory="Cloud Computing Services" />
+      <BookFreeConsultation />
+      <Footer />
+    </div>
+  )
 }
 
 export default CloudComputing

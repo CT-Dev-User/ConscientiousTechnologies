@@ -23,23 +23,31 @@ const SoftDevHomePage = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Software Development Services</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Services, Benefits, Software Development Services" />
+            </Helmet>
             <AllHeader category="Service" serviceName="Software Development Services" />
-            <OurPartener /> 
+            <OurPartener />
             <ExploreSoftDevHeading />
             <AreaOfExperties
-            category="Service" serviceName="Software Development Services" navCategory="Services" navSubCategory="Software Development Services" 
-           />
-            <StatsOfServices/>
+                category="Service" serviceName="Software Development Services" navCategory="Services" navSubCategory="Software Development Services"
+            />
+            <StatsOfServices />
             <PartnerUpWithCity />
             <CollabSenario />
             <SoftAdvance />
             {/* <SoftDevSteps /> */}
-            <StepsSoftDev/>
+            <StepsSoftDev />
             <ReliableToolsHeading />
-            <ReliableTools category="Service" subCategory="Software Development Services"/>
+            <ReliableTools category="Service" subCategory="Software Development Services" />
             <CaseStudies category="Service" subCategory="Software Development Services" />
             <MeetOurClient />
-            <AllFaq category="Service" subCategory="Software Development Services"/>
+            <AllFaq category="Service" subCategory="Software Development Services" />
             <BookFreeConsultation />
             <Footer />
         </div>

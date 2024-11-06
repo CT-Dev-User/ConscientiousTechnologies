@@ -13,6 +13,7 @@ import AllFaq from '../../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const DataAnalytics = () => {
 
@@ -22,7 +23,16 @@ const DataAnalytics = () => {
 
   return (
     <div>
-      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Data Analytics" />
+      {/* Helmet for managing document head */}
+      <Helmet>
+        <title>Dedicated Software Teams | Data Analytics</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits,  Dedicated Software Teams, Data Analytics" />
+      </Helmet>
+      <AllHeader category="SubService" serviceName="Dedicated Software Teams" subServiceName="Data Analytics" />
       <OurPartener />
       <BuildingDataAnalytics />
       <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams" />
@@ -30,7 +40,7 @@ const DataAnalytics = () => {
       <FlexibleService />
       <CTSolutions />
       <ReliableToolsHeading />
-      <ReliableTools category="Services" subCategory="Dedicated Software Teams"/>
+      <ReliableTools category="Services" subCategory="Dedicated Software Teams" />
       <CaseStudies category="Service" subCategory="Dedicated Software Teams" />
       <MeetOurClient />
       <AllFaq category="Dedicated Software Teams" subCategory="Data Analyst" />

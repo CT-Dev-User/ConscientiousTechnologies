@@ -10,6 +10,7 @@ import Footer from '../../../HomePage/Component/Footer/Footer'
 import AllFaq from '../../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
+import { Helmet } from 'react-helmet'
 const ItSupport = () => {
 
   useEffect(() => {
@@ -18,15 +19,23 @@ const ItSupport = () => {
 
   return (
     <div>
-      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="IT Support"/>
+      <Helmet>
+        <title>Dedicated Software Teams | IT Support</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits,  Dedicated Software Teams, IT Support" />
+      </Helmet>
+      <AllHeader category="SubService" serviceName="Dedicated Software Teams" subServiceName="IT Support" />
       <OurPartener />
       <Scope />
-      <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams"/>
+      <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams" />
       <GetWithITSupport />
       <CompitativeTraits />
-      <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams" />
       <MeetOurClient />
-      <AllFaq category="Dedicated Software Teams" subCategory="IT Support"/>
+      <AllFaq category="Dedicated Software Teams" subCategory="IT Support" />
       <BookFreeConsultation />
       <Footer />
     </div>

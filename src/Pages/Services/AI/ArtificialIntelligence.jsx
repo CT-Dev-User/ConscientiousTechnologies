@@ -14,12 +14,21 @@ import CaseStudies from '../../HomePage/Component/CaseStudies/CaseStudies'
 import MeetOurClient from '../../HomePage/Component/MeetOurClient/MeetOurClient'
 import BookFreeConsultation from '../../HomePage/Component/BookFreeConsultation/BookFreeConsultation'
 import Footer from '../../HomePage/Component/Footer/Footer'
-
+import { Helmet } from "react-helmet";
 
 const ArtificialIntelligence = () => {
   return (
     <div>
-      <AllHeader category="Service" serviceName="Artificial Intelligence (AI) Services"  />
+      {/* Helmet for managing document head */}
+      <Helmet>
+        <title>Artificial Intelligence (AI) Services</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Why Choose CT" />
+      </Helmet>
+      <AllHeader category="Service" serviceName="Artificial Intelligence (AI) Services" />
       <OurPartener />
       <WhyChooseCTSlider category="Service" subCategory="Artificial Intelligence (AI) Services" />
       <SoftWareAdvBussiness />

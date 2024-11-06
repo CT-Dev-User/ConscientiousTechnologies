@@ -11,6 +11,7 @@ import AllFaq from '../../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const SoftSupportMaintainence = () => {
 
@@ -20,18 +21,26 @@ const SoftSupportMaintainence = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Software Development Services</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Software Development Services" />
+      </Helmet>
       <AllHeader
         category="SubService" serviceName="Software Development Services" subServiceName="Software support"
       />
       <OurPartener />
-      <WhyChooseCTSlider category="Service" subCategory="Software Development Services"/>
+      <WhyChooseCTSlider category="Service" subCategory="Software Development Services" />
       <AppWeSupport />
       <ApplicationMaintainace />
       <ReliableToolsHeading />
-      <ReliableTools category="Service" subCategory="Software Development Services"/>
+      <ReliableTools category="Service" subCategory="Software Development Services" />
       <CaseStudies category="Service" subCategory="Software Development Services" />
       <MeetOurClient />
-      <AllFaq category="Service" subCategory="Software Development Services"/>
+      <AllFaq category="Service" subCategory="Software Development Services" />
       <BookFreeConsultation />
       <Footer />
     </div>

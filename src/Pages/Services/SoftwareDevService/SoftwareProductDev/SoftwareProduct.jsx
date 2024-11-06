@@ -9,6 +9,7 @@ import AllFaq from '../../../RepeatedComponents/AllFaq/AllFaq'
 import PartnerUpWithCity from '../../../RepeatedComponents/partnerUpWithCity/PartnerUpWithCity'
 import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const SoftwareProduct = () => {
 
@@ -18,8 +19,16 @@ const SoftwareProduct = () => {
 
   return (
     <div>
-      <AllHeader 
-      category="SubService"  serviceName="Software Development Services" subServiceName="Software product"
+      <Helmet>
+        <title>Software Development Services|Software Consulting Services</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Software Development Services, Software Consulting Services" />
+      </Helmet>
+      <AllHeader
+        category="SubService" serviceName="Software Development Services" subServiceName="Software product"
       />
       <OurPartener />
       <FullScale />

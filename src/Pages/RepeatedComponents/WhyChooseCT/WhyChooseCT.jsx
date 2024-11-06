@@ -92,14 +92,6 @@ const WhyChooseCTSlider = ({category, subCategory}) => {
     ],
   };
 
-  const handlePrevSlide = () => {
-    sliderRef.current.slickPrev();
-  };
-
-  const handleNextSlide = () => {
-    sliderRef.current.slickNext();
-  };
-
   const fetchSliderData = async () => {
     try {
       const response = await axios.get(
@@ -110,8 +102,6 @@ const WhyChooseCTSlider = ({category, subCategory}) => {
       console.log(error);
     }
   };
-
-  const data = [{}, {}, {}, {}];
 
   useEffect(() => {
     if (subCategory) {

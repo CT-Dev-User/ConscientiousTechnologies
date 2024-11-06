@@ -17,6 +17,7 @@ import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/Reliabl
 // import AreaOfExperties from './Components/AreaOfExperties'
 import AreaOfExperties from '../../../RepeatedComponents/AreaOfExperties/AreaOfExperties'
 import AreaOfExpertiesHeading from './Components/AreaOfExpertiesHeading'
+import { Helmet } from 'react-helmet'
 // import AreaOfExperties from '../../../RepeatedComponents/AreaOfExperties/AreaOfExperties'
 
 const MainDedicatedDevService = () => {
@@ -27,6 +28,14 @@ const MainDedicatedDevService = () => {
 
   return (
     <div>
+       <Helmet>
+        <title>Dedicated Software Teams</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Dedicated Software Teams" />
+      </Helmet>
       <AllHeader category="Service" serviceName="Dedicated Software Teams" />
       <OurPartener />
       <WhyChooseCTSlider category="Services" subCategory="Dedicated Software Teams" />

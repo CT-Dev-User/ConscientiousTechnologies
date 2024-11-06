@@ -21,16 +21,24 @@ const Ecommerse = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Ecommerce Services</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Ecommerce Services" />
+      </Helmet>
       <AllHeader category="Service" subServiceName="Ecommerce Services" />
       <OurPartener />
       <ExploreConsuting />
-      <WhyChooseCTSlider category="Service" subCategory="Ecommerce Services"/>
+      <WhyChooseCTSlider category="Service" subCategory="Ecommerce Services" />
       <EcommerseDevService />
       <OurTechHeader />
-      <ReliableTools category="Service" subCategory="Ecommerce Services"/>
-      <CaseStudies category="Service" subCategory="Ecommerce Services"/>
+      <ReliableTools category="Service" subCategory="Ecommerce Services" />
+      <CaseStudies category="Service" subCategory="Ecommerce Services" />
       <MeetOurClient />
-      <AllFaq category="Service" subCategory="Ecommerce Services"/>
+      <AllFaq category="Service" subCategory="Ecommerce Services" />
       <BookFreeConsultation />
       <Footer />
 

@@ -9,6 +9,7 @@ import Footer from '../../../HomePage/Component/Footer/Footer'
 import AllFaq from '../../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
+import { Helmet } from 'react-helmet'
 const HelpDesk = () => {
 
   useEffect(() => {
@@ -17,6 +18,15 @@ const HelpDesk = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Dedicated Software Teams | Help Desk</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits,  Dedicated Software Teams, Help Desk" />
+      </Helmet>
+
       <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Help Desk" />
       <OurPartener />
       <WhyChooseCTSlider category="Service" subCategory="Dedicated Software Teams"/>

@@ -10,6 +10,7 @@ import AllFaq from '../../../RepeatedComponents/AllFaq/AllFaq'
 import PartnerUpWithCity from '../../../RepeatedComponents/partnerUpWithCity/PartnerUpWithCity'
 import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const Enterprise = () => {
 
@@ -19,17 +20,25 @@ const Enterprise = () => {
 
   return (
     <div>
-      <AllHeader 
-      category="SubService"  serviceName="Software Development Services" subServiceName="Enterprise software"
+      <Helmet>
+        <title>Software Development Services | Enterprise Software</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Software Development Services, Enterprise software" />
+      </Helmet>
+      <AllHeader
+        category="SubService" serviceName="Software Development Services" subServiceName="Enterprise software"
       />
       <OurPartener />
       <ScopeEnterprise />
       <PartnerUpWithCity />
       <ReliableToolsHeading />
-      <ReliableTools category="Service" subCategory="Software Development Services"/>
-      <CaseStudies category="Service" subCategory="Software Development Services"/>
+      <ReliableTools category="Service" subCategory="Software Development Services" />
+      <CaseStudies category="Service" subCategory="Software Development Services" />
       <MeetOurClient />
-      <AllFaq category="Service" subCategory="Software Development Services"/>
+      <AllFaq category="Service" subCategory="Software Development Services" />
       <BookFreeConsultation />
       <Footer />
     </div>

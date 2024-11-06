@@ -12,28 +12,37 @@ import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
 import AreaOfExperties from '../../../RepeatedComponents/AreaOfExperties/AreaOfExperties'
 import MobileAppWeDeveloped from './Components/MobileAppWeDeveloped'
+import { Helmet } from 'react-helmet'
 
 const MobileDevelopment = () => {
-    
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
   return (
     <div>
-      <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Mobile Development"/>
-      <OurPartener/>
-      <MobileAppSolution/>
-      <PartnerUpWithCity/>
-      <MobileAppWeDeveloped/>
-      <AreaOfExperties category="Dedicated Software Teams" subCategory="Mobile Development"/>
-      <ReliableToolsHeading/>
-      <ReliableTools category="Service" subCategory="Dedicated Software Teams"/>
-      <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
-      <MeetOurClient/>
-      <AllFaq category="Service" subCategory="Dedicated Software Teams"/>
-      <BookFreeConsultation/>
-      <Footer/>
+      <Helmet>
+        <title>Dedicated Software Teams | Mobile Development</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, Dedicated Software Teams, Mobile Development" />
+      </Helmet>
+      <AllHeader category="SubService" serviceName="Dedicated Software Teams" subServiceName="Mobile Development" />
+      <OurPartener />
+      <MobileAppSolution />
+      <PartnerUpWithCity />
+      <MobileAppWeDeveloped />
+      <AreaOfExperties category="Dedicated Software Teams" subCategory="Mobile Development" />
+      <ReliableToolsHeading />
+      <ReliableTools category="Service" subCategory="Dedicated Software Teams" />
+      <CaseStudies category="Service" subCategory="Dedicated Software Teams" />
+      <MeetOurClient />
+      <AllFaq category="Service" subCategory="Dedicated Software Teams" />
+      <BookFreeConsultation />
+      <Footer />
     </div>
   )
 }

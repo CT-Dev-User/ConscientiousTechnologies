@@ -14,6 +14,7 @@ import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
 import TypesOfSoftwareInCT from './Component/TypesOfSoftwareInCTHeading'
 import AreaOfExperties from '../../RepeatedComponents/AreaOfExperties/AreaOfExperties'
+import { Helmet } from 'react-helmet'
 
 const QaService = () => {
 
@@ -24,7 +25,15 @@ const QaService = () => {
 
   return (
     <div>
-      <AllHeader  category="SubService"  serviceName="Dedicated Software Teams" subServiceName="QA & Testing"  />
+      <Helmet>
+        <title>Dedicated Software Teams | QA & Testing</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Services, Benefits, QA & Testing" />
+      </Helmet>
+      <AllHeader category="SubService" serviceName="Dedicated Software Teams" subServiceName="QA & Testing" />
       <OurPartener />
       <TypesOfSoftwareInCT />
       <AreaOfExperties category="Service" subCategory="QA & Services" />

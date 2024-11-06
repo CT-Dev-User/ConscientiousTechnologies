@@ -5,6 +5,7 @@ import { FaFileAlt, FaMedal, FaPhoneAlt, FaUsers, FaWhatsapp, FaMicrophone, FaTr
 import { BiBriefcase } from 'react-icons/bi';
 import { FaRegMessage } from 'react-icons/fa6';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -47,10 +48,10 @@ const ContactUs = () => {
         form.append('sourceImage', formData.sourceImage);
       }
 
-      const response = await axios.post('https://conscientious-technologies-backend.vercel.app/add-contact-us-data', form);
+      const response = await axios.post('http://localhost:8080/add-contact-us-data', form);
       console.log(response.status)
-      if (response.status === 200) {
-        Swal.fire("Success", res.data.message, "success");
+      if (response.status == 200) {
+        Swal.fire("Success",  "success");
         setFormData({
           fullName: '',
           companyName: '',

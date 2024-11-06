@@ -12,6 +12,7 @@ import AllFaq from '../../../RepeatedComponents/AllFaq/AllFaq'
 import PartnerUpWithCity from '../../../RepeatedComponents/partnerUpWithCity/PartnerUpWithCity'
 import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const SoftDevWebDevelopment = () => {
 
@@ -21,7 +22,15 @@ const SoftDevWebDevelopment = () => {
 
     return (
         <div>
-            <AllHeader category="SubService"  serviceName="Dedicated Software Teams" subServiceName="Web Development"/>
+            <Helmet>
+                <title>Dedicated Software Teams | Web Development</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Services, Benefits, Dedicated Software Teams, Web Development" />
+            </Helmet>
+            <AllHeader category="SubService" serviceName="Dedicated Software Teams" subServiceName="Web Development" />
             <OurPartener />
             <WebSolutionWeNeed />
             <PartnerUpWithCity />
@@ -29,9 +38,9 @@ const SoftDevWebDevelopment = () => {
             <WebDevprocess />
             <ReliableToolsHeading />
             <ReliableTools category="Service" subCategory="Dedicated Software Teams" />
-            <CaseStudies category="Service" subCategory="Dedicated Software Teams"/>
+            <CaseStudies category="Service" subCategory="Dedicated Software Teams" />
             <MeetOurClient />
-            <AllFaq category="Service" subCategory="Dedicated Software Teams"/>
+            <AllFaq category="Service" subCategory="Dedicated Software Teams" />
             <BookFreeConsultation />
             <Footer />
         </div>
