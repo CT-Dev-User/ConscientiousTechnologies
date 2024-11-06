@@ -168,45 +168,85 @@ const SolutionWhyChooseCT = () => {
     seteditSliderData({ ...editSliderData, points: updatedPoints });
   };
 
+  // const addSliderDataFunc = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("category", "Solution"); // Ensure this is needed, otherwise remove it
+  //     formData.append("Subcategory", addSliderData.Subcategory);
+  //     formData.append("heading", addSliderData.heading);
+  //     formData.append("subtitle", addSliderData.subtitle);
+  //     formData.append("logoHeading", addSliderData.logoHeading);
+  //     // Append images
+  //     for (let i = 0; i < addSliderData.images.length; i++) {
+  //       formData.append("images", addSliderData.images[i]);
+  //     }
+  //     // Convert points array to JSON string before sending
+  //     formData.append("points", JSON.stringify(addSliderData.points));
+  //     console.log([...formData]); // Log FormData object to check its contents
+
+  //     const response = await axios.post(
+  //       "https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data",
+  //       formData
+  //     );
+
+  //     if (response.status === 200) {
+  //       fetchSliderDataByCategory();
+  //       setAddPopUpShow(false);
+  //       setAddSliderData({
+  //         category: "",
+  //         Subcategory: "",
+  //         heading: "",
+  //         subtitle: "",
+  //         logoHeading: "",
+  //         images: [],
+  //         points: [],
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+
   const addSliderDataFunc = async (e) => {
-    e.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append("category", "Solution"); // Ensure this is needed, otherwise remove it
-      formData.append("Subcategory", addSliderData.Subcategory);
-      formData.append("heading", addSliderData.heading);
-      formData.append("subtitle", addSliderData.subtitle);
-      formData.append("logoHeading", addSliderData.logoHeading);
-      // Append images
-      for (let i = 0; i < addSliderData.images.length; i++) {
-        formData.append("images", addSliderData.images[i]);
-      }
-      // Convert points array to JSON string before sending
-      formData.append("points", JSON.stringify(addSliderData.points));
-      console.log([...formData]); // Log FormData object to check its contents
+  e.preventDefault();
+  try {
+    const payload = {
+      category: "Solution",
+      Subcategory: addSliderData.Subcategory,
+      heading: addSliderData.heading,
+      subtitle: addSliderData.subtitle,
+      logoHeading: addSliderData.logoHeading,
+      images: addSliderData.images,  // assuming backend can handle array directly
+      points: addSliderData.points, // no JSON.stringify needed if backend expects an array
+    };
+    
+    console.log(payload); // Check payload structure
 
-      const response = await axios.post(
-        "https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data",
-        formData
-      );
+    const response = await axios.post(
+      "https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data",
+      payload
+    );
 
-      if (response.status === 200) {
-        fetchSliderDataByCategory();
-        setAddPopUpShow(false);
-        setAddSliderData({
-          category: "",
-          Subcategory: "",
-          heading: "",
-          subtitle: "",
-          logoHeading: "",
-          images: [],
-          points: [],
-        });
-      }
-    } catch (error) {
-      console.log(error);
+    if (response.status === 200) {
+      fetchSliderDataByCategory();
+      setAddPopUpShow(false);
+      setAddSliderData({
+        category: "",
+        Subcategory: "",
+        heading: "",
+        subtitle: "",
+        logoHeading: "",
+        images: [],
+        points: [],
+      });
     }
-  };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   const editSliderDataFunc = async (e) => {
     e.preventDefault();
