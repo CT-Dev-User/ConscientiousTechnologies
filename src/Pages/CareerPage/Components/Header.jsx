@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import aboutUsHeader from '../../../../assets/AboutUs/ctAboutUs.png'
+import aboutUsHeader from '../../../assets/AboutUs/ctAboutUs.png'
 const Header = () => {
 
     return (
