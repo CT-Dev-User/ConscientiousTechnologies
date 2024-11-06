@@ -162,7 +162,7 @@ const ServiceTechTools = () => {
       });
 
       const response = await axios.post(
-        "http://localhost:8080/add-reliable-tools-data",
+        "https://conscientious-technologies-backend.vercel.app/add-reliable-tools-data",
         formData
       );
       if (response.status === 200) {
@@ -193,7 +193,7 @@ const ServiceTechTools = () => {
       if (result.isConfirmed) {
         try {
           const response = await axios.delete(
-            `http://localhost:8080/delete-reliable-tools-data/${id}`
+            `https://conscientious-technologies-backend.vercel.app/delete-reliable-tools-data/${id}`
           );
           if (response.status === 200) {
             // setEditId(null);
@@ -243,7 +243,7 @@ const ServiceTechTools = () => {
       });
 
       const response = await axios.put(
-        `http://localhost:8080/update-reliable-tools-data/${editId}`,
+        `https://conscientious-technologies-backend.vercel.app/update-reliable-tools-data/${editId}`,
         formData
       );
       if (response.status === 200) {

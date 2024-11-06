@@ -34,7 +34,6 @@ const SideBar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
 
-
   const [activeItem, setActiveItem] = useState("");
   const [openMenu, setOpenMenu] = useState(null);
 
@@ -74,7 +73,8 @@ const SideBar = ({ children }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         // Make a request to the backend to log out
-        axios.post("https://conscientious-technologies-backend.vercel.app/logout") // Adjust the URL as per your backend route
+        axios
+          .post("https://conscientious-technologies-backend.vercel.app/logout") // Adjust the URL as per your backend route
           .then((response) => {
             // Clear user authentication state and token from local storage
             setuserauth({ user: null, token: "" });
@@ -103,7 +103,6 @@ const SideBar = ({ children }) => {
       }
     });
   };
-
 
   const roleBasedMenuItems = {
     1: [
@@ -265,13 +264,11 @@ const SideBar = ({ children }) => {
             name: "FAQ",
             icon: <FaBloggerB />,
           },
-
         ],
       },
       {
         title: "Important deatails",
         list: [
-          
           {
             path: "/conscientious-contact-us",
             name: "Get Started",
@@ -287,8 +284,8 @@ const SideBar = ({ children }) => {
             path: "/conscientious-social-media",
             name: "Social Media",
             icon: <FaGlobe />,
-          }
-        ]
+          },
+        ],
       },
       {
         title: "Common Components",
@@ -298,8 +295,8 @@ const SideBar = ({ children }) => {
             name: "Partner Up",
             icon: <FaBloggerB />,
           },
-        ]
-      }
+        ],
+      },
     ],
     2: [
       {
@@ -460,13 +457,11 @@ const SideBar = ({ children }) => {
             name: "FAQ",
             icon: <FaBloggerB />,
           },
-
         ],
       },
       {
         title: "Important deatails",
         list: [
-          
           {
             path: "/conscientious-contact-us",
             name: "Get Started",
@@ -482,8 +477,8 @@ const SideBar = ({ children }) => {
             path: "/conscientious-social-media",
             name: "Social Media",
             icon: <FaGlobe />,
-          }
-        ]
+          },
+        ],
       },
       {
         title: "Common Components",
@@ -493,11 +488,10 @@ const SideBar = ({ children }) => {
             name: "Partner Up",
             icon: <FaBloggerB />,
           },
-        ]
-      }
+        ],
+      },
     ],
   };
-
 
   const handleItemClick = (path) => {
     setActiveItem(path);
@@ -507,13 +501,20 @@ const SideBar = ({ children }) => {
     setOpenMenu(openMenu === title ? null : title);
   };
 
-
   return (
     <div className="w-full h-screen bg-gray-100 text-sm flex justify-between overflow-x-hidden overflow-y-auto custom-scrollbar">
-      <div className={`bg-black text-white h-full ${isOpen ? "w-1/6" : "w-20"} transition-all delay-50 overflow-y-auto px-2 custom-scrollbar`}>
-        <div className={`bg-black text-white flex items-center h-auto w-full sticky top-0 pb-5 ${isOpen ? "justify-between" : "justify-center"}`}>
-          <h1 className={isOpen ? 'block text-2xl mt-3' : 'hidden'}>Logo</h1>
-          <div className='text-2xl flex cursor-pointer mt-3'>
+      <div
+        className={`bg-black text-white h-full ${
+          isOpen ? "w-1/6" : "w-20"
+        } transition-all delay-50 overflow-y-auto px-2 custom-scrollbar`}
+      >
+        <div
+          className={`bg-black text-white flex items-center h-auto w-full sticky top-0 pb-5 ${
+            isOpen ? "justify-between" : "justify-center"
+          }`}
+        >
+          <h1 className={isOpen ? "block text-2xl mt-3" : "hidden"}>Logo</h1>
+          <div className="text-2xl flex cursor-pointer mt-3">
             <FaBars onClick={toggle} />
           </div>
         </div>
@@ -521,11 +522,12 @@ const SideBar = ({ children }) => {
           {roleBasedMenuItems[userRole]?.map((item) => (
             <li key={item.title} className="mb-2">
               <div
-                className={`p-2 flex justify-between items-center text-md font-semibold cursor-pointer ${openMenu === item.title ? "bg-gray-300" : ""
-                  }`}
+                className={`p-2 flex justify-between items-center text-md font-semibold cursor-pointer ${
+                  openMenu === item.title ? "bg-gray-300" : ""
+                }`}
                 onClick={() => handleMenuClick(item.title)}
               >
-                <span >{item.title}</span>
+                <span>{item.title}</span>
                 {openMenu === item.title ? <FaAngleUp /> : <FaAngleDown />}
               </div>
               {openMenu === item.title && (
@@ -561,17 +563,21 @@ const SideBar = ({ children }) => {
   );
 };
 
-
 const MenuLink = ({ item, isActive, onItemClick }) => {
   return (
     <li
-      className={`py-2 hover:text-blue-500 ${isActive === item.path ? "text-white" : ""
-        }`}
+      className={`py-2 hover:text-blue-500 ${
+        isActive === item.path ? "text-white" : ""
+      }`}
     >
       <NavLink
         to={item.path}
         className={({ isActive }) =>
-          `text-xs flex text-[#fff] p-2 gap-3 transition-all delay-50 ${isActive ? 'bg-[lightskyblue] text-[#000]' : 'hover:bg-[lightskyblue]'} text-[#000] cursor-pointer no-underline`
+          `text-xs flex text-[#fff] p-2 gap-3 transition-all delay-50 ${
+            isActive
+              ? "bg-[lightskyblue] text-[#000]"
+              : "hover:bg-[lightskyblue]"
+          } text-[#000] cursor-pointer no-underline`
         }
         style={{ textDecoration: "none" }}
         passHref

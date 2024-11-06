@@ -102,7 +102,7 @@ const PartnerUp = () => {
       );
 
       const response = await axios.post(
-        "http://localhost:8080/add-partner-up-data",
+        "https://conscientious-technologies-backend.vercel.app/add-partner-up-data",
         formData
       );
 

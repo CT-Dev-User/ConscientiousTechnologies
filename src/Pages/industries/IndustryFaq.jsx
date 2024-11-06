@@ -99,7 +99,7 @@ const IndustryFAQ = () => {
       formData.append("images", addHomeFAQ.answer.answerImg);
 
       const response = await axios.post(
-        "http://localhost:8080/add-faq",
+        "https://conscientious-technologies-backend.vercel.app/add-faq",
         formData
       );
 
@@ -130,7 +130,7 @@ const IndustryFAQ = () => {
       formData.append("images", editHomeFAQ.answer.answerImg);
 
       const response = await axios.put(
-        `http://localhost:8080/update-faq/${editId}`,
+        `https://conscientious-technologies-backend.vercel.app/update-faq/${editId}`,
         formData
       );
       // console.log(response.status);
@@ -159,7 +159,7 @@ const IndustryFAQ = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-faq-bycategory/Industry"
+        "https://conscientious-technologies-backend.vercel.app/get-faq-bycategory/Industry"
       );
       setHomeFaqs(response.data.data);
       console.log(response.data.data);
@@ -197,7 +197,7 @@ const IndustryFAQ = () => {
       if (result.isConfirmed) {
         try {
           const response = await axios.delete(
-            `http://localhost:8080/delete-faq/${id}`
+            `https://conscientious-technologies-backend.vercel.app/delete-faq/${id}`
           );
           if (response.status === 200) {
             setEditId(null);

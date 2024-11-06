@@ -178,9 +178,10 @@ function App() {
         path="/conscientious-service-why-choose-ct-slider"
         element={
           <SideBar>
-            < ServiceWhyChooseCT />
+            <ServiceWhyChooseCT />
           </SideBar>
-        } />
+        }
+      />
 
       <Route
         path="/conscientious-SubServices"
@@ -236,9 +237,10 @@ function App() {
         path="/conscientious-solution-why-choose-ct-slider"
         element={
           <SideBar>
-            < SolutionWhyChooseCT />
+            <SolutionWhyChooseCT />
           </SideBar>
-        } />
+        }
+      />
       <Route
         path="/conscientious-solution-reliable-tools"
         element={
@@ -281,13 +283,14 @@ function App() {
           </SideBar>
         }
       />
-         <Route
+      <Route
         path="/conscientious-industry-why-choose-ct-slider"
         element={
           <SideBar>
-            < IndustryWhyChooseCT />
+            <IndustryWhyChooseCT />
           </SideBar>
-        } />
+        }
+      />
       <Route
         path="/conscientious-industry-casestudies"
         element={

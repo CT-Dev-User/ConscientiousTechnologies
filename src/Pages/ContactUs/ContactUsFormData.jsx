@@ -14,7 +14,7 @@ const ContactUsForm = () => {
   const fetchContactUsData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-contact-us-form-data"
+        "https://conscientious-technologies-backend.vercel.app/get-contact-us-form-data"
       );
       setContactUsData(response.data.getData);
     } catch (error) {

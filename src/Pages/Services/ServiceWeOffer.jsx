@@ -244,7 +244,6 @@ const ServicesCMS = () => {
         try {
           const response = await axios.delete(`https://conscientious-technologies-backend.vercel.app/delete-existing-service-data-by-id/${id}`);
           if (response.status === 200) {
-            // setEditId(null);
             fetchServices();
             Swal.fire(
               'Deleted!',

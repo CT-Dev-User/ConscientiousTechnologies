@@ -185,7 +185,7 @@ const ServiceWhyChooseCT = () => {
       console.log([...formData]); // Log FormData object to check its contents
 
       const response = await axios.post(
-        "http://localhost:8080/add-choose-ct-slider-data",
+        "https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data",
         formData
       );
 

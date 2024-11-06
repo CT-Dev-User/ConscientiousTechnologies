@@ -71,7 +71,7 @@ const ServiceBlogCMS = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-latest-blog-data-by-category/Service"
+        "https://conscientious-technologies-backend.vercel.app/get-latest-blog-data-by-category/Service"
       );
       setBlogs(response.data.blog);
       setFilteredBlogs(response.data.blog);
@@ -191,7 +191,7 @@ const ServiceBlogCMS = () => {
       if (currentBlog) {
         // Update existing blog
         await axios.put(
-          `http://localhost:8080/edit-existing-blog-data/${currentBlog._id}`,
+          `https://conscientious-technologies-backend.vercel.app/edit-existing-blog-data/${currentBlog._id}`,
           form,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -199,7 +199,7 @@ const ServiceBlogCMS = () => {
         );
       } else {
         // Create new blog
-        await axios.post("http://localhost:8080/create-new-blog-data", form, {
+        await axios.post("https://conscientious-technologies-backend.vercel.app/create-new-blog-data", form, {
           headers: { "Content-Type": "multipart/form-data" },
         });
       }
@@ -225,7 +225,7 @@ const ServiceBlogCMS = () => {
       if (result.isConfirmed) {
         try {
           await axios.delete(
-            `http://localhost:8080/delete-existing-blog-data-by-id/${id}`
+            `https://conscientious-technologies-backend.vercel.app/delete-existing-blog-data-by-id/${id}`
           );
           Swal.fire("Deleted!", "Your data has been deleted.", "success");
           fetchBlogs();

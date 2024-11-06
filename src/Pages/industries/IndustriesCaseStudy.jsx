@@ -116,7 +116,7 @@ const IndustryCaseStudies = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:8080/get-case-studies-by-cateory/Industry"
+        "https://conscientious-technologies-backend.vercel.app/get-case-studies-by-cateory/Industry"
       );
       console.log(response.data, "Industry");
       setCaseStudies(response.data);
@@ -167,7 +167,7 @@ const IndustryCaseStudies = () => {
       formData.append("resultsImg2", resultsImg2);
       formData.append("resultsImg3", resultsImg3);
 
-      await axios.post("http://localhost:8080/create-case-studies", formData);
+      await axios.post("https://conscientious-technologies-backend.vercel.app/create-case-studies", formData);
       Swal.fire("Saved!", "Your data has been saved.", "success");
       getCaseStudiesDataFunc();
       setAddPopUpShow(false);
@@ -215,7 +215,7 @@ const IndustryCaseStudies = () => {
       formData.append("resultsImg2", resultsImg2);
       formData.append("resultsImg3", resultsImg3);
       await axios.put(
-        `http://localhost:8080/edit-case-studies/${editId}`,
+        `https://conscientious-technologies-backend.vercel.app/edit-case-studies/${editId}`,
         formData
       );
       Swal.fire("Updated!", "Your data has been updated.", "success");
@@ -233,7 +233,7 @@ const IndustryCaseStudies = () => {
   const deleteCaseStudies = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8080/delete-case-studies/${id}`
+        `https://conscientious-technologies-backend.vercel.app/delete-case-studies/${id}`
       );
       if (response.status === 200) {
         Swal.fire("Deleted!", "Your data has been deleted.", "success");
