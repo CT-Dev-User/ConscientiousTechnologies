@@ -97,7 +97,7 @@ const SolutionWhyChooseCT = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://conscientious-technologies-backend.vercel.app/get-choose-ct-slider-data/Solution`
+        https://conscientious-technologies-backend.vercel.app/get-choose-ct-slider-data/Solution
       );
       setsliderDataByCaregory(response.data.data);
       setfiltersliderDataByCaregory(response.data.data);
@@ -230,7 +230,7 @@ const SolutionWhyChooseCT = () => {
       formData.append("points", JSON.stringify(editSliderData.points));
 
       const response = await axios.put(
-        `https://conscientious-technologies-backend.vercel.app/edit-choose-ct-slider-data/${editId}`,
+        https://conscientious-technologies-backend.vercel.app/edit-choose-ct-slider-data/${editId},
         formData
       );
       if (response.status === 200) {
@@ -268,7 +268,7 @@ const SolutionWhyChooseCT = () => {
       if (result.isConfirmed) {
         try {
           const response = await axios.delete(
-            `https://conscientious-technologies-backend.vercel.app/delete-choose-ct-slider-data/${id}`
+            https://conscientious-technologies-backend.vercel.app/delete-choose-ct-slider-data/${id}
           );
           if (response.status === 200) {
             setEditId(null);
@@ -486,7 +486,7 @@ const SolutionWhyChooseCT = () => {
                   <img
                     key={index}
                     src={image.logo}
-                    alt={`Logo ${index}`}
+                    alt={Logo ${index}}
                     className="w-1/4 h-auto"
                   />
                 ))}
