@@ -29,7 +29,6 @@ const HeroSection = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -123,8 +122,12 @@ const HeroSection = () => {
       setHeroData(response.data.getdata);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching user data");
       setLoading(false); // Stop loading spinner
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -208,9 +211,7 @@ const HeroSection = () => {
     <>
      {loading ? (
         <Spinner />
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
-      ) : (
+      ) :(
     <div className="w-full h-auto bg-gray-200 p-4">
       <div className="flex justify-between mb-2 mt-2">
         <h1 className="text-2xl">Hero Section</h1>

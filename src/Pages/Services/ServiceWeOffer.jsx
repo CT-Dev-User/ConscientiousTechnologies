@@ -29,7 +29,6 @@ const ServicesCMS = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -112,8 +111,12 @@ const ServicesCMS = () => {
       setServices(response.data);
       setLoading(false);
     } catch (error) {
-      setError('Error fetching data');
       setLoading(false);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -273,8 +276,6 @@ const ServicesCMS = () => {
     <>
     {loading ? (
        <Spinner />
-     ) : error ? (
-       <p className="text-red-500">{error}</p>
      ) : (
     <div className="p-4 bg-gray-200">
       <div className='flex justify-between'>

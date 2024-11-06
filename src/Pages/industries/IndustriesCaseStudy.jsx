@@ -26,7 +26,6 @@ const IndustryCaseStudies = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   useEffect(() => {
     if (!userauth || !userauth.token) {
       router("/"); // Redirect to login page if not authenticated
@@ -126,8 +125,12 @@ const IndustryCaseStudies = () => {
       setFilterCaseStudies(response.data);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching data");
       setLoading(false);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -298,9 +301,7 @@ const IndustryCaseStudies = () => {
     <>
       {loading ? (
         <Spinner />
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
-      ) : (
+      ) :(
         <div className="w-full bg-gray-300 h-auto mx-auto p-4 relative">
           <div className="flex justify-between mb-2 mr-3">
             <h1 className="text-xl font-bold text-black">

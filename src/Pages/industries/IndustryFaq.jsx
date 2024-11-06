@@ -31,7 +31,6 @@ const IndustryFAQ = () => {
   const [industries, setIndustries] = useState([]);
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -167,8 +166,12 @@ const IndustryFAQ = () => {
       setfilterFaq(response.data.data);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching:");
       setLoading(false);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -181,8 +184,12 @@ const IndustryFAQ = () => {
       setIndustries(response.data);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching:");
       setLoading(false);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
   const deleteHomeFAQData = async (id) => {
@@ -220,8 +227,6 @@ const IndustryFAQ = () => {
     <>
       {loading ? (
         <Spinner />
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
       ) : (
         <div className="w-full bg-gray-300 h-full mx-auto p-4">
           <div className="flex justify-between mb-4 mr-3">

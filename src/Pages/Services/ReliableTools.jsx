@@ -27,7 +27,6 @@ const ServiceTechTools = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -140,7 +139,11 @@ const ServiceTechTools = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      setError("Error fetching user data");
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -275,406 +278,417 @@ const ServiceTechTools = () => {
 
   return (
     <>
-    {loading ? (
-      <Spinner />
-    ) : error ? (
-      <p className="text-red-500">{error}</p>
-    ) : (
-    <div className="w-full bg-gray-300 h-full mx-auto p-4">
-      <div className="flex justify-between mb-5 mr-3 gap-x-3">
-        <h1 className="text-xl font-bold">Home Reliable Technology Tools</h1>
-        <select
-          name=""
-          onChange={(e) => {
-            if (e.target.value === "All services") {
-              setFilterReliableToolsData(reliableToolData); // Show all FAQs
-            } else {
-              setFilterReliableToolsData(
-                reliableToolData.filter(
-                  (item) => item.Subcategory === e.target.value
-                )
-              );
-            }
-          }}
-          className="p-2 border rounded"
-          id=""
-        >
-          <option value="All services">All services</option>
-          {services.map((service, index) => (
-            <option key={index} value={service.serviceName}>
-              {service.serviceName}
-            </option>
-          ))}
-        </select>
-        <Button
-          onClick={() => setAddPopUpShow(true)}
-          className="bg-blue-500 hover:bg-blue-800 text-white px-2 py-0 rounded text-base font-bold"
-        >
-          +
-        </Button>
-      </div>
-
-      <Modal show={subTechModalShow} onHide={handleSubTechModalClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Stacks</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {selectedItem &&
-            selectedItem.subTech.map((subTechItem, index) => (
-              <div key={index}>
-                <strong>{subTechItem.title}</strong>
-              </div>
-            ))}
-        </Modal.Body>
-      </Modal>
-
-      <Modal show={logoModalShow} onHide={handleLogoModalClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Tools</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {selectedItem &&
-            selectedItem.subTech.map((subTechItem, index) => (
-              <div key={index}>
-                <h5 className="mt-2">{subTechItem.title}</h5>
-                <div className="flex flex-wrap gap-x-[30px] gap-y-[10px]">
-                  {subTechItem.techLogos.map((logoItem, logoIndex) => (
-                    <div key={logoIndex}>
-                      <img src={logoItem.logo} width="50" alt="" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-        </Modal.Body>
-      </Modal>
-
-      <table className="table-auto w-full text-sm  border-collapse border bg-white">
-        <thead className="bg-gray-800 text-white">
-          <tr className="text-left font-semibold border">
-            <th className="px-4 py-2 border-l">Sr no</th>
-            <th className="px-4 py-2 border-l">Page</th>
-            <th className="px-4 py-2 border-l">Section</th>
-            <th className="px-4 py-2 border-l">Tools Domain</th>
-            <th className="px-4 py-2 border-l">Stack</th>
-            <th className="px-4 py-2 border-l">Tools</th>
-            <th className="px-4 py-2 border-l">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.map((item, index) => (
-            <tr key={index} className="border">
-              <td className="px-4 py-2">{index + indexOfFirstItem + 1}</td>
-              <td className="px-4 py-2 border-l">{item.category}</td>
-              <td className="px-4 py-2 border-l">{item.Subcategory}</td>
-              <td className="px-4 py-2 border-l">{item.technology}</td>
-              <td className="px-4 py-2 border-l text-green-800 hover:text-teal-600 text-lg">
-                <FaEye
-                  onClick={() => handleSubTechModalShow(item)}
-                  className="cursor-pointer"
-                />
-              </td>
-              <td className="px-4 py-2 border-l text-green-800 hover:text-teal-600 text-lg">
-                <FaEye
-                  onClick={() => handleLogoModalShow(item)}
-                  className="cursor-pointer"
-                />
-              </td>
-              <td className="px-4 py-2 border-l text-lg flex gap-3">
-                <FaEdit
-                  onClick={() => handleEdit(item)} // Call handleEdit with the item to edit
-                  className="cursor-pointer"
-                />
-                <FaTrash
-                  onClick={() => deleteReliableDataFunc(item._id)}
-                  className="cursor-pointer text-red-500 hover:text-red-800"
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {/* Pagination */}
-      <ul className="flex justify-center gap-[20px] mt-[90px]">
-        <li>
-          <button
-            onClick={() =>
-              setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
-            }
-            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
-          >
-            Prev
-          </button>
-        </li>
-        <li className="py-2 px-2 text-black font-semibold">{currentPage}</li>
-        <li>
-          <button
-            onClick={() =>
-              setCurrentPage((prevPage) =>
-                Math.min(
-                  prevPage + 1,
-                  Math.ceil(reliableToolData.length / itemsPerPage)
-                )
-              )
-            }
-            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
-          >
-            Next
-          </button>
-        </li>
-      </ul>
-
-      <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Reliable Tools</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form>
-            <div className="mb-4">
-              <label className="block text-gray-700">service Name</label>
-              <select
-                name=""
-                value={addReliableData.Subcategory}
-                onChange={(e) =>
-                  setAddReliableData({
-                    ...addReliableData,
-                    Subcategory: e.target.value,
-                  })
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="w-full bg-gray-300 h-full mx-auto p-4">
+          <div className="flex justify-between mb-5 mr-3 gap-x-3">
+            <h1 className="text-xl font-bold">
+              Home Reliable Technology Tools
+            </h1>
+            <select
+              name=""
+              onChange={(e) => {
+                if (e.target.value === "All services") {
+                  setFilterReliableToolsData(reliableToolData); // Show all FAQs
+                } else {
+                  setFilterReliableToolsData(
+                    reliableToolData.filter(
+                      (item) => item.Subcategory === e.target.value
+                    )
+                  );
                 }
-                className="w-full p-2 border rounded"
-                id=""
-              >
-                <option value="">Select service</option>
-                {services.map((service, index) => (
-                  <option key={index} value={service.serviceName}>
-                    {service.serviceName}
-                  </option>
+              }}
+              className="p-2 border rounded"
+              id=""
+            >
+              <option value="All services">All services</option>
+              {services.map((service, index) => (
+                <option key={index} value={service.serviceName}>
+                  {service.serviceName}
+                </option>
+              ))}
+            </select>
+            <Button
+              onClick={() => setAddPopUpShow(true)}
+              className="bg-blue-500 hover:bg-blue-800 text-white px-2 py-0 rounded text-base font-bold"
+            >
+              +
+            </Button>
+          </div>
+
+          <Modal show={subTechModalShow} onHide={handleSubTechModalClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Stacks</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {selectedItem &&
+                selectedItem.subTech.map((subTechItem, index) => (
+                  <div key={index}>
+                    <strong>{subTechItem.title}</strong>
+                  </div>
                 ))}
-              </select>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="technology" className="form-label font-semibold">
-                Tools Domain
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="technology"
-                name="technology"
-                value={addReliableData.technology}
-                onChange={(e) => handleInputChange(e)}
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label font-semibold text-blue-600">
-                Tools Stack
-              </label>
-              {addReliableData.subTech.map((subTechItem, index) => (
-                <div key={index}>
+            </Modal.Body>
+          </Modal>
+
+          <Modal show={logoModalShow} onHide={handleLogoModalClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Tools</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {selectedItem &&
+                selectedItem.subTech.map((subTechItem, index) => (
+                  <div key={index}>
+                    <h5 className="mt-2">{subTechItem.title}</h5>
+                    <div className="flex flex-wrap gap-x-[30px] gap-y-[10px]">
+                      {subTechItem.techLogos.map((logoItem, logoIndex) => (
+                        <div key={logoIndex}>
+                          <img src={logoItem.logo} width="50" alt="" />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+            </Modal.Body>
+          </Modal>
+
+          <table className="table-auto w-full text-sm  border-collapse border bg-white">
+            <thead className="bg-gray-800 text-white">
+              <tr className="text-left font-semibold border">
+                <th className="px-4 py-2 border-l">Sr no</th>
+                <th className="px-4 py-2 border-l">Page</th>
+                <th className="px-4 py-2 border-l">Section</th>
+                <th className="px-4 py-2 border-l">Tools Domain</th>
+                <th className="px-4 py-2 border-l">Stack</th>
+                <th className="px-4 py-2 border-l">Tools</th>
+                <th className="px-4 py-2 border-l">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentItems.map((item, index) => (
+                <tr key={index} className="border">
+                  <td className="px-4 py-2">{index + indexOfFirstItem + 1}</td>
+                  <td className="px-4 py-2 border-l">{item.category}</td>
+                  <td className="px-4 py-2 border-l">{item.Subcategory}</td>
+                  <td className="px-4 py-2 border-l">{item.technology}</td>
+                  <td className="px-4 py-2 border-l text-green-800 hover:text-teal-600 text-lg">
+                    <FaEye
+                      onClick={() => handleSubTechModalShow(item)}
+                      className="cursor-pointer"
+                    />
+                  </td>
+                  <td className="px-4 py-2 border-l text-green-800 hover:text-teal-600 text-lg">
+                    <FaEye
+                      onClick={() => handleLogoModalShow(item)}
+                      className="cursor-pointer"
+                    />
+                  </td>
+                  <td className="px-4 py-2 border-l text-lg flex gap-3">
+                    <FaEdit
+                      onClick={() => handleEdit(item)} // Call handleEdit with the item to edit
+                      className="cursor-pointer"
+                    />
+                    <FaTrash
+                      onClick={() => deleteReliableDataFunc(item._id)}
+                      className="cursor-pointer text-red-500 hover:text-red-800"
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {/* Pagination */}
+          <ul className="flex justify-center gap-[20px] mt-[90px]">
+            <li>
+              <button
+                onClick={() =>
+                  setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+                }
+                className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
+              >
+                Prev
+              </button>
+            </li>
+            <li className="py-2 px-2 text-black font-semibold">
+              {currentPage}
+            </li>
+            <li>
+              <button
+                onClick={() =>
+                  setCurrentPage((prevPage) =>
+                    Math.min(
+                      prevPage + 1,
+                      Math.ceil(reliableToolData.length / itemsPerPage)
+                    )
+                  )
+                }
+                className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
+              >
+                Next
+              </button>
+            </li>
+          </ul>
+
+          <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Add Reliable Tools</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form>
+                <div className="mb-4">
+                  <label className="block text-gray-700">service Name</label>
+                  <select
+                    name=""
+                    value={addReliableData.Subcategory}
+                    onChange={(e) =>
+                      setAddReliableData({
+                        ...addReliableData,
+                        Subcategory: e.target.value,
+                      })
+                    }
+                    className="w-full p-2 border rounded"
+                    id=""
+                  >
+                    <option value="">Select service</option>
+                    {services.map((service, index) => (
+                      <option key={index} value={service.serviceName}>
+                        {service.serviceName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="technology"
+                    className="form-label font-semibold"
+                  >
+                    Tools Domain
+                  </label>
                   <input
                     type="text"
-                    className="form-control mb-2"
-                    placeholder="tools stack"
-                    name="title"
-                    value={subTechItem.title}
-                    onChange={(e) => handleInputChange(e, index)}
+                    className="form-control"
+                    id="technology"
+                    name="technology"
+                    value={addReliableData.technology}
+                    onChange={(e) => handleInputChange(e)}
                   />
-                  <label
-                    htmlFor="Tools"
-                    className="text-teal-600 font-semibold"
-                  >
-                    Tools
+                </div>
+                <div className="mb-3">
+                  <label className="form-label font-semibold text-blue-600">
+                    Tools Stack
                   </label>
-                  {subTechItem.techLogos.map((logoItem, logoIndex) => (
-                    <div key={logoIndex} className="mb-2">
+                  {addReliableData.subTech.map((subTechItem, index) => (
+                    <div key={index}>
                       <input
-                        type="file"
-                        className="form-control"
-                        name="techLogos"
-                        onChange={(e) => handleInputChange(e, index, logoIndex)}
+                        type="text"
+                        className="form-control mb-2"
+                        placeholder="tools stack"
+                        name="title"
+                        value={subTechItem.title}
+                        onChange={(e) => handleInputChange(e, index)}
                       />
-                      <button
-                        type="button"
-                        onClick={() => removeTechLogo(index, logoIndex)}
-                        className="mb-2 p-2 bg-red-600 text-white rounded font-semibold mt-2"
+                      <label
+                        htmlFor="Tools"
+                        className="text-teal-600 font-semibold"
                       >
-                        Remove Tool{logoIndex + 1}
-                      </button>
+                        Tools
+                      </label>
+                      {subTechItem.techLogos.map((logoItem, logoIndex) => (
+                        <div key={logoIndex} className="mb-2">
+                          <input
+                            type="file"
+                            className="form-control"
+                            name="techLogos"
+                            onChange={(e) =>
+                              handleInputChange(e, index, logoIndex)
+                            }
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeTechLogo(index, logoIndex)}
+                            className="mb-2 p-2 bg-red-600 text-white rounded font-semibold mt-2"
+                          >
+                            Remove Tool{logoIndex + 1}
+                          </button>
+                        </div>
+                      ))}
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          className="mb-2 p-2 bg-teal-600 text-white rounded font-semibold"
+                          onClick={() => addTechLogoField(index)}
+                        >
+                          Add Tools {subTechItem.techLogos.length + 1}
+                        </button>
+                        <button
+                          type="button"
+                          className="mb-2 p-2 bg-red-600 text-white rounded font-semibold"
+                          onClick={() => removeSubTechField(index)}
+                        >
+                          Remove Stack {index + 1}
+                        </button>
+                      </div>
                     </div>
                   ))}
-                  <div className="flex gap-2">
-                    <button
-                      type="button"
-                      className="mb-2 p-2 bg-teal-600 text-white rounded font-semibold"
-                      onClick={() => addTechLogoField(index)}
-                    >
-                      Add Tools {subTechItem.techLogos.length + 1}
-                    </button>
-                    <button
-                      type="button"
-                      className="mb-2 p-2 bg-red-600 text-white rounded font-semibold"
-                      onClick={() => removeSubTechField(index)}
-                    >
-                      Remove Stack {index + 1}
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    className="mb-2 p-2 bg-blue-600 text-white rounded font-semibold"
+                    onClick={addSubTechField}
+                  >
+                    Add Stack {addReliableData.subTech.length + 1}
+                  </button>
                 </div>
-              ))}
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
               <button
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
                 type="button"
-                className="mb-2 p-2 bg-blue-600 text-white rounded font-semibold"
-                onClick={addSubTechField}
+                onClick={() => setAddPopUpShow(false)}
               >
-                Add Stack {addReliableData.subTech.length + 1}
+                Close
               </button>
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <button
-            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-            type="button"
-            onClick={() => setAddPopUpShow(false)}
-          >
-            Close
-          </button>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            type="button"
-            onClick={addReliableDataFunc}
-          >
-            Save Changes
-          </button>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal show={editPopupShow} onHide={() => seteditPopUpShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Update Reliable Tools</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form>
-            <div className="mb-4">
-              <label className="block text-gray-700">service Name</label>
-              <select
-                name=""
-                value={addReliableData.Subcategory}
-                onChange={(e) =>
-                  setAddReliableData({
-                    ...addReliableData,
-                    Subcategory: e.target.value,
-                  })
-                }
-                className="w-full p-2 border rounded"
-                id=""
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                type="button"
+                onClick={addReliableDataFunc}
               >
-                <option value="">Select service</option>
-                {services.map((service, index) => (
-                  <option key={index} value={service.serviceName}>
-                    {service.serviceName}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="technology" className="form-label font-semibold">
-                Tools Domain
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="technology"
-                name="technology"
-                value={addReliableData.technology}
-                onChange={(e) => handleInputChange(e)}
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label font-semibold text-blue-600">
-                Tools Stack
-              </label>
-              {addReliableData.subTech.map((subTechItem, index) => (
-                <div key={index}>
+                Save Changes
+              </button>
+            </Modal.Footer>
+          </Modal>
+
+          <Modal show={editPopupShow} onHide={() => seteditPopUpShow(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Update Reliable Tools</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form>
+                <div className="mb-4">
+                  <label className="block text-gray-700">service Name</label>
+                  <select
+                    name=""
+                    value={addReliableData.Subcategory}
+                    onChange={(e) =>
+                      setAddReliableData({
+                        ...addReliableData,
+                        Subcategory: e.target.value,
+                      })
+                    }
+                    className="w-full p-2 border rounded"
+                    id=""
+                  >
+                    <option value="">Select service</option>
+                    {services.map((service, index) => (
+                      <option key={index} value={service.serviceName}>
+                        {service.serviceName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="technology"
+                    className="form-label font-semibold"
+                  >
+                    Tools Domain
+                  </label>
                   <input
                     type="text"
-                    className="form-control mb-2"
-                    placeholder="tools stack"
-                    name="title"
-                    value={subTechItem.title}
-                    onChange={(e) => handleInputChange(e, index)}
+                    className="form-control"
+                    id="technology"
+                    name="technology"
+                    value={addReliableData.technology}
+                    onChange={(e) => handleInputChange(e)}
                   />
-                  <label
-                    htmlFor="Tools"
-                    className="text-teal-600 font-semibold"
-                  >
-                    Tools
+                </div>
+                <div className="mb-3">
+                  <label className="form-label font-semibold text-blue-600">
+                    Tools Stack
                   </label>
-                  {subTechItem.techLogos.map((logoItem, logoIndex) => (
-                    <div key={logoIndex} className="mb-2">
+                  {addReliableData.subTech.map((subTechItem, index) => (
+                    <div key={index}>
                       <input
-                        type="file"
-                        className="form-control"
-                        name="techLogos"
-                        onChange={(e) => handleInputChange(e, index, logoIndex)}
+                        type="text"
+                        className="form-control mb-2"
+                        placeholder="tools stack"
+                        name="title"
+                        value={subTechItem.title}
+                        onChange={(e) => handleInputChange(e, index)}
                       />
-                      <button
-                        type="button"
-                        onClick={() => removeTechLogo(index, logoIndex)}
-                        className="mb-2 p-2 bg-red-600 text-white rounded font-semibold mt-2"
+                      <label
+                        htmlFor="Tools"
+                        className="text-teal-600 font-semibold"
                       >
-                        Remove Tool {logoIndex + 1}
-                      </button>
+                        Tools
+                      </label>
+                      {subTechItem.techLogos.map((logoItem, logoIndex) => (
+                        <div key={logoIndex} className="mb-2">
+                          <input
+                            type="file"
+                            className="form-control"
+                            name="techLogos"
+                            onChange={(e) =>
+                              handleInputChange(e, index, logoIndex)
+                            }
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeTechLogo(index, logoIndex)}
+                            className="mb-2 p-2 bg-red-600 text-white rounded font-semibold mt-2"
+                          >
+                            Remove Tool {logoIndex + 1}
+                          </button>
+                        </div>
+                      ))}
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          className="mb-2 p-2 bg-teal-600 text-white rounded font-semibold"
+                          onClick={() => addTechLogoField(index)}
+                        >
+                          Add Tools {subTechItem.techLogos.length + 1}
+                        </button>
+                        <button
+                          type="button"
+                          className="mb-2 p-2 bg-red-600 text-white rounded font-semibold"
+                          onClick={() => removeSubTechField(index)}
+                        >
+                          Remove Stack {index + 1}
+                        </button>
+                      </div>
                     </div>
                   ))}
-                  <div className="flex gap-2">
-                    <button
-                      type="button"
-                      className="mb-2 p-2 bg-teal-600 text-white rounded font-semibold"
-                      onClick={() => addTechLogoField(index)}
-                    >
-                      Add Tools {subTechItem.techLogos.length + 1}
-                    </button>
-                    <button
-                      type="button"
-                      className="mb-2 p-2 bg-red-600 text-white rounded font-semibold"
-                      onClick={() => removeSubTechField(index)}
-                    >
-                      Remove Stack {index + 1}
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    className="mb-2 p-2 bg-blue-600 text-white rounded font-semibold"
+                    onClick={addSubTechField}
+                  >
+                    Add Stack {addReliableData.subTech.length + 1}
+                  </button>
                 </div>
-              ))}
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
               <button
+                className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
                 type="button"
-                className="mb-2 p-2 bg-blue-600 text-white rounded font-semibold"
-                onClick={addSubTechField}
+                onClick={() => seteditPopUpShow(false)}
               >
-                Add Stack {addReliableData.subTech.length + 1}
+                Close
               </button>
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <button
-            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-            type="button"
-            onClick={() => seteditPopUpShow(false)}
-          >
-            Close
-          </button>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            type="button"
-            onClick={updateReliableDataFunc}
-          >
-            Save Changes
-          </button>
-        </Modal.Footer>
-      </Modal>
-    </div>
-    )
-  }
-  </>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                type="button"
+                onClick={updateReliableDataFunc}
+              >
+                Save Changes
+              </button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      )}
+    </>
   );
 };
 

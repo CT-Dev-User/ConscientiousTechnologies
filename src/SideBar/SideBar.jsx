@@ -1,24 +1,33 @@
 import React, { useEffect, useState } from "react";
 import "./sidebar.css";
 import {
-  FaAddressBook,
   FaAngleDown,
   FaAngleUp,
   FaBars,
+  FaBlog,
   FaBlogger,
-  FaBloggerB,
-  FaCogs,
-  FaDesktop,
+  FaCalendarCheck,
+  FaComments,
+  FaConciergeBell,
+  FaEnvelopeOpenText,
   FaFileAlt,
-  FaGlobe,
+  FaFileSignature,
+  FaFolderOpen,
   FaHandshake,
+  FaHandsHelping,
   FaIndustry,
-  FaLaptop,
+  FaInfoCircle,
+  FaLayerGroup,
+  FaPhotoVideo,
+  FaPuzzlePiece,
   FaQuestionCircle,
+  FaShareAlt,
   FaSignOutAlt,
-  FaTools,
+  FaStar,
+  FaThumbsUp,
+  FaToolbox,
   FaUser,
-  FaUserClock,
+  FaWrench,
 } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -109,192 +118,63 @@ const SideBar = ({ children }) => {
       {
         title: "Home",
         list: [
-          {
-            path: "/conscientious-users-registration",
-            name: "Add Users",
-            icon: <FaUser />,
-          },
-          {
-            path: "/conscientious-home-heroslider",
-            name: "Hero Slider",
-            icon: <FaLaptop />,
-          },
-          {
-            path: "/conscientious-home-partners",
-            name: "Our Partners",
-            icon: <FaHandshake />,
-          },
-          {
-            path: "/conscientious-home-reliable-tools",
-            name: "Reliable Tools",
-            icon: <FaTools />,
-          },
-          {
-            path: "/conscientious-home-casestudies",
-            name: "Case Studies",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-key-feature",
-            name: "Key Features",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-home-blogs",
-            name: "Blogs",
-            icon: <FaBlogger />,
-          },
-          {
-            path: "/conscientious-home-clients",
-            name: "Clients reviews",
-            icon: <FaDesktop />,
-          },
-          {
-            path: "/conscientious-home-faq",
-            name: "FAQ",
-            icon: <FaQuestionCircle />,
-          },
-          {
-            path: "/conscientious-home-book-free-consultation",
-            name: "Book Free Consultation",
-            icon: <FaUserClock />,
-          },
+          { path: "/conscientious-users-registration", name: "Add Users", icon: <FaUser /> },
+          { path: "/conscientious-home-heroslider", name: "Hero Slider", icon: <FaPhotoVideo /> },
+          { path: "/conscientious-home-partners", name: "Our Partners", icon: <FaHandsHelping /> },
+          { path: "/conscientious-home-reliable-tools", name: "Reliable Tools", icon: <FaWrench /> },
+          { path: "/conscientious-home-casestudies", name: "Case Studies", icon: <FaFileAlt /> },
+          { path: "/conscientious-key-feature", name: "Key Features", icon: <FaStar /> },
+          { path: "/conscientious-home-blogs", name: "Blogs", icon: <FaBlogger /> },
+          { path: "/conscientious-home-clients", name: "Clients reviews", icon: <FaComments /> },
+          { path: "/conscientious-home-faq", name: "FAQ", icon: <FaQuestionCircle /> },
+          { path: "/conscientious-home-book-free-consultation", name: "Book Free Consultation", icon: <FaCalendarCheck /> },
         ],
       },
       {
         title: "Services",
         list: [
-          {
-            path: "/conscientious-services",
-            name: "Services",
-            icon: <FaLaptop />,
-          },
-          {
-            path: "/conscientious-SubServices",
-            name: "Sub Services",
-            icon: <FaLaptop />,
-          },
-          {
-            path: "/conscientious-service-why-choose-ct-slider",
-            name: "Why Choose C.T.",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-service-reliable-tools",
-            name: "Reliable Tools",
-            icon: <FaTools />,
-          },
-          {
-            path: "/conscientious-service-casestudies",
-            name: "Case Studies",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-service-blogs",
-            name: "blogs",
-            icon: <FaBloggerB />,
-          },
-          {
-            path: "/conscientious-service-faq-category",
-            name: "FAQ",
-            icon: <FaBloggerB />,
-          },
+          { path: "/conscientious-services", name: "Services", icon: <FaConciergeBell /> },
+          { path: "/conscientious-SubServices", name: "Sub Services", icon: <FaLayerGroup /> },
+          { path: "/conscientious-service-why-choose-ct-slider", name: "Why Choose C.T.", icon: <FaThumbsUp /> },
+          { path: "/conscientious-service-reliable-tools", name: "Reliable Tools", icon: <FaToolbox /> },
+          { path: "/conscientious-service-casestudies", name: "Case Studies", icon: <FaFolderOpen /> },
+          { path: "/conscientious-service-blogs", name: "Blogs", icon: <FaBlog /> },
+          { path: "/conscientious-service-faq-category", name: "FAQ", icon: <FaInfoCircle /> },
         ],
       },
       {
         title: "Solutions",
         list: [
-          {
-            path: "/conscientious-solutions",
-            name: "Solutions",
-            icon: <FaCogs />,
-          },
-          {
-            path: "/conscientious-solution-why-choose-ct-slider",
-            name: "Why Choose C.T.",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-solution-reliable-tools",
-            name: "Reliable Tools",
-            icon: <FaTools />,
-          },
-          {
-            path: "/conscientious-solution-casestudies",
-            name: "Case Studies",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-solution-blogs",
-            name: "blogs",
-            icon: <FaBloggerB />,
-          },
-          {
-            path: "/conscientious-solution-faq-category",
-            name: "FAQ",
-            icon: <FaBloggerB />,
-          },
+          { path: "/conscientious-solutions", name: "Solutions", icon: <FaPuzzlePiece /> },
+          { path: "/conscientious-solution-why-choose-ct-slider", name: "Why Choose C.T.", icon: <FaThumbsUp /> },
+          { path: "/conscientious-solution-reliable-tools", name: "Reliable Tools", icon: <FaToolbox /> },
+          { path: "/conscientious-solution-casestudies", name: "Case Studies", icon: <FaFolderOpen /> },
+          { path: "/conscientious-solution-blogs", name: "Blogs", icon: <FaBlog /> },
+          { path: "/conscientious-solution-faq-category", name: "FAQ", icon: <FaInfoCircle /> },
         ],
       },
       {
         title: "Industries",
         list: [
-          {
-            path: "/conscientious-home-industries",
-            name: "Industries",
-            icon: <FaIndustry />,
-          },
-          {
-            path: "/conscientious-industry-why-choose-ct-slider",
-            name: "Why Choose C.T.",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-industry-casestudies",
-            name: "Case Studies",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-industry-blogs",
-            name: "blogs",
-            icon: <FaBloggerB />,
-          },
-          {
-            path: "/conscientious-industry-faq-category",
-            name: "FAQ",
-            icon: <FaBloggerB />,
-          },
+          { path: "/conscientious-home-industries", name: "Industries", icon: <FaIndustry /> },
+          { path: "/conscientious-industry-why-choose-ct-slider", name: "Why Choose C.T.", icon: <FaThumbsUp /> },
+          { path: "/conscientious-industry-casestudies", name: "Case Studies", icon: <FaFolderOpen /> },
+          { path: "/conscientious-industry-blogs", name: "Blogs", icon: <FaBlog /> },
+          { path: "/conscientious-industry-faq-category", name: "FAQ", icon: <FaInfoCircle /> },
         ],
       },
       {
-        title: "Important deatails",
+        title: "Important Details",
         list: [
-          {
-            path: "/conscientious-contact-us",
-            name: "Get Started",
-            icon: <FaAddressBook />,
-          },
-
-          {
-            path: "/conscientious-contact-us-form",
-            name: "Contact Us Form Data",
-            icon: <FaAddressBook />,
-          },
-          {
-            path: "/conscientious-social-media",
-            name: "Social Media",
-            icon: <FaGlobe />,
-          },
+          { path: "/conscientious-contact-us", name: "Get Started", icon: <FaEnvelopeOpenText /> },
+          { path: "/conscientious-contact-us-form", name: "Contact Us Form Data", icon: <FaFileSignature /> },
+          { path: "/conscientious-social-media", name: "Social Media", icon: <FaShareAlt /> },
         ],
       },
       {
         title: "Common Components",
         list: [
-          {
-            path: "/conscientious-partner-up",
-            name: "Partner Up",
-            icon: <FaBloggerB />,
-          },
+          { path: "/conscientious-partner-up", name: "Partner Up", icon: <FaHandshake /> },
         ],
       },
     ],
@@ -302,192 +182,63 @@ const SideBar = ({ children }) => {
       {
         title: "Home",
         list: [
-          {
-            path: "/conscientious-users-registration",
-            name: "Add Users",
-            icon: <FaUser />,
-          },
-          {
-            path: "/conscientious-home-heroslider",
-            name: "Hero Slider",
-            icon: <FaLaptop />,
-          },
-          {
-            path: "/conscientious-home-partners",
-            name: "Our Partners",
-            icon: <FaHandshake />,
-          },
-          {
-            path: "/conscientious-home-reliable-tools",
-            name: "Reliable Tools",
-            icon: <FaTools />,
-          },
-          {
-            path: "/conscientious-home-casestudies",
-            name: "Case Studies",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-key-feature",
-            name: "Key Features",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-home-blogs",
-            name: "Blogs",
-            icon: <FaBlogger />,
-          },
-          {
-            path: "/conscientious-home-clients",
-            name: "Clients reviews",
-            icon: <FaDesktop />,
-          },
-          {
-            path: "/conscientious-home-faq",
-            name: "FAQ",
-            icon: <FaQuestionCircle />,
-          },
-          {
-            path: "/conscientious-home-book-free-consultation",
-            name: "Book Free Consultation",
-            icon: <FaUserClock />,
-          },
+          { path: "/conscientious-users-registration", name: "Add Users", icon: <FaUser /> },
+          { path: "/conscientious-home-heroslider", name: "Hero Slider", icon: <FaPhotoVideo /> },
+          { path: "/conscientious-home-partners", name: "Our Partners", icon: <FaHandsHelping /> },
+          { path: "/conscientious-home-reliable-tools", name: "Reliable Tools", icon: <FaWrench /> },
+          { path: "/conscientious-home-casestudies", name: "Case Studies", icon: <FaFileAlt /> },
+          { path: "/conscientious-key-feature", name: "Key Features", icon: <FaStar /> },
+          { path: "/conscientious-home-blogs", name: "Blogs", icon: <FaBlogger /> },
+          { path: "/conscientious-home-clients", name: "Clients reviews", icon: <FaComments /> },
+          { path: "/conscientious-home-faq", name: "FAQ", icon: <FaQuestionCircle /> },
+          { path: "/conscientious-home-book-free-consultation", name: "Book Free Consultation", icon: <FaCalendarCheck /> },
         ],
       },
       {
         title: "Services",
         list: [
-          {
-            path: "/conscientious-services",
-            name: "Services",
-            icon: <FaLaptop />,
-          },
-          {
-            path: "/conscientious-SubServices",
-            name: "Sub Services",
-            icon: <FaLaptop />,
-          },
-          {
-            path: "/conscientious-service-why-choose-ct-slider",
-            name: "Why Choose C.T.",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-service-reliable-tools",
-            name: "Reliable Tools",
-            icon: <FaTools />,
-          },
-          {
-            path: "/conscientious-service-casestudies",
-            name: "Case Studies",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-service-blogs",
-            name: "blogs",
-            icon: <FaBloggerB />,
-          },
-          {
-            path: "/conscientious-service-faq-category",
-            name: "FAQ",
-            icon: <FaBloggerB />,
-          },
+          { path: "/conscientious-services", name: "Services", icon: <FaConciergeBell /> },
+          { path: "/conscientious-SubServices", name: "Sub Services", icon: <FaLayerGroup /> },
+          { path: "/conscientious-service-why-choose-ct-slider", name: "Why Choose C.T.", icon: <FaThumbsUp /> },
+          { path: "/conscientious-service-reliable-tools", name: "Reliable Tools", icon: <FaToolbox /> },
+          { path: "/conscientious-service-casestudies", name: "Case Studies", icon: <FaFolderOpen /> },
+          { path: "/conscientious-service-blogs", name: "Blogs", icon: <FaBlog /> },
+          { path: "/conscientious-service-faq-category", name: "FAQ", icon: <FaInfoCircle /> },
         ],
       },
       {
         title: "Solutions",
         list: [
-          {
-            path: "/conscientious-solutions",
-            name: "Solutions",
-            icon: <FaCogs />,
-          },
-          {
-            path: "/conscientious-solution-why-choose-ct-slider",
-            name: "Why Choose C.T.",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-solution-reliable-tools",
-            name: "Reliable Tools",
-            icon: <FaTools />,
-          },
-          {
-            path: "/conscientious-solution-casestudies",
-            name: "Case Studies",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-solution-blogs",
-            name: "blogs",
-            icon: <FaBloggerB />,
-          },
-          {
-            path: "/conscientious-solution-faq-category",
-            name: "FAQ",
-            icon: <FaBloggerB />,
-          },
+          { path: "/conscientious-solutions", name: "Solutions", icon: <FaPuzzlePiece /> },
+          { path: "/conscientious-solution-why-choose-ct-slider", name: "Why Choose C.T.", icon: <FaThumbsUp /> },
+          { path: "/conscientious-solution-reliable-tools", name: "Reliable Tools", icon: <FaToolbox /> },
+          { path: "/conscientious-solution-casestudies", name: "Case Studies", icon: <FaFolderOpen /> },
+          { path: "/conscientious-solution-blogs", name: "Blogs", icon: <FaBlog /> },
+          { path: "/conscientious-solution-faq-category", name: "FAQ", icon: <FaInfoCircle /> },
         ],
       },
       {
         title: "Industries",
         list: [
-          {
-            path: "/conscientious-home-industries",
-            name: "Industries",
-            icon: <FaIndustry />,
-          },
-          {
-            path: "/conscientious-industry-why-choose-ct-slider",
-            name: "Why Choose C.T.",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-industry-casestudies",
-            name: "Case Studies",
-            icon: <FaFileAlt />,
-          },
-          {
-            path: "/conscientious-industry-blogs",
-            name: "blogs",
-            icon: <FaBloggerB />,
-          },
-          {
-            path: "/conscientious-industry-faq-category",
-            name: "FAQ",
-            icon: <FaBloggerB />,
-          },
+          { path: "/conscientious-home-industries", name: "Industries", icon: <FaIndustry /> },
+          { path: "/conscientious-industry-why-choose-ct-slider", name: "Why Choose C.T.", icon: <FaThumbsUp /> },
+          { path: "/conscientious-industry-casestudies", name: "Case Studies", icon: <FaFolderOpen /> },
+          { path: "/conscientious-industry-blogs", name: "Blogs", icon: <FaBlog /> },
+          { path: "/conscientious-industry-faq-category", name: "FAQ", icon: <FaInfoCircle /> },
         ],
       },
       {
-        title: "Important deatails",
+        title: "Important Details",
         list: [
-          {
-            path: "/conscientious-contact-us",
-            name: "Get Started",
-            icon: <FaAddressBook />,
-          },
-
-          {
-            path: "/conscientious-contact-us-form",
-            name: "Contact Us Form Data",
-            icon: <FaAddressBook />,
-          },
-          {
-            path: "/conscientious-social-media",
-            name: "Social Media",
-            icon: <FaGlobe />,
-          },
+          { path: "/conscientious-contact-us", name: "Get Started", icon: <FaEnvelopeOpenText /> },
+          { path: "/conscientious-contact-us-form", name: "Contact Us Form Data", icon: <FaFileSignature /> },
+          { path: "/conscientious-social-media", name: "Social Media", icon: <FaShareAlt /> },
         ],
       },
       {
         title: "Common Components",
         list: [
-          {
-            path: "/conscientious-partner-up",
-            name: "Partner Up",
-            icon: <FaBloggerB />,
-          },
+          { path: "/conscientious-partner-up", name: "Partner Up", icon: <FaHandshake /> },
         ],
       },
     ],

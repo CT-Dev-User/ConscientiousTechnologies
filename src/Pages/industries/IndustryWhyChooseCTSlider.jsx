@@ -28,7 +28,6 @@ const IndustryWhyChooseCT = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -88,8 +87,12 @@ const IndustryWhyChooseCT = () => {
       setIndustries(response.data);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching:");
       setLoading(false);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch Industry data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -103,8 +106,12 @@ const IndustryWhyChooseCT = () => {
       setFilterwhyChooseCt(response.data.data);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching:")
       setLoading(false);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch slider data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -296,12 +303,10 @@ const IndustryWhyChooseCT = () => {
     <>
       {loading ? (
         <Spinner />
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
       ) : (
         <div className="w-full h-full bg-gray-200 p-4">
-          <div className="flex justify-between gap-x-3">    
-          <h4 className="text-2xl mb-2">Why Choose CT Slider</h4>
+          <div className="flex justify-between gap-x-3">
+            <h4 className="text-2xl mb-2">Why Choose CT Slider</h4>
             <select
               name=""
               onChange={(e) => {

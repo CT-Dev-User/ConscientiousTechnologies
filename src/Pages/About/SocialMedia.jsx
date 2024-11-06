@@ -3,9 +3,40 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { AiOutlineClose } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useAuth } from "../../contextAPI/UserContext";
+
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          </div>
+          <div class="h-2 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const SocialMedia = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchSocialMedias();
+    }
+  }, [userauth, router]);
   const [SocialMedias, setSocialMedias] = useState([]);
   const [addSocialMedias, setAddSocialMedias] = useState({
     title: "",
@@ -63,12 +94,15 @@ const SocialMedia = () => {
   };
 
   const fetchSocialMedias = async () => {
+    setLoading(true)
     try {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-social-media-data"
       );
       setSocialMedias(response.data.getdata);
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       Swal.fire(
         "Error!",
         "fialed to retrieve data",
@@ -76,10 +110,6 @@ const SocialMedia = () => {
       );
     }
   };
-
-  useEffect(() => {
-    fetchSocialMedias();
-  }, []);
 
   const editSocialMediasfunc = async () => {
     Swal.fire({
@@ -156,6 +186,10 @@ const SocialMedia = () => {
   const currentItems = SocialMedias.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
+    <>
+    {loading ? (
+       <Spinner />
+     ) : (
     <div className="w-full h-auto bg-gray-200 p-4">
       <div className="flex justify-between text-black mb-4 mt-2">
         <h1 className="text-3xl font-bold">Social Media</h1>
@@ -457,6 +491,9 @@ const SocialMedia = () => {
         </ul>
       </div>
     </div>
+     )
+    }
+    </>
   );
 };
 

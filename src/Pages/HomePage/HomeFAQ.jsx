@@ -30,7 +30,6 @@ const HomeFAQ = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -147,7 +146,6 @@ const HomeFAQ = () => {
       setHomeFaqs(response.data.getData);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching data");
       setLoading(false);
     }
   };
@@ -188,8 +186,6 @@ const HomeFAQ = () => {
     <>
     {loading ? (
        <Spinner />
-     ) : error ? (
-       <p className="text-red-500">{error}</p>
      ) : (
     <div className="w-full bg-gray-300 h-full mx-auto p-4">
       <div className="flex justify-between mb-5 mr-3">

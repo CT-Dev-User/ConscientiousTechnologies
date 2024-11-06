@@ -28,7 +28,6 @@ const BlogCMS = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -72,7 +71,6 @@ const BlogCMS = () => {
       setBlogs(response.data.blog);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching blogs");
       setLoading(false);
       Swal.fire(
         "Error!",
@@ -239,8 +237,6 @@ const BlogCMS = () => {
     <>
     {loading ? (
        <Spinner />
-     ) : error ? (
-       <p className="text-red-500">{error}</p>
      ) : (
     <div className="container mx-auto mt-5 p-4 bg-gray-200">
       <div className="flex justify-between mb-4">

@@ -34,7 +34,6 @@ const SignUp = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const [type, setType] = useState(true);
   const [addUserModal, setAddUserModal] = useState(false);
   const [editUserModal, setEditUserModal] = useState(false);
@@ -63,7 +62,11 @@ const SignUp = () => {
       setLoading(false); // Stop loading spinner
     } catch (error) {
       setLoading(false); // Stop loading spinner
-      setError("Error fetching user data");
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
   const getRoleName = (role) => {
@@ -195,8 +198,6 @@ const SignUp = () => {
     <>
       {loading ? (
         <Spinner />
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
       ) : (
         <div className="bg-white p-4 text-black text-sm">
           <div id="dsp-add-container" className="flex justify-between">

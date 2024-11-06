@@ -30,7 +30,6 @@ const KeyFeature = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -173,8 +172,12 @@ const KeyFeature = () => {
       setKeyFeatureData(response.data.getdata);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching user data");
       setLoading(false);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -276,8 +279,6 @@ const KeyFeature = () => {
     <>
       {loading ? (
         <Spinner />
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
       ) : (
         <div className="w-full h-auto bg-gray-200 p-2">
           <div className="flex justify-between mb-2 mt-2">

@@ -26,7 +26,6 @@ const SolutionBlogCMS = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -75,7 +74,11 @@ const SolutionBlogCMS = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      setError("error fetching Data");
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -251,8 +254,6 @@ const SolutionBlogCMS = () => {
     <>
       {loading ? (
         <Spinner />
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
       ) : (
         <div className="container mx-auto mt-5 bg-gray-200 p-4">
           <div className="flex justify-between mb-4">

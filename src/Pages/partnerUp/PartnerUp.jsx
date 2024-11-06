@@ -1,9 +1,40 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useAuth } from "../../contextAPI/UserContext";
+
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          </div>
+          <div class="h-2 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const PartnerUp = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchPartnerUpData();
+    }
+  }, [userauth, router]);
   const [partnerUpData, setPartnerUpData] = useState([]);
   const [addPopupShow, setAddPopUpShow] = useState(false);
   const [editPopupShow, setEditPopUpShow] = useState(false);
@@ -22,14 +53,17 @@ const PartnerUp = () => {
   const [editId, setEditId] = useState(null);
 
   const fetchPartnerUpData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-partner-up-data"
       );
       if (response.status === 200) {
         setPartnerUpData(response.data.getdata);
+        setLoading(false);
       }
     } catch (error) {
+      setLoading(false);
       Swal.fire(
         "Error!",
         "Failed to fetch data. Please try again later.",
@@ -37,10 +71,6 @@ const PartnerUp = () => {
       );
     }
   };
-
-  useEffect(() => {
-    fetchPartnerUpData();
-  }, []);
 
   const handleAddPartnerUpDataChange = (field, value) => {
     setAddPartnerUpData({ ...addPartnerUpData, [field]: value });
@@ -198,253 +228,269 @@ const PartnerUp = () => {
   };
 
   return (
-    <div className="w-full bg-gray-200 h-full mx-auto p-4">
-      <div className="flex justify-between mb-4 mr-3 gap-x-3">
-        <h1 className="text-2xl font-bold">PartnerUp</h1>
-        <Button
-          onClick={() => setAddPopUpShow(true)}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0 px-2 rounded"
-        >
-          Add PartnerUp Tools
-        </Button>
-      </div>
-      <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Add PartnerUp Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form onSubmit={addPartnerUpDataFunc} className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label className="block text-gray-700 font-bold">
-                First Heading
-              </label>
-              <input
-                type="text"
-                value={addPartnerUpData.heading1}
-                onChange={(e) =>
-                  handleAddPartnerUpDataChange("heading1", e.target.value)
-                }
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-              />
-            </fieldset>
-            <fieldset>
-              <label>Images</label>
-              {addPartnerUpData.images1.map((image, index) => (
-                <div key={index} className="my-2 flex items-center">
-                  <input
-                    type="file"
-                    onChange={(e) => handleAddFileChange(e, index, "images1")}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeAddFile(index, "images1")}
-                    className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                className="border border-black px-2 py-1"
-                onClick={() => handleAddImageField("images1")}
-              >
-                Add Image
-              </button>
-            </fieldset>
-            <fieldset className="mb-4">
-              <label className="block text-gray-700 font-bold">
-                Second Heading
-              </label>
-              <input
-                type="text"
-                value={addPartnerUpData.heading2}
-                onChange={(e) =>
-                  handleAddPartnerUpDataChange("heading2", e.target.value)
-                }
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-              />
-            </fieldset>
-            <fieldset>
-              <label>Images</label>
-              {addPartnerUpData.images2.map((image, index) => (
-                <div key={index} className="my-2 flex items-center">
-                  <input
-                    type="file"
-                    onChange={(e) => handleAddFileChange(e, index, "images2")}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeAddFile(index, "images2")}
-                    className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                className="border border-black px-2 py-1"
-                onClick={() => handleAddImageField("images2")}
-              >
-                Add Image
-              </button>
-            </fieldset>
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-5 rounded flex mx-auto"
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="w-full bg-gray-200 h-full mx-auto p-4">
+          <div className="flex justify-between mb-4 mr-3 gap-x-3">
+            <h1 className="text-2xl font-bold">PartnerUp</h1>
+            <Button
+              onClick={() => setAddPopUpShow(true)}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0 px-2 rounded"
             >
-              Save
-            </button>
-          </form>
-        </Modal.Body>
-      </Modal>
-      <Modal show={editPopupShow} onHide={() => setEditPopUpShow(false)}>
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>Edit PartnerUp Data</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form onSubmit={editPartnerUpDataFunc} className="mx-auto max-w-lg">
-            <fieldset className="mb-4">
-              <label className="block text-gray-700 font-bold">
-                First Heading
-              </label>
-              <input
-                type="text"
-                value={editPartnerUpData.heading1}
-                onChange={(e) =>
-                  handleEditPartnerUpDataChange("heading1", e.target.value)
-                }
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-              />
-            </fieldset>
-            <fieldset>
-              <label>Images</label>
-              {Array.isArray(editPartnerUpData.images1) &&
-                editPartnerUpData.images1.map((image, index) => (
-                  <div key={index} className="my-2 flex items-center">
-                    <input
-                      type="file"
-                      onChange={(e) =>
-                        handleEditFileChange(e, index, "images1")
-                      }
-                    />
-                    <button
-                      type="button"
-                      onClick={() => removeEditFile(index, "images1")}
-                      className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                ))}
-              <button
-                type="button"
-                className="border border-black px-2 py-1"
-                onClick={() => handleEditImageField("images1")}
+              Add PartnerUp Tools
+            </Button>
+          </div>
+          <Modal show={addPopupShow} onHide={() => setAddPopUpShow(false)}>
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>Add PartnerUp Data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form
+                onSubmit={addPartnerUpDataFunc}
+                className="mx-auto max-w-lg"
               >
-                Add Image
-              </button>
-            </fieldset>
-            <fieldset className="mb-4">
-              <label className="block text-gray-700 font-bold">
-                Second Heading
-              </label>
-              <input
-                type="text"
-                value={editPartnerUpData.heading2}
-                onChange={(e) =>
-                  handleEditPartnerUpDataChange("heading2", e.target.value)
-                }
-                className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
-              />
-            </fieldset>
-            <fieldset>
-              <label>Images</label>
-              {Array.isArray(editPartnerUpData.images2) &&
-                editPartnerUpData.images2.map((image, index) => (
-                  <div key={index} className="my-2 flex items-center">
-                    <input
-                      type="file"
-                      onChange={(e) =>
-                        handleEditFileChange(e, index, "images2")
-                      }
-                    />
-                    <button
-                      type="button"
-                      onClick={() => removeEditFile(index, "images2")}
-                      className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                ))}
+                <fieldset className="mb-4">
+                  <label className="block text-gray-700 font-bold">
+                    First Heading
+                  </label>
+                  <input
+                    type="text"
+                    value={addPartnerUpData.heading1}
+                    onChange={(e) =>
+                      handleAddPartnerUpDataChange("heading1", e.target.value)
+                    }
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                  />
+                </fieldset>
+                <fieldset>
+                  <label>Images</label>
+                  {addPartnerUpData.images1.map((image, index) => (
+                    <div key={index} className="my-2 flex items-center">
+                      <input
+                        type="file"
+                        onChange={(e) =>
+                          handleAddFileChange(e, index, "images1")
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeAddFile(index, "images1")}
+                        className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    className="border border-black px-2 py-1"
+                    onClick={() => handleAddImageField("images1")}
+                  >
+                    Add Image
+                  </button>
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label className="block text-gray-700 font-bold">
+                    Second Heading
+                  </label>
+                  <input
+                    type="text"
+                    value={addPartnerUpData.heading2}
+                    onChange={(e) =>
+                      handleAddPartnerUpDataChange("heading2", e.target.value)
+                    }
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                  />
+                </fieldset>
+                <fieldset>
+                  <label>Images</label>
+                  {addPartnerUpData.images2.map((image, index) => (
+                    <div key={index} className="my-2 flex items-center">
+                      <input
+                        type="file"
+                        onChange={(e) =>
+                          handleAddFileChange(e, index, "images2")
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeAddFile(index, "images2")}
+                        className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    className="border border-black px-2 py-1"
+                    onClick={() => handleAddImageField("images2")}
+                  >
+                    Add Image
+                  </button>
+                </fieldset>
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-5 rounded flex mx-auto"
+                >
+                  Save
+                </button>
+              </form>
+            </Modal.Body>
+          </Modal>
+          <Modal show={editPopupShow} onHide={() => setEditPopUpShow(false)}>
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>Edit PartnerUp Data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form
+                onSubmit={editPartnerUpDataFunc}
+                className="mx-auto max-w-lg"
+              >
+                <fieldset className="mb-4">
+                  <label className="block text-gray-700 font-bold">
+                    First Heading
+                  </label>
+                  <input
+                    type="text"
+                    value={editPartnerUpData.heading1}
+                    onChange={(e) =>
+                      handleEditPartnerUpDataChange("heading1", e.target.value)
+                    }
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                  />
+                </fieldset>
+                <fieldset>
+                  <label>Images</label>
+                  {Array.isArray(editPartnerUpData.images1) &&
+                    editPartnerUpData.images1.map((image, index) => (
+                      <div key={index} className="my-2 flex items-center">
+                        <input
+                          type="file"
+                          onChange={(e) =>
+                            handleEditFileChange(e, index, "images1")
+                          }
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeEditFile(index, "images1")}
+                          className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                  <button
+                    type="button"
+                    className="border border-black px-2 py-1"
+                    onClick={() => handleEditImageField("images1")}
+                  >
+                    Add Image
+                  </button>
+                </fieldset>
+                <fieldset className="mb-4">
+                  <label className="block text-gray-700 font-bold">
+                    Second Heading
+                  </label>
+                  <input
+                    type="text"
+                    value={editPartnerUpData.heading2}
+                    onChange={(e) =>
+                      handleEditPartnerUpDataChange("heading2", e.target.value)
+                    }
+                    className="form-input mt-1 block w-full rounded-md border border-gray-300 focus:border-blue-500"
+                  />
+                </fieldset>
+                <fieldset>
+                  <label>Images</label>
+                  {Array.isArray(editPartnerUpData.images2) &&
+                    editPartnerUpData.images2.map((image, index) => (
+                      <div key={index} className="my-2 flex items-center">
+                        <input
+                          type="file"
+                          onChange={(e) =>
+                            handleEditFileChange(e, index, "images2")
+                          }
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeEditFile(index, "images2")}
+                          className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
 
-              <button
-                type="button"
-                className="border border-black px-2 py-1"
-                onClick={() => handleEditImageField("images2")}
-              >
-                Add Image
-              </button>
-            </fieldset>
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-5 rounded flex mx-auto"
-            >
-              Save
-            </button>
-          </form>
-        </Modal.Body>
-      </Modal>
-      <table className="w-full border-collapse border bg-white">
-        <thead className="bg-gray-800 text-white">
-          <tr className="border-b">
-            <th className="border-r p-2">Sr. No</th>
-            <th className="border-r p-2">Heading1</th>
-            <th className="border-r p-2">Heading2</th>
-            <th className="border-r p-2">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {partnerUpData &&
-            partnerUpData.map((partner, i) => (
-              <tr key={partner._id} className="border-b">
-                <td className="border-r p-2">{i + 1}</td>
-                <td className="border-r p-2">{partner.heading1}</td>
-                <td className="border-r p-2">{partner.heading2}</td>
-                <td className="border-r flex items-center justify-start gap-[20px] p-2">
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7px] text-white font-bold rounded"
-                    onClick={() => {
-                      setEditPopUpShow(true);
-                      setEditId(partner._id);
-                      setEditPartnerUpData({
-                        heading1: partner.heading1,
-                        images1:
-                          partner.images1 &&
-                          partner.images1.map((image) => image),
-                        heading2: partner.heading2,
-                        images2:
-                          partner.images2 &&
-                          partner.images2.map((image) => image),
-                      });
-                    }}
+                    type="button"
+                    className="border border-black px-2 py-1"
+                    onClick={() => handleEditImageField("images2")}
                   >
-                    Edit
+                    Add Image
                   </button>
-                  <button
-                    className="hover:bg-red-700 bg-red-500 px-[20px] py-[7px] rounded text-white shadow-md"
-                    onClick={() => deletePartnerUpData(partner._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+                </fieldset>
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-5 rounded flex mx-auto"
+                >
+                  Save
+                </button>
+              </form>
+            </Modal.Body>
+          </Modal>
+          <table className="w-full border-collapse border bg-white">
+            <thead className="bg-gray-800 text-white">
+              <tr className="border-b">
+                <th className="border-r p-2">Sr. No</th>
+                <th className="border-r p-2">Heading1</th>
+                <th className="border-r p-2">Heading2</th>
+                <th className="border-r p-2">Action</th>
               </tr>
-            ))}
-        </tbody>
-      </table>
-    </div>
+            </thead>
+            <tbody>
+              {partnerUpData &&
+                partnerUpData.map((partner, i) => (
+                  <tr key={partner._id} className="border-b">
+                    <td className="border-r p-2">{i + 1}</td>
+                    <td className="border-r p-2">{partner.heading1}</td>
+                    <td className="border-r p-2">{partner.heading2}</td>
+                    <td className="border-r flex items-center justify-start gap-[20px] p-2">
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 px-[20px] py-[7px] text-white font-bold rounded"
+                        onClick={() => {
+                          setEditPopUpShow(true);
+                          setEditId(partner._id);
+                          setEditPartnerUpData({
+                            heading1: partner.heading1,
+                            images1:
+                              partner.images1 &&
+                              partner.images1.map((image) => image),
+                            heading2: partner.heading2,
+                            images2:
+                              partner.images2 &&
+                              partner.images2.map((image) => image),
+                          });
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="hover:bg-red-700 bg-red-500 px-[20px] py-[7px] rounded text-white shadow-md"
+                        onClick={() => deletePartnerUpData(partner._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -2,9 +2,39 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useAuth } from "../../contextAPI/UserContext";
 
+const Spinner = () => (
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+          </div>
+          <div class="h-2 bg-slate-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 const ContactUs = () => {
+  const router = useNavigate();
+  const [userauth] = useAuth();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchContactUsData();
+    }
+  }, [userauth, router]);
   const [contactUsData, setContactUsData] = useState([]);
   const [message_request, setMessage_request] = useState(null);
   const [message_requestModal, setMessage_requestModal] = useState(false);
@@ -12,12 +42,15 @@ const ContactUs = () => {
   const itemsPerPage = 10;
 
   const fetchContactUsData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-contact-us-data"
       );
       setContactUsData(response.data.getData);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       Swal.fire(
         "Error!",
         "Failed to fetch data. Please try again later.",
@@ -56,10 +89,6 @@ const ContactUs = () => {
     });
   };
 
-  useEffect(() => {
-    fetchContactUsData();
-  }, []);
-
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = contactUsData.slice(indexOfFirstItem, indexOfLastItem);
@@ -70,112 +99,120 @@ const ContactUs = () => {
   }
 
   return (
-    <div className="w-full bg-gray-200 h-full mx-auto p-4">
-      <div>
-        <h1 className="text-3xl font-bold mb-4">Contact Us Data</h1>
-      </div>
-      <table className="w-full border-collapse border bg-white">
-        <thead className="bg-gray-800 text-white">
-          <tr className="border-b">
-            <th className="border-r p-2">Sr. No</th>
-            <th className="border-r p-2">Full Name</th>
-            <th className="border-r p-2">Company Name</th>
-            <th className="border-r p-2">Work Email</th>
-            <th className="border-r p-2">Phone</th>
-            <th className="border-r p-2">Message</th>
-            <th className="border-r p-2">file</th>
-            <th className="border-r p-2">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.map((data, i) => (
-            <tr key={data._id}>
-              <td className="border-r p-2">{indexOfFirstItem + i + 1}</td>
-              <td className="border-r p-2">{data.fullName}</td>
-              <td className="border-r p-2">{data.companyName}</td>
-              <td className="border-r p-2">{data.workEmail}</td>
-              <td className="border-r p-2">{data.phone}</td>
-              <td className="border-r p-2">
-                <FaEye
-                  onClick={() => {
-                    setMessage_request(data.message_request);
-                    setMessage_requestModal(true);
-                  }}
-                />
-              </td>
-              <td className="border-r p-2">
-                <img
-                  src={data.sourceImage}
-                  alt={data.sourceImage}
-                  className="w-[50px] h-[50px]"
-                />
-              </td>
-              <td className="border-r flex items-center justify-start gap-[20px] p-2">
-                <button
-                  className="hover:bg-red-700 h-[37px] bg-[red] px-[20px] py-[7px] rounded-[7px] text-white shadow-md"
-                  onClick={() => {
-                    deleteContactUsData(data._id);
-                  }}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="w-full bg-gray-200 h-full mx-auto p-4">
+          <div>
+            <h1 className="text-3xl font-bold mb-4">Contact Us Data</h1>
+          </div>
+          <table className="w-full border-collapse border bg-white">
+            <thead className="bg-gray-800 text-white">
+              <tr className="border-b">
+                <th className="border-r p-2">Sr. No</th>
+                <th className="border-r p-2">Full Name</th>
+                <th className="border-r p-2">Company Name</th>
+                <th className="border-r p-2">Work Email</th>
+                <th className="border-r p-2">Phone</th>
+                <th className="border-r p-2">Message</th>
+                <th className="border-r p-2">file</th>
+                <th className="border-r p-2">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentItems.map((data, i) => (
+                <tr key={data._id}>
+                  <td className="border-r p-2">{indexOfFirstItem + i + 1}</td>
+                  <td className="border-r p-2">{data.fullName}</td>
+                  <td className="border-r p-2">{data.companyName}</td>
+                  <td className="border-r p-2">{data.workEmail}</td>
+                  <td className="border-r p-2">{data.phone}</td>
+                  <td className="border-r p-2">
+                    <FaEye
+                      onClick={() => {
+                        setMessage_request(data.message_request);
+                        setMessage_requestModal(true);
+                      }}
+                    />
+                  </td>
+                  <td className="border-r p-2">
+                    <img
+                      src={data.sourceImage}
+                      alt={data.sourceImage}
+                      className="w-[50px] h-[50px]"
+                    />
+                  </td>
+                  <td className="border-r flex items-center justify-start gap-[20px] p-2">
+                    <button
+                      className="hover:bg-red-700 h-[37px] bg-[red] px-[20px] py-[7px] rounded-[7px] text-white shadow-md"
+                      onClick={() => {
+                        deleteContactUsData(data._id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-      <ul className="flex justify-center gap-[20px] mt-5">
-        <li>
-          <button
-            onClick={() =>
-              setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
-            }
-            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
-          >
-            Prev
-          </button>
-        </li>
-        <li className="py-2 px-2 text-black font-semibold">{currentPage}</li>
-        <li>
-          <button
-            onClick={() =>
-              setCurrentPage((prevPage) =>
-                Math.min(
-                  prevPage + 1,
-                  Math.ceil(contactUsData.length / itemsPerPage)
-                )
-              )
-            }
-            className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
-          >
-            Next
-          </button>
-        </li>
-      </ul>
+          <ul className="flex justify-center gap-[20px] mt-5">
+            <li>
+              <button
+                onClick={() =>
+                  setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+                }
+                className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
+              >
+                Prev
+              </button>
+            </li>
+            <li className="py-2 px-2 text-black font-semibold">
+              {currentPage}
+            </li>
+            <li>
+              <button
+                onClick={() =>
+                  setCurrentPage((prevPage) =>
+                    Math.min(
+                      prevPage + 1,
+                      Math.ceil(contactUsData.length / itemsPerPage)
+                    )
+                  )
+                }
+                className="bg-blue-500 hover:bg-blue-700 py-2 px-2 rounded text-white font-semibold"
+              >
+                Next
+              </button>
+            </li>
+          </ul>
 
-      <Modal
-        size="md"
-        show={message_requestModal}
-        onHide={() => setMessage_requestModal(false)}
-      >
-        <Modal.Header closeButton className="bg-gray-800 text-white">
-          <Modal.Title>View Message</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="bg-white">
-          <div dangerouslySetInnerHTML={{ __html: message_request }} />
-        </Modal.Body>
-        <Modal.Footer className="bg-gray-100">
-          <Button
-            variant="secondary"
-            onClick={() => setMessage_requestModal(false)}
-            className="text-gray-700 hover:text-gray-900"
+          <Modal
+            size="md"
+            show={message_requestModal}
+            onHide={() => setMessage_requestModal(false)}
           >
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+            <Modal.Header closeButton className="bg-gray-800 text-white">
+              <Modal.Title>View Message</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="bg-white">
+              <div dangerouslySetInnerHTML={{ __html: message_request }} />
+            </Modal.Body>
+            <Modal.Footer className="bg-gray-100">
+              <Button
+                variant="secondary"
+                onClick={() => setMessage_requestModal(false)}
+                className="text-gray-700 hover:text-gray-900"
+              >
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      )}
+    </>
   );
 };
 

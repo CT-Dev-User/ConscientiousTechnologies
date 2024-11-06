@@ -27,7 +27,6 @@ const SubServicesCMS = () => {
   const router = useNavigate();
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -103,7 +102,6 @@ const SubServicesCMS = () => {
       setfilteredsubservices(response.data);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching data");
       setLoading(false);
     }
   };
@@ -256,8 +254,6 @@ const SubServicesCMS = () => {
     <>
       {loading ? (
         <Spinner />
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
       ) : (
         <div className="p-4 bg-gray-200">
           <div className="flex justify-between">
