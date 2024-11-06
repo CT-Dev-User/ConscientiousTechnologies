@@ -5,18 +5,19 @@ import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contextAPI/UserContext";
+
 const Spinner = () => (
-  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-    <div class="animate-pulse flex space-x-4">
-      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
-      <div class="flex-1 space-y-6 py-1">
-        <div class="h-2 bg-slate-700 rounded"></div>
-        <div class="space-y-3">
-          <div class="grid grid-cols-3 gap-4">
-            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
-            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+  <div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div className="animate-pulse flex space-x-4">
+      <div className="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div className="flex-1 space-y-6 py-1">
+        <div className="h-2 bg-slate-700 rounded"></div>
+        <div className="space-y-3">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div className="h-2 bg-slate-700 rounded col-span-1"></div>
           </div>
-          <div class="h-2 bg-slate-700 rounded"></div>
+          <div className="h-2 bg-slate-700 rounded"></div>
         </div>
       </div>
     </div>
@@ -28,20 +29,10 @@ const SolutionWhyChooseCT = () => {
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    if (!userauth || !userauth.token) {
-      router("/"); // Redirect to login page if not authenticated
-    } else {
-      fetchSolutions();
-      fetchSliderDataByCategory();
-    }
-  }, [userauth, router]);
-
-  const [sliderDataByCaregory, setsliderDataByCaregory] = useState([]);
-  const [filtersliderDataByCaregory, setfiltersliderDataByCaregory] = useState([]);
-  const [addPopupShow, setAddPopUpShow] = useState(false);
-  const [editPopupShow, setEditPopUpShow] = useState(false);
+  const [sliderDataByCategory, setSliderDataByCategory] = useState([]);
+  const [filterSliderDataByCategory, setFilterSliderDataByCategory] = useState([]);
+  const [addPopupShow, setAddPopupShow] = useState(false);
+  const [editPopupShow, setEditPopupShow] = useState(false);
   const [addSliderData, setAddSliderData] = useState({
     category: "",
     Subcategory: "",
@@ -51,7 +42,7 @@ const SolutionWhyChooseCT = () => {
     images: [],
     points: [],
   });
-  const [editSliderData, seteditSliderData] = useState({
+  const [editSliderData, setEditSliderData] = useState({
     category: "",
     Subcategory: "",
     heading: "",
@@ -61,22 +52,26 @@ const SolutionWhyChooseCT = () => {
     points: [],
   });
   const [solutions, setSolutions] = useState([]);
-  const [headerSubtitle, setHeadersubtitle] = useState(null);
-  const [subtitlePopUp, setSubtitlePopUp] = useState(false);
-  const [logosPopUp, setLogosPopUp] = useState(false);
-  const [pointsPopUp, setPointsPopUp] = useState(false);
-  const [editId, setEditId] = useState(null);
+  const [editId, setEditId] = useState(null); // Define editId if not already defined
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
-  const [sliderImages, setSliderImages] = useState([]);
-  const [sliderPoints, setSliderPoints] = useState([]);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filtersliderDataByCaregory ? filtersliderDataByCaregory.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  ):[];
+  const currentItems = filterSliderDataByCategory
+    ? filterSliderDataByCategory.slice(indexOfFirstItem, indexOfLastItem)
+    : [];
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    if (!userauth || !userauth.token) {
+      router("/"); // Redirect to login page if not authenticated
+    } else {
+      fetchSolutions();
+      fetchSliderDataByCategory();
+    }
+  }, [userauth, router]);
 
   const fetchSolutions = async () => {
     try {
@@ -168,93 +163,45 @@ const SolutionWhyChooseCT = () => {
     seteditSliderData({ ...editSliderData, points: updatedPoints });
   };
 
-  // const addSliderDataFunc = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append("category", "Solution"); // Ensure this is needed, otherwise remove it
-  //     formData.append("Subcategory", addSliderData.Subcategory);
-  //     formData.append("heading", addSliderData.heading);
-  //     formData.append("subtitle", addSliderData.subtitle);
-  //     formData.append("logoHeading", addSliderData.logoHeading);
-  //     // Append images
-  //     for (let i = 0; i < addSliderData.images.length; i++) {
-  //       formData.append("images", addSliderData.images[i]);
-  //     }
-  //     // Convert points array to JSON string before sending
-  //     formData.append("points", JSON.stringify(addSliderData.points));
-  //     console.log([...formData]); // Log FormData object to check its contents
-
-  //     const response = await axios.post(
-  //       "https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data",
-  //       formData
-  //     );
-
-  //     if (response.status === 200) {
-  //       fetchSliderDataByCategory();
-  //       setAddPopUpShow(false);
-  //       setAddSliderData({
-  //         category: "",
-  //         Subcategory: "",
-  //         heading: "",
-  //         subtitle: "",
-  //         logoHeading: "",
-  //         images: [],
-  //         points: [],
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-
   const addSliderDataFunc = async (e) => {
-  e.preventDefault();
-  try {
-    const payload = {
-      category: "Solution",
-      Subcategory: addSliderData.Subcategory,
-      heading: addSliderData.heading,
-      subtitle: addSliderData.subtitle,
-      logoHeading: addSliderData.logoHeading,
-      images: addSliderData.images,  // assuming backend can handle array directly
-      points: addSliderData.points, // no JSON.stringify needed if backend expects an array
-    };
-    
-    console.log(payload); // Check payload structure
-
-    const response = await axios.post(
-      "https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data",
-      payload
-    );
-
-    if (response.status === 200) {
-      fetchSliderDataByCategory();
-      setAddPopUpShow(false);
-      setAddSliderData({
-        category: "",
-        Subcategory: "",
-        heading: "",
-        subtitle: "",
-        logoHeading: "",
-        images: [],
-        points: [],
-      });
-    }
-     } catch (error) {
-      if (error.response) {
-        console.log("Server responded with status:", error.response.status);
-        console.log("Response data:", error.response.data);
-      } else if (error.request) {
-        console.log("No response received:", error.request);
-      } else {
-        console.log("Error setting up request:", error.message);
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("category", "Solution"); // Ensure this is needed, otherwise remove it
+      formData.append("Subcategory", addSliderData.Subcategory);
+      formData.append("heading", addSliderData.heading);
+      formData.append("subtitle", addSliderData.subtitle);
+      formData.append("logoHeading", addSliderData.logoHeading);
+      // Append images
+      for (let i = 0; i < addSliderData.images.length; i++) {
+        formData.append("images", addSliderData.images[i]);
       }
+      // Convert points array to JSON string before sending
+      formData.append("points", JSON.stringify(addSliderData.points));
+      console.log([...formData]); // Log FormData object to check its contents
+
+      const response = await axios.post(
+        "https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data",
+        formData
+      );
+
+      if (response.status === 200) {
+        fetchSliderDataByCategory();
+        setAddPopUpShow(false);
+        setAddSliderData({
+          category: "",
+          Subcategory: "",
+          heading: "",
+          subtitle: "",
+          logoHeading: "",
+          images: [],
+          points: [],
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-};
-
+  };
 
   const editSliderDataFunc = async (e) => {
     e.preventDefault();
