@@ -5,19 +5,18 @@ import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contextAPI/UserContext";
-
 const Spinner = () => (
-  <div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-    <div className="animate-pulse flex space-x-4">
-      <div className="rounded-full bg-slate-700 h-10 w-10"></div>
-      <div className="flex-1 space-y-6 py-1">
-        <div className="h-2 bg-slate-700 rounded"></div>
-        <div className="space-y-3">
-          <div className="grid grid-cols-3 gap-4">
-            <div className="h-2 bg-slate-700 rounded col-span-2"></div>
-            <div className="h-2 bg-slate-700 rounded col-span-1"></div>
+  <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+    <div class="animate-pulse flex space-x-4">
+      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+      <div class="flex-1 space-y-6 py-1">
+        <div class="h-2 bg-slate-700 rounded"></div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+            <div class="h-2 bg-slate-700 rounded col-span-1"></div>
           </div>
-          <div className="h-2 bg-slate-700 rounded"></div>
+          <div class="h-2 bg-slate-700 rounded"></div>
         </div>
       </div>
     </div>
@@ -29,40 +28,6 @@ const SolutionWhyChooseCT = () => {
   const [userauth] = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [sliderDataByCategory, setSliderDataByCategory] = useState([]);
-  const [filterSliderDataByCategory, setFilterSliderDataByCategory] = useState([]);
-  const [addPopupShow, setAddPopupShow] = useState(false);
-  const [editPopupShow, setEditPopupShow] = useState(false);
-  const [addSliderData, setAddSliderData] = useState({
-    category: "",
-    Subcategory: "",
-    heading: "",
-    subtitle: "",
-    logoHeading: "",
-    images: [],
-    points: [],
-  });
-  const [editSliderData, setEditSliderData] = useState({
-    category: "",
-    Subcategory: "",
-    heading: "",
-    subtitle: "",
-    logoHeading: "",
-    images: [],
-    points: [],
-  });
-  const [solutions, setSolutions] = useState([]);
-  const [editId, setEditId] = useState(null); // Define editId if not already defined
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(3);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filterSliderDataByCategory
-    ? filterSliderDataByCategory.slice(indexOfFirstItem, indexOfLastItem)
-    : [];
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     if (!userauth || !userauth.token) {
@@ -72,6 +37,46 @@ const SolutionWhyChooseCT = () => {
       fetchSliderDataByCategory();
     }
   }, [userauth, router]);
+
+  const [sliderDataByCaregory, setsliderDataByCaregory] = useState([]);
+  const [filtersliderDataByCaregory, setfiltersliderDataByCaregory] = useState([]);
+  const [addPopupShow, setAddPopUpShow] = useState(false);
+  const [editPopupShow, setEditPopUpShow] = useState(false);
+  const [addSliderData, setAddSliderData] = useState({
+    category: "",
+    Subcategory: "",
+    heading: "",
+    subtitle: "",
+    logoHeading: "",
+    images: [],
+    points: [],
+  });
+  const [editSliderData, seteditSliderData] = useState({
+    category: "",
+    Subcategory: "",
+    heading: "",
+    subtitle: "",
+    logoHeading: "",
+    images: [],
+    points: [],
+  });
+  const [solutions, setSolutions] = useState([]);
+  const [headerSubtitle, setHeadersubtitle] = useState(null);
+  const [subtitlePopUp, setSubtitlePopUp] = useState(false);
+  const [logosPopUp, setLogosPopUp] = useState(false);
+  const [pointsPopUp, setPointsPopUp] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(3);
+  const [sliderImages, setSliderImages] = useState([]);
+  const [sliderPoints, setSliderPoints] = useState([]);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filtersliderDataByCaregory ? filtersliderDataByCaregory.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  ):[];
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const fetchSolutions = async () => {
     try {
