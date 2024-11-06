@@ -85,7 +85,6 @@ const IndustryWhyChooseCT = () => {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-latest-industry-data"
       );
-      // console.log(response.data, "industry");
       setIndustries(response.data);
       setLoading(false);
     } catch (error) {
@@ -100,7 +99,6 @@ const IndustryWhyChooseCT = () => {
       const response = await axios.get(
         `https://conscientious-technologies-backend.vercel.app/get-choose-ct-slider-data/Industry`
       );
-      console.log(response.data.data);
       setsliderDataByCaregory(response.data.data);
       setFilterwhyChooseCt(response.data.data);
       setLoading(false);
@@ -193,7 +191,6 @@ const IndustryWhyChooseCT = () => {
 
       // Convert points array to JSON string before sending
       formData.append("points", JSON.stringify(addSliderData.points));
-      console.log([...formData]); // Log FormData object to check its contents
 
       const response = await axios.post(
         "https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data",
@@ -214,7 +211,11 @@ const IndustryWhyChooseCT = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -238,7 +239,6 @@ const IndustryWhyChooseCT = () => {
         `https://conscientious-technologies-backend.vercel.app/edit-choose-ct-slider-data/${editId}`,
         formData
       );
-      console.log(response.status);
       if (response.status === 200) {
         fetchSliderDataByCategory();
         setEditPopUpShow(false);
@@ -253,7 +253,11 @@ const IndustryWhyChooseCT = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to update data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -278,7 +282,6 @@ const IndustryWhyChooseCT = () => {
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",

@@ -18,7 +18,11 @@ const ContactUs = () => {
       );
       setContactUsData(response.data.getData);
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -42,7 +46,6 @@ const ContactUs = () => {
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",

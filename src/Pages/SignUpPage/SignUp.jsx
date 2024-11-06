@@ -64,7 +64,6 @@ const SignUp = () => {
     } catch (error) {
       setLoading(false); // Stop loading spinner
       setError("Error fetching user data");
-      console.error("Error fetching user data:", error);
     }
   };
   const getRoleName = (role) => {
@@ -115,7 +114,11 @@ const SignUp = () => {
       });
       getAllUsersData();
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to update data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -132,7 +135,11 @@ const SignUp = () => {
         getAllUsersData();
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -160,7 +167,6 @@ const SignUp = () => {
             getAllUsersData();
           }
         } catch (error) {
-          console.log(error);
           Swal.fire({
             title: "Error!",
             text: "An error occurred while deleting.",

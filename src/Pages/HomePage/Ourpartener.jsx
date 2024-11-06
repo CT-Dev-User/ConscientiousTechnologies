@@ -83,7 +83,11 @@ const OurPartener = () => {
         fetchOurPartenerData();
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -96,7 +100,6 @@ const OurPartener = () => {
       setOurPartenerData(response.data.getdata);
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setError("Error fetching user data");
       setLoading(false);
     }
@@ -123,7 +126,6 @@ const OurPartener = () => {
             `https://conscientious-technologies-backend.vercel.app/edit-partener-data/${editId}`,
             formData
           );
-          console.log(response.status);
           if (response.status === 200) {
             setEditId(null);
             setEditOurPartenerDataShow(false);
@@ -131,7 +133,6 @@ const OurPartener = () => {
             Swal.fire("Saved!", "Your changes have been saved.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to save changes. Please try again later.",
@@ -166,7 +167,6 @@ const OurPartener = () => {
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",

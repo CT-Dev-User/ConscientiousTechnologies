@@ -110,7 +110,11 @@ const ServiceFAQ = () => {
         }); // Reset form fields
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -127,7 +131,6 @@ const ServiceFAQ = () => {
         `https://conscientious-technologies-backend.vercel.app/update-faq/${editId}`,
         formData
       );
-      console.log(response.status);
       if (response.status === 200) {
         Swal.fire("Saved!", "Your changes have been saved.", "success");
         fetchHomeFaqs();
@@ -140,7 +143,6 @@ const ServiceFAQ = () => {
         setEditPopUpShow(false);
       }
     } catch (error) {
-      console.log(error);
       Swal.fire(
         "Error!",
         "Failed to save changes. Please try again later.",
@@ -161,7 +163,6 @@ const ServiceFAQ = () => {
     } catch (error) {
       setError("Error fetching data");
       setLoading(false);
-      console.log(error);
     }
   };
 
@@ -178,7 +179,11 @@ const ServiceFAQ = () => {
       );
       setIndustries(response.data);
     } catch (error) {
-      console.error("Error fetching services:", error);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
   const deleteHomeFAQData = async (id) => {
@@ -202,7 +207,6 @@ const ServiceFAQ = () => {
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",

@@ -100,7 +100,11 @@ const CaseStudies = () => {
       );
       setServices(response.data);
     } catch (error) {
-      console.error("Error fetching services:", error);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
   // Handlers for file input changes
@@ -114,14 +118,17 @@ const CaseStudies = () => {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-case-studies-by-cateory/Service"
       );
-      console.log(response.data);
       setCaseStudies(response.data);
       setFilteredCaseStudies(response.data);
       setLoading(false);
     } catch (error) {
       setError("Error fetching user data");
       setLoading(false);
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -165,13 +172,15 @@ const CaseStudies = () => {
       formData.append("resultsImg3", resultsImg3);
 
       await axios.post("https://conscientious-technologies-backend.vercel.app/create-case-studies", formData);
-
       Swal.fire("Saved!", "Your data has been saved.", "success");
       setAddPopUpShow(false);
       getCaseStudiesDataFunc();
     } catch (error) {
-      console.log(error);
-      res.status(400).json({ message: "Error creating case study." });
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -220,8 +229,11 @@ const CaseStudies = () => {
       setEditPopUpShow(false);
       getCaseStudiesDataFunc();
     } catch (error) {
-      console.log(error);
-      res.status(400).json({ message: "Error updating case study." });
+      Swal.fire(
+        "Error!",
+        "Failed to update data. Please try again later.",
+        "error"
+      );
     }
   };
   useEffect(() => {
@@ -238,7 +250,11 @@ const CaseStudies = () => {
         getCaseStudiesDataFunc();
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to delete data. Please try again later.",
+        "error"
+      );
     }
   };
 

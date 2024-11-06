@@ -93,11 +93,9 @@ const ServicesCMS = () => {
 
   // New function to open view modal for header data
   const openViewModal = (service) => {
-    console.log(service)
     setViewHeaderTagLine(service.headerTagLine);
     setViewheaderDescription(service.headerDescription);
     setviewCardService(service.serviceName);
-
     setViewHeaderImage(service.headerImage);
     setShowViewModal(true);
   };
@@ -111,13 +109,11 @@ const ServicesCMS = () => {
     setLoading(true);
     try {
       const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-service-data');
-      console.log(response.data);
       setServices(response.data);
       setLoading(false);
     } catch (error) {
       setError('Error fetching data');
       setLoading(false);
-      console.error('Error fetching services:', error);
     }
   };
 
@@ -219,7 +215,19 @@ const ServicesCMS = () => {
       closeModal();
       fetchServices();
     } catch (error) {
-      console.error('Error saving service:', error);
+      if(serviceId){
+        Swal.fire(
+          "Error!",
+          "Failed to update data. Please try again later.",
+          "error"
+        );
+      }else{
+        Swal.fire(
+          "Error!",
+          "Failed to add data. Please try again later.",
+          "error"
+        );
+      }
     }
   };
 
@@ -252,7 +260,6 @@ const ServicesCMS = () => {
             );
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             'Error!',
             'Failed to delete data. Please try again later.',

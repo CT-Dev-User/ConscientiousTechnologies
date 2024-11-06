@@ -106,7 +106,11 @@ const HeroSection = () => {
         fetchHomeHeroData();
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -152,7 +156,6 @@ const HeroSection = () => {
             Swal.fire("Saved!", "Your changes have been saved.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to save changes. Please try again later.",
@@ -184,7 +187,6 @@ const HeroSection = () => {
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",

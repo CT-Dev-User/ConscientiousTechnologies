@@ -79,7 +79,6 @@ const ServiceBlogCMS = () => {
     } catch (error) {
       setError("Error fetching blogs");
       setLoading(false);
-      console.error("Error fetching blogs:", error);
     }
   };
 
@@ -90,7 +89,11 @@ const ServiceBlogCMS = () => {
       );
       setServices(response.data);
     } catch (error) {
-      console.error("Error fetching services:", error);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
   // Handle form input changes
@@ -160,7 +163,6 @@ const ServiceBlogCMS = () => {
     setViewCardData(blog);
   };
   const viewHeaderDetails = (blog) => {
-    console.log(blog);
     setViewHeaderData(blog);
   };
 
@@ -171,7 +173,6 @@ const ServiceBlogCMS = () => {
   const viewBlogTagsDetails = (blog) => {
     const blogTag = blog.blogTags.split(", ");
     setViewBlogTagsData(blogTag);
-    // console.log(blogTag)
   };
 
   // Submit blog data (Add/Edit)
@@ -207,7 +208,19 @@ const ServiceBlogCMS = () => {
       fetchBlogs();
       toggleModal();
     } catch (error) {
-      console.error("Error saving blog:", error);
+      if(currentBlog){
+        Swal.fire(
+          "Error!",
+          "Failed to update data. Please try again later.",
+          "error"
+        );
+      }else{
+        Swal.fire(
+          "Error!",
+          "Failed to add data. Please try again later.",
+          "error"
+        );
+      }  
     }
   };
 
@@ -230,7 +243,6 @@ const ServiceBlogCMS = () => {
           Swal.fire("Deleted!", "Your data has been deleted.", "success");
           fetchBlogs();
         } catch (error) {
-          console.error("Error deleting blog:", error);
           Swal.fire("Error", "Failed to delete data.", "error");
         }
       }

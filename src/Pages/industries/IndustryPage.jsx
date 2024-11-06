@@ -76,7 +76,6 @@ const IndustryCMS = () => {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-latest-industry-data"
       );
-      console.log(response.data);
       setIndustrys(response.data);
       setfilteredIndustry(response.data);
       setLoading(false);
@@ -115,7 +114,6 @@ const IndustryCMS = () => {
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",
@@ -207,7 +205,6 @@ const IndustryCMS = () => {
       fetchIndustrys(); // Refresh the Industrys list
       closeModal(); // Close the modal after submission
     } catch (error) {
-      console.error("Error submitting form:", error);
       Swal.fire(
         "Error!",
         "Failed to save data. Please try again later.",

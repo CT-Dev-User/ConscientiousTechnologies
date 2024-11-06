@@ -116,7 +116,11 @@ const IndustryFAQ = () => {
         }); // Reset form fields
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -133,7 +137,6 @@ const IndustryFAQ = () => {
         `https://conscientious-technologies-backend.vercel.app/update-faq/${editId}`,
         formData
       );
-      // console.log(response.status);
       if (response.status === 200) {
         Swal.fire("Saved!", "Your changes have been saved.", "success");
         fetchHomeFaqs();
@@ -146,7 +149,6 @@ const IndustryFAQ = () => {
         setEditPopUpShow(false);
       }
     } catch (error) {
-      console.log(error);
       Swal.fire(
         "Error!",
         "Failed to save changes. Please try again later.",
@@ -162,7 +164,6 @@ const IndustryFAQ = () => {
         "https://conscientious-technologies-backend.vercel.app/get-faq-bycategory/Industry"
       );
       setHomeFaqs(response.data.data);
-      console.log(response.data.data);
       setfilterFaq(response.data.data);
       setLoading(false);
     } catch (error) {
@@ -205,7 +206,6 @@ const IndustryFAQ = () => {
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",

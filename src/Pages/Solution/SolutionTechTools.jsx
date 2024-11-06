@@ -61,7 +61,11 @@ const SolutionTechTools = () => {
       );
       setSolutions(response.data);
     } catch (error) {
-      console.error("Error fetching services:", error);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
   const handleSubTechModalClose = () => setSubTechModalShow(false);
@@ -137,7 +141,6 @@ const SolutionTechTools = () => {
     } catch (error) {
       setLoading(false);
       setError("Error fetching data");
-      console.error(error);
     }
   };
 
@@ -172,7 +175,11 @@ const SolutionTechTools = () => {
         });
       }
     } catch (error) {
-      console.error(error);
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -192,12 +199,10 @@ const SolutionTechTools = () => {
             `https://conscientious-technologies-backend.vercel.app/delete-reliable-tools-data/${id}`
           );
           if (response.status === 200) {
-            // setEditId(null);
             fetchReliableData();
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",
@@ -248,7 +253,6 @@ const SolutionTechTools = () => {
         Swal.fire("Success", "Data updated successfully!", "success");
       }
     } catch (error) {
-      console.error(error);
       Swal.fire("Error", "Failed to update data. Please try again.", "error");
     }
   };

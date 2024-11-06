@@ -127,7 +127,6 @@ const HomeTechTools = () => {
     } catch (error) {
       setLoading(false);
       setError("Error fetching user data");
-      console.error(error);
     }
   };
 
@@ -163,7 +162,11 @@ const HomeTechTools = () => {
         });
       }
     } catch (error) {
-      console.error(error);
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -188,7 +191,6 @@ const HomeTechTools = () => {
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",
@@ -239,7 +241,6 @@ const HomeTechTools = () => {
         Swal.fire("Success", "Data updated successfully!", "success");
       }
     } catch (error) {
-      console.error(error);
       Swal.fire("Error", "Failed to update data. Please try again.", "error");
     }
   };

@@ -77,17 +77,19 @@ const SubServicesCMS = () => {
       paginate(filteredsubServices, currentPage, itemsPerPage)
     );
   }, [filteredsubServices, currentPage, itemsPerPage]);
-  console.log(paginatedservices, "p");
 
   const fetchServices = async () => {
     try {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-latest-service-data"
       );
-      console.log(response.data);
       setServices(response.data);
     } catch (error) {
-      console.error("Error fetching services:", error);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -103,7 +105,6 @@ const SubServicesCMS = () => {
     } catch (error) {
       setError("Error fetching data");
       setLoading(false);
-      console.error("Error fetching service Data:", error);
     }
   };
 
@@ -143,7 +144,6 @@ const SubServicesCMS = () => {
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",
@@ -244,7 +244,6 @@ const SubServicesCMS = () => {
       fetchSubservices(); // Refresh the services list
       closeModal(); // Close the modal after submission
     } catch (error) {
-      console.error("Error submitting form:", error);
       Swal.fire(
         "Error!",
         "Failed to save data. Please try again later.",

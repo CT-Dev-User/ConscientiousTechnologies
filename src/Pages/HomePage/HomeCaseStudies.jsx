@@ -102,13 +102,11 @@ const HomeCaseStudies = () => {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-case-studies-by-cateory/Home"
       );
-      console.log(response.data);
       setCaseStudies(response.data);
       setLoading(false);
     } catch (error) {
       setError("Error fetching user data");
       setLoading(false);
-      console.log(error);
     }
   };
 
@@ -160,8 +158,11 @@ const HomeCaseStudies = () => {
       setAddPopUpShow(false);
       getCaseStudiesDataFunc();
     } catch (error) {
-      console.log(error);
-      res.status(400).json({ message: "Error creating case study." });
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -210,8 +211,11 @@ const HomeCaseStudies = () => {
       setEditPopUpShow(false);  
       getCaseStudiesDataFunc();
     } catch (error) {
-      console.log(error);
-      res.status(400).json({ message: "Error updating case study." });
+      Swal.fire(
+        "Error!",
+        "Failed to update data. Please try again later.",
+        "error"
+      );
     }
     
   }
@@ -226,7 +230,11 @@ const HomeCaseStudies = () => {
         getCaseStudiesDataFunc();
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to delete data. Please try again later.",
+        "error"
+      );
     }
   };
 

@@ -80,7 +80,11 @@ const ServiceWhyChooseCT = () => {
       );
       setServices(response.data);
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -92,14 +96,12 @@ const ServiceWhyChooseCT = () => {
       const response = await axios.get(
         `https://conscientious-technologies-backend.vercel.app/get-choose-ct-slider-data/Service`
       );
-      console.log(response.data.data);
       setsliderDataByCaregory(response.data.data);
       setsliderData(response.data.data);
       setLoading(false);
     } catch (error) {
       setLoading(false);
       setError("Error fetching data");
-      console.log(error);
     }
   };
 
@@ -182,8 +184,6 @@ const ServiceWhyChooseCT = () => {
 
       // Convert points array to JSON string before sending
       formData.append("points", JSON.stringify(addSliderData.points));
-      console.log([...formData]); // Log FormData object to check its contents
-
       const response = await axios.post(
         "https://conscientious-technologies-backend.vercel.app/add-choose-ct-slider-data",
         formData
@@ -203,7 +203,11 @@ const ServiceWhyChooseCT = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -227,7 +231,6 @@ const ServiceWhyChooseCT = () => {
         `https://conscientious-technologies-backend.vercel.app/edit-choose-ct-slider-data/${editId}`,
         formData
       );
-      console.log(response.status);
       if (response.status === 200) {
         fetchSliderDataByCategory();
         setEditPopUpShow(false);
@@ -242,7 +245,11 @@ const ServiceWhyChooseCT = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to update data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -267,7 +274,6 @@ const ServiceWhyChooseCT = () => {
             Swal.fire("Deleted!", "Your data has been deleted.", "success");
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             "Error!",
             "Failed to delete data. Please try again later.",

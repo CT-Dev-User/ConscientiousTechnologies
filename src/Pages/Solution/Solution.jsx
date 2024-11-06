@@ -72,14 +72,12 @@ const SolutionCMS = () => {
     setLoading(true);
     try {
       const response = await axios.get('https://conscientious-technologies-backend.vercel.app/get-latest-solution-data');
-      console.log(response.data);
       setSolutions(response.data);
       setSolutionData(response.data);
       setLoading(false);
     } catch (error) {
       setError('Error fetching data');
       setLoading(false);
-      console.error('Error fetching Solution Data:', error);
     }
   };
 
@@ -116,7 +114,6 @@ const SolutionCMS = () => {
             Swal.fire('Deleted!', 'Your data has been deleted.', 'success');
           }
         } catch (error) {
-          console.log(error);
           Swal.fire('Error!', 'Failed to delete data. Please try again later.', 'error');
         }
       }
@@ -196,7 +193,6 @@ const SolutionCMS = () => {
       fetchSolutions(); // Refresh the solutions list
       closeModal(); // Close the modal after submission
     } catch (error) {
-      console.error('Error submitting form:', error);
       Swal.fire('Error!', 'Failed to save data. Please try again later.', 'error');
     }
   };

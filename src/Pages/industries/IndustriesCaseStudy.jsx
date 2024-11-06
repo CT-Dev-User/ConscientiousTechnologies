@@ -90,7 +90,9 @@ const IndustryCaseStudies = () => {
   const [filterCaseStudies, setFilterCaseStudies] = useState([]);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filterCaseStudies ? filterCaseStudies.slice(indexOfFirstItem, indexOfLastItem) : [];
+  const currentItems = filterCaseStudies
+    ? filterCaseStudies.slice(indexOfFirstItem, indexOfLastItem)
+    : [];
 
   useEffect(() => {
     fetchIndustry();
@@ -100,11 +102,13 @@ const IndustryCaseStudies = () => {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-latest-industry-data"
       );
-      // console.log(response.data, "industry");
       setIndustries(response.data);
-
     } catch (error) {
-      console.error("Error fetching services:", error);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
   // Handlers for file input changes
@@ -118,13 +122,11 @@ const IndustryCaseStudies = () => {
       const response = await axios.get(
         "https://conscientious-technologies-backend.vercel.app/get-case-studies-by-cateory/Industry"
       );
-      console.log(response.data, "Industry");
       setCaseStudies(response.data);
       setFilterCaseStudies(response.data);
       setLoading(false);
     } catch (error) {
-      console.log(error);
-      setError("Error fetching data")
+      setError("Error fetching data");
       setLoading(false);
     }
   };
@@ -167,13 +169,19 @@ const IndustryCaseStudies = () => {
       formData.append("resultsImg2", resultsImg2);
       formData.append("resultsImg3", resultsImg3);
 
-      await axios.post("https://conscientious-technologies-backend.vercel.app/create-case-studies", formData);
+      await axios.post(
+        "https://conscientious-technologies-backend.vercel.app/create-case-studies",
+        formData
+      );
       Swal.fire("Saved!", "Your data has been saved.", "success");
       getCaseStudiesDataFunc();
       setAddPopUpShow(false);
     } catch (error) {
-      console.log(error);
-      res.status(400).json({ message: "Error creating case study." });
+      Swal.fire(
+        "Error!",
+        "Failed to add data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -222,8 +230,11 @@ const IndustryCaseStudies = () => {
       getCaseStudiesDataFunc();
       setEditPopUpShow(false);
     } catch (error) {
-      console.log(error);
-      res.status(400).json({ message: "Error updating case study." });
+      Swal.fire(
+        "Error!",
+        "Failed to update data. Please try again later.",
+        "error"
+      );
     }
   };
   useEffect(() => {
@@ -240,7 +251,11 @@ const IndustryCaseStudies = () => {
         getCaseStudiesDataFunc();
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire(
+        "Error!",
+        "Failed to delete data. Please try again later.",
+        "error"
+      );
     }
   };
 
@@ -280,7 +295,6 @@ const IndustryCaseStudies = () => {
   const [executionData, setExecutionData] = useState("");
   const [solutionData, setSolutionData] = useState("");
   return (
-
     <>
       {loading ? (
         <Spinner />
@@ -289,7 +303,9 @@ const IndustryCaseStudies = () => {
       ) : (
         <div className="w-full bg-gray-300 h-auto mx-auto p-4 relative">
           <div className="flex justify-between mb-2 mr-3">
-            <h1 className="text-xl font-bold text-black">Industry Pages Case Studies</h1>
+            <h1 className="text-xl font-bold text-black">
+              Industry Pages Case Studies
+            </h1>
             <select
               name=""
               onChange={(e) => {
@@ -297,7 +313,9 @@ const IndustryCaseStudies = () => {
                   setFilterCaseStudies(caseStudies); // Show all FAQs
                 } else {
                   setFilterCaseStudies(
-                    caseStudies.filter((item) => item.Subcategory === e.target.value)
+                    caseStudies.filter(
+                      (item) => item.Subcategory === e.target.value
+                    )
                   );
                 }
               }}
@@ -322,7 +340,9 @@ const IndustryCaseStudies = () => {
             <table className="border border-gray-300 text-left">
               <thead className="bg-gray-800 text-white text-left">
                 <tr className="border-b border-gray-300">
-                  <th className="border-r px-4 py-2 text-xs">Subcategory / Industry</th>
+                  <th className="border-r px-4 py-2 text-xs">
+                    Subcategory / Industry
+                  </th>
                   <th className="border-r px-4 py-2 text-xs">Cards</th>
                   <th className="border-r px-4 py-2 text-xs">Header</th>
                   <th className="border-r px-4 py-2 text-xs">Overview</th>
@@ -353,10 +373,11 @@ const IndustryCaseStudies = () => {
                           See
                         </button>
                         <div
-                          className={`${cardData === index
+                          className={`${
+                            cardData === index
                               ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                               : "hidden"
-                            }`}
+                          }`}
                         >
                           <h6 className="font-bold text-gray-700 text-xs">
                             Card Title:{" "}
@@ -374,15 +395,15 @@ const IndustryCaseStudies = () => {
                             Core Tech:{" "}
                             {caseStudy.cardDatacoreTech
                               ? caseStudy.cardDatacoreTech
-                                .split(", ")
-                                .map((tech, index) => (
-                                  <span
-                                    key={index}
-                                    className="font-normal text-blue-700"
-                                  >
-                                    {tech}
-                                  </span>
-                                ))
+                                  .split(", ")
+                                  .map((tech, index) => (
+                                    <span
+                                      key={index}
+                                      className="font-normal text-blue-700"
+                                    >
+                                      {tech}
+                                    </span>
+                                  ))
                               : null}
                           </h6>
                           <img
@@ -406,10 +427,11 @@ const IndustryCaseStudies = () => {
                           See
                         </button>
                         <div
-                          className={`${headerData === index
+                          className={`${
+                            headerData === index
                               ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                               : "hidden"
-                            }`}
+                          }`}
                         >
                           <h6 className="font-bold text-gray-700 text-xs">
                             Header Tagline:{" "}
@@ -444,10 +466,11 @@ const IndustryCaseStudies = () => {
                           See
                         </button>
                         <div
-                          className={`${overViewData === index
+                          className={`${
+                            overViewData === index
                               ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
                               : "hidden"
-                            }`}
+                          }`}
                         >
                           <h6 className="text-xs">
                             Overview Title:{" "}
@@ -499,10 +522,13 @@ const IndustryCaseStudies = () => {
                         >
                           See
                         </button>
-                        <div className={`${goalsData === index
-                            ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
-                            : "hidden"
-                          }`}>
+                        <div
+                          className={`${
+                            goalsData === index
+                              ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                              : "hidden"
+                          }`}
+                        >
                           <h6 className="text-xs">
                             Goals:{" "}
                             <span className="font-normal text-blue-700 text-xs">
@@ -521,16 +547,28 @@ const IndustryCaseStudies = () => {
                               {caseStudy.challenges}
                             </span>
                           </h6>
-                          <button className="p-2 bg-slate-500 text-white rounded" onClick={() => setGoalsData("")}>Close</button>
+                          <button
+                            className="p-2 bg-slate-500 text-white rounded"
+                            onClick={() => setGoalsData("")}
+                          >
+                            Close
+                          </button>
                         </div>
                       </td>
                       <td className="border-r px-4 py-2 text-xs">
-                        <button className="px-3 py-2 bg-slate-500 text-white rounded"
-                          onClick={() => setExecutionData(index)}>See</button>
-                        <div className={`${executionData === index
-                            ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
-                            : "hidden"
-                          }`}>
+                        <button
+                          className="px-3 py-2 bg-slate-500 text-white rounded"
+                          onClick={() => setExecutionData(index)}
+                        >
+                          See
+                        </button>
+                        <div
+                          className={`${
+                            executionData === index
+                              ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                              : "hidden"
+                          }`}
+                        >
                           <h6 className="text-xs">
                             Approach:{" "}
                             <span className="font-normal text-blue-700 text-xs">
@@ -585,17 +623,28 @@ const IndustryCaseStudies = () => {
                               {caseStudy.executionPoint4}
                             </span>
                           </h6>
-                          <button className="p-2 bg-slate-500 text-white rounded" onClick={() => setExecutionData("")}>Close</button>
+                          <button
+                            className="p-2 bg-slate-500 text-white rounded"
+                            onClick={() => setExecutionData("")}
+                          >
+                            Close
+                          </button>
                         </div>
-
                       </td>
                       <td className="border-r px-4 py-2 text-xs">
-                        <button className="px-3 py-2 bg-slate-500 text-white rounded"
-                          onClick={() => setSolutionData(index)}>See</button>
-                        <div className={`${solutionData === index
-                            ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
-                            : "hidden"
-                          }`}>
+                        <button
+                          className="px-3 py-2 bg-slate-500 text-white rounded"
+                          onClick={() => setSolutionData(index)}
+                        >
+                          See
+                        </button>
+                        <div
+                          className={`${
+                            solutionData === index
+                              ? "absolute top-2 w-auto h-auto bg-white border-2 border-gray-950 p-5 rounded"
+                              : "hidden"
+                          }`}
+                        >
                           <h6 className="text-xs">
                             Solution:{" "}
                             <span className="font-normal text-blue-700 text-xs">
@@ -609,13 +658,30 @@ const IndustryCaseStudies = () => {
                             </span>
                           </h6>
                           <img src={caseStudy.solutionImage} alt="solution" />
-                          <button className="p-2 bg-slate-500 text-white ml-[80%] mt-5 rounded" onClick={() => setSolutionData("")}>Close</button>
+                          <button
+                            className="p-2 bg-slate-500 text-white ml-[80%] mt-5 rounded"
+                            onClick={() => setSolutionData("")}
+                          >
+                            Close
+                          </button>
                         </div>
                       </td>
                       <td className="border-r px-4 py-2 flex flex-col gap-3">
-                        <img src={caseStudy.resultsImg1} alt="result" className="w-20" />
-                        <img src={caseStudy.resultsImg2} alt="result" className="w-20" />
-                        <img src={caseStudy.resultsImg3} alt="result" className="w-20" />
+                        <img
+                          src={caseStudy.resultsImg1}
+                          alt="result"
+                          className="w-20"
+                        />
+                        <img
+                          src={caseStudy.resultsImg2}
+                          alt="result"
+                          className="w-20"
+                        />
+                        <img
+                          src={caseStudy.resultsImg3}
+                          alt="result"
+                          className="w-20"
+                        />
                       </td>
                       <td className="border-r px-4 py-2">
                         <button
@@ -653,7 +719,9 @@ const IndustryCaseStudies = () => {
                 Prev
               </button>
             </li>
-            <li className="py-2 px-2 text-black font-semibold">{currentPage}</li>
+            <li className="py-2 px-2 text-black font-semibold">
+              {currentPage}
+            </li>
             <li>
               <button
                 onClick={() =>
@@ -698,7 +766,10 @@ const IndustryCaseStudies = () => {
                   </div>
                   <div>
                     <h1 className="text-base font-bold">Card Data</h1>
-                    <label htmlFor="cardDatatitle" className="font-semibold mt-2">
+                    <label
+                      htmlFor="cardDatatitle"
+                      className="font-semibold mt-2"
+                    >
                       Title
                     </label>
                     <input
@@ -737,13 +808,18 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="cardDataheaderImage" className="font-semibold">
+                    <label
+                      htmlFor="cardDataheaderImage"
+                      className="font-semibold"
+                    >
                       Image
                     </label>
                     <input
                       type="file"
                       name="cardDatacardImage"
-                      onChange={(e) => handleFileChange(e, setCardDatacardImage)}
+                      onChange={(e) =>
+                        handleFileChange(e, setCardDatacardImage)
+                      }
                       className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
                     />
                   </div>
@@ -752,7 +828,10 @@ const IndustryCaseStudies = () => {
                 <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
                   <div>
                     <h1 className="text-base font-bold">Header</h1>
-                    <label htmlFor="headerTagLine" className="font-semibold mt-2">
+                    <label
+                      htmlFor="headerTagLine"
+                      className="font-semibold mt-2"
+                    >
                       TagLine
                     </label>
                     <input
@@ -792,7 +871,10 @@ const IndustryCaseStudies = () => {
                 <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
                   <div>
                     <h1 className="text-base font-bold">Overview</h1>
-                    <label htmlFor="overviewtitle" className="font-semibold mt-2">
+                    <label
+                      htmlFor="overviewtitle"
+                      className="font-semibold mt-2"
+                    >
                       Title
                     </label>
                     <input
@@ -805,7 +887,10 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="overviewindustryType" className="font-semibold">
+                    <label
+                      htmlFor="overviewindustryType"
+                      className="font-semibold"
+                    >
                       Industry Type
                     </label>
                     <input
@@ -818,7 +903,10 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="overviewbusinessType" className="font-semibold">
+                    <label
+                      htmlFor="overviewbusinessType"
+                      className="font-semibold"
+                    >
                       Business Type
                     </label>
                     <input
@@ -841,13 +929,18 @@ const IndustryCaseStudies = () => {
                       type="text"
                       name="overviewservicesProvided"
                       value={overviewservicesProvided}
-                      onChange={(e) => setOverviewservicesProvided(e.target.value)}
+                      onChange={(e) =>
+                        setOverviewservicesProvided(e.target.value)
+                      }
                       placeholder="Overview Services Provided"
                       className="p-2 border border-gray-300 rounded w-full"
                     />
                   </div>
                   <div>
-                    <label htmlFor="overviewdescription" className="font-semibold">
+                    <label
+                      htmlFor="overviewdescription"
+                      className="font-semibold"
+                    >
                       Description
                     </label>
                     <textarea
@@ -971,7 +1064,10 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="executionHeading2" className="font-semibold">
+                    <label
+                      htmlFor="executionHeading2"
+                      className="font-semibold"
+                    >
                       {" "}
                       Execution Heading 2
                     </label>
@@ -997,7 +1093,10 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="executionHeading3" className="font-semibold">
+                    <label
+                      htmlFor="executionHeading3"
+                      className="font-semibold"
+                    >
                       {" "}
                       Execution Heading 3
                     </label>
@@ -1023,7 +1122,10 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="executionHeading3" className="font-semibold">
+                    <label
+                      htmlFor="executionHeading3"
+                      className="font-semibold"
+                    >
                       {" "}
                       Execution Heading 4
                     </label>
@@ -1178,7 +1280,10 @@ const IndustryCaseStudies = () => {
                   </div>
                   <div>
                     <h1 className="text-base font-bold">Card Data</h1>
-                    <label htmlFor="cardDatatitle" className="font-semibold mt-2">
+                    <label
+                      htmlFor="cardDatatitle"
+                      className="font-semibold mt-2"
+                    >
                       Title
                     </label>
                     <input
@@ -1217,13 +1322,18 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="cardDataheaderImage" className="font-semibold">
+                    <label
+                      htmlFor="cardDataheaderImage"
+                      className="font-semibold"
+                    >
                       Image
                     </label>
                     <input
                       type="file"
                       name="cardDatacardImage"
-                      onChange={(e) => handleFileChange(e, setCardDatacardImage)}
+                      onChange={(e) =>
+                        handleFileChange(e, setCardDatacardImage)
+                      }
                       className="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded file:text-sm file:font-semibold file:bg-gray-50 hover:file:bg-gray-100"
                     />
                   </div>
@@ -1232,7 +1342,10 @@ const IndustryCaseStudies = () => {
                 <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
                   <div>
                     <h1 className="text-base font-bold">Header</h1>
-                    <label htmlFor="headerTagLine" className="font-semibold mt-2">
+                    <label
+                      htmlFor="headerTagLine"
+                      className="font-semibold mt-2"
+                    >
                       TagLine
                     </label>
                     <input
@@ -1272,7 +1385,10 @@ const IndustryCaseStudies = () => {
                 <div className="space-y-4 text-sm border border-gray-300 rounded p-4">
                   <div>
                     <h1 className="text-base font-bold">Overview</h1>
-                    <label htmlFor="overviewtitle" className="font-semibold mt-2">
+                    <label
+                      htmlFor="overviewtitle"
+                      className="font-semibold mt-2"
+                    >
                       Title
                     </label>
                     <input
@@ -1285,7 +1401,10 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="overviewindustryType" className="font-semibold">
+                    <label
+                      htmlFor="overviewindustryType"
+                      className="font-semibold"
+                    >
                       Industry Type
                     </label>
                     <input
@@ -1298,7 +1417,10 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="overviewbusinessType" className="font-semibold">
+                    <label
+                      htmlFor="overviewbusinessType"
+                      className="font-semibold"
+                    >
                       Business Type
                     </label>
                     <input
@@ -1321,13 +1443,18 @@ const IndustryCaseStudies = () => {
                       type="text"
                       name="overviewservicesProvided"
                       value={overviewservicesProvided}
-                      onChange={(e) => setOverviewservicesProvided(e.target.value)}
+                      onChange={(e) =>
+                        setOverviewservicesProvided(e.target.value)
+                      }
                       placeholder="Overview Services Provided"
                       className="p-2 border border-gray-300 rounded w-full"
                     />
                   </div>
                   <div>
-                    <label htmlFor="overviewdescription" className="font-semibold">
+                    <label
+                      htmlFor="overviewdescription"
+                      className="font-semibold"
+                    >
                       Description
                     </label>
                     <textarea
@@ -1451,7 +1578,10 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="executionHeading2" className="font-semibold">
+                    <label
+                      htmlFor="executionHeading2"
+                      className="font-semibold"
+                    >
                       {" "}
                       Execution Heading 2
                     </label>
@@ -1477,7 +1607,10 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="executionHeading3" className="font-semibold">
+                    <label
+                      htmlFor="executionHeading3"
+                      className="font-semibold"
+                    >
                       {" "}
                       Execution Heading 3
                     </label>
@@ -1503,7 +1636,10 @@ const IndustryCaseStudies = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="executionHeading3" className="font-semibold">
+                    <label
+                      htmlFor="executionHeading3"
+                      className="font-semibold"
+                    >
                       {" "}
                       Execution Heading 4
                     </label>
@@ -1632,8 +1768,6 @@ const IndustryCaseStudies = () => {
         </div>
       )}
     </>
-
-
   );
 };
 

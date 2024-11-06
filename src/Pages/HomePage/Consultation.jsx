@@ -53,7 +53,6 @@ const ConsultationData = () => {
     } catch (error) {
       setError(error.message);
       setLoading(false);
-      console.log(error);
     }
   };
 
@@ -79,7 +78,6 @@ const ConsultationData = () => {
                     );
                 }
             } catch (error) {
-                console.log(error);
                 Swal.fire(
                     'Error!',
                     'Failed to delete data. Please try again later.',

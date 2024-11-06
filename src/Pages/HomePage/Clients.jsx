@@ -64,7 +64,6 @@ const Clients = () => {
     } catch (error) {
       setError("Error fetching user data");
       setLoading(false);
-      console.log(error);
     }
   };
 
@@ -91,7 +90,6 @@ const Clients = () => {
             );
           }
         } catch (error) {
-          console.log(error);
           Swal.fire(
             'Error!',
             'Failed to delete data. Please try again later.',
@@ -115,7 +113,6 @@ const Clients = () => {
 
     try {
       if (selectedClientId) {
-        console.log("ok")
         // Edit existing client
         await axios.put(`https://conscientious-technologies-backend.vercel.app/edit-client-review-data/${selectedClientId}`, formData);
 
@@ -128,8 +125,6 @@ const Clients = () => {
       fetchClientReviewData();
       setShowAddModal(false);
       setShowEditModal(false);
-
-
       //Reset form fields
       setName('');
       setReview('');
@@ -140,7 +135,6 @@ const Clients = () => {
       setReviewPopup(false);
 
     } catch (error) {
-      console.log(error);
       Swal.fire('Error', 'Failed to submit data. Please try again.', 'error');
     }
   };

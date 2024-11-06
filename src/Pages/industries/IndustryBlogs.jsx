@@ -94,7 +94,11 @@ const IndutryBlogCMS = () => {
       );
       setIndustries(response.data);
     } catch (error) {
-      console.error("Error fetching services:", error);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch data. Please try again later.",
+        "error"
+      );
     }
   };
   // Handle form input changes
@@ -164,7 +168,6 @@ const IndutryBlogCMS = () => {
     setViewCardData(blog);
   };
   const viewHeaderDetails = (blog) => {
-    console.log(blog);
     setViewHeaderData(blog);
   };
 
@@ -175,7 +178,6 @@ const IndutryBlogCMS = () => {
   const viewBlogTagsDetails = (blog) => {
     const blogTag = blog.blogTags.split(", ");
     setViewBlogTagsData(blogTag);
-    // console.log(blogTag)
   };
 
   // Submit blog data (Add/Edit)
@@ -210,8 +212,11 @@ const IndutryBlogCMS = () => {
 
       fetchBlogs();
       toggleModal();
-    } catch (error) {
-      console.error("Error saving blog:", error);
+    } catch (error) { Swal.fire(
+      "Error!",
+      "Failed to add data. Please try again later.",
+      "error"
+    );
     }
   };
 
@@ -234,7 +239,6 @@ const IndutryBlogCMS = () => {
           Swal.fire("Deleted!", "Your data has been deleted.", "success");
           fetchBlogs();
         } catch (error) {
-          console.error("Error deleting blog:", error);
           Swal.fire("Error", "Failed to delete data.", "error");
         }
       }
