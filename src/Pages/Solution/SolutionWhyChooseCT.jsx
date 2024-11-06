@@ -242,9 +242,17 @@ const SolutionWhyChooseCT = () => {
         points: [],
       });
     }
-  } catch (error) {
-    console.log(error);
-  }
+     } catch (error) {
+      if (error.response) {
+        console.log("Server responded with status:", error.response.status);
+        console.log("Response data:", error.response.data);
+      } else if (error.request) {
+        console.log("No response received:", error.request);
+      } else {
+        console.log("Error setting up request:", error.message);
+      }
+    }
+
 };
 
 
