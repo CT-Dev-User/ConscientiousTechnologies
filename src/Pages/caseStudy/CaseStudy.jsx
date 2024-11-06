@@ -22,7 +22,7 @@ const CaseStudy = () => {
 
     const fetchCaseStudy = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-case-studies-by-id/${id}`)
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-case-studies-by-id/${id}`)
             setCaseStudy(response.data)
         } catch (error) {
             console.log("Error fetching case study data:", error)

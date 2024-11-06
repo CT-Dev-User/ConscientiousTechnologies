@@ -10,13 +10,13 @@ const CaseStudies = ({ category, Subcategory }) => {
     try {
       if (category === "HomePage") {
         const response = await axios.get(
-          "http://localhost:8080/get-case-studies-by-cateory/Home"
+          "https://conscientious-technologies-backend.vercel.app/get-case-studies-by-cateory/Home"
         );
         console.log(response.data)
         setCaseStudies(response.data);
       } else {
         const response = await axios.get(
-          `http://localhost:8080/get-case-study-bycategorysubcategory/${category}/${Subcategory}`
+          `https://conscientious-technologies-backend.vercel.app/get-case-study-bycategorysubcategory/${category}/${Subcategory}`
         );
         console.log(response.data)
         setCaseStudies(response.data.data);

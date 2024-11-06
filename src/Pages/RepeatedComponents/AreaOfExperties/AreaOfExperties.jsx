@@ -8,7 +8,7 @@ const AreaOfExperties = ({ serviceName, navSubCategory }) => {
     const fetchSubServices = async () => {
         // console.log(serviceName)
         try {
-            const response = await axios.get(`http://localhost:8080/get-subservice-data-by-service/${serviceName}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-subservice-data-by-service/${serviceName}`);
             // console.log(response.data)
             setSubServices(response.data);
         } catch (error) {

@@ -6,7 +6,7 @@ const AboutUsDesc = () => {
 
 
     const fetchSocialIcon = async () => {
-        const response = await axios.get("http://localhost:8080/get-social-media-data")
+        const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-social-media-data")
         if (response.status === 200) {
             setSocialIcon(response.data.getdata)
         }

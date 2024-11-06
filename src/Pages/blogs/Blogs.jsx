@@ -15,7 +15,7 @@ const Blogs = () => {
 
     const fetchBlogDataById = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/get-latest-blog-data-by-id/${id}`);
+            const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-latest-blog-data-by-id/${id}`);
             setBlogsData(response.data.blog);
         } catch (error) {
             console.log(error);

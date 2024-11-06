@@ -9,7 +9,7 @@ const AllHeader = ({ category, serviceName, solutionName, industryName, subServi
         try {
             if (category === "Service") {
                 console.log("ok")
-                const response = await axios.get(`http://localhost:8080/get-service-data-by-serviceName/${serviceName}`);
+                const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-service-data-by-serviceName/${serviceName}`);
                 setHeaderData(response.data);
                 // console.log(response.data)
             } else if (category === "Solution") {
@@ -22,7 +22,7 @@ const AllHeader = ({ category, serviceName, solutionName, industryName, subServi
                 setHeaderData(response.data);
             }else if(category === "SubService" ){
                 console.log("sub services")
-              const response = await axios.get(`http://localhost:8080/get-subservice-data-by-subservice/${serviceName}/${subServiceName}`); 
+              const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-subservice-data-by-subservice/${serviceName}/${subServiceName}`); 
               console.log("response",response.data) 
               setHeaderData(response.data);
             }

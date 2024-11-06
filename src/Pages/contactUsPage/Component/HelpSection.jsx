@@ -40,7 +40,7 @@ const HelpSection = () => {
         // Proceed with form submission
         axios
             .post(
-                "http://localhost:8080/post-contact-us-form-data",
+                "https://conscientious-technologies-backend.vercel.app/post-contact-us-form-data",
                 {
                     fullName,
                     workEmail,

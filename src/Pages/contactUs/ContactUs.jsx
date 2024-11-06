@@ -47,7 +47,7 @@ const ContactUs = () => {
         form.append('sourceImage', formData.sourceImage);
       }
 
-      const response = await axios.post('http://localhost:8080/add-contact-us-data', form);
+      const response = await axios.post('https://conscientious-technologies-backend.vercel.app/add-contact-us-data', form);
       console.log(response.status)
       if (response.status === 200) {
         Swal.fire("Success", res.data.message, "success");

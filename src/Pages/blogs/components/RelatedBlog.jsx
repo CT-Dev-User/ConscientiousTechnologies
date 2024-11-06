@@ -63,7 +63,7 @@ const RelatedBlog = () => {
   };
 
   const fetchAllBlogData = async () => {
-    const response = await axios.get("http://localhost:8080/get-blogs-data")
+    const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-blogs-data")
     if (response.status === 200) {
       setRelatedBlog(response.data.getData)
     }

@@ -7,7 +7,7 @@ const Faq = () => {
 
     const fetchHomeFaqs = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/get-home-faq");
+            const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-home-faq");
             setHomeFaqs(response.data.getData);
         } catch (error) {
             console.log(error);
