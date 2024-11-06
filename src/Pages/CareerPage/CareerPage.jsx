@@ -5,13 +5,14 @@ import CareerAtCt from './Components/CareerAtCt'
 import Footer from '../HomePage/Component/Footer/Footer'
 // import AllHeader from '../RepeatedComponents/haeder/AllHeader'
 import Header from './Components/Header'
+import WhyChooseCTSlider from '../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 
 const CareerPage = () => {
   return (
     <div>
-      <Header/>
+      <Header />
       <OurPartener />
-      <WhyChooseCT />
+      <WhyChooseCTSlider />
       <CareerAtCt />
       <Footer />
     </div>
