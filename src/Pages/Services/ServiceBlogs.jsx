@@ -79,7 +79,7 @@ const ServiceBlogCMS = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch services blogs data or may be data not available.",
         "error"
       );
     }
@@ -94,7 +94,7 @@ const ServiceBlogCMS = () => {
     } catch (error) {
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch service data or may be data not available.",
         "error"
       );
     }

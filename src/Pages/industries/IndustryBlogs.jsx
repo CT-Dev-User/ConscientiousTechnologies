@@ -65,10 +65,6 @@ const IndutryBlogCMS = () => {
     HeaderDesc: "",
   });
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
-
   // Fetch all blogs
   const fetchBlogs = async () => {
     setLoading(true);
@@ -83,7 +79,7 @@ const IndutryBlogCMS = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch industry blogs data or may be data not available.",
         "error"
       );
     }
@@ -92,6 +88,8 @@ const IndutryBlogCMS = () => {
   useEffect(() => {
     fetchSolutions();
   }, []);
+
+  // Fetch all solutions
   const fetchSolutions = async () => {
     try {
       const response = await axios.get(
@@ -101,7 +99,7 @@ const IndutryBlogCMS = () => {
     } catch (error) {
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutions data or may be data not available.",
         "error"
       );
     }

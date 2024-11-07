@@ -90,7 +90,7 @@ const IndustryWhyChooseCT = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch Industry data. Please try again later.",
+        "Failed to fetch Industry data or may be data not available.",
         "error"
       );
     }
@@ -109,7 +109,7 @@ const IndustryWhyChooseCT = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch slider data. Please try again later.",
+        "Failed to fetch industry slider data or may be data not available.",
         "error"
       );
     }

@@ -147,6 +147,11 @@ const HomeFAQ = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch faq data or may be data not available.",
+        "error"
+      );
     }
   };
 

@@ -86,7 +86,7 @@ const SolutionWhyChooseCT = () => {
     } catch (error) {
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutiions data or may be data not available.",
         "error"
       );
     }
@@ -105,7 +105,7 @@ const SolutionWhyChooseCT = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutions slider data or may be data not available.",
         "error"
       );
     }

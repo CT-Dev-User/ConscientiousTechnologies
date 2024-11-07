@@ -169,7 +169,7 @@ const IndustryFAQ = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch Industry faq data or may be data not available.",
         "error"
       );
     }
@@ -187,7 +187,7 @@ const IndustryFAQ = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch industries data or may be data not available.",
         "error"
       );
     }

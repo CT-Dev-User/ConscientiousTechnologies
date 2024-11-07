@@ -62,7 +62,7 @@ const SolutionTechTools = () => {
     } catch (error) {
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutions data or may be data not available.",
         "error"
       );
     }
@@ -141,7 +141,7 @@ const SolutionTechTools = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutions tools data or may be data not available.",
         "error"
       );
     }

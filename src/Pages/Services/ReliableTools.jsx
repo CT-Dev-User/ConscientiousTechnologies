@@ -141,15 +141,11 @@ const ServiceTechTools = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch service tools data or may be data not available.",
         "error"
       );
     }
   };
-
-  useEffect(() => {
-    fetchReliableData();
-  }, []);
 
   const addReliableDataFunc = async () => {
     try {

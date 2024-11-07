@@ -86,7 +86,7 @@ const SubServicesCMS = () => {
     } catch (error) {
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch services data or may be data not available.",
         "error"
       );
     }
@@ -103,6 +103,11 @@ const SubServicesCMS = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
+      Swal.fire(
+        "Error!",
+        "Failed to fetch subservices data or may be data not available.",
+        "error"
+      );
     }
   };
 

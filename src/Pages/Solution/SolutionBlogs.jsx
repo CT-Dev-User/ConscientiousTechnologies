@@ -76,7 +76,7 @@ const SolutionBlogCMS = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutions blogs data. Please try again later.",
         "error"
       );
     }
@@ -92,7 +92,7 @@ const SolutionBlogCMS = () => {
     } catch (error) {
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutions data. Please try again later.",
         "error"
       );
     }

@@ -89,6 +89,7 @@ const SocialMedia = () => {
         fetchSocialMedias();
       }
     } catch (error) {
+      Swal.fire("Added!", "Your data has been added successfully.", "success");
 
     }
   };
@@ -105,7 +106,7 @@ const SocialMedia = () => {
       setLoading(false)
       Swal.fire(
         "Error!",
-        "fialed to retrieve data",
+        "fialed to retrieve media data or may data not available",
         "error"
       );
     }

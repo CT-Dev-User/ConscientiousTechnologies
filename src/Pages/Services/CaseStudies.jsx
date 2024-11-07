@@ -103,7 +103,7 @@ const CaseStudies = () => {
     } catch (error) {
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch service data or may be data not available.",
         "error"
       );
     }
@@ -126,7 +126,7 @@ const CaseStudies = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch case-studies for service data or may be data not available.",
         "error"
       );
     }

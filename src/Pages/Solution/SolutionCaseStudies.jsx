@@ -103,7 +103,7 @@ const SolutionCaseStudies = () => {
     } catch (error) {
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutions data or may be data not available.",
         "error"
       );
     }
@@ -126,7 +126,7 @@ const SolutionCaseStudies = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutions case studies data or may be data not available.",
         "error"
       );
     }
@@ -239,9 +239,7 @@ const SolutionCaseStudies = () => {
       );
     }
   };
-  useEffect(() => {
-    getCaseStudiesDataFunc();
-  }, []);
+
 
   const deleteCaseStudies = async (id) => {
     try {

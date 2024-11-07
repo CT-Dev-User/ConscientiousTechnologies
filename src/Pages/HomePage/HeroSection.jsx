@@ -125,7 +125,7 @@ const HeroSection = () => {
       setLoading(false); // Stop loading spinner
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch hero slider data or may be data not available.",
         "error"
       );
     }

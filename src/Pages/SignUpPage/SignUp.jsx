@@ -64,7 +64,7 @@ const SignUp = () => {
       setLoading(false); // Stop loading spinner
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch users data. Please try again later.",
         "error"
       );
     }

@@ -162,7 +162,7 @@ const ServiceFAQ = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch service faq data or may be data not available.",
         "error"
       );
     }
@@ -183,7 +183,7 @@ const ServiceFAQ = () => {
     } catch (error) {
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch industry data or may be data not available.",
         "error"
       );
     }

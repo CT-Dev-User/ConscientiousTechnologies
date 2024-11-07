@@ -162,7 +162,7 @@ const SolutionFAQ = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutions faq data or may be data not available.",
         "error"
       );
     }
@@ -183,7 +183,7 @@ const SolutionFAQ = () => {
     } catch (error) {
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch solutions data or may be data not available.",
         "error"
       );
     }

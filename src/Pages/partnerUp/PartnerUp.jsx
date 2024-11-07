@@ -66,7 +66,7 @@ const PartnerUp = () => {
       setLoading(false);
       Swal.fire(
         "Error!",
-        "Failed to fetch data. Please try again later.",
+        "Failed to fetch partner up data or may be data not available.",
         "error"
       );
     }
