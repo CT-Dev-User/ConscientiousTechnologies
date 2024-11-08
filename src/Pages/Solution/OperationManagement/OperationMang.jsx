@@ -13,31 +13,40 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const OperationMang = () => {
-      
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
-    return (
-        <div>
-            <AllHeader category="Solution" solutionName="Operations Management"/>
-            <OurPartener />
-            <OpManFeature />
-            <ServiceOpMang />
-            <WhyChooseCTSlider category="Solution" subCategory="Operations Management"/>
-            <OpManCons />
-            <SoftImplementation />
-            <TechnologyHeading />
-            <ReliableTools category="Solution" subCategory="Operations Management"/>
-            <CaseStudies category="Solution" subCategory="Operations Management"/>
-            <MeetOurClient />
-            <AllFaq category="Solution" subCategory="Operations Management"/>
-            <BookFreeConsultation />
-            <Footer />
-        </div>
-    )
+  return (
+    <div>
+      <Helmet>
+        <title>Operations Management Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Operations Management" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="Operations Management" />
+      <OurPartener />
+      <OpManFeature />
+      <ServiceOpMang />
+      <WhyChooseCTSlider category="Solution" subCategory="Operations Management" />
+      <OpManCons />
+      <SoftImplementation />
+      <TechnologyHeading />
+      <ReliableTools category="Solution" subCategory="Operations Management" />
+      <CaseStudies category="Solution" subCategory="Operations Management" />
+      <MeetOurClient />
+      <AllFaq category="Solution" subCategory="Operations Management" />
+      <BookFreeConsultation />
+      <Footer />
+    </div>
+  )
 }
 
 export default OperationMang

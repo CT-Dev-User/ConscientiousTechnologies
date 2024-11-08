@@ -21,18 +21,26 @@ const DataAnalystSolution = () => {
 
   return (
     <div>
-      <AllHeader category="Solution" solutionName="Data Analytics"/>
+      <Helmet>
+        <title>Data Analytics Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Data Analytics" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="Data Analytics" />
       <OurPartener />
       <BuildingDataAnalyst />
-      <WhyChooseCTSlider category="Solution" solutionName="Data Analytics"/>
+      <WhyChooseCTSlider category="Solution" solutionName="Data Analytics" />
       <BenefitsFromCt />
       <FlexibleServiceApp />
       <CTSolution />
       <ReliableToolsHeading />
-      <ReliableTools category="Solution" subCategory="Data Analytics"/>
-      <CaseStudies category="Solution" subCategory="Data Analytics"/>
+      <ReliableTools category="Solution" subCategory="Data Analytics" />
+      <CaseStudies category="Solution" subCategory="Data Analytics" />
       <MeetOurClient />
-      <AllFaq category="Solution" subCategory="Data Analytics"/>
+      <AllFaq category="Solution" subCategory="Data Analytics" />
       <BookFreeConsultation />
       <Footer />
     </div>

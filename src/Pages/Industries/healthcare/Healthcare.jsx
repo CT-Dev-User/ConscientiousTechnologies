@@ -11,19 +11,28 @@ import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
 import ReliableToolsHeading from '../../HomePage/Component/ReliableTools/ReliableToolsHeading'
+import { Helmet } from 'react-helmet'
 const Healthcare = () => {
     return (
         <div>
-            <AllHeader category="Industry" industryName="Healthcare"/>
+            <Helmet>
+                <title>Healthcare Industry</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Industries, Benefits, Healthcare" />
+            </Helmet>
+            <AllHeader category="Industry" industryName="Healthcare" />
             <OurPartener />
             <MeetAllHealthcare />
-            <WhyChooseCTSlider category="Industry" subCategory="Healthcare"/>
+            <WhyChooseCTSlider category="Industry" subCategory="Healthcare" />
             <ITSolution />
-            <ReliableToolsHeading/>
-            <ReliableTools category="Industry" subCategory="Healthcare"/>
-            <CaseStudies category="Industry" subCategory="Healthcare"/>
+            <ReliableToolsHeading />
+            <ReliableTools category="Industry" subCategory="Healthcare" />
+            <CaseStudies category="Industry" subCategory="Healthcare" />
             <MeetOurClient />
-            <AllFaq category="Industry" subCategory="Healthcare"/>
+            <AllFaq category="Industry" subCategory="Healthcare" />
             <BookFreeConsultation />
             <Footer />
         </div>

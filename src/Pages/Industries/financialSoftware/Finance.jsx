@@ -13,22 +13,31 @@ import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
 import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import ReliableToolsHeading from './ReliableTools/ReliableToolsHeading'
+import { Helmet } from 'react-helmet'
 
 const Finance = () => {
     return (
         <div>
-            <AllHeader category="Industry" industryName="Financial Services"/>
-            <OurPartener/>
-            <WhyChooseCTSlider category="Industry" subCategory="Financial Services"/>
+            <Helmet>
+                <title>Financial Services</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Industries, Benefits, Financial Services" />
+            </Helmet>
+            <AllHeader category="Industry" industryName="Financial Services" />
+            <OurPartener />
+            <WhyChooseCTSlider category="Industry" subCategory="Financial Services" />
             <FinancialSerDomain />
             <CustomerExperience />
             <SuccessDrivenApproach />
             <ReliableToolsHeading />
-            <ReliableTools category="Industry" subCategory="Financial Services"/>
-            <CaseStudies category="Industry" subCategory="Financial Services"/>
-            <Blog category="Industry" subCategory="Financial Services"/>
+            <ReliableTools category="Industry" subCategory="Financial Services" />
+            <CaseStudies category="Industry" subCategory="Financial Services" />
+            <Blog category="Industry" subCategory="Financial Services" />
             <MeetOurClient />
-            <AllFaq category="Industry" subCategory="Financial Services"/>
+            <AllFaq category="Industry" subCategory="Financial Services" />
             <BookFreeConsultation />
             <Footer />
         </div>

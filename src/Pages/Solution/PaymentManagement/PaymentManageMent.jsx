@@ -12,6 +12,7 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 const PaymentManageMent = () => {
 
   useEffect(() => {
@@ -20,17 +21,25 @@ const PaymentManageMent = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Payment Management Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Payment Management" />
+      </Helmet>
       <AllHeader category="Solution" solutionName="Payment Management" />
       <OurPartener />
       <WhomWeServe />
       <PaymentSolution />
-      <WhyChooseCTSlider category="Solution" subCategory="Payment Management"/>
+      <WhyChooseCTSlider category="Solution" subCategory="Payment Management" />
       <ValueDrivenApproach />
       <TechnologyHeading />
-      <ReliableTools category="Solution" subCategory="Payment Management"/>
-      <CaseStudies category="Solution" subCategory="Payment Management"/>
+      <ReliableTools category="Solution" subCategory="Payment Management" />
+      <CaseStudies category="Solution" subCategory="Payment Management" />
       <MeetOurClient />
-      <AllFaq category="Solution" subCategory="Payment Management"/>
+      <AllFaq category="Solution" subCategory="Payment Management" />
       <BookFreeConsultation />
       <Footer />
     </div>

@@ -10,9 +10,18 @@ import Footer from '../../HomePage/Component/Footer/Footer'
 import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
+import { Helmet } from 'react-helmet'
 const Manufacturing = () => {
     return (
         <div>
+            <Helmet>
+                <title>Manufacturing Industry</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Industries, Benefits, Manufacturing" />
+            </Helmet>
             <AllHeader category="Industry" industryName="Manufacturing"/>
             <OurPartener />
             <WhyChooseCTSlider category="Industry" subCategory="Manufacturing"/>

@@ -10,27 +10,36 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import Solution from './Components/Solution'
+import { Helmet } from 'react-helmet'
 const FleetManagement = () => {
-      
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
-    return (
-        <div>
-            <AllHeader category="Solution" solutionName="Fleet Management"/>
-            <OurPartener />
-            <ChallengesFleet />
-            <Solution/>
-            <WhyChooseCTSlider category="Solution" subCategory="Fleet Management"/>
-            <ServiceOptions />
-            <CaseStudies category="Solution" subCategory="Fleet Management"/>
-            <MeetOurClient />
-            <AllFaq category="Solution" subCategory="Fleet Management"/>
-            <BookFreeConsultation />
-            <Footer />
-        </div>
-    )
+  return (
+    <div>
+      <Helmet>
+        <title>Fleet Management Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Fleet Management" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="Fleet Management" />
+      <OurPartener />
+      <ChallengesFleet />
+      <Solution />
+      <WhyChooseCTSlider category="Solution" subCategory="Fleet Management" />
+      <ServiceOptions />
+      <CaseStudies category="Solution" subCategory="Fleet Management" />
+      <MeetOurClient />
+      <AllFaq category="Solution" subCategory="Fleet Management" />
+      <BookFreeConsultation />
+      <Footer />
+    </div>
+  )
 }
 
 export default FleetManagement

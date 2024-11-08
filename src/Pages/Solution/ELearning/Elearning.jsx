@@ -18,16 +18,24 @@ const Elearning = () => {
 
     return (
         <div>
-            <AllHeader category="Solution" solutionName="eLearning"/>
+            <Helmet>
+                <title>eLearning Solution</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Solution, Benefits, eLearning" />
+            </Helmet>
+            <AllHeader category="Solution" solutionName="eLearning" />
             <OurPartener />
             <KeyFeatureOfELearning />
             <BenefitsFromPartenerShip />
             <ChooseYourService />
             <TechnologyHeader />
-            <ReliableTools category="Solution" subCategory="eLearning"/>
-            <CaseStudies category="Solution" subCategory="eLearning"/>
+            <ReliableTools category="Solution" subCategory="eLearning" />
+            <CaseStudies category="Solution" subCategory="eLearning" />
             <MeetOurClient />
-            <AllFaq category="Solution" subCategory="eLearning"/>
+            <AllFaq category="Solution" subCategory="eLearning" />
             <BookFreeConsultation />
             <Footer />
         </div>

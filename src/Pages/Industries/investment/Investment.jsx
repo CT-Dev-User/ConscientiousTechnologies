@@ -13,22 +13,31 @@ import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
 import ReliableToolsHeading from '../financialSoftware/ReliableTools/ReliableToolsHeading'
+import { Helmet } from 'react-helmet'
 
 const Investment = () => {
     return (
         <div>
-            <AllHeader category="Industry" industryName="Investment"/>
+            <Helmet>
+                <title>Investment Industry</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Industries, Benefits, Investment" />
+            </Helmet>
+            <AllHeader category="Industry" industryName="Investment" />
             <OurPartener />
-            <WhyChooseCTSlider category="Industry" subCategory="Investment"/>
+            <WhyChooseCTSlider category="Industry" subCategory="Investment" />
             <MeetWhereWe />
             <InvestmentSoftware />
             <InvestmentAspects />
             <ReliableToolsHeading />
-            <ReliableTools category="Industry" subCategory="Investment"/>
-            <CaseStudies category="Industry" subCategory="Investment"/>
-            <Blog category="Industry" subCategory="Investment"/>
+            <ReliableTools category="Industry" subCategory="Investment" />
+            <CaseStudies category="Industry" subCategory="Investment" />
+            <Blog category="Industry" subCategory="Investment" />
             <MeetOurClient />
-            <AllFaq category="Industry" subCategory="Investment"/>
+            <AllFaq category="Industry" subCategory="Investment" />
             <BookFreeConsultation />
             <Footer />
         </div>

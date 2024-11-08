@@ -10,27 +10,36 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import PMSoftMang from './Components/PMSoftMang'
 import SuccessFactors from './Components/SuccessFactors'
+import { Helmet } from 'react-helmet'
 const ProjectMang = () => {
-      
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
-    return (
-        <div>
-            <AllHeader category="Solution" solutionName="Project Management"/>
-            <OurPartener />
-            <KeyFeaturesPM />
-            <ExtendedFeature />
-            <PMSoftMang/>
-            <SuccessFactors/>
-            <CaseStudies category="Solution" subCategory="Project Management"/>
-            <MeetOurClient />
-            <AllFaq category="Solution" subCategory="Project Management"/>
-            <BookFreeConsultation />
-            <Footer/>
-        </div>
-    )
+  return (
+    <div>
+      <Helmet>
+        <title>Project Management Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Project Management" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="Project Management" />
+      <OurPartener />
+      <KeyFeaturesPM />
+      <ExtendedFeature />
+      <PMSoftMang />
+      <SuccessFactors />
+      <CaseStudies category="Solution" subCategory="Project Management" />
+      <MeetOurClient />
+      <AllFaq category="Solution" subCategory="Project Management" />
+      <BookFreeConsultation />
+      <Footer />
+    </div>
+  )
 }
 
 export default ProjectMang

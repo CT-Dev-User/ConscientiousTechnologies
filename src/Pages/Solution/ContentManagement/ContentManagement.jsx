@@ -12,6 +12,7 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 const ContentManagement = () => {
 
   useEffect(() => {
@@ -19,9 +20,17 @@ const ContentManagement = () => {
   }, [])
   return (
     <div>
+        <Helmet>
+        <title>Content Management Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Content Management" />
+      </Helmet>
       <AllHeader category="Solution" solutionName="Content Management"/>
       <OurPartener />
-      <WhyChooseCTSlider category="Solution" solutionName="Asset Management"/>
+      <WhyChooseCTSlider category="Solution" solutionName="Content Management"/>
       <CMSKeyFeatures />
       <WhatYouWillGet />
       <MeetYouWhere />

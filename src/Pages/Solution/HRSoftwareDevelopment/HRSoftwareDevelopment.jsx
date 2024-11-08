@@ -12,6 +12,7 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 const HRSoftwareDevelopment = () => {
 
   useEffect(() => {
@@ -20,17 +21,25 @@ const HRSoftwareDevelopment = () => {
 
   return (
     <div>
-      <AllHeader category="Solution" solutionName="HR Software Development Services"/>
+      <Helmet>
+        <title>HR Software Development Services</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, HR Software Development Services" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="HR Software Development Services" />
       <OurPartener />
       <FunctionalModule />
-      <WhyChooseCTSlider category="Solution" subCategory="HR Software Development Services"/>
+      <WhyChooseCTSlider category="Solution" subCategory="HR Software Development Services" />
       <KeyCooperation />
       <HRSoftService />
       <TechnologyHeader />
-      <ReliableTools category="Solution" subCategory="HR Software Development Services"/>
-      <CaseStudies category="Solution" subCategory="HR Software Development Services"/>
+      <ReliableTools category="Solution" subCategory="HR Software Development Services" />
+      <CaseStudies category="Solution" subCategory="HR Software Development Services" />
       <MeetOurClient />
-      <AllFaq category="Solution" subCategory="HR Software Development Services"/>
+      <AllFaq category="Solution" subCategory="HR Software Development Services" />
       <BookFreeConsultation />
       <Footer />
     </div>

@@ -13,6 +13,7 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 const WebPortal = () => {
 
   useEffect(() => {
@@ -21,18 +22,26 @@ const WebPortal = () => {
 
   return (
     <div>
-      <AllHeader category="Solution" solutionName="Web Portal"/>
+      <Helmet>
+        <title>Web Portal Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Web Portal" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="Web Portal" />
       <OurPartener />
-      <WhyChooseCTSlider category="Solution" subCategory="Web Portal"/>
+      <WhyChooseCTSlider category="Solution" subCategory="Web Portal" />
       <WebPortalWeCreated />
       <BringingInnovation />
       <LayingtheFoundation />
       <WebDevSteps />
       <TechPlatformHeader />
-      <ReliableTools category="Solution" subCategory="Web Portal"/>
-      <CaseStudies category="Solution" subCategory="Web Portal"/>
+      <ReliableTools category="Solution" subCategory="Web Portal" />
+      <CaseStudies category="Solution" subCategory="Web Portal" />
       <MeetOurClient />
-      <AllFaq category="Solution" subCategory="Web Portal"/>
+      <AllFaq category="Solution" subCategory="Web Portal" />
       <BookFreeConsultation />
       <Footer />
     </div>

@@ -13,22 +13,31 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const Fineteech = () => {
     return (
         <div>
-            <AllHeader category="Industry" industryName="Fintech"/>
+            <Helmet>
+                <title>Fintech Industry</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Industries, Benefits, Fintech" />
+            </Helmet>
+            <AllHeader category="Industry" industryName="Fintech" />
             <OurPartener />
             <Solutions />
-            <WhyChooseCTSlider category="Industry" subCategory="Fintech"/>
+            <WhyChooseCTSlider category="Industry" subCategory="Fintech" />
             <Benefits />
             <Specialised />
             <ReliableToolsHeading />
-            <ReliableTools category="Industry" subCategory="Fintech"/>
-            <CaseStudies category="Industry" subCategory="Fintech"/>
-            <Blog category="Industry" subCategory="Fintech"/>
+            <ReliableTools category="Industry" subCategory="Fintech" />
+            <CaseStudies category="Industry" subCategory="Fintech" />
+            <Blog category="Industry" subCategory="Fintech" />
             <MeetOurClient />
-            <AllFaq category="Industry" subCategory="Fintech"/>
+            <AllFaq category="Industry" subCategory="Fintech" />
             <BookFreeConsultation />
             <Footer />
         </div>

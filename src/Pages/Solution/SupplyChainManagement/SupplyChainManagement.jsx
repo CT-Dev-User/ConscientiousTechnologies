@@ -11,6 +11,7 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 const SupplyChainManagement = () => {
 
   useEffect(() => {
@@ -19,16 +20,24 @@ const SupplyChainManagement = () => {
 
   return (
     <div>
-      <AllHeader category="Solution" solutionName="Supply Chain Management"/>
-      <OurPartener/>
+      <Helmet>
+        <title>Supply Chain Management Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Supply Chain Management" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="Supply Chain Management" />
+      <OurPartener />
       <SupplyChainSolutions />
-      <WhyChooseCTSlider category="Solution" subCategory="Supply Chain Management"/>
+      <WhyChooseCTSlider category="Solution" subCategory="Supply Chain Management" />
       <HowToDevSupplySoft />
       <TechnologyHeading />
-      <ReliableTools category="Solution" subCategory="Supply Chain Management"/>
-      <CaseStudies category="Solution" subCategory="Supply Chain Management"/>
+      <ReliableTools category="Solution" subCategory="Supply Chain Management" />
+      <CaseStudies category="Solution" subCategory="Supply Chain Management" />
       <MeetOurClient />
-      <AllFaq category="Solution" subCategory="Supply Chain Management"/>
+      <AllFaq category="Solution" subCategory="Supply Chain Management" />
       <BookFreeConsultation />
       <Footer />
     </div>

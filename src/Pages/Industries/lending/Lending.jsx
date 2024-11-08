@@ -12,10 +12,19 @@ import OurPartener from '../../HomePage/Component/OurPartener/OurPartener'
 import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
+import { Helmet } from 'react-helmet'
 
 const Lending = () => {
     return (
         <div>
+            <Helmet>
+                <title>Lending Industry</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Industries, Benefits, Lending" />
+            </Helmet>
             <AllHeader category="Industry" industryName="Lending" />
             <OurPartener />
             <WhyChooseCTSlider category="Industry" subCategory="Lending" />
@@ -24,7 +33,7 @@ const Lending = () => {
             <LendingIntegration />
             <BenefitsOfLending />
             <CaseStudies category="Industry" subCategory="Lending" />
-            <Blog category="Industry" subCategory="Lending"/>
+            <Blog category="Industry" subCategory="Lending" />
             <MeetOurClient />
             <AllFaq category="Industry" subCategory="Lending" />
             <BookFreeConsultation />

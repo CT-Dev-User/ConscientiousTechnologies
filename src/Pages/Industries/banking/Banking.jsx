@@ -12,21 +12,30 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const Banking = () => {
     return (
-        <div>    
-            <AllHeader category="Industry" industryName="Banking"/>
+        <div>
+            <Helmet>
+                <title>Banking</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Industries, Benefits, Banking" />
+            </Helmet>
+            <AllHeader category="Industry" industryName="Banking" />
             <OurPartener />
-            <WhyChooseCTSlider category="Industry" subCategory="Banking"/>
+            <WhyChooseCTSlider category="Industry" subCategory="Banking" />
             <BankingSoftSolution />
             <BankingServiceOffer />
             <ReliableToolsHeading />
-            <ReliableTools category="Industry" subCategory="Banking"/>
-            <CaseStudies category="Industry" subCategory="Banking"/>
-            <Blog category="Industry" subCategory="Banking"/>
+            <ReliableTools category="Industry" subCategory="Banking" />
+            <CaseStudies category="Industry" subCategory="Banking" />
+            <Blog category="Industry" subCategory="Banking" />
             <MeetOurClient />
-            <AllFaq category="Industries" subCategory="Banking"/>
+            <AllFaq category="Industries" subCategory="Banking" />
             <BookFreeConsultation />
             <Footer />
         </div>

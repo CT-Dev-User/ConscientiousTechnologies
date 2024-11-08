@@ -11,6 +11,7 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const AssetManagements = () => {
 
@@ -19,7 +20,16 @@ const AssetManagements = () => {
   }, [])
 
   return (
+
     <div>
+       <Helmet>
+        <title>Asset Management Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Asset Management" />
+      </Helmet>
       <AllHeader category="Solution" solutionName="Asset Management"/>
       <OurPartener />
       <FunctionalityModule />

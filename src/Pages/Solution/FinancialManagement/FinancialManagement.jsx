@@ -13,6 +13,7 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const FinancialManagement = () => {
 
@@ -22,18 +23,26 @@ const FinancialManagement = () => {
 
   return (
     <div>
-      <AllHeader category="Solution" solutionName="Financial Management"/>
+      <Helmet>
+        <title>Financial Management Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Financial Management" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="Financial Management" />
       <OurPartener />
       <CTService />
       <SolutionSpecilization />
-      <WhyChooseCTSlider category="Solution" subCategory="Financial Management"/>
+      <WhyChooseCTSlider category="Solution" subCategory="Financial Management" />
       <FinancialSoftCons />
       <YourServiceOption />
       <TechnologyHeading />
-      <ReliableTools category="Solution" subCategory="Financial Management"/>
-      <CaseStudies category="Solution" subCategory="Financial Management"/>
+      <ReliableTools category="Solution" subCategory="Financial Management" />
+      <CaseStudies category="Solution" subCategory="Financial Management" />
       <MeetOurClient />
-      <AllFaq category="Solution" subCategory="Financial Management"/>
+      <AllFaq category="Solution" subCategory="Financial Management" />
       <BookFreeConsultation />
       <Footer />
     </div>

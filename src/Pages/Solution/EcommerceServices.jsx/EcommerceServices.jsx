@@ -13,6 +13,7 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 
 const EcommerceServices = () => {
 
@@ -22,18 +23,26 @@ const EcommerceServices = () => {
 
   return (
     <div>
-      <AllHeader category="Solution" solutionName="Ecommerce Services"/>
+      <Helmet>
+        <title>Ecommerce  Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, Ecommerce Services" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="Ecommerce Services" />
       <OurPartener />
-      <WhyChooseCTSlider category="Solution" subCategory="Ecommerce Services"/>
+      <WhyChooseCTSlider category="Solution" subCategory="Ecommerce Services" />
       <ConsultingService />
       <ECommerseDevService />
       <SupportMaintainance />
       <GrowthOptimization />
       <TechStackHeader />
-      <ReliableTools category="Solution" subCategory="Ecommerce Services"/>
-      <CaseStudies category="Solution" subCategory="Ecommerce Services"/>
+      <ReliableTools category="Solution" subCategory="Ecommerce Services" />
+      <CaseStudies category="Solution" subCategory="Ecommerce Services" />
       <MeetOurClient />
-      <AllFaq category="Solution" subCategory="Ecommerce Services"/>
+      <AllFaq category="Solution" subCategory="Ecommerce Services" />
       <BookFreeConsultation />
       <Footer />
     </div>

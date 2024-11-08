@@ -12,29 +12,38 @@ import Footer from '../../HomePage/Component/Footer/Footer'
 import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
+import { Helmet } from 'react-helmet'
 const KioskSoftware = () => {
-      
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
-    return (
-        <div>
-            <AllHeader category="Solution" solutionName="Kiosk Software"/>
-            <OurPartener />
-            <WhyChooseCTSlider category="Solution" subCategory="Kiosk Software"/>
-            <Architecture />
-            <KeyFeatureOfKiskok />
-            <KioskSoftService />
-            <SecurityMaintainance />
-            <SuccessFactor />
-            <CaseStudies category="Solution" subCategory="Kiosk Software"/>
-            <MeetOurClient />
-            <AllFaq category="Solution" subCategory="Kiosk Software"/>
-            <BookFreeConsultation />
-            <Footer />
-        </div>
-    )
+  return (
+    <div>
+      <Helmet>
+        <title>HR Software Development Services</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, HR Software Development Services" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="Kiosk Software" />
+      <OurPartener />
+      <WhyChooseCTSlider category="Solution" subCategory="Kiosk Software" />
+      <Architecture />
+      <KeyFeatureOfKiskok />
+      <KioskSoftService />
+      <SecurityMaintainance />
+      <SuccessFactor />
+      <CaseStudies category="Solution" subCategory="Kiosk Software" />
+      <MeetOurClient />
+      <AllFaq category="Solution" subCategory="Kiosk Software" />
+      <BookFreeConsultation />
+      <Footer />
+    </div>
+  )
 }
 
 export default KioskSoftware

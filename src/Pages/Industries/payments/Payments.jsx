@@ -13,21 +13,30 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 const Payments = () => {
     return (
         <div>
-            <AllHeader category="Industry" industryName="Payments"/>
+            <Helmet>
+                <title>Payments Industry</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Industries, Benefits, Payments" />
+            </Helmet>
+            <AllHeader category="Industry" industryName="Payments" />
             <OurPartener />
-            <WhyChooseCTSlider ategory="Industry" subCategory="Payments"/>
+            <WhyChooseCTSlider ategory="Industry" subCategory="Payments" />
             <WhoWeServe />
             <FieldofExpertise />
             <FeatureWeRecomded />
             <ValueDrivenApproach />
             <TechnologyHeader />
-            <ReliableTools category="Industry" subCategory="Payments"/>
-            <CaseStudies category="Industry" subCategory="Payments"/>
+            <ReliableTools category="Industry" subCategory="Payments" />
+            <CaseStudies category="Industry" subCategory="Payments" />
             <MeetOurClient />
-            <AllFaq category="Industry" subCategory="Payments"/>
+            <AllFaq category="Industry" subCategory="Payments" />
             <BookFreeConsultation />
             <Footer />
         </div>

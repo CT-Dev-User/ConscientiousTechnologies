@@ -12,6 +12,7 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 const CRMSoftware = () => {
 
   useEffect(() => {
@@ -20,17 +21,25 @@ const CRMSoftware = () => {
 
   return (
     <div>
-      <AllHeader category="Solution" solutionName="CRM Services"/>
+      <Helmet>
+        <title>CRM Services Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, CRM Services" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="CRM Services" />
       <OurPartener />
-      <WhyChooseCTSlider category="Solution" solutionName="CRM Services"/>
+      <WhyChooseCTSlider category="Solution" solutionName="CRM Services" />
       <MeetingAll />
       <AdvancedCRM />
       <ExpectAfterTailored />
       <TechHeader />
-      <ReliableTools category="Solution" subCategory="CRM Services"/>
-      <CaseStudies category="Solution" subCategory="CRM Services"/>
+      <ReliableTools category="Solution" subCategory="CRM Services" />
+      <CaseStudies category="Solution" subCategory="CRM Services" />
       <MeetOurClient />
-      <AllFaq category="Solution" subCategory="CRM Services"/>
+      <AllFaq category="Solution" subCategory="CRM Services" />
       <BookFreeConsultation />
       <Footer />
     </div>

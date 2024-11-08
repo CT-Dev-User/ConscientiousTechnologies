@@ -13,30 +13,39 @@ import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import ReliableTools from '../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
+import { Helmet } from 'react-helmet'
 const ERP = () => {
-      
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
 
-    return (
-        <div>
-            <AllHeader category="Solution" solutionName="ERP"/>
-            <OurPartener />
-            <WhyChooseCTSlider category="Solution" subCategory="ERP"/>
-            <FunctionalERPModule />
-            <ERPDevService />
-            <ERPDevSteps />
-            <PerkOfERP />
-            <TechnologyHeading />
-            <ReliableTools category="Solution" subCategory="ERP"/>
-            <CaseStudies category="Solution" subCategory="ERP"/>
-            <MeetOurClient />
-            <AllFaq category="Solution" subCategory="ERP"/>
-            <BookFreeConsultation />
-            <Footer />
-        </div>
-    )
+  return (
+    <div>
+      <Helmet>
+        <title>ERP Solution</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Solution, Benefits, ERP" />
+      </Helmet>
+      <AllHeader category="Solution" solutionName="ERP" />
+      <OurPartener />
+      <WhyChooseCTSlider category="Solution" subCategory="ERP" />
+      <FunctionalERPModule />
+      <ERPDevService />
+      <ERPDevSteps />
+      <PerkOfERP />
+      <TechnologyHeading />
+      <ReliableTools category="Solution" subCategory="ERP" />
+      <CaseStudies category="Solution" subCategory="ERP" />
+      <MeetOurClient />
+      <AllFaq category="Solution" subCategory="ERP" />
+      <BookFreeConsultation />
+      <Footer />
+    </div>
+  )
 }
 
 export default ERP
