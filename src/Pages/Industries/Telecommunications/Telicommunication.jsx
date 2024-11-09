@@ -9,9 +9,18 @@ import Footer from '../../HomePage/Component/Footer/Footer'
 import AllFaq from '../../RepeatedComponents/AllFaq/AllFaq'
 import AllHeader from '../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
+import { Helmet } from 'react-helmet'
 const Telicommunication = () => {
     return (
         <div>
+            <Helmet>
+                <title>Telecommunications Industry</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Industries, Benefits, Telecommunications Industry" />
+            </Helmet>
             <AllHeader category="Industry" industryName="Telecommunications" />
             <OurPartener />
             <WhyChooseCTSlider category="Industry" subCategory="Telecommunications" />

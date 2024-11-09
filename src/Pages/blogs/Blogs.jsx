@@ -8,6 +8,7 @@ import axios from 'axios';
 import OurPartener from '../HomePage/Component/OurPartener/OurPartener';
 import RelatedBlog from './components/RelatedBlog';
 import Footer from '../HomePage/Component/Footer/Footer';
+import { Helmet } from 'react-helmet';
 
 const Blogs = () => {
     const { id } = useParams();
@@ -32,6 +33,14 @@ const Blogs = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Blog</title>
+                <meta
+                    name="description"
+                    content={``}
+                />
+                <meta name="keywords" content="CT, Technology, Industries, Benefits, Blog" />
+            </Helmet>
             <BlogHeader headerImg={blogsData.headerImage} heading={blogsData.headerTitle} subHeading={blogsData.HeaderDesc} />
             <OurPartener />
             <BlogContent blogData={blogsData.articleData} />

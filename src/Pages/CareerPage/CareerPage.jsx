@@ -6,13 +6,22 @@ import Footer from '../HomePage/Component/Footer/Footer'
 // import AllHeader from '../RepeatedComponents/haeder/AllHeader'
 import Header from './Components/Header'
 import WhyChooseCTSlider from '../RepeatedComponents/WhyChooseCT/WhyChooseCT'
+import { Helmet } from 'react-helmet'
 
 const CareerPage = () => {
   return (
     <div>
+      <Helmet>
+        <title>Career</title>
+        <meta
+          name="description"
+          content={``}
+        />
+        <meta name="keywords" content="CT, Technology, Industries, Benefits, Career" />
+      </Helmet>
       <Header />
       <OurPartener />
-      <WhyChooseCTSlider />                                         
+      <WhyChooseCTSlider />
       <CareerAtCt />
       <Footer />
     </div>
