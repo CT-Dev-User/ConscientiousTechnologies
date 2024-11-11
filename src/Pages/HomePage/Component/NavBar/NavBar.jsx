@@ -133,7 +133,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
         <div className="w-[95%] flex flex-wrap gap-[15px] mx-auto">
           {dropdownsData.map((item, index) => (
             <div
-              key={index}
+              key={item._id}
               className="hover:text-[#FFA843] hover:border-b hover:border-[#FFA843] transition-border h-6 w-[18%] text-[12px] text-white flex justify-between items-center mb-[10px] font-normal cursor-pointer"
               onClick={() => {
                 setDropdowns(`${item[search]}`);

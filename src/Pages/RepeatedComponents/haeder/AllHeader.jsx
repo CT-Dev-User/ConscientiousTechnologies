@@ -50,7 +50,7 @@ const AllHeader = ({ category, serviceName, solutionName, industryName, subServi
     return (
         <div className='w-[100vw] h-[100vh]'>
             {headerData.map((header, i) => (
-                <div className='w-screen h-[100vh]' key={i}>
+                <div className='w-screen h-[100vh]' key={header._id}>
                     <div
                         className='w-full h-full relative'
                         style={{

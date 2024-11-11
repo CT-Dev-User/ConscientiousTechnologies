@@ -35,7 +35,7 @@ const AreaOfExperties = ({ serviceName, navSubCategory }) => {
                     {subServices.map((items, i) => {
                         return (
                             <div 
-                                key={i} 
+                                key={items._id} 
                                 style={{ backgroundImage: `url(${items.cardImage})`, backgroundSize: "cover", backgroundPosition: "center" }} 
                                 className='lg:w-[22%] h-72 relative border w-[90%] md:w-[45%] mx-auto md:mx-0'
                             >

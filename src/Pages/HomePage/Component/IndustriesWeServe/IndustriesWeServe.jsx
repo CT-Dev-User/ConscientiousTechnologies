@@ -48,7 +48,7 @@ const IndustriesWeServe = () => {
             className="w-[22.5%] lg:h-72 2xl:h-96 bg-black relative main-div overflow-hidden"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
-            key={index}
+            key={item._id}
           >
             <div
               className="bg-image bg-center bg-cover w-full h-full"
@@ -93,7 +93,7 @@ const IndustriesWeServe = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-            key={index}
+            key={item._id}
           >
             <div className="w-full border-t-2 border-white absolute bottom-0 text-center flex items-center justify-center font-medium cursor-pointer title-div text-sm">
               {item.cardTitle}

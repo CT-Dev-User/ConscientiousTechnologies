@@ -72,7 +72,7 @@ const WhoWorkWithUs = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-            key={i}
+            key={items._id}
           >
             <div className="child-div">
               <h3 className="text-2xl font-medium">{items.title}</h3>
@@ -82,7 +82,7 @@ const WhoWorkWithUs = () => {
               <ul>
                 {showPoints &&
                   items.points.map((item, j) => (
-                    <li className="list-disc text-xs mt-3 font-normal" key={j}>
+                    <li className="list-disc text-xs mt-3 font-normal" key={item._id}>
                       {item}
                     </li>
                   ))}
@@ -108,7 +108,7 @@ const WhoWorkWithUs = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-            key={i}
+            key={items._id}
           >
             <div className="absolute bottom-0 left-0 h-3/5 bg-[#1D1D1D] opacity-[0.8] p-4">
               <h3 className="text-lg font-semibold">{items.title}</h3>

@@ -59,7 +59,7 @@ const ProcessWeFollow = () => {
       <div className="hidden lg:flex text-[white] w-[90%] gap-0 mx-auto justify-center flex-wrap mt-7">
         {processWeFollowData.map((data, i) => (
           <div
-            key={i}
+            key={data._id}
             className={`w-[30%] h-52 text-[black] border-[#737373] flex flex-col justify-around py-2 px-6 ${
               i === 0 || i === 1 || i === 3 || i === 4 ? "border-r" : ""
             } ${i === 0 || i == 1 || i == 2 ? "border-b" : ""}`}
@@ -84,7 +84,7 @@ const ProcessWeFollow = () => {
       <div className="lg:hidden flex text-[white] w-[90%] mx-auto justify-center flex-wrap mt-7">
         {processWeFollowData.map((data, i) => (
           <div
-            key={i}
+            key={data._id}
             className={`w-[49%] h-56 text-[black] border-[#737373] border-dashed flex flex-col justify-around px-2 ${
               i === 0 || i === 2 || i === 4 ? "border-r" : ""
             } ${i === 0 || i == 1 || i == 2 || i == 3 ? "border-b" : ""}`}

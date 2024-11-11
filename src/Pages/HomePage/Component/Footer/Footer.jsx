@@ -20,7 +20,7 @@ const Footer = () => {
                         <div className='social-icon lg:flex w-full gap-5 mt-5 hidden'>
                             {socialIcon.map((items, i) => {
                                 return (
-                                    <img key={i} src={items.logo} alt={items.title} className='w-5 h-5' />
+                                    <img  key={items._id} src={items.logo} alt={items.title} className='w-5 h-5' />
                                 )
                             })}
                         </div>

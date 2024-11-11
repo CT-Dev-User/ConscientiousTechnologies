@@ -52,7 +52,7 @@ const ReliableTools = ({ category, Subcategory }) => {
       <div className="w-full lg:w-[85%] bg-[#141414] mx-auto text-white flex flex-wrap justify-between flex-col lg:flex-row overflow-x-hidden">
         {reliableToolData.map((items, i) => (
           <div
-            key={i}
+            key={items._id}
             className={
               items.subTech.length > 1
                 ? "w-full border-b border-[#303030] py-4"

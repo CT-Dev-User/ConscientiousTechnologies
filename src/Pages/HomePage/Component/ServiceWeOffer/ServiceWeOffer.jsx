@@ -149,7 +149,7 @@ const ServiceWeOffer = () => {
         {ServiceData.map((item, index) => (
           <div
             className="w-fit-content border border-gray-300 rounded-6 p-1"
-            key={index}
+            key={item._id}
             onClick={() => handleServiceItemClick(index)}
           >
             <h3 className="text-xs">{item.serviceName}</h3>
@@ -160,10 +160,10 @@ const ServiceWeOffer = () => {
       <div className="lg:hidden w-[90%] h-[auto] mx-auto mt-10">
         <Slider {...settings} className="w-[100%]" ref={sliderRef}>
           {ServiceData.map((item, index) => (
-            <div key={index} className="service-item">
+            <div key={item._id} className="service-item">
               <div
                 className="text-[white] w-[95%] h-[450px] bg-[white] relative text-xs gap-2"
-                key={index}
+              
                 style={{
                   backgroundImage: `url(${item.cardImage})`,
                   backgroundSize: "cover",

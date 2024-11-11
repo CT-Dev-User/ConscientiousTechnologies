@@ -56,7 +56,7 @@ const MeetOurClient = () => {
                 <Slider {...settings} dotsClass="slick-custom-dots">
                     {clientReviewsData.map((items, i) => {
                         return (
-                            <div className='lg:h-80 2xl:h-96 mt-7 w-[85%]' key={i}>
+                            <div className='lg:h-80 2xl:h-96 mt-7 w-[85%]' key={items._id}>
                                 <div className='w-[96%] h-full bg-[#464444] flex justify-around py-5'>
                                     <div className='w-[36%] h-full flex justify-center items-center'>
                                         <img src={items.profileImage} alt={items.name} className='w-[97%] h-full mx-auto' />
@@ -97,7 +97,7 @@ const MeetOurClient = () => {
                 <Slider {...settingsMobile}>
                     {clientReviewsData.map((items, i) => {
                         return (
-                            <div className='w-full h-[34rem]' key={i}>
+                            <div className='w-full h-[34rem]' key={items._id}>
                                 <div className='w-[96%] h-full bg-white box-border px-2'>
                                     <div className='w-full h-2/5 mx-auto' style={{ backgroundImage: `url(${items.profileImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                                     </div>

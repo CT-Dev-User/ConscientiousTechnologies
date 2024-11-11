@@ -88,7 +88,7 @@ const OurPartener = () => {
         <Slider {...settings} className='h-full flex justify-center items-center'>
           {OurPartenerData.map((items, i) => {
             return (
-              <div className='w-10 lg:h-28 flex justify-center items-center h-[70px]' key={i}>
+              <div className='w-10 lg:h-28 flex justify-center items-center h-[70px]' key={items._id}>
                 <div className='bg-[black] w-[90%] lg:h-[90%] h-4/5 flex justify-center items-center'>
                   <img src={items.logo} alt={items.title} className='w-full h-full'/>
                 </div>

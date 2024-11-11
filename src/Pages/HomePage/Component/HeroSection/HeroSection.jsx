@@ -75,7 +75,7 @@ const HeroSection = () => {
             <Slider {...settings} ref={sliderRef} className='w-full h-full'>
                 {homeHeroData && homeHeroData.map((item, i) => {
                     return (
-                        <div className='w-full h-screen hero-section-slide' key={i}>
+                        <div className='w-full h-screen hero-section-slide' key={item._id}>
                             <div className='w-full h-full relative' style={{ backgroundImage: `url(${item.herosliderImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
                                 <div className='w-full h-full absolute top-0 left-0 bg-black opacity-[0.7] flex flex-col lg:justify-center lg:items-start box-border px-3 gap-11 justify-evenly items-center'>
                                     <div className='flex flex-col gap-12 w-full'>

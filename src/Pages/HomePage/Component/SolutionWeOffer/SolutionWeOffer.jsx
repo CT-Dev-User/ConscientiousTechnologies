@@ -44,7 +44,7 @@ const SolutionWeOffer = () => {
             <div className="lg:flex text-[white] w-[85%] gap-5 flex-wrap mx-auto mt-7 hidden pb-8">
                 {firstTwelveData.map((items, i) => {
                     return (
-                        <div className='flex w-[31%] bg-[#333333] lg:h-40 2xl:h-48 justify-center gap-x-5' key={i}>
+                        <div className='flex w-[31%] bg-[#333333] lg:h-40 2xl:h-48 justify-center gap-x-5' key={items._id}>
                             <div className='w-[45%] h-full'>
                                 <img src={items.cardImage} alt={items.solutionName} className='w-full h-full' />
                             </div>
@@ -69,7 +69,7 @@ const SolutionWeOffer = () => {
             <div className="lg:hidden flex gap-5 flex-wrap mx-auto mt-7 text-white w-[90%] h-[30rem] overflow-y-auto">
                 {firstTwelveData.map((items, i) => {
                     return (
-                        <div className='bg-[#333333] w-full h-40 relative' key={i}>
+                        <div className='bg-[#333333] w-full h-40 relative' key={items._id}>
                             <div className='w-full absolute h-full' style={{ backgroundImage: `url(${items.image})`, backgroundSize: '', backgroundPosition: 'center' }}>
                                 <div className='bg-black w-full h-full opacity-[0.8] flex flex-col justify-center items-end'>
                                     <div className='w-[95%]'>

@@ -213,7 +213,7 @@ const PartnerUpWithCity = () => {
                 {
                     partnerUpData.map((partner, index) => {
                         return (
-                            <div key={`partner-${index}`}>
+                            <div key={`partner-${partner._id}`}>
                                 <div className='w-full py-4 ' >
                                     <h1 className=" font-bold mb-[50px] lg:text-3xl text-xl 2xl:text-[2rem]">
                                         {partner.heading1}

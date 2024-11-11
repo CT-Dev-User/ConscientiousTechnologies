@@ -72,7 +72,7 @@ const handleMouseLeave = () => {
         <Slider {...settings} ref={sliderRef}>
           {KeyFeatureData && KeyFeatureData.map((item, i) => {
             return (
-              <div key={i}>
+              <div key={item._id}>
                 <div className='flex w-screen lg:h-auto flex-col lg:flex-row h-4/5'>
                   <div className='w-2/5 lg:h-[38rem] lg:block hidden' style={{ backgroundImage: `url(${item.keyFeatureImag})`, backgroundSize: 'cover', backgroundPosition: 'center' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                   </div>

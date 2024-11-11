@@ -55,7 +55,7 @@ const AllFaq = ({ category, subCategory }) => {
         {homeFaqs.map((items, index) => (
           <div
             className="que-ans-div w-full mt-5 lg:shadow-md shadow-none"
-            key={index}
+            key={items._id}
           >
             <div
               className="w-full lg:h-16 flex justify-between items-center lg:px-5 px-3 h-auto text-base 2xl:text-xl py-[10px] md:gap-5 font-normal"
