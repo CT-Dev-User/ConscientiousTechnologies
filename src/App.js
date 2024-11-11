@@ -119,7 +119,7 @@ function App() {
     <div className="relative bg-white font-medium">
       <NavBar hideNavbar={hideNavbar} setHideNavbar={setHideNavbar} activeSubNav={activeSubNav} />
       <Routes>
-        <Route path='/' element={<HomePage setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav} />} />
+        <Route path='/' element={<HomePage setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav} hideNavbar={false} />} />
         <Route path='/by-client/Enterprises' element={<EnterpriseService />} />
         <Route path='/by-client/Agencies' element={<AgenciesDev />} />
 

@@ -1,23 +1,17 @@
+// SubNav Component
 import React, { useState, useEffect } from "react";
 import "./subNav.css";
 
 const SubNav = ({ setHideNavbar, setActiveSubNav }) => {
+  const [subNavTop, setSubNavTop] = useState(0);
   const [activeAnchor, setActiveAnchor] = useState("");
   const [isAtTop, setIsAtTop] = useState(true);
-  const [navbarHeight, setNavbarHeight] = useState(0);
-  const [subNavTop, setSubNavTop] = useState(0);
 
   useEffect(() => {
-    // Get the initial height of the main navbar
-    const mainNavbar = document.querySelector(".navbar");
-    console.log(mainNavbar)
-    if (mainNavbar) {
-      setNavbarHeight(mainNavbar.offsetHeight);
-      setSubNavTop(mainNavbar.offsetHeight); // Set initial top position based on navbar height
-    }
-
     const handleScroll = () => {
-      // Check which section is active on scroll
+      const navbarHeight = document.querySelector(".navbar")?.offsetHeight || 0;
+      setSubNavTop(navbarHeight);
+
       const sections = [
         "overview",
         "service",
@@ -35,6 +29,12 @@ const SubNav = ({ setHideNavbar, setActiveSubNav }) => {
         const section = document.getElementById(id);
         if (section) {
           const rect = section.getBoundingClientRect();
+          // Check if the section is in the viewport
+          if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+            setActiveAnchor(id);
+            return; // Exit early if the section is in view
+          }
+          // Otherwise, find the section closest to the top of the viewport
           const distance = Math.abs(rect.top);
           if (distance < minDistance) {
             minDistance = distance;
@@ -43,67 +43,136 @@ const SubNav = ({ setHideNavbar, setActiveSubNav }) => {
         }
       });
 
+      // Update the active link to the closest section
       setActiveAnchor(activeSection);
-      setIsAtTop(window.scrollY === 0);
-      setHideNavbar(window.scrollY === 0);
 
-      // Update SubNav top position
-      if (window.scrollY >= navbarHeight) {
-        setSubNavTop(0); // Stick to top of the screen after scrolling past navbar
+      if (window.scrollY === 0) {
+        setIsAtTop(true);
+        setHideNavbar(true); // Hide navbar at the top of the page
       } else {
-        setSubNavTop(navbarHeight); // Keep SubNav below the navbar initially
+        setIsAtTop(false);
+        setHideNavbar(false);
       }
     };
-    console.log(subNavTop)
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [setHideNavbar, navbarHeight]);
+  }, [setHideNavbar]);
 
   const handleClick = (id) => {
     setActiveAnchor(id);
+    setIsAtTop(true);
     setActiveSubNav(true);
     setHideNavbar(true);
 
     const targetElement = document.getElementById(id);
+
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
+      // Calculate the distance to scroll
+      const offsetTop = targetElement.getBoundingClientRect().top;
+      const offset = window.scrollY;
+      const targetOffsetTop = offsetTop + offset;
+      const duration = 300; // Adjust the duration as needed (in milliseconds)
+
+      // Smooth scrolling animation
+      const startTime = performance.now();
+      const easeInOutQuad = (t) => (t < 0.3 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+      const scroll = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        window.scrollTo(
+          0,
+          easeInOutQuad(elapsed / duration) * (targetOffsetTop - offset) +
+            offset
+        );
+        if (elapsed < duration) {
+          requestAnimationFrame(scroll);
+        }
+      };
+      requestAnimationFrame(scroll);
     }
   };
 
   return (
     <div
-      className="hidden lg:flex h-14 w-screen sticky z-50 bg-black transition-transform duration-300 ease-in-out"
+      className={`hidden lg:flex h-14 w-screen bg-black sticky ${
+        isAtTop ? "top-[calc(90px + 1rem)]" : "top-0"
+      } z-50`}
       style={{
-        top: `${subNavTop}px`, // Dynamically adjust top position based on scroll
+        top: subNavTop,
+        transition: "transform 0.3s ease-in-out",
       }}
     >
       <ul className="flex text-white justify-evenly w-full items-center text-xs">
-        {[ 
-          { id: "overview", label: "Overview" },
-          { id: "service", label: "Services" },
-          { id: "solution", label: "Solutions" },
-          { id: "how-we-work", label: "How we work" },
-          { id: "industries", label: "Industries" },
-          { id: "testimonials", label: "Testimonials" },
-          { id: "book-free-consultation", label: "Book free consultation" },
-        ].map((item) => (
-          <li key={item.id}>
-            <a
-              href={`#${item.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                handleClick(item.id);
-              }}
-              className={activeAnchor === item.id ? "active1" : ""}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))}
+        <li>
+          <a
+            href="#overview"
+            onClick={(e) => {
+              handleClick("overview");
+            }}
+            className={activeAnchor === "overview" ? "active1" : ""}
+          >
+            Overview
+          </a>
+        </li>
+        <li>
+          <a
+            href="#service"
+            onClick={(e) => handleClick("service")}
+            className={activeAnchor === "service" ? "active1" : ""}
+          >
+            Services
+          </a>
+        </li>
+        <li>
+          <a
+            href="#solution"
+            onClick={(e) => handleClick("solution")}
+            className={activeAnchor === "solution" ? "active1" : ""}
+          >
+            Solutions
+          </a>
+        </li>
+        <li>
+          <a
+            href="#how-we-work"
+            onClick={(e) => handleClick("how-we-work")}
+            className={activeAnchor === "how-we-work" ? "active1" : ""}
+          >
+            How we work
+          </a>
+        </li>
+        <li>
+          <a
+            href="#industries"
+            onClick={(e) => handleClick("industries")}
+            className={activeAnchor === "industries" ? "active1" : ""}
+          >
+            Industries
+          </a>
+        </li>
+        <li>
+          <a
+            href="#testimonials"
+            onClick={(e) => handleClick("testimonials")}
+            className={activeAnchor === "testimonials" ? "active1" : ""}
+          >
+            Testimonials
+          </a>
+        </li>
+        <li>
+          <a
+            href="#book-free-consultation"
+            onClick={(e) => handleClick("book-free-consultation")}
+            className={
+              activeAnchor === "book-free-consultation" ? "active1" : ""
+            }
+          >
+            Book free consultation
+          </a>
+        </li>
       </ul>
     </div>
   );
