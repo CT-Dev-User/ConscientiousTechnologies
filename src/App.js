@@ -116,7 +116,7 @@ function App() {
   const [hideNavbar, setHideNavbar] = useState(false);
   const [activeSubNav, setActiveSubNav] = useState(false);
   return (
-    <div className="relative md:overflow-x-hidden bg-white font-medium">
+    <div className="relative bg-white font-medium">
       <NavBar hideNavbar={hideNavbar} setHideNavbar={setHideNavbar} activeSubNav={activeSubNav} />
       <Routes>
         <Route path='/' element={<HomePage setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav} />} />

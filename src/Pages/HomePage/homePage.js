@@ -27,7 +27,7 @@ const HomePage = ({ setHideNavbar, setActiveSubNav }) => { // Receive setHideNav
   }, [])
 
   return (
-    <>
+    <div style={{position:"relative"}}>
           {/* Helmet for managing document head */}
           <Helmet>
         <title>Conscientious Technology</title>
@@ -57,7 +57,7 @@ const HomePage = ({ setHideNavbar, setActiveSubNav }) => { // Receive setHideNav
       <AllFaq category="HomePage" />
       <BookFreeConsultation />
       <Footer />
-    </>
+    </div>
   );
 };
 
