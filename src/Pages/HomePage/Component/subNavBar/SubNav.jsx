@@ -97,9 +97,9 @@ const SubNav = ({ setHideNavbar, setActiveSubNav }) => {
 
   return (
     <div
-      className={`hidden lg:flex h-14 w-screen bg-black sticky ${
+      className={`hidden lg:flex lg:h-10 2xl:h-12 w-screen bg-black sticky ${
         isAtTop ? "top-[calc(90px + 1rem)]" : "top-0"
-      } z-50`}
+      } z-30`}
       style={{
         top: subNavTop,
         transition: "transform 0.3s ease-in-out",

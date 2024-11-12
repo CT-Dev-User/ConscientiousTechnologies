@@ -114,14 +114,14 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
   return (
     <nav
       className={`navbar  ${visible && !hideNavbar ? "active" : "hidden"
-        } w-screen lg:p-1 z-50 fixed top-0 p-2 ${visible && prevScrollPos > 10
+        } w-screen lg:p-1 z-40 fixed top-0 p-2 ${visible && prevScrollPos > 10
           ? "bg-black opacity-80"
           : "transparent opacity-100"
         }`}
     >
       {/* Dropdown menu */}
       <div
-        className={`hidden lg:block w-4/5 overflow-y-auto absolute top-12 left-[12%] duration-1000 transition-height ease-in-out ${dropdownsData.length > 0
+        className={`z-50 hidden lg:block w-4/5 overflow-y-auto absolute top-12 left-[12%] duration-1000 transition-height ease-in-out ${dropdownsData.length > 0
           ? "p-2 h-auto opacity-100 dropdown"
           : "p-0 h-0 opacity-0 pointer-events-none"
           }`}
