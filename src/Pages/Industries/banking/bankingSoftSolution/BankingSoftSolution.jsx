@@ -3,8 +3,6 @@ import React from 'react'
 const BankingSoftSolution = () => {
     const customerExperience = [{ title: "Internet banking", points: ["Our software development pricing models.", "Cost estimation factors and models.", "Cost optimization best practices.", "Analyzing the project’s economic feasibility."] }, { title: "Mobile Banking", points: ["Agile scoping and scope creep management.", "Risk mitigation steps we take throughout the SDLC.", "Our change management process.", "Sample software documents we deliver."] }, { title: "Cutomer portal", points: ["Collaboration roles, models, and toolkit.", "Our knowledge management activities, techniques, and tools."] }, { title: "Banking CRM", points: ["KPIs to measure cooperation success and software quality.", "Process and software reports we provide."] }, { title: "Loyalty program managemnet", points: ["Data and assets we secure.", "Security management procedures during the cooperation."] }, { title: "Banking data analytics", points: ["BFSI standards and regulations we help adhere to.", "Our compliance-centered development process."] }, { title: "Lending software", points: [""] }, { title: "Payment software", points: [""] }, { title: "Document management system", points: [""] }]
     return (
-
-
         <div className="w-full py-16">
             <div className='lg:w-[85%] mx-auto w-full px-3 lg:px-0'>
                 <h1 className='lg:text-3xl font-bold text-2xl lg:text-black text-[blue]'>

@@ -4,7 +4,6 @@ import axios from 'axios';
 
 const AreaOfExperties = ({ serviceName, navSubCategory }) => {
     const navigate = useNavigate();
-    const [expertiesData, setexpertiesData] = useState([]);
     const [subServices, setSubServices] = useState([]);
     const [loading, setLoading] = useState(true); // loading state for preloader
 

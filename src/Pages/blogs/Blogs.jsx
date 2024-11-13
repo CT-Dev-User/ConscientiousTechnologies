@@ -22,7 +22,6 @@ const Blogs = () => {
             console.log(error);
         }
     };
-
     useEffect(() => {
         fetchBlogDataById();
     }, [id]);
@@ -48,7 +47,6 @@ const Blogs = () => {
             <RelatedBlog />
             <BookFreeConsultation />
             <Footer />
-
         </div>
     );
 };

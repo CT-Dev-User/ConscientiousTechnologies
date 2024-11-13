@@ -22,6 +22,7 @@ const ArtificialIntelligence = () => {
       {/* Helmet for managing document head */}
       <Helmet>
         <title>Artificial Intelligence (AI) Services</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Service | Banking" />
         <meta
           name="description"
           content={``}

@@ -22,6 +22,7 @@ const ContentManagement = () => {
     <div>
         <Helmet>
         <title>Content Management Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Content Management" />
         <meta
           name="description"
           content={``}

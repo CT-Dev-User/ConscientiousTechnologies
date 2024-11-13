@@ -23,6 +23,8 @@ const DataAnalystSolution = () => {
     <div>
       <Helmet>
         <title>Data Analytics Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Data Analytics" />
+
         <meta
           name="description"
           content={``}

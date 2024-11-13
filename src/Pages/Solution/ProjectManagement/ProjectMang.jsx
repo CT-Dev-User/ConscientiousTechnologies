@@ -21,6 +21,7 @@ const ProjectMang = () => {
     <div>
       <Helmet>
         <title>Project Management Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Project Management Service" />
         <meta
           name="description"
           content={``}

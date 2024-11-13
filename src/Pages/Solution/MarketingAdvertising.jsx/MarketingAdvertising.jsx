@@ -19,6 +19,7 @@ const MarketingAdvertising = () => {
     <div>
       <Helmet>
         <title>Marketing & advertising</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Marketing Advertising Service" />
         <meta
           name="description"
           content={``}

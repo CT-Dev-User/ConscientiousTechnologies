@@ -29,8 +29,12 @@ const HomePage = ({ setHideNavbar, setActiveSubNav, hideNavbar }) => {
   return (
     <div style={{ position: "relative" }}>
       {/* Helmet for managing document head */}
+
+
       <Helmet>
         <title>Conscientious Technology</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Home Page" />
+
         <meta
           name="description"
           content={`Explore why CT is the right choice for. Check out our unique offerings, benefits, and more.`}

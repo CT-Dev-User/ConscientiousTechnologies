@@ -14,7 +14,6 @@ const AllFaq = ({ category, subCategory }) => {
         : `https://conscientious-technologies-backend.vercel.app/get-faq-bycategorysubcategory/${category}/${subCategory}`;
       
       const response = await axios.get(endpoint);
-      console.log(response.data)
       setHomeFaqs(category === "HomePage" ? response.data.getData : response.data.data);
     } catch (error) {
       console.error("Error fetching FAQs:", error);

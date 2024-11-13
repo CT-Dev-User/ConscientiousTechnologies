@@ -18,6 +18,7 @@ const Lending = () => {
     return (
         <div>
             <Helmet>
+            <link rel="canonical" href="https://https://https://www.conscientioustech.in/Industries | Lending" />
                 <title>Lending Industry</title>
                 <meta
                     name="description"

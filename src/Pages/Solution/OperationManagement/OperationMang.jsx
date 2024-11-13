@@ -25,6 +25,7 @@ const OperationMang = () => {
     <div>
       <Helmet>
         <title>Operations Management Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Operations Management Service" />
         <meta
           name="description"
           content={``}

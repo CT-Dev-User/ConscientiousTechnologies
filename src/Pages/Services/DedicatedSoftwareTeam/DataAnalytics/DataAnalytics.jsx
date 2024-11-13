@@ -26,6 +26,7 @@ const DataAnalytics = () => {
       {/* Helmet for managing document head */}
       <Helmet>
         <title>Dedicated Software Teams | Data Analytics</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Services | Data Analytics" />
         <meta
           name="description"
           content={``}

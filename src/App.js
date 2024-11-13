@@ -110,7 +110,6 @@ import Blogs from './Pages/blogs/Blogs';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import CaseStudy from './Pages/caseStudy/CaseStudy';
 import ContactUsPage from './Pages/contactUsPage/ContactUsPage';
-// import Solution from './Pages/Solution/solutionPage/Solution';
 
 function App() {
   const [hideNavbar, setHideNavbar] = useState(false);
@@ -132,8 +131,6 @@ function App() {
 
         {/* software consulting service  */}
         <Route path='Services/Software Development Services' element={<SoftDevHomePage />} />
-
-       
         <Route path='/Software Development Services/Software Consulting Services' element={<SoftwareConsulting />} />
         <Route path='/Software Development Services/Custom software development' element={<CustomConsService />} />
         <Route path='/Software Development Services/Enterprise software' element={<Enterprise />} />

@@ -23,6 +23,7 @@ const Ecommerse = () => {
     <div>
       <Helmet>
         <title>Ecommerce Services</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Services | Ecommerce" />
         <meta
           name="description"
           content={``}

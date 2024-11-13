@@ -23,6 +23,7 @@ const PaymentManageMent = () => {
     <div>
       <Helmet>
         <title>Payment Management Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Payment Management Service" />
         <meta
           name="description"
           content={``}

@@ -20,6 +20,7 @@ const Elearning = () => {
         <div>
             <Helmet>
                 <title>eLearning Solution</title>
+                <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Elearning" />
                 <meta
                     name="description"
                     content={``}

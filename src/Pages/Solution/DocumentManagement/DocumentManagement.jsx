@@ -19,6 +19,8 @@ const DocumentManagement = () => {
     <div>
       <Helmet>
         <title>Document Management Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Document Management" />
+
         <meta
           name="description"
           content={``}

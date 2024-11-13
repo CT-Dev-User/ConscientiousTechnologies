@@ -25,6 +25,7 @@ const CloudComputing = () => {
       {/* Helmet for managing document head */}
       <Helmet>
         <title>Cloud Computing Services</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Service | Cloud Computing" />
         <meta
           name="description"
           content={``}

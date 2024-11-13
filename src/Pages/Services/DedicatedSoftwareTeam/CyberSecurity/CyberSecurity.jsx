@@ -21,6 +21,7 @@ const CyberSecurity = () => {
       {/* Helmet for managing document head */}
       <Helmet>
         <title>Dedicated Software Teams | Cyber Security</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Services | Cyber Security" />
         <meta
           name="description"
           content={``}

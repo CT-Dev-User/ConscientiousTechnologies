@@ -15,7 +15,6 @@ const IndustriesWeServe = () => {
       );
       if (response.status === 200) {
         setHomeIndustriesData(response.data);
-        console.log(response.data);
       }
     } catch (error) {
       console.log(error);

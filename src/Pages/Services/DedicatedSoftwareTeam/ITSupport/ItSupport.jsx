@@ -21,6 +21,7 @@ const ItSupport = () => {
     <div>
       <Helmet>
         <title>Dedicated Software Teams | IT Support</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Service | IT Support" />
         <meta
           name="description"
           content={``}

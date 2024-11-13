@@ -24,6 +24,7 @@ const WebPortal = () => {
     <div>
       <Helmet>
         <title>Web Portal Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Web Portal Service" />
         <meta
           name="description"
           content={``}

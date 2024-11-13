@@ -1,10 +1,6 @@
 import React from 'react'
-
-
-
 import { useNavigate, useParams } from 'react-router-dom'
 const MobileAppWeDeveloped = () => {
-    const navigate = useNavigate()
     return (
 
         <div className='w-screen h-auto bg-black text-white lg:pt-14 pb-7 pt-20 box-border'>

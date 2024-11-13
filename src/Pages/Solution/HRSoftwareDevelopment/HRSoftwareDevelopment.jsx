@@ -23,6 +23,7 @@ const HRSoftwareDevelopment = () => {
     <div>
       <Helmet>
         <title>HR Software Development Services</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | HR Software Service" />
         <meta
           name="description"
           content={``}

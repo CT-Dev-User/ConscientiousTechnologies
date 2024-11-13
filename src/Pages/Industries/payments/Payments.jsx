@@ -19,6 +19,7 @@ const Payments = () => {
         <div>
             <Helmet>
                 <title>Payments Industry</title>
+                <link rel="canonical" href="https://https://https://www.conscientioustech.in/Industries | Payments" />
                 <meta
                     name="description"
                     content={``}

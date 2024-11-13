@@ -14,11 +14,9 @@ import AllHeader from '../../../RepeatedComponents/haeder/AllHeader'
 import WhyChooseCTSlider from '../../../RepeatedComponents/WhyChooseCT/WhyChooseCT'
 import PartnerUpWithCity from '../../../RepeatedComponents/partnerUpWithCity/PartnerUpWithCity'
 import ReliableTools from '../../../RepeatedComponents/ReliableTechTools/ReliableTechTools'
-// import AreaOfExperties from './Components/AreaOfExperties'
 import AreaOfExperties from '../../../RepeatedComponents/AreaOfExperties/AreaOfExperties'
 import AreaOfExpertiesHeading from './Components/AreaOfExpertiesHeading'
 import { Helmet } from 'react-helmet'
-// import AreaOfExperties from '../../../RepeatedComponents/AreaOfExperties/AreaOfExperties'
 
 const MainDedicatedDevService = () => {
 
@@ -30,6 +28,7 @@ const MainDedicatedDevService = () => {
     <div>
        <Helmet>
         <title>Dedicated Software Teams</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Services | Dedicated Software Teams" />
         <meta
           name="description"
           content={``}

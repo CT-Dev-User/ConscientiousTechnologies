@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react'
 import aboutus from '../../../../assets/AboutUs/aboutUs.png'
 import axios from 'axios'
 const OurStory = () => {
-    const [socialIcon, setSocialIcon] = useState([])
-
-
     return (
         <div className='w-[95vw] lg:w-[85vw] flex justify-between flex-wrap mx-auto  py-4 lg:py-8' id='about_us'>
             <div className=' w-[50%] py-5 box-border '>

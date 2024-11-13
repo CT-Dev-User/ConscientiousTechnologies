@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./reliableTools.css";
 import axios from "axios";
 import TechLogosPopup from "./TechLogosPopup";
-import aboutUs from "../../../assets/AboutUs/aboutUs.png";
 
 const ReliableTools = ({ category, Subcategory }) => {
   console.log(category, Subcategory)
@@ -24,7 +23,6 @@ const ReliableTools = ({ category, Subcategory }) => {
           `https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/${category}/${Subcategory}`
         );
         setReliableToolsData(response.data.data);
-        console.log(response.data.data)
       }
     } catch (error) {
       console.error(error);
@@ -76,7 +74,6 @@ const ReliableTools = ({ category, Subcategory }) => {
                     {item.techLogos.slice(0, 5).map((logo, i) => (
                       <div key={i} className="lg:w-14 w-12">
                         <img src={logo.logo} alt={item.title} />
-                        {/* <img src={aboutUs} className="w-12" alt="" /> */}
                       </div>
                     ))}
                     {item.techLogos.length > 5 && (

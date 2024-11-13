@@ -23,6 +23,7 @@ const KioskSoftware = () => {
     <div>
       <Helmet>
         <title>HR Software Development Services</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Kiosk Service" />
         <meta
           name="description"
           content={``}

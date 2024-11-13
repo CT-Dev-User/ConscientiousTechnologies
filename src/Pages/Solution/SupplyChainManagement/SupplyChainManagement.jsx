@@ -22,6 +22,7 @@ const SupplyChainManagement = () => {
     <div>
       <Helmet>
         <title>Supply Chain Management Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Supply Chain Management Service" />
         <meta
           name="description"
           content={``}

@@ -42,8 +42,6 @@ const handleMouseLeave = () => {
     fetchKeyFeatureData();
   }, []);
 
-
-
   const settings = {
     dots: false,
     infinite: true,

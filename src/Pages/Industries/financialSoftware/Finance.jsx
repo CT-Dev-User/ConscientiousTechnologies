@@ -20,6 +20,7 @@ const Finance = () => {
         <div>
             <Helmet>
                 <title>Financial Services</title>
+                <link rel="canonical" href="https://https://https://www.conscientioustech.in/Industries | Finance" />
                 <meta
                     name="description"
                     content={``}

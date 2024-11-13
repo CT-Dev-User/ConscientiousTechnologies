@@ -25,6 +25,7 @@ const FinancialManagement = () => {
     <div>
       <Helmet>
         <title>Financial Management Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Financial Service" />
         <meta
           name="description"
           content={``}

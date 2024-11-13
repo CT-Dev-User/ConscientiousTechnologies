@@ -11,22 +11,15 @@ const Blog = ({ category, subCategory }) => {
     try {
       if (category === "HomePage") {
         const response = await axios.get("https://conscientious-technologies-backend.vercel.app/get-latest-blog-data");
-        // console.log(response.data);
         setBlogData(response.data.blogs);
-        // console.log(blogData)
       } else {
         const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-blogs-data-by-CategoryandSubCategory/${category}/${subCategory}`);
-        // console.log(response.data);
         setBlogData(response.data.data);
-        // console.log(blogData)
       }
     } catch (error) {
       console.log(error);
     }
   };
-
-
-
   useEffect(() => {
     fetchBlogsData();
   }, []);
@@ -51,13 +44,6 @@ const Blog = ({ category, subCategory }) => {
   const goToPrevSlide = () => {
     sliderRef1.current.slickPrev();
   };
-
-  // const extractFirst10Words = (text, num) => {
-  //   const words = text.split(/\s+/); // Split the text into words using whitespace as delimiter
-  //   const first20Words = words.slice(0, num); // Get the first 20 words
-  //   return first20Words.join(" "); // Join them back into a single string
-  // };
-
   return (
     <div className="w-screen h-auto bg-black py-14 box-border text-white border-t-[.1px] border-[#cccc]">
       <div className="lg:w-[85%] mx-auto w-[95%]">
@@ -87,12 +73,10 @@ const Blog = ({ category, subCategory }) => {
                 <div className="flex flex-col justify-around gap-4">
                   <h1 className="font-semibold text-lg">
                     {items.cardHeading}
-                    {/* {extractFirst10Words(items.heading, 5)}... */}
                   </h1>
                   <p className="text-sm">
                     {" "}
                     {items.cardSubHeading}
-                    {/* {extractFirst10Words(items.subHeading, 10)}... */}
                   </p>
                 </div>
                 <button

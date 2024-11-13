@@ -17,9 +17,6 @@ import Header from './Component/aboutUsHeader/AboutUsHeader'
 const AboutUs = ({ setHideNavbar, setActiveSubNav }) => {
     return (
         <div>
-            
-            {/* <AllHeader category="About Us" subCategory="About Us" /> */}
-            {/* <Header/> */}
             <Header/>
             <OurPartener />
             <SubNavBar setHideNavbar={setHideNavbar} setActiveSubNav={setActiveSubNav} />
@@ -30,7 +27,6 @@ const AboutUs = ({ setHideNavbar, setActiveSubNav }) => {
             <ProudExistence />
             <PartnerEcoSystem />
             <ServiceWeProvide/>
-            {/* <OurMission /> */}
             <MeetOurClient />
             <BookFreeConsultation />
             <Footer />

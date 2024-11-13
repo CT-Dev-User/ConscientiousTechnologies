@@ -24,6 +24,7 @@ const ERP = () => {
     <div>
       <Helmet>
         <title>ERP Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | ERP Service" />
         <meta
           name="description"
           content={``}

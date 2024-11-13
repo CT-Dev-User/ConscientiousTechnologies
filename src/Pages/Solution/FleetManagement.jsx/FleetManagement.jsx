@@ -21,6 +21,7 @@ const FleetManagement = () => {
     <div>
       <Helmet>
         <title>Fleet Management Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | Fleet Management Service" />
         <meta
           name="description"
           content={``}

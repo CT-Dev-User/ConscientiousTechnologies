@@ -2,8 +2,6 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 const TypeOfSoft = () => {
-    const navigate = useNavigate()
-
     return (
 
         <div className='w-screen bg-[black] text-[white] pt-10 pb-8'>

@@ -16,6 +16,7 @@ const Manufacturing = () => {
         <div>
             <Helmet>
                 <title>Manufacturing Industry</title>
+                <link rel="canonical" href="https://https://https://www.conscientioustech.in/Industries | Manufacturing" />
                 <meta
                     name="description"
                     content={``}

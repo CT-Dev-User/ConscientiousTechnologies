@@ -11,8 +11,6 @@ const BenefitsFromCloud = () => {
   ];
 
   return (
-
-
     <div
     id="how-we-work"
     className="w-screen h-[auto] bg-[white] box-border py-16"

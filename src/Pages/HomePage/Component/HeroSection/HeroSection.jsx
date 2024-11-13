@@ -68,8 +68,6 @@ const HeroSection = () => {
             }
         ]
     };
-
-
     return (
         <div className='w-screen h-screen'>
             <Slider {...settings} ref={sliderRef} className='w-full h-full'>

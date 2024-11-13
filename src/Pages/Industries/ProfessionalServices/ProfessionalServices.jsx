@@ -10,6 +10,7 @@ const ProfessionalServices = () => {
     <div>
       <Helmet>
         <title>Professional Services Industry</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Industries | Professional Services" />
         <meta
           name="description"
           content={``}

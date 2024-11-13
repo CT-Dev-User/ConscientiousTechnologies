@@ -18,9 +18,7 @@ import { Helmet } from 'react-helmet';
 
 const CaseStudy = () => {
     const { id } = useParams()
-    console.log(id)
     const [caseStudy, setCaseStudy] = useState([])
-
     const fetchCaseStudy = async () => {
         try {
             const response = await axios.get(`https://conscientious-technologies-backend.vercel.app/get-case-studies-by-id/${id}`)
@@ -29,16 +27,12 @@ const CaseStudy = () => {
             console.log("Error fetching case study data:", error)
         }
     }
-
     useEffect(() => {
         fetchCaseStudy()
     }, [])
-    console.log(caseStudy)
-
     return (
 
         <div>
-            {/* {caseStudy.map((caseStudy, i) => ( */}
             <div>
                 <Helmet>
                     <title>Case study</title>
@@ -67,8 +61,6 @@ const CaseStudy = () => {
                 <BookFreeConsultation />
                 <Footer />
             </div>
-            {/* ))} */}
-
         </div>
     )
 

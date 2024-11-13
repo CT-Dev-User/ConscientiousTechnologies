@@ -15,6 +15,7 @@ const Telicommunication = () => {
         <div>
             <Helmet>
                 <title>Telecommunications Industry</title>
+                <link rel="canonical" href="https://https://https://www.conscientioustech.in/Industries | Telecommunications" />
                 <meta
                     name="description"
                     content={``}

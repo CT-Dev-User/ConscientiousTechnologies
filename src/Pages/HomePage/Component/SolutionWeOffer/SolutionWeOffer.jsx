@@ -52,7 +52,6 @@ const SolutionWeOffer = () => {
                                 <div >
                                     <h3 className='text-sm font-medium'> {items.solutionName} </h3>
                                     <p className='text-xs me-1 mt-2 font-normal'>{items.cardDescription}</p>
-                                    {/* <p className='text-xs me-1 mt-2 font-normal' dangerouslySetInnerHTML={{ __html: items.desc }} /> */}
                                 </div>
                                 <button
                                     className="relative overflow-hidden group border border-[white] px-4 py-1 w-[fit-content] text-xs ms-0"

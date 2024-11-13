@@ -20,6 +20,7 @@ const HelpDesk = () => {
     <div>
       <Helmet>
         <title>Dedicated Software Teams | Help Desk</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Service | Help Desk" />
         <meta
           name="description"
           content={``}

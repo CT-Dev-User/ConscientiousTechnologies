@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import OurPartener from '../../HomePage/Component/OurPartener/OurPartener'
-// import TypesOfSoftwareInCT from './Component/TypesOfSoftwareInCTHeading'
 import TestingType from './Component/TestingType'
 import QASoftWareService from './Component/QASoftWareService'
 import TechToolsHeader from './Component/TechTools/TechToolsHeader'
@@ -27,6 +26,7 @@ const QaService = () => {
     <div>
       <Helmet>
         <title>Dedicated Software Teams | QA & Testing</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Services | QA Service" />
         <meta
           name="description"
           content={``}

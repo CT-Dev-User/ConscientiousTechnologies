@@ -15,6 +15,7 @@ const TransportationandLogistics = () => {
     <div>
       <Helmet>
         <title>Transportation and Logistics Industry</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Industries | Transportation and Logistics" />
         <meta
           name="description"
           content={``}

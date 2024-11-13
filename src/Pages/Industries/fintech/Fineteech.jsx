@@ -20,6 +20,7 @@ const Fineteech = () => {
         <div>
             <Helmet>
                 <title>Fintech Industry</title>
+                <link rel="canonical" href="https://https://https://www.conscientioustech.in/Industries | Finetech" />
                 <meta
                     name="description"
                     content={``}

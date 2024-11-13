@@ -23,6 +23,8 @@ const CRMSoftware = () => {
     <div>
       <Helmet>
         <title>CRM Services Solution</title>
+        <link rel="canonical" href="https://https://https://www.conscientioustech.in/Solution | CRM Services" />
+
         <meta
           name="description"
           content={``}
