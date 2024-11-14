@@ -69,7 +69,7 @@ dataroute.post('/add-reliable-tools-data', authlogin, Super_Admin, MultiImageupl
 dataroute.get('/get-reliable-tools-data', getReliableToolsData);
 dataroute.get('/get-reliable-tools-data/:category', getReliableToolsByCategory)
 dataroute.get('/get-reliable-tools-data/:category/:Subcategory', getReliableToolsBySubCategory)
-dataroute.put('/update-reliable-tools-data/:id', authlogin, Super_Admin, MultiImageupload.array('techLogos'), editReliableToolsData)
+dataroute.put('/update-reliable-tools-data/:id', MultiImageupload.array('techLogos'), editReliableToolsData)
 dataroute.delete('/delete-reliable-tools-data/:id', authlogin, Super_Admin, deleteReliableToolsData)
 
 //  key feature routes // no need to delete
