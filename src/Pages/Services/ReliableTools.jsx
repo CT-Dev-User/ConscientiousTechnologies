@@ -146,7 +146,6 @@ const ServiceTechTools = () => {
       );
     }
   };
-
   const addReliableDataFunc = async () => {
     try {
       const formData = new FormData();
@@ -154,20 +153,36 @@ const ServiceTechTools = () => {
       formData.append("Subcategory", addReliableData.Subcategory);
       formData.append("technology", addReliableData.technology);
       formData.append("subTech", JSON.stringify(addReliableData.subTech));
-
-      addReliableData.subTech.forEach((subTechItem, index) => {
+  
+      const techLogoIndexArray = [];
+  
+      // Iterate through subTech and its logos
+      addReliableData.subTech.forEach((subTechItem, subTechIndex) => {
         subTechItem.techLogos.forEach((logoItem, logoIndex) => {
           if (logoItem.logo instanceof File) {
-            formData.append(`techLogos`, logoItem.logo);
+            // Log each file and index before appending
+            console.log(`Appending logo file:`, logoItem.logo);
+            console.log(`For subTechIndex: ${subTechIndex}, logoIndex: ${logoIndex}`);
+            
+            formData.append("techLogos", logoItem.logo);
+            techLogoIndexArray.push({ subTechIndex, logoIndex });
           }
         });
       });
-
+  
+      // Log the techLogoIndexArray to verify the correct indices
+      console.log("Tech Logo Indices:", techLogoIndexArray);
+  
+      formData.append("techLogoIndex", JSON.stringify(techLogoIndexArray));
+  
+      // Send the request
       const response = await axios.post(
-        "https://conscientious-technologies-backend.vercel.app/add-reliable-tools-data",
+        "http://localhost:8080/add-reliable-tools-data",
         formData
       );
+  
       if (response.status === 200) {
+        Swal.fire("Success", "Data added successfully!", "success");
         fetchReliableData();
         setAddPopUpShow(false);
         setAddReliableData({
@@ -178,11 +193,8 @@ const ServiceTechTools = () => {
         });
       }
     } catch (error) {
-      Swal.fire(
-        "Error!",
-        "Failed to add data. Please try again later.",
-        "error"
-      );
+      Swal.fire("Error!", "Failed to add data. Please try again later.", "error");
+      console.error("Add Reliable Data Error:", error);
     }
   };
 
@@ -237,17 +249,23 @@ const ServiceTechTools = () => {
       formData.append("Subcategory", addReliableData.Subcategory);
       formData.append("technology", addReliableData.technology);
       formData.append("subTech", JSON.stringify(addReliableData.subTech));
-
-      addReliableData.subTech.forEach((subTechItem) => {
-        subTechItem.techLogos.forEach((logoItem) => {
+  
+      const techLogoIndices = [];
+  
+      addReliableData.subTech.forEach((subTechItem, subTechIndex) => {
+        subTechItem.techLogos.forEach((logoItem, logoIndex) => {
           if (logoItem.logo instanceof File) {
             formData.append("techLogos", logoItem.logo);
+            techLogoIndices.push({ subTechIndex, logoIndex });
           }
         });
       });
-
+  
+      // Append techLogoIndex as a JSON string to FormData
+      formData.append("techLogoIndex", JSON.stringify(techLogoIndices));
+  
       const response = await axios.put(
-        `https://conscientious-technologies-backend.vercel.app/update-reliable-tools-data/${editId}`,
+        `http://localhost:8080/update-reliable-tools-data/${editId}`,
         formData
       );
       if (response.status === 200) {
@@ -256,9 +274,11 @@ const ServiceTechTools = () => {
         Swal.fire("Success", "Data updated successfully!", "success");
       }
     } catch (error) {
+      console.error("File upload error:", error.message);
       Swal.fire("Error", "Failed to update data. Please try again.", "error");
     }
   };
+  
 
   const removeTechLogo = (subTechIndex, logoIndex) => {
     const updatedSubTech = [...addReliableData.subTech];

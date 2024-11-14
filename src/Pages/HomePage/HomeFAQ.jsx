@@ -420,7 +420,7 @@ const HomeFAQ = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((faq, i) => (
+          {currentItems && currentItems.map((faq, i) => (
             <tr key={faq._id} className="border-b">
               <td className="border-r p-2">{i + indexOfFirstItem + 1}</td>
               <td className="border-r p-2">{faq.question}</td>
