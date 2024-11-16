@@ -44,8 +44,8 @@ export const addBlog = async (req, res) => {
             cardSubHeading,
             headerTitle,
             HeaderDesc,
-            cardImage, // Assuming first image is the Card Image
-            headerImage, // Assuming second image is the Header Image
+            cardImage, 
+            headerImage, 
             articleData: parsedArticleData,
             blogTags
         });
@@ -95,9 +95,6 @@ export const getBlogByCategory = async (req, res) => {
     try {
         const { category } = req.params;
         const blog = await LatestBlogModel.find({ category: category});
-        // if (!blog) {
-        //     return res.status(404).send({ message: "Blog not found" });
-        // }
         res.status(200).send({
             status: "Success",
             blog
@@ -121,8 +118,6 @@ export const getBlogBysubCategory = async (req, res) => {
         res.status(500).send({ message: error.message });
     }
 };
-
-// Update blog by ID// Update blog by ID
 export const updateBlog = async (req, res) => {
     try {
         const { id } = req.params;
@@ -133,35 +128,30 @@ export const updateBlog = async (req, res) => {
             return res.status(404).send({ message: "Blog not found" });
         }
 
-        // Parse articleData if provided
-        let parsedArticleData = blog.articleData; // Use existing articleData as default
+        let parsedArticleData = blog.articleData;
         if (articleData) {
             parsedArticleData = JSON.parse(articleData);
         }
 
-        // File upload handling for header and card images
-        let headerImage = blog.headerImage; // Default to existing image
-        let cardImage = blog.cardImage;     // Default to existing image
+        let headerImage = blog.headerImage;
+        let cardImage = blog.cardImage;
 
         if (req.files && req.files.headerImage) {
-            // If a new headerImage is uploaded, update it
             headerImage = await uploadToCloudinary(req.files.headerImage[0].path);
         }
 
         if (req.files && req.files.cardImage) {
-            // If a new cardImage is uploaded, update it
             cardImage = await uploadToCloudinary(req.files.cardImage[0].path);
         }
 
-        // Update the blog fields
         blog.headerTitle = headerTitle || blog.headerTitle;
         blog.HeaderDesc = HeaderDesc || blog.HeaderDesc;
         blog.category = category || blog.category;
         blog.subCategory = subCategory || blog.subCategory;
         blog.cardHeading = cardHeading || blog.cardHeading;
         blog.cardSubHeading = cardSubHeading || blog.cardSubHeading;
-        blog.cardImage = cardImage; // Update with new or existing image
-        blog.headerImage = headerImage; // Update with new or existing image
+        blog.cardImage = cardImage; 
+        blog.headerImage = headerImage;
         blog.articleData = parsedArticleData;
         blog.blogTags = blogTags || blog.blogTags;
 
@@ -176,8 +166,6 @@ export const updateBlog = async (req, res) => {
     }
 };
 
-
-// Delete blog by ID
 export const deleteBlog = async (req, res) => {
     try {
         const { id } = req.params;

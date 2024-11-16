@@ -42,7 +42,6 @@ export const editKeyFeatureData = async (req, res) => {
         const { id } = req.params;
         let keyFeatureImag = null;
         if (req.file) {
-            // If a file is uploaded, update the image
             const uploadResult = await cloudinary.v2.uploader.upload(req.file.path);
             keyFeatureImag = uploadResult.secure_url;
         }

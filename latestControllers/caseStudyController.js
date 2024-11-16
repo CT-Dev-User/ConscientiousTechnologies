@@ -30,8 +30,7 @@ export const createCaseStudy = async (req, res) => {
             executionHeading4, executionPoint4,
             solution, techTools
         } = req.body;
-
-        // File upload handling for multiple images
+        
         const cardImage = req.files?.cardDatacardImage ? await uploadToCloudinary(req.files.cardDatacardImage[0].path) : '';
         const headerImage = req.files?.cardDataheaderImage ? await uploadToCloudinary(req.files.cardDataheaderImage[0].path) : '';
         const overviewImage = req.files?.overviewimage ? await uploadToCloudinary(req.files.overviewimage[0].path) : '';
@@ -42,34 +41,26 @@ export const createCaseStudy = async (req, res) => {
         const resultsImg3 = req.files?.resultsImg3 ? await uploadToCloudinary(req.files.resultsImg3[0].path) : '';
 
         const newCaseStudy = new CaseStudyModel({
-            // card data
             category,
             Subcategory,
             cardDatatitle,
             cardDatasubTitle,
             cardDatacoreTech,
             cardDatacardImage: cardImage,
-
-            // header data
             headerTagLine,
             headerdesc,
             headerImage,
-            
-            // overview data
             overviewtitle,
             overviewindustryType,
             overviewbusinessType,
             overviewservicesProvided,
             overviewdescription,
             overviewimage: overviewImage,
-
             goals,
             insights,
             insightsImage,
             challenges,
             approach,
-
-            // execution
             executionHeading1,
             executionPoint1,
             executionHeading2,
@@ -78,12 +69,9 @@ export const createCaseStudy = async (req, res) => {
             executionPoint3,
             executionHeading4,
             executionPoint4,
-
             solution,
             solutionImage,
             techTools,
-
-            // result images
             resultsImg1,
             resultsImg2,
             resultsImg3,
@@ -92,12 +80,10 @@ export const createCaseStudy = async (req, res) => {
         await newCaseStudy.save();
         res.status(201).json({ message: "Case study created successfully", newCaseStudy });
     } catch (error) {
-        console.error('Error creating case study:', error);
         res.status(500).json({ message: 'Error creating case study', error: error.message });
     }
 };
 
-// Controller to edit a specific Case Study entry
 export const editCaseStudy = async (req, res) => {
     try {
         const { id } = req.params;
@@ -108,8 +94,6 @@ export const editCaseStudy = async (req, res) => {
             executionHeading4, executionPoint4,
             solution, techTools
         } = req.body;
-
-        // File upload handling for multiple images
         const existingCaseStudy = await CaseStudyModel.findById(id);
 
         const cardImage = req.files?.cardDatacardImage ? await uploadToCloudinary(req.files.cardDatacardImage[0].path) : existingCaseStudy.cardDatacardImage;
@@ -170,12 +154,10 @@ export const editCaseStudy = async (req, res) => {
 
         res.status(200).json({ message: "Case study updated successfully", updatedCaseStudy });
     } catch (error) {
-        console.error('Error updating case study:', error);
         res.status(500).json({ message: 'Error updating case study', error: error.message });
     }
 };
 
-// Controller to get all case studies
 export const getAllCaseStudies = async (req, res) => {
     try {
         const caseStudies = await CaseStudyModel.find();
@@ -185,7 +167,6 @@ export const getAllCaseStudies = async (req, res) => {
     }
 };
 
-// Controller to get a case study by its ID
 export const getCaseStudyById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -196,7 +177,6 @@ export const getCaseStudyById = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-// Controller to get a case study by its ID
 export const getCaseStudyBySubCategory = async (req, res) => {
     try {
         const { category, Subcategory } = req.params;
@@ -207,7 +187,7 @@ export const getCaseStudyBySubCategory = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-// Controller to get a case study by its ID
+
 export const getCaseStudyByCategory = async (req, res) => {
     try {
         const { category } = req.params;
@@ -219,9 +199,6 @@ export const getCaseStudyByCategory = async (req, res) => {
     }
 };
 
-
-
-// Controller to delete a case study by ID
 export const deleteCaseStudy = async (req, res) => {
     try {
         const { id } = req.params;

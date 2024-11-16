@@ -3,7 +3,6 @@ import cloudinary from '../cloudinary.js';
 import fs from 'fs';
 import LatestSubServiceModel from '../latestModels/subServices/SubService.js';
 
-// Function to handle file uploads to Cloudinary
 const uploadToCloudinary = async (filePath) => {
     try {
         const result = await cloudinary.v2.uploader.upload(filePath);
@@ -21,12 +20,9 @@ const uploadToCloudinary = async (filePath) => {
     }
 };
 
-// Controller to create a new LatestIndustry entry
 export const createSubServices = async (req, res) => {
     try {
         const { serviceName, subServiceTitle, cardTitle, cardDescription, headerTagLine, headerDescription, cardNo } = req.body;
-
-        // File upload handling for card and header images
         let cardImageUrl, headerImageUrl;
         if (req.files && req.files['cardImage']) {
             cardImageUrl = await uploadToCloudinary(req.files['cardImage'][0].path);
@@ -50,18 +46,14 @@ export const createSubServices = async (req, res) => {
         await newIndustry.save();
         res.status(201).json({ message: "Industry created successfully", newIndustry });
     } catch (error) {
-        console.error('Error creating industry:', error);
         res.status(500).json({ message: 'Error creating industry', error: error.message });
     }
 };
 
-// Controller to edit a specific LatestIndustry entry
 export const editSubServices = async (req, res) => {
     try {
         const { id } = req.params;
         const { serviceName, subServiceTitle, cardTitle, cardNo, cardDescription, headerTagLine, headerDescription } = req.body;
-
-        // File upload handling for images
         let cardImageUrl, headerImageUrl;
         const existingIndustry = await LatestSubServiceModel.findById(id);
         if (req.files && req.files['cardImage']) {
@@ -93,12 +85,10 @@ export const editSubServices = async (req, res) => {
 
         res.status(200).json({ message: "subservice updated successfully", updatedIndustry });
     } catch (error) {
-        console.error('Error updating industry:', error);
         res.status(500).json({ message: 'Error updating industry', error: error.message });
     }
 };
 
-// Controller to get all industries
 export const getAllSubServices = async (req, res) => {
     try {
         const subservices = await LatestSubServiceModel.find();
@@ -108,7 +98,6 @@ export const getAllSubServices = async (req, res) => {
     }
 };
 
-// Controller to get an industry by its ID
 export const getSubServicesById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -142,7 +131,6 @@ export const getSubservicesBySubServicesName = async (req, res) => {
     }
 };
 
-// Controller to delete an industry by ID
 export const deleteSubServices = async (req, res) => {
     try {
         const { id } = req.params;

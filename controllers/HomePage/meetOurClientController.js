@@ -53,7 +53,6 @@ export const editClientReviewData = async (req, res) => {
 
         const clientById = await ClientReviewModel.findById(id);
         if (!clientById) {
-            console.log("object")
             return res.status(404).json({
                 error: 'client not found'
             })
@@ -64,11 +63,7 @@ export const editClientReviewData = async (req, res) => {
         clientById.jobProfile = jobProfile || clientById.jobProfile
         clientById.rating = rating || clientById.rating
         clientById.reviewHeading = reviewHeading || clientById.reviewHeading
-        // const saveData = await clientById
         const saveData = await clientById.save();
-        console.log(clientById)
-
-        
         res.send({
             message: "Data updated Successfully",
             saveData

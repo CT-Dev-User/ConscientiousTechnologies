@@ -1,8 +1,6 @@
 import cloudinary from '../../cloudinary.js';
 import socialMediaModel from '../../Models/About/socialMediaModels.js';
-import HeroSection from '../../Models/HomePage/HeroSection.js';
 
-//Add HeroSection Data
 export const addSocialMediaData = async (req, res) => {
     try {
         const uploadResult = await cloudinary.v2.uploader.upload(req.file.path)
@@ -23,7 +21,6 @@ export const addSocialMediaData = async (req, res) => {
     }
 }
 
-//get heroSection Data
 export const getSocialMediadata = async (req, res) => {
     try {
         const getdata = await socialMediaModel.find({}).sort({ createdAt: -1 });
@@ -38,13 +35,11 @@ export const getSocialMediadata = async (req, res) => {
 
 }
 
-//Update Herosection Data
 export const editSocialMediadata = async (req, res) => {
     try {
         const { id } = req.params;
         let social_icon = null;
         if (req.file) {
-            // If a file is uploaded, update the image
             const uploadResult = await cloudinary.v2.uploader.upload(req.file.path);
             social_icon = uploadResult.secure_url;
         }
@@ -73,7 +68,6 @@ export const editSocialMediadata = async (req, res) => {
     }
 }
 
-//Delete herosection Data
 export const deleteSocialMediadata = async (req, res) => {
     try {
         const { id } = req.params;

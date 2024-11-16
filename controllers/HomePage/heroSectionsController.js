@@ -1,7 +1,6 @@
 import cloudinary from '../../cloudinary.js';
 import HeroSection from '../../Models/HomePage/HeroSection.js';
 
-//Add HeroSection Data
 export const addSliderData = async (req, res) => {
     try {
         const uploadResult = await cloudinary.v2.uploader.upload(req.file.path)
@@ -22,7 +21,6 @@ export const addSliderData = async (req, res) => {
     }
 }
 
-//get heroSection Data
 export const getherosliderdata = async (req, res) => {
     try {
         const getdata = await HeroSection.find({}).sort({ createdAt: -1 });
@@ -37,13 +35,11 @@ export const getherosliderdata = async (req, res) => {
 
 }
 
-//Update Herosection Data
 export const editherosliderdata = async (req, res) => {
     try {
         const { id } = req.params;
         let herosliderImage = null;
         if (req.file) {
-            // If a file is uploaded, update the image
             const uploadResult = await cloudinary.v2.uploader.upload(req.file.path);
             herosliderImage = uploadResult.secure_url;
         }
@@ -71,7 +67,6 @@ export const editherosliderdata = async (req, res) => {
     }
 }
 
-//Delete herosection Data
 export const deleteheroslliderdata = async (req, res) => {
     try {
         const { id } = req.params;
