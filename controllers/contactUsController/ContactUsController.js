@@ -1,11 +1,9 @@
 import ContactUsModel from "../../Models/contactUsModel/ContactUs.js";
 import cloudinary from "../../cloudinary.js";
-import fs from 'fs'
 export const addContactUsData = async (req, res) => {
     try {
 
         const { fullName, companyName, workEmail, phone, message_request, nda } = req.body;
-        // Array to store uploaded image URLs
         const uploadResult = await cloudinary.v2.uploader.upload(req.file.path)
         const sourceImage = uploadResult.secure_url;
         const newData = new ContactUsModel({
@@ -40,7 +38,6 @@ export const editContactUsData = async (req, res) => {
     try {
         const { id } = req.params
         const { fullName, companyName, workEmail, phone, message_request, nda } = req.body;
-        // Array to store uploaded image URLs
         const uploadResult = await cloudinary.v2.uploader.upload(req.file.path)
         const sourceImage = uploadResult.secure_url;
         const contactUsDateById = await ContactUsModel.findById(id);
@@ -71,8 +68,7 @@ export const editContactUsData = async (req, res) => {
 export const deleteContactUsData = async (req, res) => {
     try {
         const { id } = req.params;
-        await ContactUsModel.findByIdAndDelete({ _id: id })
-
+        await ContactUsModel.findByIdAndDelete({ _id: id });
         res.status(200).send({
             message: "Data deleted successfully"
         })

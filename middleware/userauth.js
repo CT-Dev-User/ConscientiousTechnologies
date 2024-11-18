@@ -13,8 +13,6 @@ export const authlogin = async (req, res, next) => {
 
     const token = authHeader.split(' ')[1];
     const decode = await Jwt.verify(token, process.env.KEY);
-
-    console.log("Decoded user:", decode);
     req.user = decode;
     next();
 

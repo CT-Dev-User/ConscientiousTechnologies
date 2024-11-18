@@ -2,32 +2,28 @@ import partnerUpModel from '../../Models/PartnerUpModel.js';
 import cloudinary from '../../cloudinary.js';
 import fs from 'fs';
 
-// Add PartnerUp Data
 export const addPartnerUpData = async (req, res) => {
     try {
         const { heading1, heading2 } = req.body;
         const partnersLogo1 = [];
         const partnersLogo2 = [];
 
-        // Uploading images for partnersLogo1
         if (req.files.images1) {
             for (const file of req.files.images1) {
                 const result = await cloudinary.v2.uploader.upload(file.path);
                 partnersLogo1.push({ logo1: result.secure_url });
-                fs.unlinkSync(file.path); // Remove file after upload
+                fs.unlinkSync(file.path);
             }
         }
 
-        // Uploading images for partnersLogo2
         if (req.files.images2) {
             for (const file of req.files.images2) {
                 const result = await cloudinary.v2.uploader.upload(file.path);
                 partnersLogo2.push({ logo2: result.secure_url });
-                fs.unlinkSync(file.path); // Remove file after upload
+                fs.unlinkSync(file.path);
             }
         }
 
-        // Creating new PartnerUpData document
         const newPartnerUpData = new partnerUpModel({
             heading1,
             heading2,
@@ -35,7 +31,6 @@ export const addPartnerUpData = async (req, res) => {
             partnersLogo2
         });
 
-        // Saving new document
         const saveData = await newPartnerUpData.save();
 
         res.status(200).send({
@@ -44,12 +39,9 @@ export const addPartnerUpData = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("Error:", error);
         res.status(500).send({ message: error.message });
     }
 };
-
-// Get PartnerUp Data
 export const getPartnerupdata = async (req, res) => {
     try {
         const getdata = await partnerUpModel.find({});
@@ -63,7 +55,6 @@ export const getPartnerupdata = async (req, res) => {
     }
 };
 
-// Edit PartnerUp Data
 export const editPartnerUpdata = async (req, res) => {
     try {
         const { id } = req.params;
@@ -71,32 +62,28 @@ export const editPartnerUpdata = async (req, res) => {
         const partnersLogo1 = [];
         const partnersLogo2 = [];
 
-        // Uploading images for partnersLogo1
         if (req.files.images1) {
             for (const file of req.files.images1) {
                 const result = await cloudinary.v2.uploader.upload(file.path);
                 partnersLogo1.push({ logo1: result.secure_url });
-                fs.unlinkSync(file.path); // Remove file after upload
+                fs.unlinkSync(file.path);
             }
         }
 
-        // Uploading images for partnersLogo2
         if (req.files.images2) {
             for (const file of req.files.images2) {
                 const result = await cloudinary.v2.uploader.upload(file.path);
                 partnersLogo2.push({ logo2: result.secure_url });
-                fs.unlinkSync(file.path); // Remove file after upload
+                fs.unlinkSync(file.path);
             }
         }
 
-        // Prepare update object
         const updateObject = {};
         if (heading1) updateObject.heading1 = heading1;
         if (heading2) updateObject.heading2 = heading2;
         if (partnersLogo1.length > 0) updateObject.partnersLogo1 = partnersLogo1;
         if (partnersLogo2.length > 0) updateObject.partnersLogo2 = partnersLogo2;
 
-        // Update data in the database
         const updatedData = await partnerUpModel.findByIdAndUpdate(
             id,
             updateObject,
@@ -113,7 +100,6 @@ export const editPartnerUpdata = async (req, res) => {
     }
 };
 
-// Delete PartnerUp Data
 export const deletePartnerUpdata = async (req, res) => {
     try {
         const { id } = req.params;
@@ -123,7 +109,6 @@ export const deletePartnerUpdata = async (req, res) => {
             message: "Data deleted successfully"
         });
     } catch (error) {
-        console.error("Error:", error);
         res.status(500).send({ message: error.message });
     }
 };

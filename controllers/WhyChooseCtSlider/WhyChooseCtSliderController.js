@@ -1,7 +1,6 @@
 import chooseCtLogoModel from '../../Models/WhyChooseCtModel.js';
 import cloudinary from '../../cloudinary.js';
 import fs from 'fs'
-//Add Header Data
 export const addChooseCtSliderData = async (req, res) => {
     try {
         const { category, Subcategory, heading, subtitle, logoHeading, points } = req.body;
@@ -17,7 +16,6 @@ export const addChooseCtSliderData = async (req, res) => {
 
         let parsedPoints = [];
         if (points) {
-            // Check if points data is provided
             parsedPoints = JSON.parse(points);
         }
 
@@ -27,8 +25,8 @@ export const addChooseCtSliderData = async (req, res) => {
             heading,
             subtitle,
             logoHeading,
-            logos: images.map(image => ({ logo: image })), // Map uploaded images to the 'logos' array
-            points: parsedPoints // Use parsed points data
+            logos: images.map(image => ({ logo: image })), 
+            points: parsedPoints
         });
 
         const saveData = await newChooseCtSliderData.save();
@@ -43,8 +41,6 @@ export const addChooseCtSliderData = async (req, res) => {
     }
 };
 
-
-//get header Data
 export const getChooseCtSliderdata = async (req, res) => {
     try {
         const getdata = await chooseCtLogoModel.find({});
@@ -59,7 +55,6 @@ export const getChooseCtSliderdata = async (req, res) => {
 
 }
 
-//get header data by headersubcategory
 export const getChooseCtSliderBySubCategory = async (req, res) => {
     try {
         const { Subcategory } = req.params;
@@ -76,15 +71,10 @@ export const getChooseCtSliderBySubCategory = async (req, res) => {
     }
 };
 
-//get header data by headercategory
 export const getChooseCtSliderByCategory = async (req, res) => {
     try {
         const { category } = req.params;
-
-        // Construct the query object to find documents by category and Subcategory
         const getDataByCategory = await chooseCtLogoModel.find({ category: category });
-
-        // Check if data was found
         res.status(200).send({
             message: "Data retrieved successfully",
             data: getDataByCategory
@@ -98,8 +88,6 @@ export const getChooseCtSliderByCategory = async (req, res) => {
 export const getChooseCtSliderByCategorySubCategory = async (req, res)=>{
     try {
         const { category, subcategory } = req.params;
-
-        // Construct the query object to find documents by category and Subcategory
         const getDataByCategory = await chooseCtLogoModel.find({ category:category, Subcategory:subcategory });
             res.status(200).send({
                 message: "Data retrieved successfully",
@@ -110,8 +98,6 @@ export const getChooseCtSliderByCategorySubCategory = async (req, res)=>{
     }
 }
 
-
-// Edit Choose CT Slider Data
 export const editChooseCtSliderData = async (req, res) => {
     try {
         const { id } = req.params;
@@ -147,9 +133,6 @@ export const editChooseCtSliderData = async (req, res) => {
     }
 };
 
-
-
-//Delete herosection Data
 export const deleteChooseCtSliderdata = async (req, res) => {
     try {
         const { id } = req.params;

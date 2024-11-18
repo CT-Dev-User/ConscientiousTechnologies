@@ -2,7 +2,6 @@ import LatestServiceModel from '../latestModels/services/Service.js';
 import cloudinary from '../cloudinary.js';
 import fs from 'fs';
 
-// Function to handle file uploads to Cloudinary
 const uploadToCloudinary = async (filePath) => {
     try {
         const result = await cloudinary.v2.uploader.upload(filePath);
@@ -20,7 +19,6 @@ const uploadToCloudinary = async (filePath) => {
     }
 };
 
-// Controller to create a new LatestService entry
 export const createService = async (req, res) => {
     try {
         const {
@@ -37,7 +35,6 @@ export const createService = async (req, res) => {
         let headerImage = "";
         let cardImage = "";
 
-        // File upload handling for header and card images
         if (req.files && req.files.headerImage) {
             headerImage = await uploadToCloudinary(req.files.headerImage[0].path);
         }
@@ -65,12 +62,10 @@ export const createService = async (req, res) => {
         await newService.save();
         res.status(201).json({ message: "Service created successfully", newService });
     } catch (error) {
-        console.error('Error creating service:', error);
         res.status(500).json({ message: 'Error creating service', error: error.message });
     }
 };
 
-// Controller to edit a specific LatestService entry
 export const editService = async (req, res) => {
     try {
         const { id } = req.params;
@@ -93,7 +88,6 @@ export const editService = async (req, res) => {
         let headerImage = existingService.headerImage;
         let cardImage = existingService.cardImage;
 
-        // File upload handling for header and card images
         if (req.files && req.files.headerImage) {
             headerImage = await uploadToCloudinary(req.files.headerImage[0].path);
         }
@@ -124,12 +118,10 @@ export const editService = async (req, res) => {
 
         res.status(200).json({ message: "Service updated successfully", updatedService });
     } catch (error) {
-        console.error('Error updating service:', error);
         res.status(500).json({ message: 'Error updating service', error: error.message });
     }
 };
 
-// Controller to get all services
 export const getAllServices = async (req, res) => {
     try {
         const services = await LatestServiceModel.find();
@@ -139,7 +131,6 @@ export const getAllServices = async (req, res) => {
     }
 };
 
-// Controller to get a service by its ID
 export const getServiceById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -153,7 +144,6 @@ export const getServiceById = async (req, res) => {
 
 export const getServiceByserviceName = async (req, res) => {
     try {
-        console.log(req.params)
         const { serviceName } = req.params;
         const service = await LatestServiceModel.find({ serviceName: serviceName });
         if (!service) return res.status(404).json({ message: "Service not found" });
@@ -163,7 +153,6 @@ export const getServiceByserviceName = async (req, res) => {
     }
 };
 
-// Controller to delete a service by ID
 export const deleteService = async (req, res) => {
     try {
         const { id } = req.params;
