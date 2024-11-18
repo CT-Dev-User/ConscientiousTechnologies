@@ -138,7 +138,7 @@ const WhyChooseCTSlider = ({category, subCategory}) => {
                         <div className="lg:w-80 lg:h-32 flex items-center w-[90%] h-40 ">
                           <div className="bg-[#D9D9D9] w-[70%] lg:h-full h-4/5 flex justify-center items-center text-black">
                             <img
-                              src={items.logo}
+                              src={slider.logoHeading}
                               alt="fghjk"
                               className="w-full h-full"
                             />

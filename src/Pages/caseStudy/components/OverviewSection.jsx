@@ -31,7 +31,7 @@ const OverviewSection = ({overviewtitle, overviewdescription, overviewimage,over
                     </div>
                 </div>
                 <div className='lg:w-[45%] w-[90%] lg:h-[90vh] mt-20 lg:mt-0 flex justify-center items-center'>
-                    <img src={overviewimage} alt="" className='h-[90%]' />
+                    <img src={overviewimage} alt={overviewtitle} className='h-[90%]' />
                 </div>
             </div>
         </div>

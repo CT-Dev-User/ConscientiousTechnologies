@@ -1,34 +1,37 @@
 import React from 'react'
 
 const DataBaseConsulting = () => {
-    const SaasDevScope = [{ title: "Database software consulting", desc: 
-(
-    <ul>
-       <ul>
-            <li className='list-disc ms-5'>Define database functionality and tech stack.</li>
-            <li className='list-disc ms-5'>Develop a business case.</li>
-            <li className='list-disc ms-5'>Estimate solution ROI.</li>
-            <li className='list-disc ms-5'>Design database architecture for high performance, security and scalability.</li>
-            <li className='list-disc ms-5'>Deliver UX/UI mock-ups.</li>
-            <li className='list-disc ms-5'>Provide a project management and implementation scenario, project cost & time estimates.</li>
-        </ul>
-    </ul>
-)
-},
+    const SaasDevScope = [{
+        title: "Database software consulting", desc:
+            (
+                <ul>
+                    <ul>
+                        <li className='list-disc ms-5'>Define database functionality and tech stack.</li>
+                        <li className='list-disc ms-5'>Develop a business case.</li>
+                        <li className='list-disc ms-5'>Estimate solution ROI.</li>
+                        <li className='list-disc ms-5'>Design database architecture for high performance, security and scalability.</li>
+                        <li className='list-disc ms-5'>Deliver UX/UI mock-ups.</li>
+                        <li className='list-disc ms-5'>Provide a project management and implementation scenario, project cost & time estimates.</li>
+                    </ul>
+                </ul>
+            )
+    },
 
-    { title: "Full-cycle database software development", desc: (
-        <ul>
-           <ul>
-                <li className='list-disc ms-5'>Solution consulting and planning.</li>
-                <li className='list-disc ms-5'>Database, web and mobile app development.</li>
-                <li className='list-disc ms-5'>Integration with third-party systems.</li>
-                <li className='list-disc ms-5'>User training.</li>
-                <li className='list-disc ms-5'>After-launch support.</li>
-                <li className='list-disc ms-5'>Continuous software management.</li>
+    {
+        title: "Full-cycle database software development", desc: (
+            <ul>
+                <ul>
+                    <li className='list-disc ms-5'>Solution consulting and planning.</li>
+                    <li className='list-disc ms-5'>Database, web and mobile app development.</li>
+                    <li className='list-disc ms-5'>Integration with third-party systems.</li>
+                    <li className='list-disc ms-5'>User training.</li>
+                    <li className='list-disc ms-5'>After-launch support.</li>
+                    <li className='list-disc ms-5'>Continuous software management.</li>
+                </ul>
             </ul>
-        </ul>
-    ) }
-]
+        )
+    }
+    ]
     return (
         <div className='w-[100vw] h-[auto] box-border pt-[100px] md:pt-[50px] pb-[30px]'>
             <div className='w-[85%] mx-auto md:w-[90%]'>

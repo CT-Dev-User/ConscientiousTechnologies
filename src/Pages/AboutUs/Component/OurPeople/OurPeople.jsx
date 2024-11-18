@@ -55,7 +55,7 @@ const OurPeople = () => {
                         <h4 className='text-white text-xl mb-3 uppercase tracking-wide'>About Us</h4>
                         <div className='w-[100%]  flex flex-wrap justify-center gap-2'>
                             {ourpeopleData.map((data, index) => (
-                                <div className='w-[48%] p-3 bg-white flex flex-col  gap-[2px]'>
+                                <div className='w-[48%] p-3 bg-white flex flex-col  gap-[2px]' key={index}>
                                     <h2 className='lg:text-3xl text-xl  2xl:text-[2.3rem]  text-[#4E84C4]'>{data.stats}</h2>
                                     <h5 className='text-[16px] text-[#4E84C4] mt-3 text-semibold tracking-wider'>{data.title}</h5>
                                     <p className='text-[14px] mt-2'>{data.desc}</p>

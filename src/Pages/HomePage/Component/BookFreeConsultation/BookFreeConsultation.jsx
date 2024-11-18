@@ -60,7 +60,7 @@ const BookFreeConsultation = () => {
                     </div>
                 </div>
                 <div className='lg:w-[47%] w-full bg-black hidden lg:block'>
-                    <img src={BookFreeCon} alt="" className='w-full h-full' />
+                    <img src={BookFreeCon} alt="Book free Consultation" className='w-full h-full' />
                 </div>
             </div>
 

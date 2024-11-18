@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Home Page -->
+    <url>
+        <loc>https://www.conscientioustech.in/</loc>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- By Client Type -->
+    <url>
+        <loc>https://www.conscientioustech.in/by-client/Enterprises</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.conscientioustech.in/by-client/Agencies</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Services -->
+    <url>
+        <loc>https://www.conscientioustech.in/Services/Artificial-Intelligence-(AI)-Services</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.conscientioustech.in/Services/QA-&-Services</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.conscientioustech.in/Services/Ecommerce-Services</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.conscientioustech.in/Services/UI-UX-Design</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.conscientioustech.in/Services/Cloud-Computing-Services</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Software Development Services -->
+    <url>
+        <loc>https://www.conscientioustech.in/Software-Development-Services/Software-Consulting-Services</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.conscientioustech.in/Software-Development-Services/Custom-software-development</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.conscientioustech.in/Software-Development-Services/Enterprise-software</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.conscientioustech.in/Software-Development-Services/Software-product</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.conscientioustech.in/Software-Development-Services/Cloud-application</loc>
+        <priority>0.7</priority>
+    </url>
+    <!-- Add similar entries for other routes -->
+
+    <!-- Industries -->
+    <url>
+        <loc>https://www.conscientioustech.in/Industries/Oil-and-Gas</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://www.conscientioustech.in/Industries/Telecommunications</loc>
+        <priority>0.6</priority>
+    </url>
+    <!-- Add similar entries for all other industries -->
+
+    <!-- Contact Us -->
+    <url>
+        <loc>https://www.conscientioustech.in/contact-us</loc>
+        <priority>0.5</priority>
+    </url>
+</urlset>

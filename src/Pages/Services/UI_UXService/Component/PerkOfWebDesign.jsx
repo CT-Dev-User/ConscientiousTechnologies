@@ -12,7 +12,7 @@ const PerkOfWebDesign = () => {
         </div>
         <div className='w-full  lg:w-[85%] flex mx-auto mt-6 gap-20 justify-start '>
             <div className='w-[27%] h-[600px] hidden lg:block'>
-                <img src={perkOfWebDesignImg} alt="Ecommerce Development Services" className='w-[100%] h-[100%]' />
+                <img src={perkOfWebDesignImg} alt="UI UX Development Services" className='w-[100%] h-[100%]' />
             </div>
             <div className='lg:w-[65%]  flex gap-3 flex-wrap w-full lg:mt-0 mt-4'>
                 {cloudServiceDevArr.map((items, i) => {

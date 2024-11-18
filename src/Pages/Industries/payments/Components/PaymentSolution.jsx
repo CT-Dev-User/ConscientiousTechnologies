@@ -70,7 +70,7 @@ const PaymentSolution = () => {
             </div>
             <div className='w-[85%] flex mx-auto flex-wrap gap-x-[30px] gap-y-[30px] mt-[20px]'>
                 {PaymentSolutionArr.map((item, index) => (
-                    <div key={index} className='w-[350px] md:w-[90%] h-[200px] border border-gray-300 p-3 md:w-full md:border-none md:p-0 md:h-auto md:py-3'>
+                    <div key={index} className='w-[350px] md:w-[90%] h-[200px] border border-gray-300 p-3 md:border-none md:p-0 md:h-auto md:py-3'>
                         <h1 className='text-[18px] font-bold'>{item.title}</h1>
                         <p className='text-[13.5px] mt-2 font-medium'>{item.desc}</p>
                     </div>

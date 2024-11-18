@@ -12,7 +12,7 @@ const BenefitsFromCt = () => {
             </div>
             <div className='lg:w-[85%] flex mx-auto flex-wrap gap-7 mt-5 w-[95%]'>
                 <div className='w-[28%] h-[30rem] hidden bg-[black] lg:block'>
-                    <img src={ourmission1} alt="Perks of Web Design with CT" className='w-full h-full' />
+                    <img src={ourmission1} alt="Perks of Web Design with CT Data Analyst" className='w-full h-full' />
                 </div>
                 <div className='lg:w-[65%] flex gap-5 flex-wrap w-[95%]'>
                     {benefitsFromCtArr.map((items, i) => {

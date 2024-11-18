@@ -199,7 +199,7 @@ const NavBar = ({ hideNavbar, setHideNavbar }) => {
         <div>
           <img
             src={ctlogo}
-            alt="logo"
+            alt="CT logo"
             className="h-10 cursor-pointer"
             onClick={() => navigate("/")}
           />

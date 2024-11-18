@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+// import { Switch, Route } from 'react-router-dom';
 import NavBar from './Pages/HomePage/Component/NavBar/NavBar';
 import HomePage from './Pages/HomePage/homePage';
 import CareerPage from './Pages/CareerPage/CareerPage';

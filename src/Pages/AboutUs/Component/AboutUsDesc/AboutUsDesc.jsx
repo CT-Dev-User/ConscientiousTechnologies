@@ -34,7 +34,7 @@ const AboutUsDesc = () => {
 
             </div>
             <div className='w-[100%] lg:w-[50%] box-border hidden lg:block'>
-                <img src={aboutus} alt="about-us" className='w-[95%]' />
+                <img src={aboutus} alt="conscientious technology about-us" className='w-[95%]' />
             </div>
 
         </div>

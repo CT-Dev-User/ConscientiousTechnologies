@@ -18,7 +18,7 @@ const SoftDevProcess = () => {
 
 
   return (
-    <div className='w-[100vw] h-[auto] bg-[black] box-border pt-[100px] md:pt-[50px] pb-[30px] text-[white] pb-[60px]'>
+    <div className='w-[100vw] h-[auto] bg-[black] box-border pt-[100px] md:pt-[50px] pb-[30px] text-[white] '>
             <div className='w-[85%] mx-auto md:w-[90%]'>
                 <h1 className='text-3xl font-bold md:text-[16px] md:text-[blue]'>Software Development Process for Startups: Key Steps and Best Practices</h1>
                 <p className='w-[70%] text-[14px] mt-2 md:w-[100%] md:text-[12px]'>CT's Roadmap to Success: Navigating startups through a streamlined software development process. From ideation to launch, we empower with key steps and best practices for sustainable growth and innovation.</p>

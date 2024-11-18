@@ -36,7 +36,7 @@ const About = () => {
         })}
       </div>
       <div className='h-full lg:w-[36%] w-full mt-4 lg:mt-0'>
-        <img src={aboutImg} alt="about-img" className='lg:w-full h-full w-[95%] mx-auto' />
+        <img src={aboutImg} alt="about us Conscientious technology solutions IT Industry" className='lg:w-full h-full w-[95%] mx-auto' />
       </div>
       <button
         className="lg:hidden relative overflow-hidden text-black border border-[#999999] px-3 py-1 group mx-auto w-56"
