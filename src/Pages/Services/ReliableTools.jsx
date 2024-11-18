@@ -177,7 +177,7 @@ const ServiceTechTools = () => {
   
       // Send the request
       const response = await axios.post(
-        "http://localhost:8080/add-reliable-tools-data",
+        "https://conscientious-technologies-backend.vercel.app/add-reliable-tools-data",
         formData
       );
   
@@ -265,7 +265,7 @@ const ServiceTechTools = () => {
       formData.append("techLogoIndex", JSON.stringify(techLogoIndices));
   
       const response = await axios.put(
-        `http://localhost:8080/update-reliable-tools-data/${editId}`,
+        `https://conscientious-technologies-backend.vercel.app/update-reliable-tools-data/${editId}`,
         formData
       );
       if (response.status === 200) {
