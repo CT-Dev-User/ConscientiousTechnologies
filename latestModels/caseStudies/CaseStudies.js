@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const CaseStudySchema = new mongoose.Schema({
-    category: { type: String },
+    category: { type: String },// service, solutions, industries
     Subcategory: { type: String },
 
     // card

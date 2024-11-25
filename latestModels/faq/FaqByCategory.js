@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const FaqByCategorySchema = new mongoose.Schema({
-    category: { type: String, required: true },
+    category: { type: String, required: true },// service, solutions, industries
     subCategory: { type: String, required: true },
     question: { type: String, required: true },
     answer: {

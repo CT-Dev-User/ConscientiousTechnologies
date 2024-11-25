@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const LatestIndustrySchema = new mongoose.Schema({
-    industryName: { type: String },
+    industryName: { type: String },//subcategory
     cardNo:{type:Number},
     cardTitle:{type:String},
     cardImage: { type: String },

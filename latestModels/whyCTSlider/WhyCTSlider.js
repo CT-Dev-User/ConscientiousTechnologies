@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const LatestWhyCTSchema = new mongoose.Schema({
-    category: { type: String },
+    category: { type: String },// service, solutions, industries
     heading: { type: String },
     tagLine: { type: String },
     logoHeading: { type: String },

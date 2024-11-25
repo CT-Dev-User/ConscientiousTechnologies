@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const LatestServiceSchema = new mongoose.Schema({
-    serviceName: { type: String },
+    serviceName: { type: String },//subcategory
     headerTagLine: {type: String},
     headerDescription:{type:String},
     headerImage:{type:String},

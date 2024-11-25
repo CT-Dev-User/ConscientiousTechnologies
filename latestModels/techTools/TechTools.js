@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const LatestToolsSchema = new mongoose.Schema({
-    category: { type: String },
+    category: { type: String },// service, solutions, home page
     Subcategory: { type: String },
     technology: { type: String },
     subTech: [{

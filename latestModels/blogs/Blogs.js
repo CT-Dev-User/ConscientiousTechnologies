@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const LatestBlogSchema = new mongoose.Schema({
-    category: { type: String },
-    subCategory: { type: String },
+    category: { type: String },// service, solutions, industries
+    subCategory: { type: String },//
     headerTitle:{type:String},
     HeaderDesc:{type:String},
     headerImage: { type: String },
