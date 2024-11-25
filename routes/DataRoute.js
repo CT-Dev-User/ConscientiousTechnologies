@@ -46,7 +46,7 @@ dataroute.put("/edit-home-faq/:id", authlogin, Super_Admin_or_Admin, MultiImageu
 dataroute.delete("/delete-home-faq/:id", authlogin, Super_Admin_or_Admin, deleteHomeFaq)
 
 //book free consultation routes // no need to delete
-dataroute.post("/add-book-free-con-data", authlogin, Super_Admin_or_Admin, addbookFreeConData)
+dataroute.post("/add-book-free-con-data", addbookFreeConData)
 dataroute.get("/get-book-free-con-data", getbookFreeConData)
 dataroute.put("/edit-book-free-con-data/:id", authlogin, Super_Admin_or_Admin, editbookFreeConData)
 dataroute.delete("/delete-book-free-con-data/:id", authlogin, Super_Admin_or_Admin, deletebookFreeConData)
