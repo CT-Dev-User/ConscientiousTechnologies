@@ -14,7 +14,7 @@ const ReliableTools = ({ category, Subcategory }) => {
     try {
       if (category === "HomePage") {
         const response = await axios.get(
-          "https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data"
+          "https://conscientious-technologies-backend.vercel.app/get-reliable-tools-data/Home/Home Tech Tools"
         );
         setReliableToolsData(response.data.data);
       }
